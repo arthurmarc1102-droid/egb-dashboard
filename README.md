@@ -6,14 +6,16 @@ Author: Arthur Marc. Plain HTML, CSS and JavaScript (D3 for charts). Everything 
 
 ## Status
 
-- The data in `data/` is a **snapshot dated 19 November 2026** (close of 18 November). It is not refreshed automatically yet.
-- Every series was read twice, independently, and only identical values were kept. The Sources tab lists each source, its status and its known limits.
+- Data refreshed each weekday by GitHub Actions (`.github/workflows/update.yml`, about 19:17 UTC and 06:23 UTC), history since January 2015.
+- Sources: Bundesbank (German par curve, euro short-term rate, German bond prices), Banque de France (TEC indices, Euronext), Banco de Espana, Eurostat, Eurex, ECB / Bundesbank / Banco de Espana news feeds.
+- Each run is compared with a snapshot of 19 Nov 2026 in which every value was read twice independently: see `data/raw/update_log.txt`.
 - French TEC indices (Euronext Paris) and Eurex data are shown with the written authorisation of their publishers.
-- No swap or asset swap data: no free source was found.
+- No swap or asset swap data: no free source was found. Auctions and the event calendar are not refreshed automatically yet.
 
 ## Layout
 
 - `index.html`, `data/`: the page and its data (served by GitHub Pages).
-- `src/`: page sources. `python3 build.py` assembles them into one `index.html`.
-- `real/`: scripts that build the data files from the readings.
+- `data/raw/`: archives (Eurex settlements, basket file) and the log of the last run.
+- `pipeline/update.py`: downloads, checks and builds the data files. `pipeline/sources.py`: source list and known limits.
+- `src/`: page sources. `python3 build.py` assembles them into `index.html`.
 - `docs/`: source audit, architecture, plan and journal (in French).

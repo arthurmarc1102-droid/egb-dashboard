@@ -151,3 +151,9 @@ Alternative sans GitHub, une tâche planifiée Claude qui relit les sources chaq
 - GitHub toujours non connecté à Claude : pas encore de mise à jour quotidienne ni de dépôt.
 - Dépôt GitHub public créé : `arthurmarc1102-droid/egb-dashboard`. Page, données, scripts et docs poussés ; GitHub Pages activé (branche `main`, racine). Lien public : https://arthurmarc1102-droid.github.io/egb-dashboard/ (page testée dans Chrome, données chargées).
 - Reste : scripts de téléchargement quotidien (`pipeline/`) et GitHub Actions. Le dépôt ne contient pas les lectures brutes (`staging/`), seulement les fichiers JSON publiés.
+- Pipeline quotidien en place (`pipeline/update.py`, GitHub Actions, en semaine vers 19 h 17 et 6 h 23 UTC). Premier vrai test de téléchargement : les 13 sources répondent (HTTP 200) depuis GitHub.
+- Historique chargé depuis janvier 2015 : Allemagne 3 018 jours, France 3 042, Espagne environ 3 000 (15 ans : 2 449), €STR depuis octobre 2019, 10 ans mensuel 8 pays depuis 2015.
+- Contrôle contre l'instantané lu deux fois du 19/11 : 6 723 valeurs communes, 0 écart. Cours Eurex du 18/11 archivés : 12 sur 12 identiques à la lecture du 19/11.
+- Une valeur écartée comme erreur de publication : Espagne 5 ans le 08/07/2016 (1,75 % entre 0,23 et 0,24). Règle : saut isolé de 75 pb ou plus dans les deux sens. Chaque cas est listé dans `data/raw/update_log.txt`.
+- Eurex : archive quotidienne dans `data/raw/eurex_settle.csv` (37 séances récupérées, du 30/09 au 19/11/2026) ; paniers et CTD recalculés chaque jour.
+- Pas encore automatisés : adjudications, calendrier.
