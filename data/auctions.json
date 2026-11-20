@@ -1,0 +1,341 @@
+{
+ "asof": "2026-11-19",
+ "note_results": "Medium and long-term lines only. Read on 19 Nov 2026 on the issuers' pages. Germany: allotted amount excludes the retention. Italy: single-price auction, so the yield is the yield at the auction price. France, 5 Nov: bids and cover were not read on an AFT page. France, 19 Nov: result not read yet.",
+ "note_upcoming": "Germany and Spain: read on the issuers' calendars. France: date from the AFT calendar rule, not from a dated calendar. Italy: calendar not read yet.",
+ "results": [
+  {
+   "country": "ES",
+   "date": "2026-11-19",
+   "security": "Bono 2.60% 31 May 2031",
+   "isin": null,
+   "bids_bn": 3.739,
+   "amount_bn": 1.444,
+   "avg_yield": 3.475,
+   "stop_yield": 3.486,
+   "bid_cover": 2.59,
+   "url": "https://www.tesoro.es/deuda-publica/subastas/resultado-ultimas-subastas/bonos-del-estado"
+  },
+  {
+   "country": "ES",
+   "date": "2026-11-19",
+   "security": "Obligacion 3.75% 30 Jul 2034",
+   "isin": null,
+   "bids_bn": 5.194,
+   "amount_bn": 2.322,
+   "avg_yield": 3.765,
+   "stop_yield": 3.77,
+   "bid_cover": 2.24,
+   "url": "https://www.tesoro.es/deuda-publica/subastas/resultado-ultimas-subastas/bonos-del-estado"
+  },
+  {
+   "country": "ES",
+   "date": "2026-11-19",
+   "security": "Obligacion 3.20% 31 Oct 2035",
+   "isin": null,
+   "bids_bn": 3.061,
+   "amount_bn": 1.666,
+   "avg_yield": 3.842,
+   "stop_yield": 3.85,
+   "bid_cover": 1.84,
+   "url": "https://www.tesoro.es/deuda-publica/subastas/resultado-ultimas-subastas/obligaciones-del-estado"
+  },
+  {
+   "country": "DE",
+   "date": "2026-11-18",
+   "security": "Bund 3.30% 15 Nov 2033",
+   "isin": "DE000BU27022",
+   "bids_bn": 3.417,
+   "amount_bn": 2.272,
+   "avg_yield": 3.27,
+   "stop_yield": null,
+   "bid_cover": 1.5,
+   "url": "https://www.deutsche-finanzagentur.de/en/federal-securities/issuances/issuance-results"
+  },
+  {
+   "country": "DE",
+   "date": "2026-11-17",
+   "security": "Schatz 3.00% 13 Dec 2028",
+   "isin": "DE000BU22155",
+   "bids_bn": 6.822,
+   "amount_bn": 3.807,
+   "avg_yield": 3.1,
+   "stop_yield": null,
+   "bid_cover": 1.8,
+   "url": "https://www.deutsche-finanzagentur.de/en/federal-securities/issuances/issuance-results"
+  },
+  {
+   "country": "IT",
+   "date": "2026-11-12",
+   "security": "BTP 3.00% 15 Sep 2029",
+   "isin": "IT0005716839",
+   "bids_bn": 3.841,
+   "amount_bn": 2.5,
+   "avg_yield": 3.58,
+   "stop_yield": null,
+   "bid_cover": 1.54,
+   "url": "https://www.bancaditalia.it/media/comunicati/documenti/2026-02/cs_aste_BTP_12112026.pdf"
+  },
+  {
+   "country": "IT",
+   "date": "2026-11-12",
+   "security": "BTP 3.35% 15 Sep 2033",
+   "isin": "IT0005722845",
+   "bids_bn": 5.007,
+   "amount_bn": 3.25,
+   "avg_yield": 4.04,
+   "stop_yield": null,
+   "bid_cover": 1.54,
+   "url": "https://www.bancaditalia.it/media/comunicati/documenti/2026-02/cs_aste_BTP_12112026.pdf"
+  },
+  {
+   "country": "IT",
+   "date": "2026-11-12",
+   "security": "BTP Green 4.10% 30 Apr 2046",
+   "isin": "IT0005631608",
+   "bids_bn": 2.536,
+   "amount_bn": 1.5,
+   "avg_yield": 4.73,
+   "stop_yield": null,
+   "bid_cover": 1.69,
+   "url": "https://www.bancaditalia.it/media/comunicati/documenti/2026-02/cs_aste_BTP_12112026.pdf"
+  },
+  {
+   "country": "DE",
+   "date": "2026-11-11",
+   "security": "Bund 2.90% 15 Aug 2056",
+   "isin": "DE000BU2D012",
+   "bids_bn": 1.398,
+   "amount_bn": 1.078,
+   "avg_yield": 3.66,
+   "stop_yield": null,
+   "bid_cover": 1.3,
+   "url": "https://www.deutsche-finanzagentur.de/en/federal-securities/issuances/issuance-results"
+  },
+  {
+   "country": "DE",
+   "date": "2026-11-11",
+   "security": "Bund 3.40% 15 May 2047",
+   "isin": "DE000BU2T000",
+   "bids_bn": 1.56,
+   "amount_bn": 0.853,
+   "avg_yield": 3.65,
+   "stop_yield": null,
+   "bid_cover": 1.8,
+   "url": "https://www.deutsche-finanzagentur.de/en/federal-securities/issuances/issuance-results"
+  },
+  {
+   "country": "FR",
+   "date": "2026-11-05",
+   "security": "OAT 3.70% 25 Nov 2036",
+   "isin": "FR0014018YR0",
+   "bids_bn": null,
+   "amount_bn": 6.578,
+   "avg_yield": 4.74,
+   "stop_yield": null,
+   "bid_cover": null,
+   "url": "https://www.aft.gouv.fr/en/node/13741"
+  },
+  {
+   "country": "ES",
+   "date": "2026-11-05",
+   "security": "Obligacion 3.50% 31 Jan 2041",
+   "isin": null,
+   "bids_bn": 2.856,
+   "amount_bn": 1.57,
+   "avg_yield": 4.092,
+   "stop_yield": 4.101,
+   "bid_cover": 1.82,
+   "url": "https://www.tesoro.es/deuda-publica/subastas/resultado-ultimas-subastas/obligaciones-del-estado"
+  },
+  {
+   "country": "DE",
+   "date": "2026-11-04",
+   "security": "Bund 2.60% 15 May 2041",
+   "isin": "DE000BU2F009",
+   "bids_bn": 1.145,
+   "amount_bn": 0.864,
+   "avg_yield": 3.57,
+   "stop_yield": null,
+   "bid_cover": 1.3,
+   "url": "https://www.deutsche-finanzagentur.de/en/federal-securities/issuances/issuance-results"
+  },
+  {
+   "country": "DE",
+   "date": "2026-11-04",
+   "security": "Bund 1.25% 15 Aug 2048",
+   "isin": "DE0001102432",
+   "bids_bn": 1.812,
+   "amount_bn": 0.8,
+   "avg_yield": 3.67,
+   "stop_yield": null,
+   "bid_cover": 2.3,
+   "url": "https://www.deutsche-finanzagentur.de/en/federal-securities/issuances/issuance-results"
+  },
+  {
+   "country": "FR",
+   "date": "2026-10-15",
+   "security": "OAT 2.70% 25 Feb 2031",
+   "isin": "FR001400Z2L7",
+   "bids_bn": 4.744,
+   "amount_bn": 2.041,
+   "avg_yield": 4.01,
+   "stop_yield": null,
+   "bid_cover": 2.32,
+   "url": "https://www.aft.gouv.fr/en/dernieres-adjudications"
+  },
+  {
+   "country": "FR",
+   "date": "2026-10-15",
+   "security": "OAT 0.00% 25 Nov 2031",
+   "isin": "FR0014002WK3",
+   "bids_bn": 5.37,
+   "amount_bn": 2.337,
+   "avg_yield": 4.1,
+   "stop_yield": null,
+   "bid_cover": 2.3,
+   "url": "https://www.aft.gouv.fr/en/dernieres-adjudications"
+  },
+  {
+   "country": "FR",
+   "date": "2026-10-15",
+   "security": "OAT 3.25% 25 Feb 2032",
+   "isin": "FR0014018OI0",
+   "bids_bn": 8.48,
+   "amount_bn": 3.691,
+   "avg_yield": 4.16,
+   "stop_yield": null,
+   "bid_cover": 2.3,
+   "url": "https://www.aft.gouv.fr/en/dernieres-adjudications"
+  },
+  {
+   "country": "FR",
+   "date": "2026-10-15",
+   "security": "OAT 3.50% 25 Nov 2033",
+   "isin": "FR001400L834",
+   "bids_bn": 8.762,
+   "amount_bn": 3.931,
+   "avg_yield": 4.41,
+   "stop_yield": null,
+   "bid_cover": 2.23,
+   "url": "https://www.aft.gouv.fr/en/dernieres-adjudications"
+  },
+  {
+   "country": "ES",
+   "date": "2026-10-15",
+   "security": "Bono 2.35% 31 Mar 2029",
+   "isin": null,
+   "bids_bn": 4.957,
+   "amount_bn": 2.4,
+   "avg_yield": 3.313,
+   "stop_yield": 3.315,
+   "bid_cover": 2.07,
+   "url": "https://www.tesoro.es/deuda-publica/subastas/resultado-ultimas-subastas/bonos-del-estado"
+  },
+  {
+   "country": "FR",
+   "date": "2026-10-01",
+   "security": "OAT 3.70% 25 Nov 2036",
+   "isin": "FR0014018YR0",
+   "bids_bn": 12.564,
+   "amount_bn": 6.271,
+   "avg_yield": 4.93,
+   "stop_yield": null,
+   "bid_cover": 2.0,
+   "url": "https://www.aft.gouv.fr/en/dernieres-adjudications"
+  },
+  {
+   "country": "FR",
+   "date": "2026-10-01",
+   "security": "OAT 3.80% 25 Jun 2037",
+   "isin": "FR0014017Z10",
+   "bids_bn": 4.623,
+   "amount_bn": 1.531,
+   "avg_yield": 4.97,
+   "stop_yield": null,
+   "bid_cover": 3.02,
+   "url": "https://www.aft.gouv.fr/en/dernieres-adjudications"
+  },
+  {
+   "country": "FR",
+   "date": "2026-10-01",
+   "security": "OAT 1.25% 25 May 2038",
+   "isin": "FR0014009O62",
+   "bids_bn": 5.29,
+   "amount_bn": 2.134,
+   "avg_yield": 5.06,
+   "stop_yield": null,
+   "bid_cover": 2.48,
+   "url": "https://www.aft.gouv.fr/en/dernieres-adjudications"
+  },
+  {
+   "country": "FR",
+   "date": "2026-10-01",
+   "security": "OAT 2.00% 25 May 2048",
+   "isin": "FR0013257524",
+   "bids_bn": 5.01,
+   "amount_bn": 2.063,
+   "avg_yield": 5.4,
+   "stop_yield": null,
+   "bid_cover": 2.43,
+   "url": "https://www.aft.gouv.fr/en/dernieres-adjudications"
+  }
+ ],
+ "upcoming": [
+  {
+   "country": "DE",
+   "date": "2026-11-25",
+   "title": "Bund 3.00% 15 Aug 2036, reopening",
+   "amount_bn": 5.0,
+   "url": "https://www.deutsche-finanzagentur.de/en/federal-securities/issuances/issuance-calendar"
+  },
+  {
+   "country": "DE",
+   "date": "2026-12-01",
+   "title": "Bobl 2.90% 8 Oct 2031, reopening",
+   "amount_bn": 4.5,
+   "url": "https://www.deutsche-finanzagentur.de/en/federal-securities/issuances/issuance-calendar"
+  },
+  {
+   "country": "FR",
+   "date": "2026-12-03",
+   "title": "Long-term OAT auction (first Thursday rule, lines not announced yet)",
+   "amount_text": "not announced",
+   "url": "https://www.aft.gouv.fr/en/node/13516"
+  },
+  {
+   "country": "DE",
+   "date": "2026-12-08",
+   "title": "Schatz 3.00% 13 Dec 2028, reopening",
+   "amount_bn": 4.0,
+   "url": "https://www.deutsche-finanzagentur.de/en/federal-securities/issuances/issuance-calendar"
+  },
+  {
+   "country": "ES",
+   "date": "2026-12-10",
+   "title": "Bonos and Obligaciones (lines not announced yet)",
+   "amount_text": "not announced",
+   "url": "https://www.tesoro.es/deuda-publica/subastas/calendario"
+  },
+  {
+   "country": "ES",
+   "date": "2026-12-17",
+   "title": "Bonos and Obligaciones (lines not announced yet)",
+   "amount_text": "not announced",
+   "url": "https://www.tesoro.es/deuda-publica/subastas/calendario"
+  },
+  {
+   "country": "ES",
+   "date": "2027-01-07",
+   "title": "Bonos and Obligaciones (lines not announced yet)",
+   "amount_text": "not announced",
+   "url": "https://www.tesoro.es/deuda-publica/subastas/calendario"
+  },
+  {
+   "country": "ES",
+   "date": "2027-01-21",
+   "title": "Bonos and Obligaciones (lines not announced yet)",
+   "amount_text": "not announced",
+   "url": "https://www.tesoro.es/deuda-publica/subastas/calendario"
+  }
+ ]
+}

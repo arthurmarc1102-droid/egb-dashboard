@@ -1,0 +1,175 @@
+:root{
+  /* Layout idea: sticky header and tab rail, one filter row, then a 12-column grid of hairline panels.
+     Dark only, by choice (desk terminal). Hue is reserved for data; the interface itself is ink on navy. */
+  color-scheme: dark;
+  --plane:#0a0f15;
+  --surface:#101720;
+  --raised:#17202b;
+  --rule:#1f2b38;
+  --axis:#2e3d4d;
+  --ink:#e8e6e1;
+  --ink-2:#aab2bb;
+  --ink-3:#7f8a96;
+  /* Diverging pair, one meaning everywhere: warm = higher yield / wider / cheaper, cool = lower / tighter / richer */
+  --up:#e66767;
+  --down:#3987e5;
+  --flat:#2a3644;
+  /* Categorical: one fixed hue per country, never reassigned */
+  --c-DE:#3987e5; --c-FR:#d95926; --c-IT:#199e70; --c-ES:#c98500;
+  --c-NL:#d55181; --c-BE:#0ca30c; --c-AT:#9085e9; --c-PT:#e66767;
+  --font-data:"IBM Plex Sans Condensed","Roboto Condensed","Arial Narrow",system-ui,sans-serif;
+  --font-text:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --gutter:16px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--plane); color:var(--ink);
+  font-family:var(--font-data); font-size:13.5px; line-height:1.35;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:var(--ink); text-decoration:underline; text-decoration-color:var(--axis); text-underline-offset:2px}
+a:hover{text-decoration-color:var(--ink)}
+button{font:inherit; color:inherit}
+:focus-visible{outline:2px solid var(--ink); outline-offset:2px; border-radius:2px}
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+
+/* ---------- header and tabs ---------- */
+.top{position:sticky; top:0; z-index:20; background:var(--plane); border-bottom:1px solid var(--rule)}
+.masthead{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; padding:10px var(--gutter) 6px}
+.brand{font-size:19px; font-weight:600; letter-spacing:.01em; margin:0}
+.asof{color:var(--ink-2); font-size:13px}
+.asof b{color:var(--ink); font-weight:500}
+.status{margin-left:auto; color:var(--ink-3); font-size:12.5px}
+.tabs{display:flex; gap:2px; overflow-x:auto; padding:0 calc(var(--gutter) - 8px); scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{appearance:none; background:none; border:0; border-bottom:2px solid transparent; padding:8px 9px 7px; color:var(--ink-2);
+  font-size:14px; font-weight:500; white-space:nowrap; cursor:pointer}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink); border-bottom-color:var(--ink)}
+
+/* ---------- filter row ---------- */
+.filters{display:flex; flex-wrap:wrap; gap:8px 18px; align-items:center; padding:10px var(--gutter) 2px}
+.fgroup{display:flex; align-items:center; gap:7px; min-width:0; max-width:100%}
+.flabel{color:var(--ink-3); font-size:12.5px}
+.seg{display:inline-flex; flex:0 1 auto; min-width:0; max-width:100%; border:1px solid var(--rule); border-radius:3px; overflow-x:auto; overflow-y:hidden; scrollbar-width:none; background:var(--surface)}
+.seg::-webkit-scrollbar{display:none}
+.seg button{appearance:none; background:none; border:0; border-right:1px solid var(--rule); padding:4px 9px; color:var(--ink-2);
+  font-size:13px; cursor:pointer; min-height:28px; display:inline-flex; align-items:center; gap:5px; flex:none}
+.seg button:last-child{border-right:0}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--raised); color:var(--ink); box-shadow:inset 0 -2px 0 var(--ink)}
+.swatch{width:10px; height:3px; border-radius:1px; display:inline-block; flex:none}
+.legend-key{display:flex; gap:14px; align-items:center; color:var(--ink-3); font-size:12.5px; margin-left:auto}
+.legend-key i{display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:-1px}
+select.sel{font:inherit; font-size:13px; color:var(--ink); background:var(--surface); border:1px solid var(--rule); border-radius:3px;
+  padding:4px 24px 4px 8px; min-height:28px; max-width:100%;
+  appearance:none; background-image:linear-gradient(45deg,transparent 50%,var(--ink-2) 50%),linear-gradient(135deg,var(--ink-2) 50%,transparent 50%);
+  background-position:calc(100% - 12px) 12px, calc(100% - 8px) 12px; background-size:4px 4px; background-repeat:no-repeat}
+
+/* ---------- grid and panels ---------- */
+main{padding:10px var(--gutter) 28px}
+.grid{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:12px}
+.panel{grid-column:span 12; background:var(--surface); border:1px solid var(--rule); border-radius:3px; min-width:0; display:flex; flex-direction:column}
+.s3{grid-column:span 3}.s4{grid-column:span 4}.s5{grid-column:span 5}.s6{grid-column:span 6}.s7{grid-column:span 7}.s8{grid-column:span 8}
+@media (max-width:1080px){.s3,.s4{grid-column:span 6}.s5,.s7,.s8{grid-column:span 12}}
+@media (max-width:760px){.s3,.s4,.s5,.s6,.s7,.s8{grid-column:span 12}}
+.panel > header{display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:9px 12px 0; min-width:0}
+.panel .tools{min-width:0; max-width:100%}
+.panel h2{font-size:14.5px; font-weight:600; margin:0; text-wrap:balance}
+.panel .sub{color:var(--ink-3); font-size:12.5px}
+.panel .tools{margin-left:auto; display:flex; gap:8px; align-items:center; flex-wrap:wrap}
+.panel-body{padding:8px 12px 10px; min-width:0; flex:1; display:flex; flex-direction:column}
+.panel-body > .fill{flex:1; min-height:0}
+.panel > footer{margin-top:auto; padding:0 12px 9px; color:var(--ink-3); font-size:12px}
+.linkbtn{appearance:none; background:none; border:1px solid var(--rule); border-radius:3px; padding:3px 8px; color:var(--ink-2); font-size:12.5px; cursor:pointer; min-height:26px}
+.linkbtn:hover{color:var(--ink); border-color:var(--axis)}
+.linkbtn[aria-pressed="true"]{color:var(--ink); background:var(--raised)}
+.empty{color:var(--ink-2); padding:14px 2px; font-family:var(--font-text); font-size:13px; max-width:62ch}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
+table.t{border-collapse:collapse; width:100%; font-variant-numeric:tabular-nums}
+.t th{font-weight:500; color:var(--ink-3); font-size:12.5px; text-align:right; padding:4px 8px; border-bottom:1px solid var(--rule); white-space:nowrap}
+.t td{padding:5px 8px; border-bottom:1px solid var(--rule); text-align:right; white-space:nowrap}
+.t tr:last-child td{border-bottom:0}
+.t th:first-child,.t td:first-child{text-align:left; position:sticky; left:0; background:var(--surface); z-index:1}
+.t td.l,.t th.l{text-align:left}
+.t td.wrap{white-space:normal; min-width:180px}
+.t tbody tr.click{cursor:pointer}
+.t tbody tr.click:hover td{background:var(--raised)}
+.t tbody tr[aria-selected="true"] td{background:var(--raised)}
+.t tbody tr.hot td:first-child{box-shadow:inset 3px 0 0 var(--ink)}
+.t th.sortable{cursor:pointer}
+.t th.sortable:hover{color:var(--ink)}
+.t th[aria-sort="ascending"]::after{content:" \25B4"}
+.t th[aria-sort="descending"]::after{content:" \25BE"}
+.name{font-weight:500}
+.muted{color:var(--ink-3)}
+.lvl{font-weight:500}
+td.heat{position:relative}
+td.heat > span{position:relative}
+.zchip{display:inline-block; min-width:44px; padding:1px 6px; border-radius:3px; text-align:right}
+.ctry{display:inline-flex; align-items:center; gap:6px}
+.pill{display:inline-block; padding:1px 7px; border:1px solid var(--axis); border-radius:10px; font-size:12px; color:var(--ink-2); white-space:nowrap}
+.pill.ok{border-color:#2f6f4e; color:#bfe3cf}
+.pill.warn{border-color:#7a5a1e; color:#ecd9a8}
+.pill.off{border-color:var(--axis); color:var(--ink-3)}
+
+/* ---------- charts ---------- */
+.chart{position:relative; min-width:0}
+.chart svg{display:block; max-width:100%; touch-action:pan-y}
+.chart .tick, .axis-label{fill:var(--ink-3); font-size:11.5px; font-family:var(--font-data); font-variant-numeric:tabular-nums}
+.chart .endlabel{fill:var(--ink-2); font-size:12px; font-family:var(--font-data); font-variant-numeric:tabular-nums}
+.chart .endlabel b{fill:var(--ink)}
+.legend{display:flex; flex-wrap:wrap; gap:4px 14px; padding:0 0 6px; color:var(--ink-2); font-size:12.5px}
+.legend span{display:inline-flex; align-items:center; gap:6px}
+.legend i{width:14px; height:2px; border-radius:1px; display:inline-block}
+.tip{position:absolute; pointer-events:none; z-index:30; background:#0b1118; border:1px solid var(--axis); border-radius:3px; padding:6px 8px;
+  font-size:12.5px; min-width:120px; max-width:260px; box-shadow:0 6px 18px rgba(0,0,0,.45); font-variant-numeric:tabular-nums}
+.tip .d{color:var(--ink-2); margin-bottom:3px}
+.tip .r{display:flex; align-items:center; gap:7px; justify-content:space-between}
+.tip .r i{width:12px; height:2px; display:inline-block; border-radius:1px; flex:none}
+.tip .r .n{color:var(--ink-2); margin-right:auto}
+.tip .r b{font-weight:600; color:var(--ink)}
+
+/* ---------- stat rows ---------- */
+.stats{display:flex; flex-wrap:wrap; gap:6px 22px; padding:2px 0 8px}
+.stat{min-width:74px}
+.stat .k{color:var(--ink-3); font-size:12px}
+.stat .v{font-size:17px; font-weight:500}
+.stat .v small{font-size:12px; color:var(--ink-2); font-weight:400; margin-left:3px}
+
+/* ---------- z bars (extremes) ---------- */
+.zlist{display:grid; grid-template-columns:minmax(96px,auto) 1fr auto; gap:5px 10px; align-items:center}
+.zlist .zn{font-weight:500; white-space:nowrap}
+.zlist .zv{text-align:right; font-variant-numeric:tabular-nums; min-width:44px}
+.ztrack{position:relative; height:10px; background:linear-gradient(var(--rule),var(--rule)) center/100% 1px no-repeat}
+.ztrack::before{content:""; position:absolute; left:50%; top:-2px; bottom:-2px; width:1px; background:var(--axis)}
+.zbar{position:absolute; top:1px; height:8px}
+.zbar.pos{left:50%; border-radius:0 4px 4px 0; background:var(--up)}
+.zbar.neg{right:50%; border-radius:4px 0 0 4px; background:var(--down)}
+
+/* ---------- lists ---------- */
+.feed{display:flex; flex-direction:column; max-height:520px; overflow-y:auto}
+.feed.short{max-height:none}
+.item{display:grid; grid-template-columns:auto 1fr; gap:2px 10px; padding:7px 0; border-bottom:1px solid var(--rule)}
+.item:last-child{border-bottom:0}
+.item .when{color:var(--ink-3); font-size:12.5px; white-space:nowrap; font-variant-numeric:tabular-nums}
+.item .what{font-family:var(--font-text); font-size:13px; line-height:1.4}
+.item .who{grid-column:2; color:var(--ink-3); font-size:12px}
+.prose{font-family:var(--font-text); font-size:13.5px; line-height:1.55; color:var(--ink-2); max-width:72ch}
+.prose h3{font-family:var(--font-data); font-size:14px; color:var(--ink); margin:14px 0 4px; font-weight:600}
+.prose p{margin:0 0 8px}
+.prose code{font-family:var(--font-data); color:var(--ink); background:var(--raised); padding:0 4px; border-radius:2px; font-size:13px}
+.prose ul{margin:0 0 8px; padding-left:18px}
+.foot{padding:0 var(--gutter) 26px; color:var(--ink-3); font-size:12.5px; font-family:var(--font-text)}
+.heatwrap td.hm{text-align:center; min-width:46px; padding:6px 4px; color:var(--ink)}
+.heatwrap th{text-align:center}
+.heatwrap th:first-child{text-align:left}
+@media (prefers-reduced-motion:no-preference){ .tab,.seg button,.linkbtn{transition:color .12s, background-color .12s} }
+@media (max-width:760px){
+  body{font-size:13px}
+  .legend-key{margin-left:0}
+  .status{margin-left:0; width:100%}
+}

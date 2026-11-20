@@ -1,0 +1,545 @@
+{
+ "asof": "2026-11-18",
+ "private": false,
+ "sources": [
+  "eurex",
+  "bbk_prices"
+ ],
+ "note": "Settlement prices and deliverable baskets: Eurex, shown with the written consent of Deutsche Boerse. Basis, implied repo and cheapest-to-deliver are shown for the German front contracts only. Bond prices are the Bundesbank reference prices of 18 Nov 2026, set around midday in Frankfurt, while futures settle at 17:15 CET, so the basis is indicative. Bond value date 20 Nov 2026, delivery on the 10th of the delivery month. Net basis finances the bond at the euro short-term rate (2.441 % on 17 Nov 2026), not at a repo rate. No free price by bond is verified yet for French and Italian bonds, so their baskets show conversion factors only.",
+ "products": [
+  {
+   "code": "FGBS",
+   "name": "Euro-Schatz",
+   "country": "DE",
+   "notional_coupon": 6,
+   "contracts": [
+    {
+     "expiry": "20261208",
+     "label": "Dec 26",
+     "delivery": "2026-12-10",
+     "settle": 104.92,
+     "volume": 692188.0,
+     "open_interest": 3245817.0,
+     "basket": [
+      {
+       "isin": "DE000BU25018",
+       "coupon": 2.4,
+       "maturity": "2028-10-19",
+       "cf": 0.938364,
+       "price": 98.67,
+       "gross_basis": 0.2168,
+       "implied_repo": -1.554,
+       "yield": 3.1257,
+       "net_basis": 0.2194
+      },
+      {
+       "isin": "DE000BU22148",
+       "coupon": 2.7,
+       "maturity": "2028-09-13",
+       "cf": 0.946091,
+       "price": 99.254,
+       "gross_basis": -0.0099,
+       "implied_repo": 2.835,
+       "yield": 3.1196,
+       "net_basis": -0.022,
+       "ctd": true
+      },
+      {
+       "isin": "DE0001102556",
+       "coupon": 0.0,
+       "maturity": "2028-11-15",
+       "cf": 0.893556,
+       "price": 94.155,
+       "gross_basis": 0.4031,
+       "implied_repo": -7.706,
+       "yield": 3.0786,
+       "net_basis": 0.5308
+      },
+      {
+       "isin": "DE0001102465",
+       "coupon": 0.25,
+       "maturity": "2029-02-15",
+       "cf": 0.885495,
+       "price": 93.94,
+       "gross_basis": 1.0339,
+       "implied_repo": -19.508,
+       "yield": 3.0935,
+       "net_basis": 1.1479
+      }
+     ]
+    },
+    {
+     "expiry": "20270308",
+     "label": "Mar 27",
+     "delivery": "2027-03-10",
+     "settle": 104.86,
+     "volume": 36802.0,
+     "open_interest": 102435.0,
+     "basket": [
+      {
+       "isin": "DE0001102465",
+       "coupon": 0.25,
+       "maturity": "2029-02-15",
+       "cf": 0.897713
+      },
+      {
+       "isin": "DE000BU22155",
+       "coupon": 3.0,
+       "maturity": "2028-12-13",
+       "cf": 0.950828
+      },
+      {
+       "isin": "DE000BU35025",
+       "coupon": 2.1,
+       "maturity": "2029-04-12",
+       "cf": 0.925407
+      },
+      {
+       "isin": "DE000BU25026",
+       "coupon": 2.1,
+       "maturity": "2029-04-12",
+       "cf": 0.925407
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "code": "FGBM",
+   "name": "Euro-Bobl",
+   "country": "DE",
+   "notional_coupon": 6,
+   "contracts": [
+    {
+     "expiry": "20261208",
+     "label": "Dec 26",
+     "delivery": "2026-12-10",
+     "settle": 113.01,
+     "volume": 768593.0,
+     "open_interest": 1804994.0,
+     "basket": [
+      {
+       "isin": "DE0001102564",
+       "coupon": 0.0,
+       "maturity": "2031-08-15",
+       "cf": 0.761347,
+       "price": 86.25,
+       "gross_basis": 0.2102,
+       "implied_repo": -4.386,
+       "yield": 3.1738,
+       "net_basis": 0.3272
+      },
+      {
+       "isin": "DE000BU25075",
+       "coupon": 2.9,
+       "maturity": "2031-10-08",
+       "cf": 0.872911,
+       "price": 98.67,
+       "gross_basis": 0.0223,
+       "implied_repo": 2.468,
+       "yield": 3.1937,
+       "net_basis": -0.0015,
+       "ctd": true
+      },
+      {
+       "isin": "DE0001030732",
+       "coupon": 0.0,
+       "maturity": "2031-08-15",
+       "cf": 0.761347,
+       "price": 86.29,
+       "gross_basis": 0.2502,
+       "implied_repo": -5.219,
+       "yield": 3.1637,
+       "net_basis": 0.3672
+      },
+      {
+       "isin": "DE0001102580",
+       "coupon": 0.0,
+       "maturity": "2032-02-15",
+       "cf": 0.739308,
+       "price": 84.83,
+       "gross_basis": 1.2808,
+       "implied_repo": -27.177,
+       "yield": 3.1905,
+       "net_basis": 1.3958
+      }
+     ]
+    },
+    {
+     "expiry": "20270308",
+     "label": "Mar 27",
+     "delivery": "2027-03-10",
+     "settle": 112.25,
+     "volume": 7685.0,
+     "open_interest": 17413.0,
+     "basket": [
+      {
+       "isin": "DE0001102606",
+       "coupon": 1.7,
+       "maturity": "2032-08-15",
+       "cf": 0.805408
+      },
+      {
+       "isin": "DE0001102580",
+       "coupon": 0.0,
+       "maturity": "2032-02-15",
+       "cf": 0.750007
+      },
+      {
+       "isin": "DE000BU25075",
+       "coupon": 2.9,
+       "maturity": "2031-10-08",
+       "cf": 0.878554
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "code": "FGBL",
+   "name": "Euro-Bund",
+   "country": "DE",
+   "notional_coupon": 6,
+   "contracts": [
+    {
+     "expiry": "20261208",
+     "label": "Dec 26",
+     "delivery": "2026-12-10",
+     "settle": 121.98,
+     "volume": 919471.0,
+     "open_interest": 1870747.0,
+     "basket": [
+      {
+       "isin": "DE000BU2Z064",
+       "coupon": 2.9,
+       "maturity": "2036-02-15",
+       "cf": 0.785735,
+       "price": 96.52,
+       "gross_basis": 0.676,
+       "implied_repo": -9.4,
+       "yield": 3.3427,
+       "net_basis": 0.6514
+      },
+      {
+       "isin": "DE000BU2Z056",
+       "coupon": 2.6,
+       "maturity": "2035-08-15",
+       "cf": 0.774902,
+       "price": 94.57,
+       "gross_basis": 0.0475,
+       "implied_repo": 1.795,
+       "yield": 3.3254,
+       "net_basis": 0.0342,
+       "ctd": true
+      },
+      {
+       "isin": "DE000BU2Z072",
+       "coupon": 3.0,
+       "maturity": "2036-08-15",
+       "cf": 0.784157,
+       "price": 97.0,
+       "gross_basis": 1.3485,
+       "implied_repo": -21.729,
+       "yield": 3.3645,
+       "net_basis": 1.3171
+      }
+     ]
+    },
+    {
+     "expiry": "20270308",
+     "label": "Mar 27",
+     "delivery": "2027-03-10",
+     "settle": 122.01,
+     "volume": 3953.0,
+     "open_interest": 10348.0,
+     "basket": [
+      {
+       "isin": "DE000BU2Z064",
+       "coupon": 2.9,
+       "maturity": "2036-02-15",
+       "cf": 0.790223
+      },
+      {
+       "isin": "DE000BU2Z072",
+       "coupon": 3.0,
+       "maturity": "2036-08-15",
+       "cf": 0.788289
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "code": "FGBX",
+   "name": "Euro-Buxl",
+   "country": "DE",
+   "notional_coupon": 4,
+   "contracts": [
+    {
+     "expiry": "20261208",
+     "label": "Dec 26",
+     "delivery": "2026-12-10",
+     "settle": 104.7,
+     "volume": 127284.0,
+     "open_interest": 368780.0,
+     "basket": [
+      {
+       "isin": "DE000BU2D012",
+       "coupon": 2.9,
+       "maturity": "2056-08-15",
+       "cf": 0.810737,
+       "price": 85.28,
+       "gross_basis": 0.3958,
+       "implied_repo": -4.956,
+       "yield": 3.7267,
+       "net_basis": 0.3536
+      },
+      {
+       "isin": "DE000BU2D004",
+       "coupon": 2.5,
+       "maturity": "2054-08-15",
+       "cf": 0.75153,
+       "price": 78.91,
+       "gross_basis": 0.2248,
+       "implied_repo": -1.987,
+       "yield": 3.7333,
+       "net_basis": 0.1957,
+       "ctd": true
+      },
+      {
+       "isin": "DE0001102572",
+       "coupon": 0.0,
+       "maturity": "2052-08-15",
+       "cf": 0.365252,
+       "price": 39.05,
+       "gross_basis": 0.8081,
+       "implied_repo": -37.25,
+       "yield": 3.7216,
+       "net_basis": 0.8611
+      },
+      {
+       "isin": "DE0001102614",
+       "coupon": 1.8,
+       "maturity": "2053-08-15",
+       "cf": 0.643086,
+       "price": 67.61,
+       "gross_basis": 0.2789,
+       "implied_repo": -4.766,
+       "yield": 3.7361,
+       "net_basis": 0.2726
+      },
+      {
+       "isin": "DE0001030757",
+       "coupon": 1.8,
+       "maturity": "2053-08-15",
+       "cf": 0.643086,
+       "price": 67.75,
+       "gross_basis": 0.4189,
+       "implied_repo": -8.449,
+       "yield": 3.7254,
+       "net_basis": 0.4128
+      }
+     ]
+    },
+    {
+     "expiry": "20270308",
+     "label": "Mar 27",
+     "delivery": "2027-03-10",
+     "settle": 104.1,
+     "volume": 382.0,
+     "open_interest": 5744.0,
+     "basket": [
+      {
+       "isin": "DE0001102614",
+       "coupon": 1.8,
+       "maturity": "2053-08-15",
+       "cf": 0.644953
+      },
+      {
+       "isin": "DE0001102572",
+       "coupon": 0.0,
+       "maturity": "2052-08-15",
+       "cf": 0.368802
+      },
+      {
+       "isin": "DE0001030757",
+       "coupon": 1.8,
+       "maturity": "2053-08-15",
+       "cf": 0.644953
+      },
+      {
+       "isin": "DE000BU2D004",
+       "coupon": 2.5,
+       "maturity": "2054-08-15",
+       "cf": 0.752746
+      },
+      {
+       "isin": "DE000BU2D012",
+       "coupon": 2.9,
+       "maturity": "2056-08-15",
+       "cf": 0.811555
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "code": "FOAT",
+   "name": "Euro-OAT",
+   "country": "FR",
+   "notional_coupon": 6,
+   "contracts": [
+    {
+     "expiry": "20261208",
+     "label": "Dec 26",
+     "delivery": "2026-12-10",
+     "settle": 109.21,
+     "volume": 230154.0,
+     "open_interest": 798463.0,
+     "basket": [
+      {
+       "isin": "FR0014012II5",
+       "coupon": 3.5,
+       "maturity": "2035-11-25",
+       "cf": 0.830509
+      },
+      {
+       "isin": "FR0014018YR0",
+       "coupon": 3.7,
+       "maturity": "2036-11-25",
+       "cf": 0.831189
+      }
+     ]
+    },
+    {
+     "expiry": "20270308",
+     "label": "Mar 27",
+     "delivery": "2027-03-10",
+     "settle": 108.4,
+     "volume": 225.0,
+     "open_interest": 496.0,
+     "basket": [
+      {
+       "isin": "FR0014018YR0",
+       "coupon": 3.7,
+       "maturity": "2036-11-25",
+       "cf": 0.834116
+      },
+      {
+       "isin": "FR0014012II5",
+       "coupon": 3.5,
+       "maturity": "2035-11-25",
+       "cf": 0.833918
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "code": "FBTP",
+   "name": "Long-Term Euro-BTP",
+   "country": "IT",
+   "notional_coupon": 6,
+   "contracts": [
+    {
+     "expiry": "20261208",
+     "label": "Dec 26",
+     "delivery": "2026-12-10",
+     "settle": 112.42,
+     "volume": 231254.0,
+     "open_interest": 625181.0,
+     "basket": [
+      {
+       "isin": "IT0005706285",
+       "coupon": 3.8,
+       "maturity": "2036-07-01",
+       "cf": 0.847318
+      },
+      {
+       "isin": "IT0005402117",
+       "coupon": 1.45,
+       "maturity": "2036-03-01",
+       "cf": 0.685975
+      },
+      {
+       "isin": "IT0005676504",
+       "coupon": 3.45,
+       "maturity": "2036-02-01",
+       "cf": 0.827903
+      },
+      {
+       "isin": "IT0005648149",
+       "coupon": 3.6,
+       "maturity": "2035-10-01",
+       "cf": 0.842901
+      },
+      {
+       "isin": "IT0005631590",
+       "coupon": 3.65,
+       "maturity": "2035-08-01",
+       "cf": 0.848511
+      },
+      {
+       "isin": "IT0005433195",
+       "coupon": 0.95,
+       "maturity": "2037-03-01",
+       "cf": 0.623169
+      }
+     ]
+    },
+    {
+     "expiry": "20270308",
+     "label": "Mar 27",
+     "delivery": "2027-03-10",
+     "settle": 111.71,
+     "volume": 586.0,
+     "open_interest": 1104.0,
+     "basket": [
+      {
+       "isin": "IT0005648149",
+       "coupon": 3.6,
+       "maturity": "2035-10-01",
+       "cf": 0.846333
+      },
+      {
+       "isin": "IT0005433195",
+       "coupon": 0.95,
+       "maturity": "2037-03-01",
+       "cf": 0.62992
+      },
+      {
+       "isin": "IT0005402117",
+       "coupon": 1.45,
+       "maturity": "2036-03-01",
+       "cf": 0.692418
+      },
+      {
+       "isin": "IT0005706285",
+       "coupon": 3.8,
+       "maturity": "2036-07-01",
+       "cf": 0.850266
+      },
+      {
+       "isin": "IT0005676504",
+       "coupon": 3.45,
+       "maturity": "2036-02-01",
+       "cf": 0.831446
+      },
+      {
+       "isin": "IT0005496770",
+       "coupon": 3.25,
+       "maturity": "2038-03-01",
+       "cf": 0.787209
+      },
+      {
+       "isin": "IT0005729931",
+       "coupon": 4.0,
+       "maturity": "2036-10-01",
+       "cf": 0.861778
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
