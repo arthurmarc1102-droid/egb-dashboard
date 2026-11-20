@@ -157,3 +157,7 @@ Alternative sans GitHub, une tâche planifiée Claude qui relit les sources chaq
 - Une valeur écartée comme erreur de publication : Espagne 5 ans le 08/07/2016 (1,75 % entre 0,23 et 0,24). Règle : saut isolé de 75 pb ou plus dans les deux sens. Chaque cas est listé dans `data/raw/update_log.txt`.
 - Eurex : archive quotidienne dans `data/raw/eurex_settle.csv` (37 séances récupérées, du 30/09 au 19/11/2026) ; paniers et CTD recalculés chaque jour.
 - Pas encore automatisés : adjudications, calendrier.
+- Adjudications automatisées : Allemagne (classeurs Finanzagentur, 1 044 adjudications depuis 2015, calendrier), Espagne (pages du Tesoro, calendrier), Italie (60 PDF de résultats du MEF). France : le site de l'AFT bloque les scripts (protection anti-robots, HTTP 403), non contourné ; résultats du 19/11 gardés, dates par la règle AFT. Conditions de réutilisation du MEF non trouvées (page 404).
+- Calendrier automatisé : réunions BCE (17 à venir), taux directeurs BCE (12 changements), publications Eurostat (indicateurs euro, 75 jours).
+- Contrôles : 61 chiffres d'adjudication et les taux BCE comparés à la lecture du 19/11, 0 écart. Écran RV recalculé en Python sur les 4 fenêtres : 268 lignes, 0 écart. Futures : 47 obligations, facteurs de conversion, base brute et CTD, 0 écart.
+- Chaque passage est vérifié avant publication (`pipeline/verify.py`, `pipeline/page_check.mjs` dans un navigateur sans écran, ordinateur et téléphone). Si un contrôle échoue, les données ne sont pas publiées, GitHub envoie un e-mail et les journaux sont dans `data/raw/`.
