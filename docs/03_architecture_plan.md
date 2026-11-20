@@ -149,3 +149,5 @@ Alternative sans GitHub, une tâche planifiée Claude qui relit les sources chaq
 **20/11/2026**
 - Arthur : « j'ai toutes les autorisations ». Option `--authorised` ajoutée aux scripts ; mentions « version privée » retirées de la page, de l'onglet Futures et des sources ; mentions d'autorisation ajoutées. Artefact republié (16 h 43 UTC).
 - GitHub toujours non connecté à Claude : pas encore de mise à jour quotidienne ni de dépôt.
+- Dépôt GitHub public créé : `arthurmarc1102-droid/egb-dashboard`. Page, données, scripts et docs poussés ; GitHub Pages activé (branche `main`, racine). Lien public : https://arthurmarc1102-droid.github.io/egb-dashboard/ (page testée dans Chrome, données chargées).
+- Reste : scripts de téléchargement quotidien (`pipeline/`) et GitHub Actions. Le dépôt ne contient pas les lectures brutes (`staging/`), seulement les fichiers JSON publiés.
