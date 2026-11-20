@@ -1,0 +1,32 @@
+ 
+ 
+Ministero dell'Economia e delle Finanze
+Auction Results: BTP 10 YEARS
+Date: October 29, 2026 - October 30, 2026
+ISIN Code IT0005729931
+Tranche 5th - 6th
+Coupon 4.00%
+Issue date September 01, 2026
+Maturity Date October 01, 2036
+Auction Date October 29, 2026
+Settlement Date November 02, 2026
+Amount Max Offered 3,500.000
+Amount Min Offered 3,000.000
+Amount Bid 5,453.750
+Amount Allotted 3,500.000
+Allotment Price 96.48
+Bid To Cover Ratio 1.56
+Gross Yield 4.49%
+Accrued Coupon Days 32
+Placement Fee 0.20%
+Price for Individual Investors 96.479074
+Price for fiscal purpose 99.560
+Amount Offered to Specialists 700.000
+Amount Bid to Specialists 0.000
+Amount Allotted to Specialists 0.000
+Issue Volume
+Outstanding 10,500.000
+Allotted to Specialists in supplementary
+placements and/or syndacated 0.000
+Nominal Amounts are expressed in millions of Euros.
+Gross Yields are calculated on 365 days basis.

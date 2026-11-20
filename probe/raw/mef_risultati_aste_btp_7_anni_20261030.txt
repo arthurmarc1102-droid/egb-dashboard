@@ -1,0 +1,32 @@
+ 
+ 
+Ministero dell'Economia e delle Finanze
+Auction Results: BTP 7 YEARS (5 YEAR RESIDUAL MATURITY)
+Date: October 29, 2026 - October 30, 2026
+ISIN Code IT0005580094
+Tranche 8th - 9th
+Coupon 3.50%
+Issue date January 16, 2024
+Maturity Date February 15, 2031
+Auction Date October 29, 2026
+Settlement Date November 02, 2026
+Amount Max Offered 1,250.000
+Amount Min Offered 750.000
+Amount Bid 2,230.500
+Amount Allotted 1,250.000
+Allotment Price 98.57
+Bid To Cover Ratio 1.78
+Gross Yield 3.90%
+Accrued Coupon Days 79
+Placement Fee 0.15%
+Price for Individual Investors 98.564080
+Price for fiscal purpose 99.880
+Amount Offered to Specialists 250.000
+Amount Bid to Specialists 0.000
+Amount Allotted to Specialists 0.000
+Issue Volume
+Outstanding 20,250.000
+Allotted to Specialists in supplementary
+placements and/or syndacated 11,000.000
+Nominal Amounts are expressed in millions of Euros.
+Gross Yields are calculated on 365 days basis.

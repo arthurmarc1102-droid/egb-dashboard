@@ -1,0 +1,33 @@
+ 
+ 
+Ministero dell'Economia e delle Finanze
+Auction Results: BTP 15 YEARS (10 YEAR RESIDUAL MATURITY)
+Date: July 30, 2026 - July 31, 2026
+ISIN Code IT0005402117(*)
+Tranche 9th - 10th
+Coupon 1.45%
+Issue date February 18, 2020
+Maturity Date March 01, 2036
+Auction Date July 30, 2026
+Settlement Date August 03, 2026
+Amount Max Offered 1,250.000
+Amount Min Offered 1,000.000
+Amount Bid 2,300.950
+Amount Allotted 1,250.000
+Allotment Price 80.49
+Bid To Cover Ratio 1.84
+Gross Yield 3.95%
+Accrued Coupon Days 155
+Placement Fee 0.20%
+Price for Individual Investors 80.465488
+Price for fiscal purpose 99.513
+Amount Offered to Specialists 250.000
+Amount Bid to Specialists 80.595
+Amount Allotted to Specialists 80.595
+Issue Volume
+Outstanding 16,730.595
+Allotted to Specialists in supplementary
+placements and/or syndacated 9,980.595
+(*) The security has at least one tranche issued "ad hoc" for REPO operations.
+Nominal Amounts are expressed in millions of Euros.
+Gross Yields are calculated on 365 days basis.

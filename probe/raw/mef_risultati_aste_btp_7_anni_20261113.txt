@@ -1,0 +1,32 @@
+ 
+ 
+Ministero dell'Economia e delle Finanze
+Auction Results: BTP 7 YEARS
+Date: November 12, 2026 - November 13, 2026
+ISIN Code IT0005722845
+Tranche 7th - 8th
+Coupon 3.35%
+Issue date July 15, 2026
+Maturity Date September 15, 2033
+Auction Date November 12, 2026
+Settlement Date November 16, 2026
+Amount Max Offered 3,250.000
+Amount Min Offered 2,750.000
+Amount Bid 5,006.755
+Amount Allotted 3,250.000
+Allotment Price 96.15
+Bid To Cover Ratio 1.54
+Gross Yield 4.04%
+Accrued Coupon Days 62
+Placement Fee 0.15%
+Price for Individual Investors 96.145384
+Price for fiscal purpose 99.220
+Amount Offered to Specialists 650.000
+Amount Bid to Specialists 0.000
+Amount Allotted to Specialists 0.000
+Issue Volume
+Outstanding 13,250.000
+Allotted to Specialists in supplementary
+placements and/or syndacated 0.000
+Nominal Amounts are expressed in millions of Euros.
+Gross Yields are calculated on 365 days basis.

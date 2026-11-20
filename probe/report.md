@@ -1,49 +1,31 @@
-# Download test, auctions and calendars, 2026-11-20 17:24 UTC
+# Download test, Italian auctions, 2026-11-20 17:39 UTC
 
-## fa_results.xlsx
-- url: https://www.deutsche-finanzagentur.de/fileadmin/user_upload/Institutionelle-investoren/auktionen/emissionsergebnisse_aktuell_en.xlsx
-- final: https://www.deutsche-finanzagentur.de/fileadmin/user_upload/Institutionelle-investoren/auktionen/emissionsergebnisse_aktuell_en.xlsx
-- status: 200 | type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet | bytes: 103763 | 0.8s
-- file links: []
-
-## fa_history.xlsx
-- url: https://www.deutsche-finanzagentur.de/fileadmin/user_upload/Institutionelle-investoren/auktionen/emissionshistorie_en.xlsx
-- final: https://www.deutsche-finanzagentur.de/fileadmin/user_upload/Institutionelle-investoren/auktionen/emissionshistorie_en.xlsx
-- status: 200 | type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet | bytes: 355957 | 0.7s
-- file links: []
-
-## mef_btp10
-- url: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/risultati_aste_btp_10_anni/index.html
-- final: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/risultati_aste_btp_10_anni/index.html
-- status: 200 | type: text/html;charset=UTF-8 | bytes: 124313 | 3.1s
-- file links: ['/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-10-years-residual_maturity-Auction-Results-26-26.06.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-26-26.06.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-26-27.02.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-27-30.03.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-28-29.05.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-28-31.08.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-29-30.01.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-29-30.09.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-29-30.10.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-30-31.07.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Syndicate-placement-15.04.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/Placement-details-new-10-year-BTP-and-20-year-BTPi-15.04.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/Placement-results-of-the-new-10-year-BTP-and-20-year-BTPi-15.04.2026..pdf']
-
-## mef_btp5
-- url: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/risultati_aste_btp_5_anni/index.html
-- final: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/risultati_aste_btp_5_anni/index.html
-- status: 200 | type: text/html;charset=UTF-8 | bytes: 120985 | 2.2s
-- file links: ['/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-26-26.06.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-26-27.02.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-27-30.03.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-28-29.05.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-28-31.08.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-29-30.01.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-29-30.04.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-29-30.09.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-29-30.10.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-30-31.07.2026.pdf']
-
-## mef_archive
-- url: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/achivio_dati_storici/
-- final: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/achivio_dati_storici/
-- status: 200 | type: text/html;charset=UTF-8 | bytes: 111333 | 0.9s
-- file links: []
-
-## eurostat_ev1
-- url: https://ec.europa.eu/eurostat/o/calendars/eventsJson?start=2026-11-30T00:00:00&end=2027-01-11T00:00:00&theme=&category=&keywords=&isEuroindicator=true&authorInclude=&authorExclude=
-- final: https://ec.europa.eu/eurostat/o/calendars/eventsJson?start=2026-11-30T00:00:00&end=2027-01-11T00:00:00&theme=&category=&keywords=&isEuroindicator=true&authorInclude=&authorExclude=
-- status: 200 | type: None | bytes: 0 | 0.4s
-- file links: []
-
-## eurostat_ev2
-- url: https://ec.europa.eu/eurostat/o/calendars/eventsJson?start=2026-11-30&end=2027-01-11
-- final: https://ec.europa.eu/eurostat/o/calendars/eventsJson?start=2026-11-30&end=2027-01-11
-- status: 200 | type: None | bytes: 0 | 0.3s
-- file links: []
-
-## eurostat_ev3
-- url: https://ec.europa.eu/eurostat/o/calendars/eventsJson?start=2026-11-30T00%3A00%3A00%2B01%3A00&end=2027-01-11T00%3A00%3A00%2B01%3A00&timeZone=Europe%2FLuxembourg
-- final: https://ec.europa.eu/eurostat/o/calendars/eventsJson?start=2026-11-30T00%3A00%3A00%2B01%3A00&end=2027-01-11T00%3A00%3A00%2B01%3A00&timeZone=Europe%2FLuxembourg
-- status: 200 | type: application/json | bytes: 37050 | 0.4s
-- file links: []
+- mef_legal: HTTP Error 404: Not Found
+- mef_legal_it: HTTP Error 404: Not Found
+## risultati_aste_btp_short_term: 10 pdf links, last: ['/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_short_term/BTP-Short-Term-Auction-Results-26-27.08.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_short_term/BTP-Short-Term-Auction-Results-24-25.09.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_short_term/BTP-Short-Term-Auction-Results-27-28.10.2026.pdf']
+  - BTP-Short-Term-Auction-Results-24-25.09.2026.pdf: 37432 bytes, 1077 chars
+  - BTP-Short-Term-Auction-Results-27-28.10.2026.pdf: 37407 bytes, 1065 chars
+## risultati_aste_btp_3_anni: 10 pdf links, last: ['/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_3_anni/BTP-3-Years-Auction-Results-10-11.09.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_3_anni/BTP-3-Years-Auction-Results-13-14.10.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_3_anni/BTP-3-Years-Auction-Results-12-13.11.2026.pdf']
+  - BTP-3-Years-Auction-Results-13-14.10.2026.pdf: 36693 bytes, 896 chars
+  - BTP-3-Years-Auction-Results-12-13.11.2026.pdf: 36687 bytes, 901 chars
+## risultati_aste_btp_5_anni: 10 pdf links, last: ['/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-28-31.08.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-29-30.09.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-29-30.10.2026.pdf']
+  - BTP-5-Years-Auction-Results-29-30.09.2026.pdf: 37434 bytes, 1076 chars
+  - BTP-5-Years-Auction-Results-29-30.10.2026.pdf: 37445 bytes, 1066 chars
+## risultati_aste_btp_7_anni: 17 pdf links, last: ['/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_7_anni/BTP-7-Years-Auction-Results-13-14.10.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_7_anni/BTP-7-Years-5-years-residual_maturity-Auction-Results-29-30.10.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_7_anni/BTP-7-Years-Auction-Results-12-13.11.2026.pdf']
+  - BTP-7-Years-5-years-residual_maturity-Auction-Results-29-30.10.2026.pdf: 37224 bytes, 925 chars
+  - BTP-7-Years-Auction-Results-12-13.11.2026.pdf: 36693 bytes, 896 chars
+## risultati_aste_btp_10_anni: 13 pdf links, last: ['/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-28-31.08.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-29-30.09.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-29-30.10.2026.pdf']
+  - BTP-10-Years-Auction-Results-29-30.09.2026.pdf: 36572 bytes, 900 chars
+  - BTP-10-Years-Auction-Results-29-30.10.2026.pdf: 36590 bytes, 897 chars
+## risultati_aste_btp_15_anni: 9 pdf links, last: ['/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_15_anni/BTP-15-Years-Auction-Results-10-13.07.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_15_anni/BTP-15-Years-10-years-residual_maturity-Auction-Results-30-31.07.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_15_anni/BTP-15-Years-Auction-Results-13-14.10.2026.pdf']
+  - BTP-15-Years-10-years-residual_maturity-Auction-Results-30-31.07.2026.pdf: 37583 bytes, 1001 chars
+  - BTP-15-Years-Auction-Results-13-14.10.2026.pdf: 36589 bytes, 900 chars
+## risultati_aste_btp_20_anni: 2 pdf links, last: ['/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_20_anni/BTP-20-Years-10-years-residual_maturity-Auction-Results-28-29.05.202.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_20_anni/BTP-20-Years-12-years-residual_maturity-Auction-Results-13-14.05.2026.pdf']
+  - /export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_20_anni/BTP-20-Years-10-years-residual_maturity-Auction-Results-28-29.05.202.pdf: tuple index out of range
+  - BTP-20-Years-12-years-residual_maturity-Auction-Results-13-14.05.2026.pdf: 37467 bytes, 1005 chars
+## risultati_aste_btp_30_anni: 3 pdf links, last: ['/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_30_anni/Placement-results-of-the-tap-7-year-BTP-and-tap-30-year-BTP-09.06.2025.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_30_anni/BTP-30-Years-Syndicate-placement-09.06.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_30_anni/Placement-details-of-the-tap-7-year-BTP-and-tap-30-year-BTP-10.06.2026.pdf']
+  - BTP-30-Years-Syndicate-placement-09.06.2026.pdf: 37249 bytes, 953 chars
+  - Placement-details-of-the-tap-7-year-BTP-and-tap-30-year-BTP-10.06.2026.pdf: 134769 bytes, 1932 chars
+## risultati_aste_btp_green: 7 pdf links, last: ['/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_green/Placement-details-of-the-new-BTP-Green-2038-22.09.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_green/Placement-results-of-the-new-BTP-Green-2038-22.09.2026.pdf', '/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_green/BTP-Green-20-years-residual_maturity-Auction-Results-12-13.11.2026.pdf']
+  - Placement-results-of-the-new-BTP-Green-2038-22.09.2026.pdf: 148720 bytes, 1850 chars
+  - BTP-Green-20-years-residual_maturity-Auction-Results-12-13.11.2026.pdf: 37139 bytes, 913 chars
