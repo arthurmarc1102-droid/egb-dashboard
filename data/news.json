@@ -1,83 +1,330 @@
 {
- "note": "Titles and links read on 19 Nov 2026 in the ECB, Bundesbank and Banco de Espana feeds. The ECB copy read was three days old. Press feeds are not included: their terms of use have not been read yet.",
- "items": [
-  {
-   "date": "2026-11-19",
-   "source": "Banco de Espana feed, ECB release",
-   "title": "ECB keeps capital requirements broadly stable for 2027",
-   "url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-bce/notas-prensa-bce/el-bce-mantiene-basicamente-estables-los-requerimientos-de-capital-para-2027-y-centra-sus-prioridades-en-la-resiliencia-financiera-y-operativa-de-las-entidades-de-credito.html"
-  },
-  {
-   "date": "2026-11-18",
-   "source": "Bundesbank",
-   "title": "Reopening Federal bond issue: auction result",
-   "url": "https://www.bundesbank.de/en/press/press-releases/federal-securities/reopening-federal-bond-issue-auction-result-1016424"
-  },
-  {
-   "date": "2026-11-17",
-   "source": "Bundesbank",
-   "title": "Reopening of Federal Treasury notes: auction result",
-   "url": "https://www.bundesbank.de/en/press/press-releases/federal-securities/reopening-of-federal-treasury-notes-auction-result-964542"
-  },
-  {
-   "date": "2026-11-17",
-   "source": "Bundesbank",
-   "title": "Invitation to bid by auction: reopening 7-year Federal bond",
-   "url": "https://www.bundesbank.de/en/press/press-releases/federal-securities/invitation-to-bid-by-auction-reopening-7-year-federal-bond--1016244"
-  },
-  {
-   "date": "2026-11-16",
-   "source": "ECB",
-   "title": "Frank Elderson: Smart supervision for small banks",
-   "url": "https://www.ecb.europa.eu/press/inter/date/2026/html/ecb.in261116_1~11dd7f62af.en.html"
-  },
-  {
-   "date": "2026-11-16",
-   "source": "ECB",
-   "title": "Boris Vujcic: Risks and resilience in the euro area financial system",
-   "url": "https://www.ecb.europa.eu/press/key/date/2026/html/ecb.sp261116~db374b56ab.en.html"
-  },
-  {
-   "date": "2026-11-13",
-   "source": "ECB",
-   "title": "Isabel Schnabel: Made in Europe",
-   "url": "https://www.ecb.europa.eu/press/key/date/2026/html/ecb.sp261113~3883f1f187.en.html"
-  },
-  {
-   "date": "2026-11-10",
-   "source": "ECB",
-   "title": "Philip R. Lane: The science and practice of monetary policy communication",
-   "url": "https://www.ecb.europa.eu/press/key/date/2026/html/ecb.sp261110_1~9725b7aa07.en.html"
-  },
-  {
-   "date": "2026-11-10",
-   "source": "ECB",
-   "title": "Piero Cipollone: Cash and the digital euro",
-   "url": "https://www.ecb.europa.eu/press/key/date/2026/html/ecb.sp261110~9422461bad.en.html"
-  },
-  {
-   "date": "2026-10-29",
-   "source": "ECB",
-   "title": "Monetary policy decisions",
-   "url": "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp261029~9a493adf17.en.html"
-  },
-  {
-   "date": "2026-09-10",
-   "source": "ECB",
-   "title": "Monetary policy decisions",
-   "url": "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260910~314e508016.en.html"
-  },
-  {
-   "date": "2026-07-23",
-   "source": "ECB",
-   "title": "Monetary policy decisions",
-   "url": "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260723~29f24d99bc.en.html"
-  },
-  {
-   "date": "2026-06-11",
-   "source": "ECB",
-   "title": "Monetary policy decisions",
-   "url": "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260611~4d41bd5e83.en.html"
-  }
- ]
+"note": "Titles and links read on 19 Nov 2026 in the ECB, Bundesbank and Banco de Espana feeds. The ECB copy read was three days old. Press feeds are not included: their terms of use have not been read yet.",
+"items": [
+{
+"date": "2026-11-20",
+"source": "ECB",
+"title": "Christine Lagarde: Acting in time",
+"url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261120~e52bcc4db2.en.html"
+},
+{
+"date": "2026-11-20",
+"source": "Bundesbank",
+"title": "Invitation to bid – Federal Treasury discount paper (Bubills)",
+"url": "https://www.bundesbank.de/en/press/press-releases/federal-securities/-invitation-to-bid-federal-treasury-discount-paper-bubills--1016580"
+},
+{
+"date": "2026-11-20",
+"source": "Banco de Espana",
+"title": "Subgobernadora. IX Foro Banca/elEconomista. Fortaleza bancaria y riesgos para la estabilidad financiera",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-banco-espana/intervenciones-publicas/subgobernadora-ix-foro-de-bancaeleconomista-fortaleza-bancaria-y-riesgos-para-la-estabilidad-financiera-.html"
+},
+{
+"date": "2026-11-19",
+"source": "Banco de Espana feed, ECB release",
+"title": "ECB keeps capital requirements broadly stable for 2027",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-bce/notas-prensa-bce/el-bce-mantiene-basicamente-estables-los-requerimientos-de-capital-para-2027-y-centra-sus-prioridades-en-la-resiliencia-financiera-y-operativa-de-las-entidades-de-credito.html"
+},
+{
+"date": "2026-11-19",
+"source": "Bundesbank",
+"title": "Announcement of auction – Reopening 10-year Federal bond",
+"url": "https://www.bundesbank.de/en/press/press-releases/federal-securities/announcement-of-auction-reopening-10-year-federal-bond-1016482"
+},
+{
+"date": "2026-11-19",
+"source": "Banco de Espana",
+"title": "The Banco de España and GFTN put Madrid at the heart of a new Europe–Latin America financial partnership",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-banco-espana/notas-banco-espana/el-banco-de-espana-y-la-red-gftn-situan-a-madrid-en-el-nucleo-de-una-nueva-alianza-financiera-entre-europa-y-latinoamerica.html"
+},
+{
+"date": "2026-11-19",
+"source": "Banco de Espana",
+"title": "El Banco de España presenta el catálogo razonado de su colección de textiles",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-banco-espana/el-banco-de-espana-presenta-el-catalogo-razonado-de-su-coleccion-de-textiles.html"
+},
+{
+"date": "2026-11-19",
+"source": "Banco de Espana",
+"title": "Euro area monthly balance of payments: September 2026",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-bce/euro-area-monthly-balance-of-payments-september-2026.html"
+},
+{
+"date": "2026-11-18",
+"source": "Bundesbank",
+"title": "Reopening Federal bond issue: auction result",
+"url": "https://www.bundesbank.de/en/press/press-releases/federal-securities/reopening-federal-bond-issue-auction-result-1016424"
+},
+{
+"date": "2026-11-18",
+"source": "ECB",
+"title": "Boris Vujčić: Financial Stability Review - November 2026",
+"url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261118~86f1e8147e.en.pdf"
+},
+{
+"date": "2026-11-18",
+"source": "ECB",
+"title": "Risks from AI valuations, fiscal imbalances and geoeconomic tensions weigh on financial stability outlook",
+"url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261118~83c5c60158.en.html"
+},
+{
+"date": "2026-11-18",
+"source": "Bundesbank",
+"title": "“Turn the interest rate screw” | Interview with tagesschau.de",
+"url": "https://www.bundesbank.de/en/press/interviews/-turn-the-interest-rate-screw--964984"
+},
+{
+"date": "2026-11-18",
+"source": "Banco de Espana",
+"title": "DG de Relaciones Institucionales, Transparencia y Conducta. Presentación del catálogo razonado de la colección de textiles del Banco de España",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-banco-espana/dg-de-relaciones-institucionales-transparencia-y-conducta-presentacion-del-catalogo-razonado-de-la-coleccion-de-textiles-del-banco-de-espana.html"
+},
+{
+"date": "2026-11-18",
+"source": "Banco de Espana",
+"title": "Risks from AI valuations, fiscal imbalances and geoeconomic tensions weigh on financial stability outlook",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-bce/notas-prensa-bce/los-riesgos-derivados-de-las-valoraciones-de-las-empresas-del-sector-de-la-ia-los-desequilibrios-fiscales-y-las-tensiones-geoeconomicas-lastran-las-perspectivas-de-estabilidad-financiera.html"
+},
+{
+"date": "2026-11-18",
+"source": "Banco de Espana",
+"title": "Governor. Singapore Fintech Festival. “The Next Chapter in Financial Innovation\"",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-banco-espana/gobernador-singapore-fintech-festival-the-next-chapter-in-financial-innovation.html"
+},
+{
+"date": "2026-11-17",
+"source": "Bundesbank",
+"title": "Reopening of Federal Treasury notes: auction result",
+"url": "https://www.bundesbank.de/en/press/press-releases/federal-securities/reopening-of-federal-treasury-notes-auction-result-964542"
+},
+{
+"date": "2026-11-17",
+"source": "Bundesbank",
+"title": "Invitation to bid by auction: reopening 7-year Federal bond",
+"url": "https://www.bundesbank.de/en/press/press-releases/federal-securities/invitation-to-bid-by-auction-reopening-7-year-federal-bond--1016244"
+},
+{
+"date": "2026-11-17",
+"source": "ECB",
+"title": "Philip R. Lane: The practice and science of monetary policy communication: the ECB experience",
+"url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261117~7f5d3b1a0e.en.pdf"
+},
+{
+"date": "2026-11-17",
+"source": "Bundesbank",
+"title": "Announcement – Federal Treasury discount paper (Bubills)",
+"url": "https://www.bundesbank.de/en/press/press-releases/federal-securities/announcement-federal-treasury-discount-paper-bubills--1016242"
+},
+{
+"date": "2026-11-17",
+"source": "Banco de Espana",
+"title": "Consolidated financial statement of the Eurosystem as at 13 November 2026",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-bce/estado-financiero-consolidado-del-eurosistema-a-13-de-noviembre-de-2026.html"
+},
+{
+"date": "2026-11-17",
+"source": "Banco de Espana",
+"title": "El Banco de España celebra el XXIV Foro de Análisis Latinoamericano",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-banco-espana/notas-banco-espana/el-banco-de-espana-celebra-el-xxiv-foro-de-analisis-latinoamericano.html"
+},
+{
+"date": "2026-11-17",
+"source": "Banco de Espana",
+"title": "General government debt according to the Excessive Deficit Procedure (September 2026)",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-banco-espana/deuda-aapp-septiembre26.html"
+},
+{
+"date": "2026-11-16",
+"source": "ECB",
+"title": "Frank Elderson: Smart supervision for small banks",
+"url": "https://www.ecb.europa.eu/press/inter/date/2026/html/ecb.in261116_1~11dd7f62af.en.html"
+},
+{
+"date": "2026-11-16",
+"source": "ECB",
+"title": "Boris Vujcic: Risks and resilience in the euro area financial system",
+"url": "https://www.ecb.europa.eu/press/key/date/2026/html/ecb.sp261116~db374b56ab.en.html"
+},
+{
+"date": "2026-11-16",
+"source": "ECB",
+"title": "Frank Elderson: Smart supervision for small banks",
+"url": "https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in261116_1~11dd7f62af.en.html"
+},
+{
+"date": "2026-11-16",
+"source": "ECB",
+"title": "Boris Vujčić: Risks and resilience in the euro area financial system",
+"url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261116~db374b56ab.en.html"
+},
+{
+"date": "2026-11-16",
+"source": "Bundesbank",
+"title": "Auction result – Federal Treasury discount paper (Bubills)",
+"url": "https://www.bundesbank.de/en/press/press-releases/federal-securities/auction-result-federal-treasury-discount-paper-bubills--964544"
+},
+{
+"date": "2026-11-16",
+"source": "Bundesbank",
+"title": "Europe and China: A changing relationship in a changing world | Keynote speech at 12th China Day, DFV Euro Finance Group",
+"url": "https://www.bundesbank.de/en/press/speeches/europe-and-china-a-changing-relationship-in-a-changing-world-1016076"
+},
+{
+"date": "2026-11-16",
+"source": "Bundesbank",
+"title": "Invitation to bid by auction – Reopening of Federal Treasury notes",
+"url": "https://www.bundesbank.de/en/press/press-releases/federal-securities/invitation-to-bid-by-auction-reopening-of-federal-treasury-notes-1016080"
+},
+{
+"date": "2026-11-13",
+"source": "ECB",
+"title": "Isabel Schnabel: Made in Europe",
+"url": "https://www.ecb.europa.eu/press/key/date/2026/html/ecb.sp261113~3883f1f187.en.html"
+},
+{
+"date": "2026-11-13",
+"source": "ECB",
+"title": "Isabel Schnabel: Made in Europe",
+"url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261113~3883f1f187.en.html"
+},
+{
+"date": "2026-11-13",
+"source": "Banco de Espana",
+"title": "El Banco de España y la Cátedra Nebrija celebran un encuentro en el que se analiza la nueva fase exportadora e industrial de China",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-banco-espana/notas-banco-espana/el-banco-de-espana-y-la-catedra-nebrija-celebran-un-encuentro-en-el-que-se-analiza-la-nueva-fase-exportadora-e-industrial-de-china.html"
+},
+{
+"date": "2026-11-11",
+"source": "Banco de Espana",
+"title": "Soledad Núñez. IX Foro Banca de elEconomista",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/eventos/agenda/soledad-nunez-ix-foro-banca-de-el-economista.html"
+},
+{
+"date": "2026-11-11",
+"source": "Banco de Espana",
+"title": "José Luis Escrivá. Singapore Fintech Festival",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/eventos/agenda/jose-luis-escriva-singapore-fintech-festival_26.html"
+},
+{
+"date": "2026-11-10",
+"source": "ECB",
+"title": "Philip R. Lane: The science and practice of monetary policy communication",
+"url": "https://www.ecb.europa.eu/press/key/date/2026/html/ecb.sp261110_1~9725b7aa07.en.html"
+},
+{
+"date": "2026-11-10",
+"source": "ECB",
+"title": "Piero Cipollone: Cash and the digital euro",
+"url": "https://www.ecb.europa.eu/press/key/date/2026/html/ecb.sp261110~9422461bad.en.html"
+},
+{
+"date": "2026-11-10",
+"source": "ECB",
+"title": "Philip R. Lane: The science and practice of monetary policy communication: the ECB experience",
+"url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261110_1~9725b7aa07.en.html"
+},
+{
+"date": "2026-11-10",
+"source": "ECB",
+"title": "Piero Cipollone: Cash and the digital euro: two sides of the same coin",
+"url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261110~9422461bad.en.html"
+},
+{
+"date": "2026-11-10",
+"source": "Banco de Espana",
+"title": "Governor. ICMB. Europe in the new geopolitical landscape",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-banco-espana/intervenciones-publicas/gobernador-icmb-europe-in-the-new-geopolitical-landscape.html"
+},
+{
+"date": "2026-11-10",
+"source": "Banco de Espana",
+"title": "Consolidated financial statement of the Eurosystem as at 6 November 2026",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-bce/notas-prensa-bce/estado-financiero-consolidado-del-eurosistema-a-6-de-noviembre-de-2026.html"
+},
+{
+"date": "2026-11-07",
+"source": "ECB",
+"title": "Christine Lagarde: Interview with Yomiuri Shimbun",
+"url": "https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in261107~e7b86fc4ce.en.html"
+},
+{
+"date": "2026-11-06",
+"source": "ECB",
+"title": "ECB publishes consolidated banking data for end-June 2026",
+"url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261106~356f2fc73a.en.html"
+},
+{
+"date": "2026-11-06",
+"source": "Banco de Espana",
+"title": "ECB publishes consolidated banking data for end-June 2026",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-bce/notas-prensa-bce/el-bce-publica-los-datos-bancarios-consolidados-correspondientes-a-junio-de-2026.html"
+},
+{
+"date": "2026-11-06",
+"source": "Banco de Espana",
+"title": "José Luis Escrivá. International Center for Monetary and Banking Studies",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/eventos/agenda/jose-luis-escriva-international-center-for-monetary-and-banking-studies.html"
+},
+{
+"date": "2026-11-06",
+"source": "Banco de Espana",
+"title": "David López Salido. 29th Annual Research Conference of the Dutch Central Bank",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/eventos/agenda/david-lopez-salido-29th-annual-research-conference-of-the-dutch-central-bank.html"
+},
+{
+"date": "2026-11-05",
+"source": "ECB",
+"title": "Isabel Schnabel: Navigating stormy waters: reflections on monetary policy",
+"url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261105_1~5e97d9d5a0.en.html"
+},
+{
+"date": "2026-11-05",
+"source": "ECB",
+"title": "Piero Cipollone: Shaping the future of money",
+"url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261105~6495a0df6f.en.html"
+},
+{
+"date": "2026-11-04",
+"source": "ECB",
+"title": "ECB wage tracker suggests slightly higher wage growth in first three quarters of 2027 compared with the full year of 2026",
+"url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261104~caf181d7ac.en.html"
+},
+{
+"date": "2026-11-04",
+"source": "Banco de Espana",
+"title": "ECB wage tracker suggests slightly higher wage growth in first three quarters of 2027 compared with the full year of 2026",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-bce/notas-prensa-bce/el-indicador-del-bce-de-seguimiento-de-los-salarios-apunta-a-un-crecimiento-salarial-en-los-tres-primeros-trimestres-de-2027-ligeramente-superior-al-del-conjunto-de-2026-.html"
+},
+{
+"date": "2026-11-02",
+"source": "ECB",
+"title": "Boris Vujčić: Integrated, open and resilient: Europe’s strengths in a fragmenting world",
+"url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp.261102~70003226e9.en.html"
+},
+{
+"date": "2026-10-29",
+"source": "ECB",
+"title": "Monetary policy decisions",
+"url": "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp261029~9a493adf17.en.html"
+},
+{
+"date": "2026-09-10",
+"source": "ECB",
+"title": "Monetary policy decisions",
+"url": "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260910~314e508016.en.html"
+},
+{
+"date": "2026-07-23",
+"source": "ECB",
+"title": "Monetary policy decisions",
+"url": "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260723~29f24d99bc.en.html"
+},
+{
+"date": "2026-06-11",
+"source": "ECB",
+"title": "Monetary policy decisions",
+"url": "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260611~4d41bd5e83.en.html"
+}
+],
+"updated": "2026-11-20T17:09:16+00:00"
 }
