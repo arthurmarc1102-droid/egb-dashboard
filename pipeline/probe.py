@@ -1,22 +1,18 @@
 """Download test of auction and calendar sources, run on GitHub Actions. Saves each response in probe/raw/ and a summary in probe/report.md."""
 import urllib.request, datetime, pathlib, re, time
 UA = {"User-Agent": "egb-dashboard/1.0 (+https://github.com/arthurmarc1102-droid/egb-dashboard)"}
+FA = "https://www.deutsche-finanzagentur.de/fileadmin/user_upload/Institutionelle-investoren/auktionen/"
+MEF = "https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/"
+ES_EV = "https://ec.europa.eu/eurostat/o/calendars/eventsJson"
 PROBES = [
-    ("fa_results", "https://www.deutsche-finanzagentur.de/en/federal-securities/issuances/issuance-results"),
-    ("fa_calendar", "https://www.deutsche-finanzagentur.de/en/federal-securities/issuances/issuance-calendar"),
-    ("aft_last", "https://www.aft.gouv.fr/en/dernieres-adjudications"),
-    ("aft_calendar", "https://www.aft.gouv.fr/en/calendrier-des-adjudications"),
-    ("aft_calendar_fr", "https://www.aft.gouv.fr/fr/calendrier-des-adjudications"),
-    ("tesoro_bonos", "https://www.tesoro.es/deuda-publica/subastas/resultado-ultimas-subastas/bonos-del-estado"),
-    ("tesoro_obligaciones", "https://www.tesoro.es/deuda-publica/subastas/resultado-ultimas-subastas/obligaciones-del-estado"),
-    ("tesoro_calendar", "https://www.tesoro.es/deuda-publica/subastas/calendario"),
-    ("mef_results_it", "https://www.dt.mef.gov.it/it/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/"),
-    ("mef_results_en", "https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/"),
-    ("mef_calendar_en", "https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/calendario_emissioni/"),
-    ("ecb_meetings", "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"),
-    ("ecb_key_rates", "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html"),
-    ("eurostat_events", f"https://ec.europa.eu/eurostat/o/calendars/eventsJson?start={datetime.date.today()}&end={datetime.date.today() + datetime.timedelta(days=120)}"),
-    ("eurostat_calendar_page", "https://ec.europa.eu/eurostat/news/release-calendar"),
+    ("fa_results.xlsx", FA + "emissionsergebnisse_aktuell_en.xlsx"),
+    ("fa_history.xlsx", FA + "emissionshistorie_en.xlsx"),
+    ("mef_btp10", MEF + "risultati_aste_btp_10_anni/index.html"),
+    ("mef_btp5", MEF + "risultati_aste_btp_5_anni/index.html"),
+    ("mef_archive", MEF + "achivio_dati_storici/"),
+    ("eurostat_ev1", ES_EV + "?start=2026-11-30T00:00:00&end=2027-01-11T00:00:00&theme=&category=&keywords=&isEuroindicator=true&authorInclude=&authorExclude="),
+    ("eurostat_ev2", ES_EV + "?start=2026-11-30&end=2027-01-11"),
+    ("eurostat_ev3", ES_EV + "?start=2026-11-30T00%3A00%3A00%2B01%3A00&end=2027-01-11T00%3A00%3A00%2B01%3A00&timeZone=Europe%2FLuxembourg"),
 ]
 raw = pathlib.Path("probe/raw"); raw.mkdir(parents=True, exist_ok=True)
 out = [f"# Download test, auctions and calendars, {datetime.datetime.utcnow():%Y-%m-%d %H:%M} UTC\n"]
@@ -28,7 +24,7 @@ for name, url in PROBES:
     except Exception as e:
         body = getattr(e, "read", lambda: b"")() or b""; status = getattr(e, "code", type(e).__name__); ctype = "-"; final = url
     txt = body.decode("utf-8", "replace")
-    (raw / f"{name}.txt").write_text(txt[:2_000_000])
+    (raw / name).write_bytes(body) if name.endswith(".xlsx") else (raw / f"{name}.txt").write_text(txt[:2_000_000])
     links = sorted(set(re.findall(r'href="([^"]+\.(?:csv|xlsx?|pdf|json)[^"]*)"', txt)))[:40]
     out.append(f"## {name}\n- url: {url}\n- final: {final}\n- status: {status} | type: {ctype} | bytes: {len(body)} | {time.time()-t:.1f}s\n- file links: {links}\n")
 (pathlib.Path("probe") / "report.md").write_text("\n".join(out))
