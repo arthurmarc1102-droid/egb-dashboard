@@ -148,18 +148,13 @@ def fetch_baskets():
     txt = get(link if link.startswith("http") else "https://www.eurex.com" + link)
     (RAW / "eurex_deliverables.csv").write_text(txt)
     log("Eurex basket file:", link, "| first lines:", " || ".join(txt.splitlines()[:4])[:600])
-    rows = list(csv.reader(io.StringIO(txt), delimiter=";" if txt.count(";") > txt.count(",") else ","))
-    head = [h.strip().lower() for h in rows[0]]
-    def idx(*names):
-        for n in names:
-            for i, h in enumerate(head):
-                if n in h: return i
-    iP, iI, iC, iM, iF, iE = idx("product"), idx("isin"), idx("coupon"), idx("maturity"), idx("conversion", "factor"), idx("contract", "expiry", "delivery month")
     out = defaultdict(list)
-    for r in rows[1:]:
-        if not r or iI is None or iI >= len(r) or not re.fullmatch(r"[A-Z]{2}[A-Z0-9]{9}\d", r[iI].strip()): continue
-        out[(r[iP].strip(), r[iE].strip())].append(dict(isin=r[iI].strip(), coupon=num(r[iC]), maturity=r[iM].strip(), cf=num(r[iF])))
-    log(f"Eurex baskets parsed: {len(out)} contract lines, columns {head}")
+    for line in txt.splitlines():       # format: Contract;ISIN;Coupon;Maturity;ConvFac, contract like "FGBL SI 20261208 PS"
+        f = [x.strip() for x in line.split(";")]
+        if line.startswith("#") or len(f) != 5 or len(f[0].split()) != 4: continue
+        prod, _, expiry, _ = f[0].split(); d_, m_, y_ = f[3].split(".")
+        out[(prod, expiry)].append(dict(isin=f[1], coupon=num(f[2]), maturity=f"{y_}-{m_}-{d_}", cf=num(f[4])))
+    log(f"Eurex baskets parsed: {len(out)} contracts, {sum(map(len, out.values()))} bonds")
     return out
 
 
@@ -194,6 +189,13 @@ def series(id_, group, country, tenor, name, data, decimals, source, **kw):
                 dates=ds, values=[round(data[d], decimals) for d in ds], **kw)
 
 
+def drop_spikes(name, data, bp=75):
+    ds = sorted(data); bad = [b for a, b, c in zip(ds, ds[1:], ds[2:])
+                             if (data[b] - data[a]) * (data[b] - data[c]) > 0 and min(abs(data[b] - data[a]), abs(data[b] - data[c])) * 100 >= bp]
+    for d in bad: log(f"  {name}: {d} value {data[d]} dropped, isolated spike of {bp} bp or more against both neighbours")
+    return {d: v for d, v in data.items() if d not in bad}
+
+
 def checks(name, data, max_jump):
     ds = sorted(data); jumps = [(b, round((data[b] - data[a]) * 100, 1)) for a, b in zip(ds, ds[1:]) if abs(data[b] - data[a]) * 100 > max_jump]
     log(f"  {name}: {len(ds)} days {ds[0] if ds else '-'} to {ds[-1] if ds else '-'}" + (f", day moves above {max_jump} bp: {jumps[:6]}" if jumps else ""))
@@ -220,16 +222,16 @@ def main():
 
     log("Checks:")
     for t in DE_TENORS:
-        if de and de.get(t): checks(f"DE {t}Y", de[t], 25)
+        if de and de.get(t): de[t] = drop_spikes(f"DE {t}Y", de[t]); checks(f"DE {t}Y", de[t], 25)
         add(f"DE_{t}Y", series(f"DE_{t}Y", "yield", "DE", t, f"Germany {t}Y", de[t], 2, "bbk_curve", kind="par yield, estimated curve") if de and de.get(t) else None)
     add("ESTR", series("ESTR", "mm", "EA", 0, "Euro short-term rate", estr, 3, "bbk_estr") if estr else None)
     for g in EZ:
-        add(f"{g}_10Y_M", series(f"{g}_10Y_M", "yield_m", g, 10, f"{g} 10Y, monthly average", mo[g], 3, "eurostat_mcby") if mo and mo.get(g) else None)
+        add(f"{g}_10Y_M", series(f"{g}_10Y_M", "yield_m", g, 10, f"{g} 10Y, monthly average", mo[g], 4, "eurostat_mcby") if mo and mo.get(g) else None)
     for t in sorted(ES_CODES.values()):
-        if es and es.get(t): checks(f"ES {t}Y", es[t], 30)
+        if es and es.get(t): es[t] = drop_spikes(f"ES {t}Y", es[t]); checks(f"ES {t}Y", es[t], 30)
         add(f"ES_{t}Y", series(f"ES_{t}Y", "yield", "ES", t, f"Spain {t}Y", es[t], 2, "bde_yields", kind="yield from market trades") if es and es.get(t) else None)
     for t in FR_TENORS:
-        if fr and fr.get(t): checks(f"FR {t}Y", fr[t], 25)
+        if fr and fr.get(t): fr[t] = drop_spikes(f"FR {t}Y", fr[t]); checks(f"FR {t}Y", fr[t], 25)
         add(f"FR_{t}Y", series(f"FR_{t}Y", "yield", "FR", t, f"France {t}Y", fr[t], 3, "bdf_tec", kind="TEC constant-maturity index") if fr and fr.get(t) else None)
 
     last = max(s["dates"][-1] for s in out if s["group"] == "yield")
@@ -287,13 +289,16 @@ def build_futures(now_by):
                    for p in prev["products"] for c in p["contracts"]}
     estr_d = max(now_by["ESTR"]); estr = now_by["ESTR"][estr_d]
     # German bond prices on the futures business day (Bundesbank reference prices)
-    isins = sorted({b["isin"] for (p, e), bl in baskets.items() for b in bl if b["isin"].startswith("DE")})
+    fronts = {code: min(k[2] for k in arch if k[1] == code and k[0] == busdate) for code, *_ in PRODUCTS if code.startswith("FGB")}
+    isins = sorted({b["isin"] for (p, e), bl in baskets.items() if fronts.get(p) == e for b in bl if b["isin"].startswith("DE")})
     px = defaultdict(dict)
-    if isins:
-        d = sdmx(json.loads(get(f"{BBK}/BBSSY/D.KCP+KDP+REN.EUR..{'+'.join(isins)}.?format=sdmx_json&lang=en&startPeriod={busdate}&endPeriod={busdate}")))
+    for isin in isins:
+        try: d = sdmx(json.loads(get(f"{BBK}/BBSSY/D.KCP+KDP+REN.EUR..{isin}.?format=sdmx_json&lang=en&startPeriod={busdate}&endPeriod={busdate}")))
+        except Exception as e: log(f"  price {isin}: {e}"); continue
         for k, v in d.items():
-            isin = next(x for x in k if re.fullmatch(r"[A-Z]{2}[A-Z0-9]{9}\d", x)); meas = next(x for x in k if x in ("KCP", "KDP", "REN"))
+            meas = next(x for x in k if x in ("KCP", "KDP", "REN"))
             if busdate in v: px[isin][meas] = v[busdate]
+        time.sleep(0.2)
     log(f"Bundesbank bond prices on {busdate}: {len(px)} of {len(isins)} German deliverable bonds")
     bd = dt.date.fromisoformat(busdate); bond_settle = add_bdays(bd, 2)
     products = []

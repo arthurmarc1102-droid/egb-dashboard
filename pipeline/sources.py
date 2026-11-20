@@ -87,6 +87,7 @@ notes = [
     "French TEC values have two decimals until 24 July 2026 and three after. German yields have two decimals: a one basis point move is the smallest change the page shows for Germany.",
     "Each run is compared with a snapshot of 19 November 2026 in which every value was read twice by independent readings. The result is in data/raw/update_log.txt.",
     "Eurex keeps only 36 trading days of settlement prices: the script archives them each day, so futures history grows from November 2026.",
+    "A daily value that jumps away from both neighbours by 75 bp or more and comes back is treated as a publication error and left out (for example Spain 5-year on 8 July 2016). Each one is listed in data/raw/update_log.txt.",
     "Auctions and the event calendar are not refreshed automatically yet.",
 ]
 if EXTRA.exists():
