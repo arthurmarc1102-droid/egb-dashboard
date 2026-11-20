@@ -6,18 +6,6 @@
 {
 "country": "ES",
 "date": "2026-11-19",
-"security": "Bono 2.60% 31 May 2031",
-"isin": null,
-"bids_bn": 3.739,
-"amount_bn": 1.444,
-"avg_yield": 3.475,
-"stop_yield": 3.486,
-"bid_cover": 2.59,
-"url": "https://www.tesoro.es/deuda-publica/subastas/resultado-ultimas-subastas/bonos-del-estado"
-},
-{
-"country": "ES",
-"date": "2026-11-19",
 "security": "Obligacion 3.75% 30 Jul 2034",
 "isin": null,
 "bids_bn": 5.194,
@@ -38,6 +26,18 @@
 "stop_yield": 3.85,
 "bid_cover": 1.84,
 "url": "https://www.tesoro.es/deuda-publica/subastas/resultado-ultimas-subastas/obligaciones-del-estado"
+},
+{
+"country": "ES",
+"date": "2026-11-19",
+"security": "Bono 2.60% 31 May 2031",
+"isin": null,
+"bids_bn": 3.739,
+"amount_bn": 1.444,
+"avg_yield": 3.475,
+"stop_yield": 3.486,
+"bid_cover": 2.59,
+"url": "https://www.tesoro.es/deuda-publica/subastas/resultado-ultimas-subastas/bonos-del-estado"
 },
 {
 "country": "DE",
@@ -186,7 +186,7 @@
 {
 "country": "IT",
 "date": "2026-10-29",
-"security": "BTP 01 Feb 2032",
+"security": "BTP 3.95% 01 Feb 2032",
 "isin": "IT0005733636",
 "bids_bn": 2.991,
 "amount_bn": 1.75,
@@ -234,7 +234,7 @@
 {
 "country": "IT",
 "date": "2026-10-27",
-"security": "BTP Short Term 30 Oct 2028",
+"security": "BTP Short Term 3.00% 30 Oct 2028",
 "isin": "IT0005729733",
 "bids_bn": 3.438,
 "amount_bn": 2.0,
@@ -498,7 +498,7 @@
 {
 "country": "IT",
 "date": "2026-09-29",
-"security": "BTP 01 Feb 2032",
+"security": "BTP 3.95% 01 Feb 2032",
 "isin": "IT0005733636",
 "bids_bn": 5.389,
 "amount_bn": 3.5,
@@ -522,7 +522,7 @@
 {
 "country": "IT",
 "date": "2026-09-24",
-"security": "BTP Short Term 30 Oct 2028",
+"security": "BTP Short Term 3.00% 30 Oct 2028",
 "isin": "IT0005729733",
 "bids_bn": 4.106,
 "amount_bn": 2.5,
@@ -690,7 +690,7 @@
 {
 "country": "IT",
 "date": "2026-08-28",
-"security": "BTP 01 Oct 2036",
+"security": "BTP 4.00% 01 Oct 2036",
 "isin": "IT0005729931",
 "bids_bn": 6.483,
 "amount_bn": 4.0,
@@ -702,7 +702,7 @@
 {
 "country": "IT",
 "date": "2026-08-26",
-"security": "BTP Short Term 30 Oct 2028",
+"security": "BTP Short Term 3.00% 30 Oct 2028",
 "isin": "IT0005729733",
 "bids_bn": 4.731,
 "amount_bn": 3.0,
@@ -1014,7 +1014,7 @@
 {
 "country": "IT",
 "date": "2026-07-10",
-"security": "BTP 15 Sep 2029",
+"security": "BTP 3.00% 15 Sep 2029",
 "isin": "IT0005716839",
 "bids_bn": 3.933,
 "amount_bn": 2.5,
@@ -1026,7 +1026,7 @@
 {
 "country": "IT",
 "date": "2026-07-10",
-"security": "BTP 15 Sep 2033",
+"security": "BTP 3.35% 15 Sep 2033",
 "isin": "IT0005722845",
 "bids_bn": 5.46,
 "amount_bn": 3.5,
@@ -1218,7 +1218,7 @@
 {
 "country": "IT",
 "date": "2026-06-11",
-"security": "BTP 15 Sep 2029",
+"security": "BTP 3.00% 15 Sep 2029",
 "isin": "IT0005716839",
 "bids_bn": 6.461,
 "amount_bn": 4.0,
@@ -1302,7 +1302,7 @@
 {
 "country": "IT",
 "date": "2026-05-28",
-"security": "BTP 01 Jul 2036",
+"security": "BTP 3.80% 01 Jul 2036",
 "isin": "IT0005706285",
 "bids_bn": 4.022,
 "amount_bn": 2.5,
@@ -1398,7 +1398,7 @@
 {
 "country": "IT",
 "date": "2026-05-13",
-"security": "BTP 15 Jun 2033",
+"security": "BTP 3.30% 15 Jun 2033",
 "isin": "IT0005704868",
 "bids_bn": 5.009,
 "amount_bn": 3.25,
@@ -1494,7 +1494,7 @@
 {
 "country": "IT",
 "date": "2026-04-29",
-"security": "BTP 01 Jun 2031",
+"security": "BTP 3.15% 01 Jun 2031",
 "isin": "IT0005707614",
 "bids_bn": 6.136,
 "amount_bn": 4.0,
@@ -1638,7 +1638,7 @@
 {
 "country": "IT",
 "date": "2026-04-10",
-"security": "BTP 15 Jun 2033",
+"security": "BTP 3.30% 15 Jun 2033",
 "isin": "IT0005704868",
 "bids_bn": 5.792,
 "amount_bn": 3.75,
@@ -1950,7 +1950,7 @@
 {
 "country": "IT",
 "date": "2026-02-24",
-"security": "BTP Short Term 28 Feb 2028",
+"security": "BTP Short Term 2.20% 28 Feb 2028",
 "isin": "IT0005692410",
 "bids_bn": 4.044,
 "amount_bn": 2.5,
@@ -1986,7 +1986,7 @@
 {
 "country": "IT",
 "date": "2026-02-12",
-"security": "BTP 15 Mar 2029",
+"security": "BTP 2.40% 15 Mar 2029",
 "isin": "IT0005689960",
 "bids_bn": 5.348,
 "amount_bn": 3.5,
@@ -2010,7 +2010,7 @@
 {
 "country": "IT",
 "date": "2026-02-12",
-"security": "BTP 15 Mar 2033",
+"security": "BTP 3.15% 15 Mar 2033",
 "isin": "IT0005689994",
 "bids_bn": 2.539,
 "amount_bn": 1.5,
@@ -2118,7 +2118,7 @@
 {
 "country": "IT",
 "date": "2026-01-27",
-"security": "BTP Short Term 28 Feb 2028",
+"security": "BTP Short Term 2.20% 28 Feb 2028",
 "isin": "IT0005692410",
 "bids_bn": 4.906,
 "amount_bn": 3.0,
@@ -2214,7 +2214,7 @@
 {
 "country": "IT",
 "date": "2026-01-13",
-"security": "BTP 15 Mar 2029",
+"security": "BTP 2.40% 15 Mar 2029",
 "isin": "IT0005689960",
 "bids_bn": 5.816,
 "amount_bn": 4.0,
