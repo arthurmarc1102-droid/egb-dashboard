@@ -1,4 +1,4 @@
-Run 2026-11-20 17:09 UTC
+Run 2026-11-20 17:13 UTC
 Checks:
   DE 1Y: 3018 days 2015-01-02 to 2026-11-20, day moves above 25 bp: [('2022-09-09', 26.0), ('2023-03-13', -26.0), ('2023-03-20', -26.0), ('2024-08-05', -27.0)]
   DE 2Y: 3018 days 2015-01-02 to 2026-11-20, day moves above 25 bp: [('2022-10-04', -29.0), ('2022-12-16', 33.0), ('2023-03-13', -36.0), ('2023-03-20', -33.0), ('2023-03-24', -29.0)]
@@ -10,7 +10,8 @@ Checks:
   DE 20Y: 3018 days 2015-01-02 to 2026-11-20, day moves above 25 bp: [('2015-05-07', 34.0), ('2015-06-04', 26.0), ('2022-10-04', -25.0)]
   DE 30Y: 3018 days 2015-01-02 to 2026-11-20, day moves above 25 bp: [('2015-05-07', 28.0)]
   ES 3Y: 3015 days 2015-01-05 to 2026-11-17, day moves above 30 bp: [('2022-12-19', 49.0), ('2023-03-13', -32.0), ('2023-04-03', 51.0), ('2023-04-04', -46.0), ('2023-05-31', -44.0), ('2023-10-30', -31.0)]
-  ES 5Y: 3023 days 2015-01-02 to 2026-11-17, day moves above 30 bp: [('2015-09-21', 56.0), ('2015-09-22', -51.0), ('2016-07-08', 152.0), ('2016-07-11', -151.0), ('2020-03-18', 40.0)]
+  ES 5Y: 2016-07-08 value 1.75 dropped, isolated spike of 75 bp or more against both neighbours
+  ES 5Y: 3022 days 2015-01-02 to 2026-11-17, day moves above 30 bp: [('2015-09-21', 56.0), ('2015-09-22', -51.0), ('2020-03-18', 40.0)]
   ES 10Y: 3040 days 2015-01-02 to 2026-11-17, day moves above 30 bp: [('2015-09-01', 43.0), ('2017-08-17', -36.0)]
   ES 15Y: 2449 days 2015-01-02 to 2026-11-17, day moves above 30 bp: [('2015-01-26', -32.0), ('2015-08-27', -55.0), ('2015-08-31', 61.0), ('2015-09-30', -51.0), ('2015-10-05', 30.0), ('2017-04-05', 41.0)]
   FR 1Y: 3042 days 2015-01-02 to 2026-11-20, day moves above 25 bp: [('2023-03-14', -33.0), ('2023-03-16', -29.0)]
@@ -23,14 +24,12 @@ Checks:
   FR 20Y: 3042 days 2015-01-02 to 2026-11-20, day moves above 25 bp: [('2015-06-04', 26.0), ('2020-03-13', 31.5), ('2022-10-04', -28.0)]
   FR 30Y: 3042 days 2015-01-02 to 2026-11-20, day moves above 25 bp: [('2015-06-04', 26.2), ('2020-03-13', 32.8)]
 market.json: 31 series, last daily date 2026-11-20
-Against the double-read snapshot of 19 Nov 2026: 6723 common values, 15 differences [('AT_10Y_M', '2025-01-01', 2.9085, 2.909), ('AT_10Y_M', '2025-02-01', 2.8587, 2.859), ('AT_10Y_M', '2025-10-01', 2.9352, 2.935), ('AT_10Y_M', '2025-11-01', 2.9705, 2.97), ('AT_10Y_M', '2025-12-01', 3.0974, 3.097), ('AT_10Y_M', '2026-01-01', 3.0763, 3.076), ('AT_10Y_M', '2026-02-01', 3.0654, 3.065), ('AT_10Y_M', '2026-03-01', 3.2399, 3.24), ('AT_10Y_M', '2026-04-01', 3.3033, 3.303), ('AT_10Y_M', '2026-05-01', 3.2979, 3.298)]
+Against the double-read snapshot of 19 Nov 2026: 6723 common values, 0 differences []
 news ECB: 15 items in feed
 news Bundesbank: 10 items in feed
 news Banco de Espana: 20 items in feed
-Eurex: 37 trading days offered (2026-09-30 to 2026-11-19), 666 rows fetched, archive 666 rows
+Eurex: 37 trading days offered (2026-09-30 to 2026-11-19), 18 rows fetched, archive 666 rows
 Eurex basket file: /resource/blob/2845860/78e1b440951167d1a996c5ae36be4753/data/deliverable-bonds-and-conversion-factors.csv | first lines: #Contract;ISIN;Coupon;Maturity;ConvFac || CONF SI 20261208 PS;CH0127181193;1.250000;27.06.2037;1.024786 || CONF SI 20261208 PS;CH0440081401;0.000000;24.07.2039;0.882313 || CONF SI 20261208 PS;CH0440081567;1.500000;26.10.2038;1.055529
-Eurex baskets: FAILED (list indices must be integers or slices, not NoneType); previous baskets kept
-  retry 1 https://api.statistiken.bundesbank.de/rest/data/BBSSY/D.KCP+KDP+REN.EUR..DE0001030732+DE00: HTTP Error 413: Request Entity Too Large
-  retry 2 https://api.statistiken.bundesbank.de/rest/data/BBSSY/D.KCP+KDP+REN.EUR..DE0001030732+DE00: HTTP Error 413: Request Entity Too Large
-  retry 3 https://api.statistiken.bundesbank.de/rest/data/BBSSY/D.KCP+KDP+REN.EUR..DE0001030732+DE00: HTTP Error 413: Request Entity Too Large
-futures: FAILED (download failed: https://api.statistiken.bundesbank.de/rest/data/BBSSY/D.KCP+KDP+REN.EUR..DE0001030732+DE0001030757+DE0001102465+DE0001102556+DE0001102564+DE0001102572+DE0001102580+DE0001102606+DE0001102614+DE000BU22148+DE000BU22155+DE000BU25018+DE000BU25026+DE000BU25075+DE000BU2D004+DE000BU2D012+DE000BU2Z056+DE000BU2Z064+DE000BU2Z072+DE000BU35025.?format=sdmx_json&lang=en&startPeriod=2026-11-19&endPeriod=2026-11-19); previous file kept
+Eurex baskets parsed: 35 contracts, 153 bonds
+Bundesbank bond prices on 2026-11-19: 16 of 16 German deliverable bonds
+futures.json: FGBS Dec 26 104.85, Mar 27 104.785; FGBM Dec 26 112.83, Mar 27 112.07; FGBL Dec 26 121.72, Mar 27 121.74; FGBX Dec 26 104.32, Mar 27 103.74; FOAT Dec 26 108.79, Mar 27 107.96; FBTP Dec 26 112.16, Mar 27 111.45
