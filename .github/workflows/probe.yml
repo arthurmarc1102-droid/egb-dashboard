@@ -1,5 +1,7 @@
 name: probe
 on:
+  push:
+    paths: ['pipeline/probe.py']
   workflow_dispatch:
 permissions:
   contents: write
