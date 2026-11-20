@@ -66,14 +66,14 @@
 {
 "country": "IT",
 "date": "2026-11-12",
-"security": "BTP 3.00% 15 Sep 2029",
-"isin": "IT0005716839",
-"bids_bn": 3.841,
-"amount_bn": 2.5,
-"avg_yield": 3.58,
+"security": "BTP Green 30 Apr 2046",
+"isin": "IT0005631608",
+"bids_bn": 2.536,
+"amount_bn": 1.5,
+"avg_yield": 4.73,
 "stop_yield": null,
-"bid_cover": 1.54,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_3_anni/BTP-3-Years-Auction-Results-12-13.11.2026.pdf"
+"bid_cover": 1.69,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_green/BTP-Green-20-years-residual_maturity-Auction-Results-12-13.11.2026.pdf"
 },
 {
 "country": "IT",
@@ -90,14 +90,14 @@
 {
 "country": "IT",
 "date": "2026-11-12",
-"security": "BTP Green 30 Apr 2046",
-"isin": "IT0005631608",
-"bids_bn": 2.536,
-"amount_bn": 1.5,
-"avg_yield": 4.73,
+"security": "BTP 3.00% 15 Sep 2029",
+"isin": "IT0005716839",
+"bids_bn": 3.841,
+"amount_bn": 2.5,
+"avg_yield": 3.58,
 "stop_yield": null,
-"bid_cover": 1.69,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_green/BTP-Green-20-years-residual_maturity-Auction-Results-12-13.11.2026.pdf"
+"bid_cover": 1.54,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_3_anni/BTP-3-Years-Auction-Results-12-13.11.2026.pdf"
 },
 {
 "country": "DE",
@@ -186,6 +186,18 @@
 {
 "country": "IT",
 "date": "2026-10-29",
+"security": "BTP 4.00% 01 Oct 2036",
+"isin": "IT0005729931",
+"bids_bn": 5.454,
+"amount_bn": 3.5,
+"avg_yield": 4.49,
+"stop_yield": null,
+"bid_cover": 1.56,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-29-30.10.2026.pdf"
+},
+{
+"country": "IT",
+"date": "2026-10-29",
 "security": "BTP 3.95% 01 Feb 2032",
 "isin": "IT0005733636",
 "bids_bn": 2.991,
@@ -206,18 +218,6 @@
 "stop_yield": null,
 "bid_cover": 1.78,
 "url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_7_anni/BTP-7-Years-5-years-residual_maturity-Auction-Results-29-30.10.2026.pdf"
-},
-{
-"country": "IT",
-"date": "2026-10-29",
-"security": "BTP 4.00% 01 Oct 2036",
-"isin": "IT0005729931",
-"bids_bn": 5.454,
-"amount_bn": 3.5,
-"avg_yield": 4.49,
-"stop_yield": null,
-"bid_cover": 1.56,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-29-30.10.2026.pdf"
 },
 {
 "country": "DE",
@@ -366,14 +366,14 @@
 {
 "country": "IT",
 "date": "2026-10-13",
-"security": "BTP 3.00% 15 Sep 2029",
-"isin": "IT0005716839",
-"bids_bn": 3.893,
-"amount_bn": 2.5,
-"avg_yield": 3.69,
+"security": "BTP 3.95% 01 Oct 2041",
+"isin": "IT0005694630",
+"bids_bn": 2.398,
+"amount_bn": 1.5,
+"avg_yield": 4.84,
 "stop_yield": null,
-"bid_cover": 1.56,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_3_anni/BTP-3-Years-Auction-Results-13-14.10.2026.pdf"
+"bid_cover": 1.6,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_15_anni/BTP-15-Years-Auction-Results-13-14.10.2026.pdf"
 },
 {
 "country": "IT",
@@ -390,14 +390,14 @@
 {
 "country": "IT",
 "date": "2026-10-13",
-"security": "BTP 3.95% 01 Oct 2041",
-"isin": "IT0005694630",
-"bids_bn": 2.398,
-"amount_bn": 1.5,
-"avg_yield": 4.84,
+"security": "BTP 3.00% 15 Sep 2029",
+"isin": "IT0005716839",
+"bids_bn": 3.893,
+"amount_bn": 2.5,
+"avg_yield": 3.69,
 "stop_yield": null,
-"bid_cover": 1.6,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_15_anni/BTP-15-Years-Auction-Results-13-14.10.2026.pdf"
+"bid_cover": 1.56,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_3_anni/BTP-3-Years-Auction-Results-13-14.10.2026.pdf"
 },
 {
 "country": "DE",
@@ -498,18 +498,6 @@
 {
 "country": "IT",
 "date": "2026-09-29",
-"security": "BTP 3.95% 01 Feb 2032",
-"isin": "IT0005733636",
-"bids_bn": 5.389,
-"amount_bn": 3.5,
-"avg_yield": 4.08,
-"stop_yield": null,
-"bid_cover": 1.54,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-29-30.09.2026.pdf"
-},
-{
-"country": "IT",
-"date": "2026-09-29",
 "security": "BTP 4.00% 01 Oct 2036",
 "isin": "IT0005729931",
 "bids_bn": 4.678,
@@ -518,6 +506,18 @@
 "stop_yield": null,
 "bid_cover": 1.56,
 "url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-29-30.09.2026.pdf"
+},
+{
+"country": "IT",
+"date": "2026-09-29",
+"security": "BTP 3.95% 01 Feb 2032",
+"isin": "IT0005733636",
+"bids_bn": 5.389,
+"amount_bn": 3.5,
+"avg_yield": 4.08,
+"stop_yield": null,
+"bid_cover": 1.54,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-29-30.09.2026.pdf"
 },
 {
 "country": "IT",
@@ -606,18 +606,6 @@
 {
 "country": "IT",
 "date": "2026-09-10",
-"security": "BTP 3.00% 15 Sep 2029",
-"isin": "IT0005716839",
-"bids_bn": 5.476,
-"amount_bn": 3.5,
-"avg_yield": 3.43,
-"stop_yield": null,
-"bid_cover": 1.57,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_3_anni/BTP-3-Years-Auction-Results-10-11.09.2026.pdf"
-},
-{
-"country": "IT",
-"date": "2026-09-10",
 "security": "BTP 3.35% 15 Sep 2033",
 "isin": "IT0005722845",
 "bids_bn": 5.328,
@@ -626,6 +614,18 @@
 "stop_yield": null,
 "bid_cover": 1.52,
 "url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_7_anni/BTP-7-Years-Auction-Results-10-11.09.2026.pdf"
+},
+{
+"country": "IT",
+"date": "2026-09-10",
+"security": "BTP 3.00% 15 Sep 2029",
+"isin": "IT0005716839",
+"bids_bn": 5.476,
+"amount_bn": 3.5,
+"avg_yield": 3.43,
+"stop_yield": null,
+"bid_cover": 1.57,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_3_anni/BTP-3-Years-Auction-Results-10-11.09.2026.pdf"
 },
 {
 "country": "DE",
@@ -678,18 +678,6 @@
 {
 "country": "IT",
 "date": "2026-08-28",
-"security": "BTP 3.15% 01 Jun 2031",
-"isin": "IT0005707614",
-"bids_bn": 4.292,
-"amount_bn": 2.5,
-"avg_yield": 3.44,
-"stop_yield": null,
-"bid_cover": 1.72,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-28-31.08.2026.pdf"
-},
-{
-"country": "IT",
-"date": "2026-08-28",
 "security": "BTP 4.00% 01 Oct 2036",
 "isin": "IT0005729931",
 "bids_bn": 6.483,
@@ -698,6 +686,18 @@
 "stop_yield": null,
 "bid_cover": 1.62,
 "url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-28-31.08.2026.pdf"
+},
+{
+"country": "IT",
+"date": "2026-08-28",
+"security": "BTP 3.15% 01 Jun 2031",
+"isin": "IT0005707614",
+"bids_bn": 4.292,
+"amount_bn": 2.5,
+"avg_yield": 3.44,
+"stop_yield": null,
+"bid_cover": 1.72,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-28-31.08.2026.pdf"
 },
 {
 "country": "IT",
@@ -846,18 +846,6 @@
 {
 "country": "IT",
 "date": "2026-07-30",
-"security": "BTP 3.15% 01 Jun 2031",
-"isin": "IT0005707614",
-"bids_bn": 4.763,
-"amount_bn": 3.0,
-"avg_yield": 3.39,
-"stop_yield": null,
-"bid_cover": 1.59,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-30-31.07.2026.pdf"
-},
-{
-"country": "IT",
-"date": "2026-07-30",
 "security": "BTP 3.80% 01 Jul 2036",
 "isin": "IT0005706285",
 "bids_bn": 2.987,
@@ -866,6 +854,18 @@
 "stop_yield": null,
 "bid_cover": 1.71,
 "url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-30-31.07.2026.pdf"
+},
+{
+"country": "IT",
+"date": "2026-07-30",
+"security": "BTP 3.15% 01 Jun 2031",
+"isin": "IT0005707614",
+"bids_bn": 4.763,
+"amount_bn": 3.0,
+"avg_yield": 3.39,
+"stop_yield": null,
+"bid_cover": 1.59,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-30-31.07.2026.pdf"
 },
 {
 "country": "IT",
@@ -1014,14 +1014,14 @@
 {
 "country": "IT",
 "date": "2026-07-10",
-"security": "BTP 3.00% 15 Sep 2029",
-"isin": "IT0005716839",
-"bids_bn": 3.933,
-"amount_bn": 2.5,
-"avg_yield": 2.98,
+"security": "BTP 3.95% 01 Oct 2041",
+"isin": "IT0005694630",
+"bids_bn": 2.608,
+"amount_bn": 1.5,
+"avg_yield": 4.23,
 "stop_yield": null,
-"bid_cover": 1.57,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_3_anni/BTP-3-Years-Auction-Results-10-13.07.2026.pdf"
+"bid_cover": 1.74,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_15_anni/BTP-15-Years-Auction-Results-10-13.07.2026.pdf"
 },
 {
 "country": "IT",
@@ -1038,14 +1038,14 @@
 {
 "country": "IT",
 "date": "2026-07-10",
-"security": "BTP 3.95% 01 Oct 2041",
-"isin": "IT0005694630",
-"bids_bn": 2.608,
-"amount_bn": 1.5,
-"avg_yield": 4.23,
+"security": "BTP 3.00% 15 Sep 2029",
+"isin": "IT0005716839",
+"bids_bn": 3.933,
+"amount_bn": 2.5,
+"avg_yield": 2.98,
 "stop_yield": null,
-"bid_cover": 1.74,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_15_anni/BTP-15-Years-Auction-Results-10-13.07.2026.pdf"
+"bid_cover": 1.57,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_3_anni/BTP-3-Years-Auction-Results-10-13.07.2026.pdf"
 },
 {
 "country": "DE",
@@ -1098,14 +1098,14 @@
 {
 "country": "IT",
 "date": "2026-06-26",
-"security": "BTP 3.15% 01 Jun 2031",
-"isin": "IT0005707614",
-"bids_bn": 4.777,
-"amount_bn": 3.0,
-"avg_yield": 3.03,
+"security": "BTP 3.80% 01 Jul 2036",
+"isin": "IT0005706285",
+"bids_bn": 4.15,
+"amount_bn": 2.5,
+"avg_yield": 3.63,
 "stop_yield": null,
-"bid_cover": 1.59,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-26-26.06.2026.pdf"
+"bid_cover": 1.66,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-26-26.06.2026.pdf"
 },
 {
 "country": "IT",
@@ -1122,14 +1122,14 @@
 {
 "country": "IT",
 "date": "2026-06-26",
-"security": "BTP 3.80% 01 Jul 2036",
-"isin": "IT0005706285",
-"bids_bn": 4.15,
-"amount_bn": 2.5,
-"avg_yield": 3.63,
+"security": "BTP 3.15% 01 Jun 2031",
+"isin": "IT0005707614",
+"bids_bn": 4.777,
+"amount_bn": 3.0,
+"avg_yield": 3.03,
 "stop_yield": null,
-"bid_cover": 1.66,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-26-26.06.2026.pdf"
+"bid_cover": 1.59,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-26-26.06.2026.pdf"
 },
 {
 "country": "IT",
@@ -1290,18 +1290,6 @@
 {
 "country": "IT",
 "date": "2026-05-28",
-"security": "BTP 3.15% 01 Jun 2031",
-"isin": "IT0005707614",
-"bids_bn": 5.321,
-"amount_bn": 3.5,
-"avg_yield": 3.16,
-"stop_yield": null,
-"bid_cover": 1.52,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-28-29.05.2026.pdf"
-},
-{
-"country": "IT",
-"date": "2026-05-28",
 "security": "BTP 3.80% 01 Jul 2036",
 "isin": "IT0005706285",
 "bids_bn": 4.022,
@@ -1310,6 +1298,18 @@
 "stop_yield": null,
 "bid_cover": 1.61,
 "url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-28-29.05.2026.pdf"
+},
+{
+"country": "IT",
+"date": "2026-05-28",
+"security": "BTP 3.15% 01 Jun 2031",
+"isin": "IT0005707614",
+"bids_bn": 5.321,
+"amount_bn": 3.5,
+"avg_yield": 3.16,
+"stop_yield": null,
+"bid_cover": 1.52,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-28-29.05.2026.pdf"
 },
 {
 "country": "IT",
@@ -1386,18 +1386,6 @@
 {
 "country": "IT",
 "date": "2026-05-13",
-"security": "BTP 2.40% 15 Mar 2029",
-"isin": "IT0005689960",
-"bids_bn": 4.604,
-"amount_bn": 3.0,
-"avg_yield": 2.98,
-"stop_yield": null,
-"bid_cover": 1.53,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_3_anni/BTP-3-Years-Auction-Results-13-14.05.2026.pdf"
-},
-{
-"country": "IT",
-"date": "2026-05-13",
 "security": "BTP 3.30% 15 Jun 2033",
 "isin": "IT0005704868",
 "bids_bn": 5.009,
@@ -1418,6 +1406,18 @@
 "stop_yield": null,
 "bid_cover": 1.77,
 "url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_20_anni/BTP-20-Years-12-years-residual_maturity-Auction-Results-13-14.05.2026.pdf"
+},
+{
+"country": "IT",
+"date": "2026-05-13",
+"security": "BTP 2.40% 15 Mar 2029",
+"isin": "IT0005689960",
+"bids_bn": 4.604,
+"amount_bn": 3.0,
+"avg_yield": 2.98,
+"stop_yield": null,
+"bid_cover": 1.53,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_3_anni/BTP-3-Years-Auction-Results-13-14.05.2026.pdf"
 },
 {
 "country": "DE",
@@ -1494,18 +1494,6 @@
 {
 "country": "IT",
 "date": "2026-04-29",
-"security": "BTP 3.15% 01 Jun 2031",
-"isin": "IT0005707614",
-"bids_bn": 6.136,
-"amount_bn": 4.0,
-"avg_yield": 3.32,
-"stop_yield": null,
-"bid_cover": 1.53,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-29-30.04.2026.pdf"
-},
-{
-"country": "IT",
-"date": "2026-04-29",
 "security": "BTP 3.35% 01 Mar 2035",
 "isin": "IT0005358806(*)",
 "bids_bn": 2.589,
@@ -1514,6 +1502,18 @@
 "stop_yield": null,
 "bid_cover": 1.73,
 "url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_15_anni/BTP-15-Years-9-years-residual_maturity-Auction-Results-29-30.04.2026.pdf"
+},
+{
+"country": "IT",
+"date": "2026-04-29",
+"security": "BTP 3.15% 01 Jun 2031",
+"isin": "IT0005707614",
+"bids_bn": 6.136,
+"amount_bn": 4.0,
+"avg_yield": 3.32,
+"stop_yield": null,
+"bid_cover": 1.53,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-29-30.04.2026.pdf"
 },
 {
 "country": "DE",
@@ -1626,14 +1626,14 @@
 {
 "country": "IT",
 "date": "2026-04-10",
-"security": "BTP 2.40% 15 Mar 2029",
-"isin": "IT0005689960",
-"bids_bn": 4.2,
-"amount_bn": 2.5,
-"avg_yield": 2.91,
+"security": "BTP 3.95% 01 Oct 2041",
+"isin": "IT0005694630",
+"bids_bn": 2.976,
+"amount_bn": 1.75,
+"avg_yield": 4.27,
 "stop_yield": null,
-"bid_cover": 1.68,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_3_anni/BTP-3-Years-Auction-Results-10-13.04.2026.pdf"
+"bid_cover": 1.7,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_15_anni/BTP-15-Years-Auction-Results-10-13.04.2026.pdf"
 },
 {
 "country": "IT",
@@ -1650,14 +1650,14 @@
 {
 "country": "IT",
 "date": "2026-04-10",
-"security": "BTP 3.95% 01 Oct 2041",
-"isin": "IT0005694630",
-"bids_bn": 2.976,
-"amount_bn": 1.75,
-"avg_yield": 4.27,
+"security": "BTP 2.40% 15 Mar 2029",
+"isin": "IT0005689960",
+"bids_bn": 4.2,
+"amount_bn": 2.5,
+"avg_yield": 2.91,
 "stop_yield": null,
-"bid_cover": 1.7,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_15_anni/BTP-15-Years-Auction-Results-10-13.04.2026.pdf"
+"bid_cover": 1.68,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_3_anni/BTP-3-Years-Auction-Results-10-13.04.2026.pdf"
 },
 {
 "country": "DE",
@@ -1722,18 +1722,6 @@
 {
 "country": "IT",
 "date": "2026-03-27",
-"security": "BTP 2.85% 01 Feb 2031",
-"isin": "IT0005671273",
-"bids_bn": 4.403,
-"amount_bn": 2.5,
-"avg_yield": 3.48,
-"stop_yield": null,
-"bid_cover": 1.76,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-27-30.03.2026.pdf"
-},
-{
-"country": "IT",
-"date": "2026-03-27",
 "security": "BTP 3.45% 01 Feb 2036",
 "isin": "IT0005676504",
 "bids_bn": 4.152,
@@ -1742,6 +1730,18 @@
 "stop_yield": null,
 "bid_cover": 1.66,
 "url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-27-30.03.2026.pdf"
+},
+{
+"country": "IT",
+"date": "2026-03-27",
+"security": "BTP 2.85% 01 Feb 2031",
+"isin": "IT0005671273",
+"bids_bn": 4.403,
+"amount_bn": 2.5,
+"avg_yield": 3.48,
+"stop_yield": null,
+"bid_cover": 1.76,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-27-30.03.2026.pdf"
 },
 {
 "country": "IT",
@@ -1818,14 +1818,14 @@
 {
 "country": "IT",
 "date": "2026-03-12",
-"security": "BTP 2.40% 15 Mar 2029",
-"isin": "IT0005689960",
-"bids_bn": 3.221,
-"amount_bn": 2.0,
-"avg_yield": 2.75,
+"security": "BTP 3.25% 01 Mar 2038",
+"isin": "IT0005496770(*)",
+"bids_bn": 2.66,
+"amount_bn": 1.5,
+"avg_yield": 3.85,
 "stop_yield": null,
-"bid_cover": 1.61,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_3_anni/BTP-3-Years-Auction-Results-12-13.03.2026.pdf"
+"bid_cover": 1.77,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_15_anni/BTP-15-Years-12-years-residual_maturity-Auction-Results-12-13.03.2026.pdf"
 },
 {
 "country": "IT",
@@ -1842,14 +1842,14 @@
 {
 "country": "IT",
 "date": "2026-03-12",
-"security": "BTP 3.25% 01 Mar 2038",
-"isin": "IT0005496770(*)",
-"bids_bn": 2.66,
-"amount_bn": 1.5,
-"avg_yield": 3.85,
+"security": "BTP 2.40% 15 Mar 2029",
+"isin": "IT0005689960",
+"bids_bn": 3.221,
+"amount_bn": 2.0,
+"avg_yield": 2.75,
 "stop_yield": null,
-"bid_cover": 1.77,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_15_anni/BTP-15-Years-12-years-residual_maturity-Auction-Results-12-13.03.2026.pdf"
+"bid_cover": 1.61,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_3_anni/BTP-3-Years-Auction-Results-12-13.03.2026.pdf"
 },
 {
 "country": "DE",
@@ -1902,18 +1902,6 @@
 {
 "country": "IT",
 "date": "2026-02-26",
-"security": "BTP 2.85% 01 Feb 2031",
-"isin": "IT0005671273",
-"bids_bn": 4.288,
-"amount_bn": 2.75,
-"avg_yield": 2.62,
-"stop_yield": null,
-"bid_cover": 1.56,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-26-27.02.2026.pdf"
-},
-{
-"country": "IT",
-"date": "2026-02-26",
 "security": "BTP 3.45% 01 Feb 2036",
 "isin": "IT0005676504",
 "bids_bn": 5.513,
@@ -1922,6 +1910,18 @@
 "stop_yield": null,
 "bid_cover": 1.47,
 "url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-26-27.02.2026.pdf"
+},
+{
+"country": "IT",
+"date": "2026-02-26",
+"security": "BTP 2.85% 01 Feb 2031",
+"isin": "IT0005671273",
+"bids_bn": 4.288,
+"amount_bn": 2.75,
+"avg_yield": 2.62,
+"stop_yield": null,
+"bid_cover": 1.56,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-26-27.02.2026.pdf"
 },
 {
 "country": "DE",
@@ -1986,18 +1986,6 @@
 {
 "country": "IT",
 "date": "2026-02-12",
-"security": "BTP 2.40% 15 Mar 2029",
-"isin": "IT0005689960",
-"bids_bn": 5.348,
-"amount_bn": 3.5,
-"avg_yield": 2.36,
-"stop_yield": null,
-"bid_cover": 1.53,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_3_anni/BTP-3-Years-Auction-Results-12-13.02.2026.pdf"
-},
-{
-"country": "IT",
-"date": "2026-02-12",
 "security": "BTP 3.25% 15 Jul 2032",
 "isin": "IT0005647265",
 "bids_bn": 2.469,
@@ -2018,6 +2006,18 @@
 "stop_yield": null,
 "bid_cover": 1.69,
 "url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_7_anni/BTP-7-Years-Auction-Results-12-13.02.2026.pdf"
+},
+{
+"country": "IT",
+"date": "2026-02-12",
+"security": "BTP 2.40% 15 Mar 2029",
+"isin": "IT0005689960",
+"bids_bn": 5.348,
+"amount_bn": 3.5,
+"avg_yield": 2.36,
+"stop_yield": null,
+"bid_cover": 1.53,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_3_anni/BTP-3-Years-Auction-Results-12-13.02.2026.pdf"
 },
 {
 "country": "DE",
@@ -2082,18 +2082,6 @@
 {
 "country": "IT",
 "date": "2026-01-29",
-"security": "BTP 2.85% 01 Feb 2031",
-"isin": "IT0005671273",
-"bids_bn": 4.372,
-"amount_bn": 2.75,
-"avg_yield": 2.74,
-"stop_yield": null,
-"bid_cover": 1.59,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-29-30.01.2026.pdf"
-},
-{
-"country": "IT",
-"date": "2026-01-29",
 "security": "BTP 3.45% 01 Feb 2036",
 "isin": "IT0005676504",
 "bids_bn": 5.619,
@@ -2102,6 +2090,18 @@
 "stop_yield": null,
 "bid_cover": 1.5,
 "url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-29-30.01.2026.pdf"
+},
+{
+"country": "IT",
+"date": "2026-01-29",
+"security": "BTP 2.85% 01 Feb 2031",
+"isin": "IT0005671273",
+"bids_bn": 4.372,
+"amount_bn": 2.75,
+"avg_yield": 2.74,
+"stop_yield": null,
+"bid_cover": 1.59,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-29-30.01.2026.pdf"
 },
 {
 "country": "DE",

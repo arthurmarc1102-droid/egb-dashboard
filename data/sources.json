@@ -288,6 +288,7 @@
   "Each run is compared with a snapshot of 19 November 2026 in which every value was read twice by independent readings. The result is in data/raw/update_log.txt.",
   "Eurex keeps only 36 trading days of settlement prices: the script archives them each day, so futures history grows from November 2026.",
   "A daily value that jumps away from both neighbours by 75 bp or more and comes back is treated as a publication error and left out (for example Spain 5-year on 8 July 2016). Each one is listed in data/raw/update_log.txt.",
-  "Auctions and the event calendar are not refreshed automatically yet."
+  "Auctions: Germany (Finanzagentur, history since 2015), Spain (Tesoro Publico) and Italy (MEF result PDFs) are refreshed each day. The AFT site refuses automated access, so French results are those read on 19 Nov 2026 and French dates follow the AFT calendar rule. The MEF terms of reuse were not found.",
+  "Each run is checked before it is published: data present, sorted, in range and fresh; futures basis and CTD recomputed; auction cover equal to bids over allotted; every tab opened in a browser on desktop and phone. A failed check keeps the previous data online. Results in data/raw/verify.txt."
  ]
 }
