@@ -148,7 +148,7 @@ def it_results(get, log, arch):
                 mat = dt.datetime.strptime(f("Maturity Date").strip(), "%B %d, %Y").date().isoformat()
             except (AttributeError, ValueError): log(f"  Italy PDF not read {url.split('/')[-1]}"); continue
             title = (f("Auction Results:") or "").upper(); kind = "BTP Green" if "GREEN" in title else ("BTP Short Term" if "SHORT" in title else "BTP")
-            cpn = f("Coupon"); cpn = float(cpn.strip().rstrip("%")) if cpn and re.fullmatch(r"[\d.]+%", cpn.strip()) else None
+            cpn = (re.search(r"Coupon(?:\(\*\))?\s+([\d.]+%)", txt) or [None, None])[1]; cpn = float(cpn.strip().rstrip("%")) if cpn and re.fullmatch(r"[\d.]+%", cpn.strip()) else None
             n = lambda lab: float(f(lab).replace(",", "").rstrip("%")) if f(lab) and re.fullmatch(r"[\d,.]+%?", f(lab).strip()) else None
             sec = fmt_sec(kind, cpn, mat)
             arch[(d, sec)] = dict(country="IT", date=d, security=sec, isin=(f("ISIN Code") or "").strip() or None,

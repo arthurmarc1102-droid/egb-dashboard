@@ -178,7 +178,8 @@ def update_news():
             if link and title and d: items.setdefault(link, dict(date=d, source=src, title=title, url=link)); n += 1
         log(f"news {src}: {n} items in feed")
     keep = sorted(items.values(), key=lambda i: i["date"], reverse=True)[:400]
-    old.update(items=keep, updated=dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"))
+    old.update(items=keep, updated=dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+               note="Titles and links from the ECB, Bundesbank and Banco de Espana feeds, read each day and archived (400 most recent). Press feeds are not included: their terms of use have not been read.")
     json.dump(old, open(path, "w"), ensure_ascii=False, indent=0)
 
 
