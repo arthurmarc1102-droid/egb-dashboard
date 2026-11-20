@@ -1,0 +1,8 @@
+country,date,security,isin,bids_bn,amount_bn,avg_yield,stop_yield,bid_cover,url
+ES,2026-11-19,Obligacion 3.75% 30 Jul 2034,,5.194,2.322,3.765,3.77,2.24,https://www.tesoro.es/deuda-publica/subastas/resultado-ultimas-subastas/bonos-del-estado
+ES,2026-11-19,Obligacion 3.20% 31 Oct 2035,,3.061,1.666,3.842,3.85,1.84,https://www.tesoro.es/deuda-publica/subastas/resultado-ultimas-subastas/obligaciones-del-estado
+ES,2026-11-19,Bono 2.60% 31 May 2031,,3.739,1.444,3.475,3.486,2.59,https://www.tesoro.es/deuda-publica/subastas/resultado-ultimas-subastas/bonos-del-estado
+ES,2026-11-05,Obligacion 3.50% 31 Jan 2041,,2.856,1.57,4.092,4.101,1.82,https://www.tesoro.es/deuda-publica/subastas/resultado-ultimas-subastas/obligaciones-del-estado
+ES,2026-10-15,Bono 2.35% 31 Mar 2029,,4.957,2.4,3.313,3.315,2.07,https://www.tesoro.es/deuda-publica/subastas/resultado-ultimas-subastas/bonos-del-estado
+ES,2026-07-16,Obligacion 3.95% 31 Oct 2056,,3.058,1.592,4.286,4.29,1.92,https://www.tesoro.es/deuda-publica/subastas/resultado-ultimas-subastas/obligaciones-del-estado
+ES,2026-01-15,Obligacion 1.45% 31 Oct 2071,,3.857,1.1,4.024,4.031,3.51,https://www.tesoro.es/deuda-publica/subastas/resultado-ultimas-subastas/obligaciones-del-estado

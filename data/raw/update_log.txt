@@ -1,4 +1,4 @@
-Run 2026-11-20 17:39 UTC
+Run 2026-11-20 17:42 UTC
 Checks:
   DE 1Y: 3018 days 2015-01-02 to 2026-11-20, day moves above 25 bp: [('2022-09-09', 26.0), ('2023-03-13', -26.0), ('2023-03-20', -26.0), ('2024-08-05', -27.0)]
   DE 2Y: 3018 days 2015-01-02 to 2026-11-20, day moves above 25 bp: [('2022-10-04', -29.0), ('2022-12-16', 33.0), ('2023-03-13', -36.0), ('2023-03-20', -33.0), ('2023-03-24', -29.0)]
@@ -28,6 +28,19 @@ Against the double-read snapshot of 19 Nov 2026: 6723 common values, 0 differenc
 news ECB: 15 items in feed
 news Bundesbank: 10 items in feed
 news Banco de Espana: 20 items in feed
+Auctions:
+  Germany emissionshistorie_en.xlsx: 932 coupon-bond auctions since 2015
+  Germany emissionsergebnisse_aktuell_en.xlsx: 112 coupon-bond auctions since 2015
+  Spain bonos-del-estado: 3 auctions on the page
+  Spain obligaciones-del-estado: 4 auctions on the page
+  Italy: 60 new result PDFs read, archive 60 auctions
+  Germany calendar: 3 upcoming coupon-bond auctions
+  Spain calendar: 4 upcoming bond auctions
+  Auctions against the readings of 19 Nov 2026: 61 figures compared, 0 differences, []
+  auctions.json: 201 results in the last 400 days, 12 upcoming; failed: []
+Calendar:
+  ECB key rates: 12 changes read, latest {'date': '2026-09-16', 'dfr': 2.5, 'mro': 2.65, 'mlf': 2.9}; against previous file: 0 differences []
+  ECB meetings: 17, Eurostat euro-indicator releases: 48
 Eurex: 37 trading days offered (2026-09-30 to 2026-11-19), 18 rows fetched, archive 666 rows
 Eurex basket file: /resource/blob/2845860/78e1b440951167d1a996c5ae36be4753/data/deliverable-bonds-and-conversion-factors.csv | first lines: #Contract;ISIN;Coupon;Maturity;ConvFac || CONF SI 20261208 PS;CH0127181193;1.250000;27.06.2037;1.024786 || CONF SI 20261208 PS;CH0440081401;0.000000;24.07.2039;0.882313 || CONF SI 20261208 PS;CH0440081567;1.500000;26.10.2038;1.055529
 Eurex baskets parsed: 35 contracts, 153 bonds

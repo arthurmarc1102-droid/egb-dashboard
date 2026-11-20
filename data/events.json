@@ -1,230 +1,470 @@
 {
- "note": "ECB dates read on the ECB calendar, Eurostat dates on the Eurostat release calendar (read up to early March 2027). Auctions come from the Auctions tab. Rating reviews and national statistics calendars are not loaded yet.",
- "key_rates": [
-  {
-   "date": "2026-09-16",
-   "dfr": 2.5,
-   "mro": 2.65,
-   "mlf": 2.9
-  },
-  {
-   "date": "2026-06-17",
-   "dfr": 2.25,
-   "mro": 2.4,
-   "mlf": 2.65
-  },
-  {
-   "date": "2025-06-11",
-   "dfr": 2.0,
-   "mro": 2.15,
-   "mlf": 2.4
-  },
-  {
-   "date": "2025-04-23",
-   "dfr": 2.25,
-   "mro": 2.4,
-   "mlf": 2.65
-  },
-  {
-   "date": "2025-03-12",
-   "dfr": 2.5,
-   "mro": 2.65,
-   "mlf": 2.9
-  },
-  {
-   "date": "2025-02-05",
-   "dfr": 2.75,
-   "mro": 2.9,
-   "mlf": 3.15
-  }
- ],
- "key_rates_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html",
- "events": [
-  {
-   "date": "2026-12-17",
-   "kind": "ECB",
-   "title": "ECB monetary policy decision and press conference",
-   "url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
-  },
-  {
-   "date": "2027-02-04",
-   "kind": "ECB",
-   "title": "ECB monetary policy decision and press conference",
-   "url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
-  },
-  {
-   "date": "2027-03-18",
-   "kind": "ECB",
-   "title": "ECB monetary policy decision and press conference",
-   "url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
-  },
-  {
-   "date": "2027-04-29",
-   "kind": "ECB",
-   "title": "ECB monetary policy decision and press conference",
-   "url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
-  },
-  {
-   "date": "2027-06-10",
-   "kind": "ECB",
-   "title": "ECB monetary policy decision and press conference",
-   "url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
-  },
-  {
-   "date": "2027-07-22",
-   "kind": "ECB",
-   "title": "ECB monetary policy decision and press conference",
-   "url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
-  },
-  {
-   "date": "2027-09-09",
-   "kind": "ECB",
-   "title": "ECB monetary policy decision and press conference",
-   "url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
-  },
-  {
-   "date": "2027-10-28",
-   "kind": "ECB",
-   "title": "ECB monetary policy decision and press conference",
-   "url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
-  },
-  {
-   "date": "2027-12-16",
-   "kind": "ECB",
-   "title": "ECB monetary policy decision and press conference",
-   "url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
-  },
-  {
-   "date": "2026-10-29",
-   "kind": "ECB",
-   "title": "ECB monetary policy decision",
-   "url": "https://www.ecb.europa.eu/press/govcdec/mopo/2026/html/index_include.en.html"
-  },
-  {
-   "date": "2026-09-10",
-   "kind": "ECB",
-   "title": "ECB monetary policy decision",
-   "url": "https://www.ecb.europa.eu/press/govcdec/mopo/2026/html/index_include.en.html"
-  },
-  {
-   "date": "2026-07-23",
-   "kind": "ECB",
-   "title": "ECB monetary policy decision",
-   "url": "https://www.ecb.europa.eu/press/govcdec/mopo/2026/html/index_include.en.html"
-  },
-  {
-   "date": "2026-06-11",
-   "kind": "ECB",
-   "title": "ECB monetary policy decision",
-   "url": "https://www.ecb.europa.eu/press/govcdec/mopo/2026/html/index_include.en.html"
-  },
-  {
-   "date": "2026-04-30",
-   "kind": "ECB",
-   "title": "ECB monetary policy decision",
-   "url": "https://www.ecb.europa.eu/press/govcdec/mopo/2026/html/index_include.en.html"
-  },
-  {
-   "date": "2026-03-19",
-   "kind": "ECB",
-   "title": "ECB monetary policy decision",
-   "url": "https://www.ecb.europa.eu/press/govcdec/mopo/2026/html/index_include.en.html"
-  },
-  {
-   "date": "2026-02-05",
-   "kind": "ECB",
-   "title": "ECB monetary policy decision",
-   "url": "https://www.ecb.europa.eu/press/govcdec/mopo/2026/html/index_include.en.html"
-  },
-  {
-   "date": "2026-12-01",
-   "kind": "Data",
-   "title": "Euro area inflation, flash estimate (Eurostat)",
-   "url": "https://ec.europa.eu/eurostat/web/main/news/release-calendar"
-  },
-  {
-   "date": "2027-01-06",
-   "kind": "Data",
-   "title": "Euro area inflation, flash estimate (Eurostat)",
-   "url": "https://ec.europa.eu/eurostat/web/main/news/release-calendar"
-  },
-  {
-   "date": "2027-02-02",
-   "kind": "Data",
-   "title": "Euro area inflation, flash estimate (Eurostat)",
-   "url": "https://ec.europa.eu/eurostat/web/main/news/release-calendar"
-  },
-  {
-   "date": "2027-03-02",
-   "kind": "Data",
-   "title": "Euro area inflation, flash estimate (Eurostat)",
-   "url": "https://ec.europa.eu/eurostat/web/main/news/release-calendar"
-  },
-  {
-   "date": "2026-12-17",
-   "kind": "Data",
-   "title": "Euro area inflation, final HICP (Eurostat)",
-   "url": "https://ec.europa.eu/eurostat/web/main/news/release-calendar"
-  },
-  {
-   "date": "2027-01-19",
-   "kind": "Data",
-   "title": "Euro area inflation, final HICP (Eurostat)",
-   "url": "https://ec.europa.eu/eurostat/web/main/news/release-calendar"
-  },
-  {
-   "date": "2027-02-24",
-   "kind": "Data",
-   "title": "Euro area inflation, final HICP (Eurostat)",
-   "url": "https://ec.europa.eu/eurostat/web/main/news/release-calendar"
-  },
-  {
-   "date": "2026-12-07",
-   "kind": "Data",
-   "title": "GDP main aggregates and employment (Eurostat)",
-   "url": "https://ec.europa.eu/eurostat/web/main/news/release-calendar"
-  },
-  {
-   "date": "2027-01-29",
-   "kind": "Data",
-   "title": "Euro area GDP, preliminary flash estimate (Eurostat)",
-   "url": "https://ec.europa.eu/eurostat/web/main/news/release-calendar"
-  },
-  {
-   "date": "2027-02-15",
-   "kind": "Data",
-   "title": "Euro area GDP and employment, flash estimate (Eurostat)",
-   "url": "https://ec.europa.eu/eurostat/web/main/news/release-calendar"
-  },
-  {
-   "date": "2027-03-05",
-   "kind": "Data",
-   "title": "GDP main aggregates and employment (Eurostat)",
-   "url": "https://ec.europa.eu/eurostat/web/main/news/release-calendar"
-  },
-  {
-   "date": "2026-12-02",
-   "kind": "Data",
-   "title": "Euro area unemployment (Eurostat)",
-   "url": "https://ec.europa.eu/eurostat/web/main/news/release-calendar"
-  },
-  {
-   "date": "2027-01-07",
-   "kind": "Data",
-   "title": "Euro area unemployment (Eurostat)",
-   "url": "https://ec.europa.eu/eurostat/web/main/news/release-calendar"
-  },
-  {
-   "date": "2027-02-01",
-   "kind": "Data",
-   "title": "Euro area unemployment (Eurostat)",
-   "url": "https://ec.europa.eu/eurostat/web/main/news/release-calendar"
-  },
-  {
-   "date": "2027-03-04",
-   "kind": "Data",
-   "title": "Euro area unemployment (Eurostat)",
-   "url": "https://ec.europa.eu/eurostat/web/main/news/release-calendar"
-  }
- ]
+"note": "ECB meeting calendar and key rates from the ECB site, euro-indicator releases from the Eurostat release calendar, read each day.",
+"key_rates": [
+{
+"date": "2026-09-16",
+"dfr": 2.5,
+"mro": 2.65,
+"mlf": 2.9
+},
+{
+"date": "2026-06-17",
+"dfr": 2.25,
+"mro": 2.4,
+"mlf": 2.65
+},
+{
+"date": "2025-06-11",
+"dfr": 2.0,
+"mro": 2.15,
+"mlf": 2.4
+},
+{
+"date": "2025-04-23",
+"dfr": 2.25,
+"mro": 2.4,
+"mlf": 2.65
+},
+{
+"date": "2025-03-12",
+"dfr": 2.5,
+"mro": 2.65,
+"mlf": 2.9
+},
+{
+"date": "2025-02-05",
+"dfr": 2.75,
+"mro": 2.9,
+"mlf": 3.15
+},
+{
+"date": "2024-12-18",
+"dfr": 3.0,
+"mro": 3.15,
+"mlf": 3.4
+},
+{
+"date": "2024-10-23",
+"dfr": 3.25,
+"mro": 3.4,
+"mlf": 3.65
+},
+{
+"date": "2024-06-12",
+"dfr": 3.75,
+"mro": 4.25,
+"mlf": 4.5
+},
+{
+"date": "2023-09-20",
+"dfr": 4.0,
+"mro": 4.5,
+"mlf": 4.75
+},
+{
+"date": "2023-08-02",
+"dfr": 3.75,
+"mro": 4.25,
+"mlf": 4.5
+},
+{
+"date": "2023-06-21",
+"dfr": 3.5,
+"mro": 4.0,
+"mlf": 4.25
+}
+],
+"key_rates_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html",
+"events": [
+{
+"date": "2026-11-27",
+"kind": "Data",
+"title": "Economic Sentiment Indicator & Business and Consumer Survey results (November 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2026-12-01",
+"kind": "Data",
+"title": "Flash estimate inflation euro area (November 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2026-12-02",
+"kind": "Data",
+"title": "Building permits (August 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2026-12-02",
+"kind": "Data",
+"title": "Unemployment (October 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2026-12-03",
+"kind": "Data",
+"title": "Industrial producer prices, domestic market (October 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2026-12-04",
+"kind": "Data",
+"title": "Industrial import prices (October 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2026-12-04",
+"kind": "Data",
+"title": "Retail trade (October 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2026-12-07",
+"kind": "Data",
+"title": "GDP main aggregates and employment (Q3/2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2026-12-07",
+"kind": "Data",
+"title": "Services production (September 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2026-12-11",
+"kind": "Data",
+"title": "Interest rates (3 months) (November 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2026-12-11",
+"kind": "Data",
+"title": "Long term gvt bond yield (November 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2026-12-15",
+"kind": "Data",
+"title": "Industrial production (October 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2026-12-16",
+"kind": "Data",
+"title": "International trade in goods (October 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2026-12-16",
+"kind": "Data",
+"title": "Job vacancy (Q3/2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2026-12-17",
+"kind": "ECB",
+"title": "ECB monetary policy decision and press conference",
+"url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
+},
+{
+"date": "2026-12-17",
+"kind": "Data",
+"title": "Inflation (HICP) (November 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2026-12-17",
+"kind": "Data",
+"title": "Labour cost index (Q3/2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2026-12-18",
+"kind": "Data",
+"title": "Production in construction (October 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-06",
+"kind": "Data",
+"title": "Building permits (September 2026 - Q3/2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-06",
+"kind": "Data",
+"title": "Flash estimate inflation euro area (December 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-07",
+"kind": "Data",
+"title": "Unemployment (November 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-07",
+"kind": "Data",
+"title": "Industrial producer prices, domestic market (November 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-08",
+"kind": "Data",
+"title": "Economic Sentiment Indicator & Business Climate Indicator (December 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-08",
+"kind": "Data",
+"title": "Industrial import prices (November 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-08",
+"kind": "Data",
+"title": "Retail trade (November 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-08",
+"kind": "Data",
+"title": "Services producer prices (Q3/2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-11",
+"kind": "Data",
+"title": "Services production (October 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-11",
+"kind": "Data",
+"title": "House price index (Q3/2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-12",
+"kind": "Data",
+"title": "First release sector accounts (households and businesses) (Q3/2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-12",
+"kind": "Data",
+"title": "Balance of payments (Q3/2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-14",
+"kind": "Data",
+"title": "Interest rates (3 months) (December 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-14",
+"kind": "Data",
+"title": "Long term gvt bond yield (December 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-14",
+"kind": "Data",
+"title": "Industrial production (November 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-15",
+"kind": "Data",
+"title": "International trade in goods (November 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-19",
+"kind": "Data",
+"title": "Inflation (HICP) (December 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-19",
+"kind": "Data",
+"title": "GDP main aggregates and employment - update (Q3/2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-20",
+"kind": "Data",
+"title": "Production in construction (November 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-22",
+"kind": "Data",
+"title": "Quarterly government debt (Q3/2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-22",
+"kind": "Data",
+"title": "Quarterly government deficit (Q3/2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-28",
+"kind": "Data",
+"title": "Second release sector accounts (households) (Q3/2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-28",
+"kind": "Data",
+"title": "Economic Sentiment Indicator & Business and Consumer Survey results (January 2027), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-01-29",
+"kind": "Data",
+"title": "Preliminary flash estimate GDP - EU and euro area (Q4/2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-02-01",
+"kind": "Data",
+"title": "Unemployment (December 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-02-02",
+"kind": "Data",
+"title": "Flash estimate inflation euro area (January 2027), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-02-03",
+"kind": "Data",
+"title": "Building permits (October 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-02-04",
+"kind": "ECB",
+"title": "ECB monetary policy decision and press conference",
+"url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
+},
+{
+"date": "2027-02-04",
+"kind": "Data",
+"title": "Industrial producer prices, domestic market (December 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-02-05",
+"kind": "Data",
+"title": "Industrial import prices (December 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-02-05",
+"kind": "Data",
+"title": "Retail trade (December 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-02-08",
+"kind": "Data",
+"title": "Services production (November 2026), Eurostat",
+"url": "https://ec.europa.eu/eurostat/news/release-calendar"
+},
+{
+"date": "2027-03-18",
+"kind": "ECB",
+"title": "ECB monetary policy decision and press conference",
+"url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
+},
+{
+"date": "2027-04-29",
+"kind": "ECB",
+"title": "ECB monetary policy decision and press conference",
+"url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
+},
+{
+"date": "2027-06-10",
+"kind": "ECB",
+"title": "ECB monetary policy decision and press conference",
+"url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
+},
+{
+"date": "2027-07-22",
+"kind": "ECB",
+"title": "ECB monetary policy decision and press conference",
+"url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
+},
+{
+"date": "2027-09-09",
+"kind": "ECB",
+"title": "ECB monetary policy decision and press conference",
+"url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
+},
+{
+"date": "2027-10-28",
+"kind": "ECB",
+"title": "ECB monetary policy decision and press conference",
+"url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
+},
+{
+"date": "2027-12-16",
+"kind": "ECB",
+"title": "ECB monetary policy decision and press conference",
+"url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
+},
+{
+"date": "2028-02-03",
+"kind": "ECB",
+"title": "ECB monetary policy decision and press conference",
+"url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
+},
+{
+"date": "2028-03-23",
+"kind": "ECB",
+"title": "ECB monetary policy decision and press conference",
+"url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
+},
+{
+"date": "2028-05-04",
+"kind": "ECB",
+"title": "ECB monetary policy decision and press conference",
+"url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
+},
+{
+"date": "2028-06-08",
+"kind": "ECB",
+"title": "ECB monetary policy decision and press conference",
+"url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
+},
+{
+"date": "2028-07-20",
+"kind": "ECB",
+"title": "ECB monetary policy decision and press conference",
+"url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
+},
+{
+"date": "2028-09-07",
+"kind": "ECB",
+"title": "ECB monetary policy decision and press conference",
+"url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
+},
+{
+"date": "2028-10-12",
+"kind": "ECB",
+"title": "ECB monetary policy decision and press conference",
+"url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
+},
+{
+"date": "2028-12-07",
+"kind": "ECB",
+"title": "ECB monetary policy decision and press conference",
+"url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
+}
+]
 }
