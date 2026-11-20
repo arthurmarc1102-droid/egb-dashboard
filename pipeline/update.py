@@ -258,6 +258,11 @@ def main():
     try: update_news()
     except Exception as e: log(f"news: FAILED ({e})")
 
+    # ---- auctions and calendar
+    try:
+        sys.path.insert(0, str(ROOT / 'pipeline')); import auctions; auctions.update(get, log)
+    except Exception as e: log(f"auctions: FAILED ({e})")
+
     # ---- futures
     try: build_futures(now_by)
     except Exception as e: log(f"futures: FAILED ({e}); previous file kept")
