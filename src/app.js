@@ -15,7 +15,7 @@
   const FLIES = [[2, 5, 10], [5, 10, 30], [2, 10, 30], [5, 7, 10], [10, 15, 30], [10, 20, 30]];
   const HEADLINE = [2, 5, 10, 30];                    // maturities shown when several countries share the matrix
   const WINDOWS = { '1M': 21, '3M': 63, '6M': 126, '1Y': 252 };          // z-score windows, in observations
-  const RANGES = { '3M': 63, '6M': 126, '1Y': 252, '2Y': 504, 'Max': Infinity }; // chart look-back
+  const RANGES = { '3M': 63, '6M': 126, '1Y': 252, '2Y': 504, '5Y': 1260, 'Max': Infinity }; // chart look-back
   const HORIZONS = { '1D': 1, '1W': 5, '1M': 21, 'YTD': 'ytd' };
   const HEAT_BP = { '1D': 10, '1W': 20, '1M': 40, 'YTD': 80 };           // change (bp) at which the tint saturates
   const HEAT_RET = { '1D': 0.5, '1W': 1, '1M': 2, 'YTD': 4 };            // same, for approximate returns (%)

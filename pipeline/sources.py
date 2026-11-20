@@ -8,9 +8,9 @@ Status meanings on the page:
 """
 import json, pathlib, sys
 
-OUT = pathlib.Path(next((a for a in sys.argv[1:] if not a.startswith("--")), "/home/claude/egb/data"))
-FRANCE = "--france" in sys.argv        # French TEC indices loaded
-AUTH = "--authorised" in sys.argv       # Euronext and Eurex authorisations obtained (20 Nov 2026)
+OUT = pathlib.Path(__file__).resolve().parents[1] / "data"
+FRANCE = True                          # French TEC indices loaded
+AUTH = True                            # Euronext and Eurex authorisations obtained (20 Nov 2026)
 EXTRA = pathlib.Path(__file__).with_name("sources_extra.json")       # findings of the complementary audit, if any
 
 
@@ -22,16 +22,16 @@ sources = [
     # ------------------------------------------------------------------ used on the page
     s("bbk_curve", "Term structure of listed Federal securities", "Deutsche Bundesbank", "Germany, par yields, 1 to 30 years, since 1997", "Daily, next morning", "verified", True,
       "https://www.bundesbank.de/en/statistics/money-and-capital-markets/interest-rates-and-yields/daily-term-structure-on-listed-federal-securities-651570",
-      "Estimated curve (Svensson), two decimals: not quotes of benchmark bonds. Read twice, both readings agree. Reuse is free with the source named."),
-    s("bde_yields", "Interest rates on the secondary market, table 1.3", "Banco de Espana", "Spain, government bonds at 3, 5, 10 and 15 years, daily rows of the last seven weeks", "Daily", "verified", True,
-      "https://www.bde.es/webbe/en/estadisticas/compartido/datos/pdf/ti_1_3e.pdf",
-      "Fuente: Elaboracion propia con datos extraidos del sitio web del Banco de Espana (www.bde.es), table updated 18 Nov 2026. Yields set by the bank from market trades, not benchmark quotes: they move unevenly from day to day. Published two business days late. Read twice, both readings agree."),
+      "Estimated curve (Svensson), two decimals: not quotes of benchmark bonds. Downloaded each weekday from the Bundesbank API. Reuse is free with the source named."),
+    s("bde_yields", "Interest rates on the secondary market, table 1.3", "Banco de Espana", "Spain, government bonds at 3, 5, 10 and 15 years, daily since 2015 (file since 1979)", "Daily", "verified", True,
+      "https://www.bde.es/webbe/es/estadisticas/compartido/datos/csv/ead002.csv",
+      "Fuente: Elaboracion propia con datos extraidos del sitio web del Banco de Espana (www.bde.es), file ead002.csv. Yields set by the bank from market trades, not benchmark quotes: they move unevenly from day to day. Published two business days late. Downloaded each weekday."),
     s("eurostat_mcby", "Long-term government bond yields, Maastricht definition", "Eurostat", "10-year, by country, monthly averages since 1980", "Monthly, about 10 days after month end", "verified", True,
       "https://ec.europa.eu/eurostat/cache/metadata/en/irt_lt_mcby_esms.htm",
       "Stands in for daily yields in the countries that have none loaded."),
     s("bbk_estr", "Euro short-term rate", "ECB, republished by Deutsche Bundesbank", "Overnight rate, since October 2019", "Daily, next morning", "verified", True,
       "https://www.ecb.europa.eu/stats/financial_markets_and_interest_rates/euro_short-term_rate/html/index.en.html",
-      "The ECB does not charge for the rate or license its use. Read twice, both readings agree.", short="ECB via Bundesbank"),
+      "The ECB does not charge for the rate or license its use. Downloaded each weekday from the Bundesbank API.", short="ECB via Bundesbank"),
     s("ecb_rates", "Key ECB interest rates", "European Central Bank", "Deposit facility, main refinancing, marginal lending, since 1999", "At each change", "verified", True,
       "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html", "Free reuse with the ECB named as source."),
     s("fa_auctions", "Issuance results and issuance calendar", "Deutsche Finanzagentur", "German auctions: bids, allotment, retention, yield, cover", "Same day", "verified", True,
@@ -63,7 +63,7 @@ sources = [
     s("bdf_tec", "TEC constant-maturity indices, 1 to 30 years", "Banque de France, calculated by Euronext Paris", "France, daily since 2004", "Daily", "verified" if FRANCE else "planned", FRANCE,
       "https://www.banque-france.fr/fr/statistiques/taux-et-cours/indices-obligataires-2026-11-18",
       (("TEC indices are calculated and administered by Euronext Paris and shown with its written authorisation. " if AUTH else "Private use only: the page gives the values for information and forbids redistribution, sub-licensing and commercial use without prior written authorisation from Euronext Paris (contact on the page: indexEOD@euronext.com). ") +
-       "Yields interpolated between the two nearest government bonds. Read twice, both readings agree; 296 values on 33 days were also compared with the bank's daily pages, with no difference." if FRANCE else
+       "Yields interpolated between the two nearest government bonds. Downloaded each weekday from the Banque de France export (history since 2004)." if FRANCE else
        "The data exist and were read (10-year at 4.913 % on 17 Nov 2026). Kept out: the page forbids redistribution without written authorisation from Euronext Paris."), short="Banque de France (TEC, Euronext)"),
     s("it_bmk", "Benchmark government bond yields, table BMK0200", "Banca d'Italia", "Italy, benchmark BTP yields (3, 10 and 30 years seen), daily", "Daily", "unverified", False,
       "https://www.bancaditalia.it/statistiche/tematiche/mercati/index.html",
@@ -79,24 +79,19 @@ sources = [
       "Borsa Italiana and BME terms forbid reusing their prices. No source found for France."),
 ]
 notes = [
-    ("Daily yields are loaded for Germany and France (since August 2025) and Spain (seven weeks). The French curve is the TEC index family of Euronext Paris" + (", shown with its written authorisation." if AUTH else ", which may not be republished without authorisation from Euronext Paris: this version is private.") + " No daily source is verified for Italy. Spreads for the other countries are shown on monthly averages."
-     if FRANCE else
-     "Daily yields are loaded for Germany (since August 2025) and Spain (seven weeks). France has an official daily curve that cannot be republished without authorisation, and no daily source is verified for Italy. Spreads for the other countries are shown on monthly averages."),
+    "Daily yields since January 2015 for Germany, France and Spain, refreshed each weekday by a script on GitHub Actions. The French curve is the TEC index family of Euronext Paris, shown with its written authorisation. No daily source is verified for Italy. Spreads for the other countries are shown on monthly averages.",
     "The three daily curves are not built the same way: an estimated par curve for Germany, yields interpolated between benchmark bonds for France, yields from market trades for Spain. Daily spreads are indicative.",
-    "On 27 and 28 August and on 1 September 2026 the published German curve has a kink at the short end (2-year above 3-year). These are the values of the source, read twice.",
-] + ([
-    "French history comes from the Banque de France export, which stopped at 17 November when it was read on 19 November. The 18 November values come from the bank's daily page, read twice. French values have two decimals until 24 July 2026 and three after.",
-    "A few French days look odd. They are kept as published, because the Banque de France daily pages show the same numbers. On 1, 2 and 5 October 2026 the 2-year index stays at 3.688 while its neighbours move by up to 15 bp. On 9 March 2026 the 1-year stands above the 2-year, and the German short end also jumps by 10 bp for that single day. On 29 December 2025 the 15-year is 11 bp below the next day, and 31 December 2025 repeats 30 December.",
-    "Leaving those French days out would change French z-scores by 0.13 at most. On the 1-year window the lows of the 2- to 7-year spreads to Germany all fall on 9 March 2026, so read those ranges with care.",
-] if FRANCE else []) + [
-    "Eurostat monthly yields: the last twelve months were read twice. October 2026 and the months before October 2025 were read once.",
-    "For this first snapshot every number was read through a web reading tool, twice and independently for the time series, and only matching values are shown. The daily script will download the raw files instead.",
-    "German yields come from an estimated curve published with two decimals. A one basis point move is the smallest change the page can show.",
-    "Z-scores and percentiles use the loaded history, which starts in August 2025.",
-    "The page is a snapshot dated 19 November 2026. It is not refreshed automatically yet.",
+    "Spanish yields are published two business days late, so Spain usually shows an older date than Germany and France.",
+    "On 27 and 28 August and on 1 September 2026 the published German curve has a kink at the short end (2-year above 3-year). These are the values of the source.",
+    "A few French days look odd and are kept as published, because the Banque de France daily pages show the same numbers: 1, 2 and 5 October 2026 (2-year unchanged at 3.688), 9 March 2026 (1-year above 2-year), 29 to 31 December 2025.",
+    "French TEC values have two decimals until 24 July 2026 and three after. German yields have two decimals: a one basis point move is the smallest change the page shows for Germany.",
+    "Each run is compared with a snapshot of 19 November 2026 in which every value was read twice by independent readings. The result is in data/raw/update_log.txt.",
+    "Eurex keeps only 36 trading days of settlement prices: the script archives them each day, so futures history grows from November 2026.",
+    "Auctions and the event calendar are not refreshed automatically yet.",
 ]
 if EXTRA.exists():
     extra = json.load(open(EXTRA))
     sources += extra.get("sources", []); notes += extra.get("notes", [])
-json.dump(dict(updated="2026-11-19", sources=sources, notes=notes), open(OUT / "sources.json", "w"), indent=1)
+import datetime
+json.dump(dict(updated=datetime.date.today().isoformat(), sources=sources, notes=notes), open(OUT / "sources.json", "w"), indent=1)
 print("sources.json:", len(sources), "sources,", len(notes), "notes")
