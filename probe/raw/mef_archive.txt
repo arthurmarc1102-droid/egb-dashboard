@@ -1,0 +1,3203 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2">
+	<link rel="icon" type="image/x-icon" href="/system/modules/it.acn.dipartimentotesoro/resources/img/favicon.ico">
+	
+	 <!--<link rel="stylesheet" 
+ 	 		href="/system/modules/it.eng.dipartimentotesoro/resources/calendario/css/calendar.css"
+			type="text/css"/>-->
+	
+    <!-- TITLE DI PAGINA -->
+	<!-- Req. 30_REF018 SEO -->
+	 
+	
+		
+			<title>Historical Data - MEF Department of Treasury </title> 
+			<meta name="title" content="Historical Data - MEF Department of Treasury" />
+		    
+		
+	
+        
+        
+	 
+	
+
+	 
+	
+	
+	<meta name="robots" content="index,follow" />
+	
+	<meta name="revisit-after" content="7 DAYS" />
+	<meta name="language" content="en" />
+	<meta name="rating" content="General" />
+
+        <link rel="stylesheet" href="/export/system/modules/it.acn.dipartimentotesoro/resources/assets/vendor/swiper/css/swiper.min.css">
+        <link rel="stylesheet" href="/export/system/modules/it.acn.dipartimentotesoro/resources/assets/vendor/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="/export/system/modules/it.acn.dipartimentotesoro/resources/assets/css/style.css">
+		<link rel="stylesheet" href="/export/system/modules/it.acn.dipartimentotesoro/resources/resources_boostrapitalia/bootstrap-italia/dist/css/bootstrap-italia.min.css" />
+		<link rel="stylesheet" href="/export/system/modules/it.acn.dipartimentotesoro/resources/resources_boostrapitalia/assets/css/dt-header-footer.min.css" />
+          <!-- CALENDARIO -->
+  	    <link rel="stylesheet" href="/export/system/modules/it.acn.dipartimentotesoro/resources/assets/css/calendar-base.css" />
+          <!-- STAMPA -->
+         <link rel="stylesheet" href="/export/system/modules/it.acn.dipartimentotesoro/resources/assets/css/print.css"  media="print"/>
+    
+   
+	  <script src="/export/system/modules/it.acn.dipartimentotesoro/resources/assets/vendor/jquery/jquery-3.4.1.js"></script>
+	  <script src="/export/system/modules/it.acn.dipartimentotesoro/resources/js/jquery.validate.js" ></script>
+	  <!-- JS BOOTSTRAP-->
+	  <script src="/export/system/modules/it.acn.dipartimentotesoro/resources/assets/vendor/bootstrap/js/popper.min.js"></script>
+	  <script src="/export/system/modules/it.acn.dipartimentotesoro/resources/assets/vendor/bootstrap/js/bootstrap.min.js"></script> 
+	  <script> 
+     $(function () { $('[data-toggle="tooltip"]').tooltip() }) 
+</script>
+
+
+
+ <!-- JS SWIPER -->
+<script src="/export/system/modules/it.acn.dipartimentotesoro/resources/assets/vendor/swiper/js/swiper.min.js"></script>
+
+
+ 	
+
+<script>
+function conFb(URLDocSP,TITDocSP){
+	window.open('http://www.facebook.com/sharer.php?u='+URLDocSP+'&t='+TITDocSP,'facebookshare','width=550,height=500,left='+(screen.availWidth/2-275)+',top='+(screen.availHeight/2-250)+'');
+}
+			
+function conTw(URLDocSP,TITDocSP){
+	window.open('https://twitter.com/share?url='+URLDocSP+'&text='+TITDocSP,'twittershare','width=550,height=500,left='+(screen.availWidth/2-275)+',top='+(screen.availHeight/2-250)+'');
+}
+			
+function conTw2(URLDocSP,TITDocSP){
+window.twttr=window.twttr||{};
+var D=550,A=450,C=screen.height,B=screen.width,H=Math.round((B/2)-(D/2)),G=0,F=document,E;
+if(C<A){G=Math.round((C/2)-(A/2))}window.twttr.shareWin=window.open('http://twitter.com/share','','left='+H+',top='+G+',width='+D+',height='+A+',personalbar=0,toolbar=0,scrollbars=1,resizable=1');E=F.createElement('script');E.src='http://platform.twitter.com/bookmarklets/share.js?v=1';F.getElementsByTagName('head')[0].appendChild(E)
+}
+			
+function conGp(URLDocSP,TITDocSP){
+window.open('https://m.google.com/app/plus/x/?v=compose&content='+TITDocSP+' '+URLDocSP,'gplusshare','width=550,height=500,left='+(screen.availWidth/2-275)+',top='+(screen.availHeight/2-250)+'');
+//https://m.google.com/app/plus/mp/584/?force=1#~loop:view=compose
+}
+</script>
+		
+<!-- src="https://apis.google.com/js/platform.js" -->
+		
+<script src="/export/system/modules/it.acn.dipartimentotesoro/resources/js/google-platform.js" async defer></script>
+<script>
+	{lang: 'en'}
+</script>
+<noscript></noscript>
+		
+		
+
+
+
+	  
+</head>
+
+
+
+		<!-- aside menù laterale a scomparsa -->
+			<body class="aside-content">
+			
+		
+  
+<header id="mainheader" class="it-header-wrapper it-header-wrapper--dipartimento-tesoro">
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+	
+	
+
+	
+	
+		
+		
+		
+		
+	
+
+	<div class="it-header-slim-wrapper">
+        <div class="container">
+          <div class="row h-100">
+            <div class="col-12">
+              <div class="it-header-slim-wrapper-content">
+                <a class="navbar-brand d-none d-lg-block" href="https://www.mef.gov.it/" aria-label="External page: go to  Ministry of Economy and Finance website"> Ministry of Economy and Finance </a>
+                <a class="navbar-brand d-lg-none" href="https://www.mef.gov.it/" aria-label="External page: go to  Ministry of Economy and Finance website">  </a>
+                <div class="it-header-slim-right-zone">
+					
+					
+						
+						
+						
+						
+						
+							
+							
+							
+							
+								<a class="nav-item d-none d-md-flex" href="/en/contact.html" title="Contacts" aria-label="Go to page Contacts">
+									Contacts
+								</a>
+						
+					
+						
+						
+						
+						
+						
+							
+							
+							
+							
+								<a class="nav-item d-none d-md-flex" href="/en/amministrazione_trasparente.html" title="Transparency" aria-label="Go to page Transparency">
+									Transparency
+								</a>
+						
+					
+					
+					
+					
+					
+						<div class="nav-item language-list dropdown">
+							<button class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" title="Lingua-language">
+								<span class="visually-hidden">Language selection: selected language</span>
+								<span>EN</span>
+								<svg class="icon" aria-hidden="true">
+									<use href="/export/system/modules/it.acn.dipartimentotesoro/resources/resources_boostrapitalia/bootstrap-italia/dist/svg/sprites.svg#it-expand"></use>
+								</svg>
+							</button>
+							<div class="dropdown-menu mx-md-2 mt-1">
+								<div class="row">
+									<div class="col-12">
+										<div class="link-list-wrapper">
+											<ul class="link-list">
+												<li>
+													<a class="dropdown-item list-item justify-content-between" href="/it/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/achivio_dati_storici/index.html?__element=head">
+														<span>Italiano
+														
+														</span>
+														
+
+													</a>
+													<hr class="m-0 mx-2" />
+												</li>
+												<li>
+													<a class="dropdown-item list-item justify-content-between" href="/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/achivio_dati_storici/index.html?__element=head">
+														<span>English
+															<span class="visually-hidden"></span>
+														</span>
+														
+															<span>
+																<i class="bi bi-check2"></i>
+															</span>
+														
+													</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					
+				  </div>
+				</div>
+			  </div>
+			</div>
+		</div>
+	</div>
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+	
+
+		
+		
+		
+		
+		
+		
+		
+
+
+
+		
+		
+
+		
+		
+
+		
+		
+		
+		
+
+		
+		
+		
+		
+
+		
+		
+
+		
+		
+
+		
+		 
+		<div class="it-nav-wrapper">
+			<div class="it-header-center-wrapper">
+				<div class="container it-header-center-wrapper--container">
+					<div class="row">
+						<div class="col-12 it-header-center-wrapper--column">
+							<div class="it-header-center-content-wrapper">
+								<div class="it-brand-wrapper">
+									<a href="/en/index.html" class="it-brand-expanded" accesskey="h"  aria-label="" title="" id="brand-wrapper">
+										<img class="icon" src="/export/sites/sitodt/modules/assets/img/logo-dt-negative-header-CmebrZaU.svg" alt="treasury department logo" />
+									</a>
+									<div class="it-brand-ridotto" aria-label="" title="">
+										<img class="icon" src="/export/sites/sitodt/modules/assets/img/logo-dt-web-BL-ridotto.svg" alt="reduced treasury department  logo" />
+									</div>
+								</div>
+								<div class="it-right-zone">
+
+									
+									
+									
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<span></span>
+	
+	
+
+
+									<div class="it-search-wrapper" id="search">
+										<a class="search-link rounded-icon" aria-label="Search in the site" href="#" data-bs-toggle="modal" data-bs-target="#search-modal" title="Run Search">
+											<svg class="icon" aria-hidden="true">
+												<use href="/export/system/modules/it.acn.dipartimentotesoro/resources/resources_boostrapitalia/bootstrap-italia/dist/svg/sprites.svg#it-search"></use>
+											</svg>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="it-header-navbar-wrapper" id="navbar-menu">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<!--start nav-->
+
+							<nav class="navbar navbar-expand-lg has-megamenu" aria-label="Main navigation menu. Select the items present to access the menus below.">
+								<button class="custom-navbar-toggler" type="button" aria-controls="navbar-collapsable" aria-expanded="false" aria-label="Open or close the navigation menu" data-target="#navbar-collapsable">
+									<svg class="icon bg-override" aria-hidden="true">
+										<use href="/export/system/modules/it.acn.dipartimentotesoro/resources/resources_boostrapitalia/bootstrap-italia/dist/svg/sprites.svg#it-burger"></use>
+									</svg>
+								</button>
+								<div class="navbar-collapsable" id="navbar-collapsable">
+									<div class="overlay fade show"></div>
+									<div class="close-div">
+										<button class="btn close-menu" type="button">
+											<span class="visually-hidden">Hide navigation</span>
+											<svg class="icon" aria-hidden="true">
+												<use href="/export/system/modules/it.acn.dipartimentotesoro/resources/resources_boostrapitalia/bootstrap-italia/dist/svg/sprites.svg#it-close-big"></use>
+											</svg>
+										</button>
+									</div>
+									<div class="menu-wrapper">
+										<img class="logo-ministero-menu-mobile" src="/export/sites/sitodt/modules/assets/img/logo-dt-web-BL-5por5.svg" alt="Logo MEF menu mobile" />
+										<ul class="navbar-nav" id="sub_nav">
+											
+												
+												
+													
+													
+													
+													
+													
+														
+														
+													
+
+													
+													
+													
+														
+													
+
+													
+													
+													
+													
+													
+														
+														
+														
+													
+													<li class="nav-item dropdown megamenu">
+														<a class="nav-link dropdown-toggle" href="/en/dipartimento/index.html" data-bs-toggle="dropdown" aria-expanded="false" id="departmentDropdown">
+															<span>Department</span>
+															<svg class="icon icon-xs" aria-hidden="true">
+																<use href="/export/system/modules/it.acn.dipartimentotesoro/resources/resources_boostrapitalia/bootstrap-italia/dist/svg/sprites.svg#it-expand"></use>
+															</svg>
+														</a>
+														<!-- mega menu -->
+														<div class="dropdown-menu shadow" role="region" aria-labelledby="dipartimentoDropdown">
+															<div class="megamenu pb-5 pt-3 py-lg-0">
+																<div class="row">
+																	<div class="col-xs-12 col-lg-3 px-0 d-none d-md-flex">
+																		<div class="row">
+																			<div class="col-12 it-vertical it-description pb-lg-3">
+																				<div class="description-content text-center ">
+																					<div class="mb-2">
+																						<figure class="figure">
+																							<img src=/export/sites/sitodt/modules/assets/img/ico-dipartimento.svg class="icon icon-lg mb-0" alt="" aria-hidden="true">
+																						</figure>
+																						<h2 class="h4">Department</h2>
+																					</div>
+																					<p>The Treasury Department is a technical support body for the elaboration and implementation of the government's economic and financial policy choices, both nationally and internationally.</p>
+																					<a href="/en/dipartimento/index.html" title="Find out more" aria-label="Go to page Department" type="button" class="btn btn-primary">Find out more</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="col-12 col-lg-9">
+																		<div class="it-heading-link-wrapper">
+																			<a class="it-heading-link" href="/en/dipartimento/index.html" title="scopri di più" aria-label="Go to page Department">Department</a>
+																		</div>
+																		<div class="row">
+																			
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																					
+																					
+																					
+																					<div class="col-12 col-lg-4">
+																						<div class="link-list-wrapper">
+																							<ul class="link-list">
+
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/dipartimento/direttore_generale/index.html" title="Director General of the Treasury" aria-label=" Go to page Director General of the Treasury"> Director General of the Treasury </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/dipartimento/organigramma/" title="Organisation chart" aria-label="Go to page Organisation chart"> Organisation chart </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/dipartimento/comitati/" title="Committees within the Department of the Treasury" aria-label="Go to page Committees within the Department of the Treasury"> Committees within the Department of the Treasury </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/dipartimento/trasformazione_digitale/" title="Digital Transformation" aria-label="Go to page Digital Transformation"> Digital Transformation </a>
+																									</li>
+																									
+																								
+																							</ul>
+																						</div>
+																					</div>
+																				
+																					
+																					
+																					
+																					<div class="col-12 col-lg-4">
+																						<div class="link-list-wrapper">
+																							<ul class="link-list">
+
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/dipartimento/biblioteca/" title="Treasury Department Library" aria-label="Go to page Treasury Department Library"> Treasury Department Library </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/pubblicazioni/" title="Publications" aria-label="Go to page Publications"> Publications </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/dipartimento/consultazioni_pubbliche/" title="Consultations" aria-label="Go to page Consultations"> Consultations </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/dipartimento/news/" title="News" aria-label="Go to page News"> News </a>
+																									</li>
+																									
+																								
+																							</ul>
+																						</div>
+																					</div>
+																				
+																					
+																					
+																					
+																					<div class="col-12 col-lg-4">
+																						<div class="link-list-wrapper">
+																							<ul class="link-list">
+
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/dipartimento/eventi/" title="Events" aria-label="Go to page Events"> Events </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/dipartimento/focus/" title="Focus" aria-label="Focus"> Focus </a>
+																									</li>
+																									
+																								
+																							</ul>
+																						</div>
+																					</div>
+																				
+																			
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</li>
+												
+											
+												
+												
+													
+													
+													
+													
+													
+														
+														
+													
+
+													
+													
+													
+														
+													
+
+													
+													
+													
+													
+													
+														
+														
+														
+													
+													<li class="nav-item dropdown megamenu">
+														<a class="nav-link dropdown-toggle" href="/en/attivita_istituzionali/analisi_programmazione_economico_finanziaria/index.html" data-bs-toggle="dropdown" aria-expanded="false" id="analysisandresearchDropdown">
+															<span>Analysis and Research</span>
+															<svg class="icon icon-xs" aria-hidden="true">
+																<use href="/export/system/modules/it.acn.dipartimentotesoro/resources/resources_boostrapitalia/bootstrap-italia/dist/svg/sprites.svg#it-expand"></use>
+															</svg>
+														</a>
+														<!-- mega menu -->
+														<div class="dropdown-menu shadow" role="region" aria-labelledby="dipartimentoDropdown">
+															<div class="megamenu pb-5 pt-3 py-lg-0">
+																<div class="row">
+																	<div class="col-xs-12 col-lg-3 px-0 d-none d-md-flex">
+																		<div class="row">
+																			<div class="col-12 it-vertical it-description pb-lg-3">
+																				<div class="description-content text-center ">
+																					<div class="mb-2">
+																						<figure class="figure">
+																							<img src=/export/sites/sitodt/modules/assets/img/ico-sezione-pubblicazioni.png class="icon icon-lg mb-0" alt="" aria-hidden="true">
+																						</figure>
+																						<h2 class="h4">Analysis and Research</h2>
+																					</div>
+																					<p>The Department of the Treasury coordinates the production of economic and financial planning documents necessary for economic policy decisions and conducts research and analysis on macroeconomic topics and key sectors of the economy. These materials are available for consultation in this section.</p>
+																					<a href="/en/attivita_istituzionali/analisi_programmazione_economico_finanziaria/index.html" title="Find out more" aria-label="Go to page Analysis and Research" type="button" class="btn btn-primary">Find out more</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="col-12 col-lg-9">
+																		<div class="it-heading-link-wrapper">
+																			<a class="it-heading-link" href="/en/attivita_istituzionali/analisi_programmazione_economico_finanziaria/index.html" title="scopri di più" aria-label="Go to page Analysis and Research">Analysis and Research</a>
+																		</div>
+																		<div class="row">
+																			
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																					
+																					
+																					
+																					<div class="col-12 col-lg-6">
+																						<div class="link-list-wrapper">
+																							<ul class="link-list">
+
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/attivita_istituzionali/analisi_programmazione_economico_finanziaria/documenti_programmatici/" title="Economic and financial planning documents" aria-label="Go to page Economic and financial planning documents"> Economic and financial planning documents </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/attivita_istituzionali/analisi_programmazione_economico_finanziaria/strategia_crescita/" title="#ReformsinItaly" aria-label="Go to page #ReformsinItaly"> #ReformsinItaly </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/attivita_istituzionali/analisi_programmazione_economico_finanziaria/attivita_ricerca/" title="Research activity" aria-label="Go to page Research activity"> Research activity </a>
+																									</li>
+																									
+																								
+																							</ul>
+																						</div>
+																					</div>
+																				
+																					
+																					
+																					
+																					<div class="col-12 col-lg-6">
+																						<div class="link-list-wrapper">
+																							<ul class="link-list">
+
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/attivita_istituzionali/analisi_programmazione_economico_finanziaria/inflaz_programmata/" title="Planned Inflation Rate" aria-label="Go to page Planned Inflation Rate"> Planned Inflation Rate </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/attivita_istituzionali/analisi_programmazione_economico_finanziaria/attivita_internaz/" title="International activity" aria-label="Go to page International activity"> International activity </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/attivita_istituzionali/analisi_programmazione_economico_finanziaria/modellistica/" title="Modelling" aria-label="Go to page Modelling"> Modelling </a>
+																									</li>
+																									
+																								
+																							</ul>
+																						</div>
+																					</div>
+																				
+																			
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</li>
+												
+											
+												
+												
+													
+													
+													
+													
+													
+														
+														
+													
+
+													
+													
+													
+														
+													
+
+													
+													
+													
+													
+													
+														
+														
+														
+													
+													<li class="nav-item dropdown megamenu">
+														<a class="nav-link dropdown-toggle" href="/en/debito_pubblico/index.html" data-bs-toggle="dropdown" aria-expanded="false" id="publicdebtDropdown">
+															<span>Public Debt</span>
+															<svg class="icon icon-xs" aria-hidden="true">
+																<use href="/export/system/modules/it.acn.dipartimentotesoro/resources/resources_boostrapitalia/bootstrap-italia/dist/svg/sprites.svg#it-expand"></use>
+															</svg>
+														</a>
+														<!-- mega menu -->
+														<div class="dropdown-menu shadow" role="region" aria-labelledby="dipartimentoDropdown">
+															<div class="megamenu pb-5 pt-3 py-lg-0">
+																<div class="row">
+																	<div class="col-xs-12 col-lg-3 px-0 d-none d-md-flex">
+																		<div class="row">
+																			<div class="col-12 it-vertical it-description pb-lg-3">
+																				<div class="description-content text-center ">
+																					<div class="mb-2">
+																						<figure class="figure">
+																							<img src=/export/sites/sitodt/modules/assets/img/ico-sezione-debito.png class="icon icon-lg mb-0" alt="" aria-hidden="true">
+																						</figure>
+																						<h2 class="h4">Public Debt</h2>
+																					</div>
+																					<p>The Italian Department of the Treasury, through a dedicated directorate general, issues government securities and manages central government liabilities. This section provides constantly up-to-date information on public debt.</p>
+																					<a href="/en/debito_pubblico/index.html" title="Find out more" aria-label="" type="button" class="btn btn-primary">Find out more</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="col-12 col-lg-9">
+																		<div class="it-heading-link-wrapper">
+																			<a class="it-heading-link" href="/en/debito_pubblico/index.html" title="scopri di più" aria-label="">Public Debt</a>
+																		</div>
+																		<div class="row">
+																			
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																					
+																					
+																					
+																					<div class="col-12 col-lg-3">
+																						<div class="link-list-wrapper">
+																							<ul class="link-list">
+
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/debito_pubblico/titoli_di_stato/" title="Information on Government Securities" aria-label="Go to page Information on Government Securities"> Information on Government Securities </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/debito_pubblico/emissioni_titoli_di_stato_interni/" title="Domestic Government Securities Issuances" aria-label="Go to page Domestic Government Securities Issuances"> Domestic Government Securities Issuances </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/debito_pubblico/emissioni_retail/" title="Retail Government Securities Issuances" aria-label="Go to page Retail Government Securities Issuances"> Retail Government Securities Issuances </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/debito_pubblico/emissioni_sui_mercati_internazionali/" title="Other Issuance Programmes" aria-label="Go to page Other Issuance Programmes"> Other Issuance Programmes </a>
+																									</li>
+																									
+																								
+																							</ul>
+																						</div>
+																					</div>
+																				
+																					
+																					
+																					
+																					<div class="col-12 col-lg-3">
+																						<div class="link-list-wrapper">
+																							<ul class="link-list">
+
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/debito_pubblico/altre_operazioni/" title="Special Operations" aria-label="Go to page Special Operations"> Special Operations </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/debito_pubblico/gestione_liquidita/" title="Cash management" aria-label="Go to page Cash management"> Cash management </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/debito_pubblico/dati_statistici/" title="Statistics" aria-label="Go to page Statistics"> Statistics </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/debito_pubblico/specialisti_titoli_stato/" title="Specialists in Government Securities" aria-label="Go to page Specialists in Government Securities"> Specialists in Government Securities </a>
+																									</li>
+																									
+																								
+																							</ul>
+																						</div>
+																					</div>
+																				
+																					
+																					
+																					
+																					<div class="col-12 col-lg-3">
+																						<div class="link-list-wrapper">
+																							<ul class="link-list">
+
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/debito_pubblico/enti_locali/" title="Local Government Debt" aria-label="Go to page Local Government Debt"> Local Government Debt </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/debito_pubblico/tassi_massimi_mutui/" title="Maximum Rates General Government Mortgages" aria-label="Maximum Rates General Government Mortgages"> Maximum Rates General Government Mortgages </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/debito_pubblico/presentazioni_studi_relazioni/" title="Presentations, Studies and Reports" aria-label="Go to page Presentations, Studies and Reports"> Presentations, Studies and Reports </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/debito_pubblico/normativa/" title="Laws and Regulations on Government Debt" aria-label="Go to page Laws and Regulations on Government Debt"> Laws and Regulations on Government Debt </a>
+																									</li>
+																									
+																								
+																							</ul>
+																						</div>
+																					</div>
+																				
+																					
+																					
+																					
+																					<div class="col-12 col-lg-3">
+																						<div class="link-list-wrapper">
+																							<ul class="link-list">
+
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/debito_pubblico/Public_Debt_Management_Network/" title="Public Debt Management Network" aria-label="Go to page Public Debt Management Network"> Public Debt Management Network </a>
+																									</li>
+																									
+																								
+																							</ul>
+																						</div>
+																					</div>
+																				
+																			
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</li>
+												
+											
+												
+												
+													
+													
+													
+													
+													
+														
+														
+													
+
+													
+													
+													
+														
+													
+
+													
+													
+													
+													
+													
+														
+														
+														
+													
+													<li class="nav-item dropdown megamenu">
+														<a class="nav-link dropdown-toggle" href="/en/attivita_istituzionali/rapporti_finanziari_internazionali/index.html" data-bs-toggle="dropdown" aria-expanded="false" id="europe&globalDropdown">
+															<span>Europe & Global</span>
+															<svg class="icon icon-xs" aria-hidden="true">
+																<use href="/export/system/modules/it.acn.dipartimentotesoro/resources/resources_boostrapitalia/bootstrap-italia/dist/svg/sprites.svg#it-expand"></use>
+															</svg>
+														</a>
+														<!-- mega menu -->
+														<div class="dropdown-menu shadow" role="region" aria-labelledby="dipartimentoDropdown">
+															<div class="megamenu pb-5 pt-3 py-lg-0">
+																<div class="row">
+																	<div class="col-xs-12 col-lg-3 px-0 d-none d-md-flex">
+																		<div class="row">
+																			<div class="col-12 it-vertical it-description pb-lg-3">
+																				<div class="description-content text-center ">
+																					<div class="mb-2">
+																						<figure class="figure">
+																							<img src=/export/sites/sitodt/modules/assets/img/ico-sezione-pubblicazioni.png class="icon icon-lg mb-0" alt="" aria-hidden="true">
+																						</figure>
+																						<h2 class="h4">Europe & Global</h2>
+																					</div>
+																					<p>The Department of the Treasury coordinates economic and financial dossiers at the european and international levels, including activities within Ecofin and other EU committees and working groups, as well as G7, G20 tables, and projects related to Italy’s participation in Multilateral Development Banks. This section provides information on all the economic and financial institutions with which the Department manages relations on behalf of Italy.</p>
+																					<a href="/en/attivita_istituzionali/rapporti_finanziari_internazionali/index.html" title="Find out more" aria-label="Go to page Europe & Global" type="button" class="btn btn-primary">Find out more</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="col-12 col-lg-9">
+																		<div class="it-heading-link-wrapper">
+																			<a class="it-heading-link" href="/en/attivita_istituzionali/rapporti_finanziari_internazionali/index.html" title="scopri di più" aria-label="Go to page Europe & Global">Europe & Global</a>
+																		</div>
+																		<div class="row">
+																			
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																					
+																					
+																					
+																					<div class="col-12 col-lg-12">
+																						<div class="link-list-wrapper">
+																							<ul class="link-list">
+
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/attivita_istituzionali/rapporti_finanziari_internazionali/banche_sviluppo/index.html" title="Multilateral Development Banks" aria-label="Go to page Multilateral Development Banks"> Multilateral Development Banks </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/attivita_istituzionali/rapporti_finanziari_internazionali/crediti_aiuto/index.html" title="Bilateral lending" aria-label="Go to page Bilateral lending"> Bilateral lending </a>
+																									</li>
+																									
+																								
+																							</ul>
+																						</div>
+																					</div>
+																				
+																			
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</li>
+												
+											
+												
+												
+													
+													
+													
+													
+													
+														
+														
+													
+
+													
+													
+													
+														
+													
+
+													
+													
+													
+													
+													
+														
+														
+														
+													
+													<li class="nav-item dropdown megamenu">
+														<a class="nav-link dropdown-toggle" href="/en/attivita_istituzionali/sistema_bancario_finanziario/index.html" data-bs-toggle="dropdown" aria-expanded="false" id="financialsystemDropdown">
+															<span>Financial System</span>
+															<svg class="icon icon-xs" aria-hidden="true">
+																<use href="/export/system/modules/it.acn.dipartimentotesoro/resources/resources_boostrapitalia/bootstrap-italia/dist/svg/sprites.svg#it-expand"></use>
+															</svg>
+														</a>
+														<!-- mega menu -->
+														<div class="dropdown-menu shadow" role="region" aria-labelledby="dipartimentoDropdown">
+															<div class="megamenu pb-5 pt-3 py-lg-0">
+																<div class="row">
+																	<div class="col-xs-12 col-lg-3 px-0 d-none d-md-flex">
+																		<div class="row">
+																			<div class="col-12 it-vertical it-description pb-lg-3">
+																				<div class="description-content text-center ">
+																					<div class="mb-2">
+																						<figure class="figure">
+																							<img src=/export/sites/sitodt/modules/assets/img/ico-sezione-pubblicazioni.png class="icon icon-lg mb-0" alt="" aria-hidden="true">
+																						</figure>
+																						<h2 class="h4">Financial System</h2>
+																					</div>
+																					<p>The Department of the Treasury oversees the regulation of the banking, financial, payments, and markets systems. This section presents ongoing activities, committees, and institutional tables on various topics, including sustainable finance, fintech, and financial education and inclusion.</p>
+																					<a href="/en/attivita_istituzionali/sistema_bancario_finanziario/index.html" title="Find out more" aria-label="Go to page Financial System" type="button" class="btn btn-primary">Find out more</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="col-12 col-lg-9">
+																		<div class="it-heading-link-wrapper">
+																			<a class="it-heading-link" href="/en/attivita_istituzionali/sistema_bancario_finanziario/index.html" title="scopri di più" aria-label="Go to page Financial System">Financial System</a>
+																		</div>
+																		<div class="row">
+																			
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																					
+																					
+																					
+																					<div class="col-12 col-lg-12">
+																						<div class="link-list-wrapper">
+																							<ul class="link-list">
+
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/attivita_istituzionali/sistema_bancario_finanziario/fintech/" title="FinTech" aria-label="Go to page FinTech"> FinTech </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/attivita_istituzionali/sistema_bancario_finanziario/finanza_sostenibile/" title="Sustainable Finance" aria-label="Sustainable Finance"> Sustainable Finance </a>
+																									</li>
+																									
+																								
+																							</ul>
+																						</div>
+																					</div>
+																				
+																			
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</li>
+												
+											
+												
+												
+													
+													
+													
+													
+													
+														
+														
+													
+
+													
+													
+													
+														
+													
+
+													
+													
+													
+													
+													
+														
+														
+														
+													
+													<li class="nav-item dropdown megamenu">
+														<a class="nav-link dropdown-toggle" href="/en/attivita_istituzionali/prevenzione_reati_finanziari/index.html" data-bs-toggle="dropdown" aria-expanded="false" id="anti-moneylaunderingDropdown">
+															<span>Anti-Money Laundering</span>
+															<svg class="icon icon-xs" aria-hidden="true">
+																<use href="/export/system/modules/it.acn.dipartimentotesoro/resources/resources_boostrapitalia/bootstrap-italia/dist/svg/sprites.svg#it-expand"></use>
+															</svg>
+														</a>
+														<!-- mega menu -->
+														<div class="dropdown-menu shadow" role="region" aria-labelledby="dipartimentoDropdown">
+															<div class="megamenu pb-5 pt-3 py-lg-0">
+																<div class="row">
+																	<div class="col-xs-12 col-lg-3 px-0 d-none d-md-flex">
+																		<div class="row">
+																			<div class="col-12 it-vertical it-description pb-lg-3">
+																				<div class="description-content text-center ">
+																					<div class="mb-2">
+																						<figure class="figure">
+																							<img src=/export/sites/sitodt/modules/assets/img/ico-sezione-pubblicazioni.png class="icon icon-lg mb-0" alt="" aria-hidden="true">
+																						</figure>
+																						<h2 class="h4">Anti-Money Laundering</h2>
+																					</div>
+																					<p>The Department of the Treasury operates in the field of prevention of money laundering, currency offenses, usury, and terrorism financing, coordinating activities at national and international levels within the framework of FATF. In this section, you can find relevant materials, including communications from the Financial Security Committee, chaired by the Director General of the Treasury.</p>
+																					<a href="/en/attivita_istituzionali/prevenzione_reati_finanziari/index.html" title="Find out more" aria-label="Go to page Anti-Money Laundering" type="button" class="btn btn-primary">Find out more</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="col-12 col-lg-9">
+																		<div class="it-heading-link-wrapper">
+																			<a class="it-heading-link" href="/en/attivita_istituzionali/prevenzione_reati_finanziari/index.html" title="scopri di più" aria-label="Go to page Anti-Money Laundering">Anti-Money Laundering</a>
+																		</div>
+																		<div class="row">
+																			
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																					
+																					
+																					
+																					<div class="col-12 col-lg-12">
+																						<div class="link-list-wrapper">
+																							<ul class="link-list">
+
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/attivita_istituzionali/prevenzione_reati_finanziari/comitato_sicurezza_finanziaria/" title="Financial Security Committee (Fsc)" aria-label="Go to page Financial Security Committee (Fsc)"> Financial Security Committee (Fsc) </a>
+																									</li>
+																									
+																								
+																							</ul>
+																						</div>
+																					</div>
+																				
+																			
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</li>
+												
+											
+												
+												
+													
+													
+													
+													
+													
+														
+														
+													
+
+													
+													
+													
+														
+													
+
+													
+													
+													
+													
+													
+														
+														
+														
+													
+													<li class="nav-item dropdown megamenu">
+														<a class="nav-link dropdown-toggle" href="/en/pubblicazioni/" data-bs-toggle="dropdown" aria-expanded="false" id="publicationsandspeechesDropdown">
+															<span>Publications and Speeches</span>
+															<svg class="icon icon-xs" aria-hidden="true">
+																<use href="/export/system/modules/it.acn.dipartimentotesoro/resources/resources_boostrapitalia/bootstrap-italia/dist/svg/sprites.svg#it-expand"></use>
+															</svg>
+														</a>
+														<!-- mega menu -->
+														<div class="dropdown-menu shadow" role="region" aria-labelledby="dipartimentoDropdown">
+															<div class="megamenu pb-5 pt-3 py-lg-0">
+																<div class="row">
+																	<div class="col-xs-12 col-lg-3 px-0 d-none d-md-flex">
+																		<div class="row">
+																			<div class="col-12 it-vertical it-description pb-lg-3">
+																				<div class="description-content text-center ">
+																					<div class="mb-2">
+																						<figure class="figure">
+																							<img src=/export/sites/sitodt/modules/assets/img/ico-sezione-pubblicazioni.png class="icon icon-lg mb-0" alt="" aria-hidden="true">
+																						</figure>
+																						<h2 class="h4">Publications and Speeches</h2>
+																					</div>
+																					<p>The Publications section promotes the circulation of analyzes and research produced within the Treasury Department or presented by external economists in seminars organized with the aim of stimulating comments and suggestions.</p>
+																					<a href="/en/pubblicazioni/" title="Find out more" aria-label="Go to page Publications and Speeches" type="button" class="btn btn-primary">Find out more</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="col-12 col-lg-9">
+																		<div class="it-heading-link-wrapper">
+																			<a class="it-heading-link" href="/en/pubblicazioni/" title="scopri di più" aria-label="Go to page Publications and Speeches">Publications and Speeches</a>
+																		</div>
+																		<div class="row">
+																			
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																				
+																					
+																					
+																					
+																					<div class="col-12 col-lg-6">
+																						<div class="link-list-wrapper">
+																							<ul class="link-list">
+
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/pubblicazioni/interventi_direttore/" title="Speeches of the Director General of the Treasury" aria-label="Speeches of the Director General of the Treasury
+"> Speeches of the Director General of the Treasury </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/pubblicazioni/audizioni_parlamentari/vecchie/index.html" title="Parliamentary Hearings" aria-label="Go to page Parliamentary Hearings"> Parliamentary Hearings </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/attivita_istituzionali/analisi_programmazione_economico_finanziaria/documenti_programmatici/" title="Economic and financial planning documents" aria-label="Economic and financial planning documents"> Economic and financial planning documents </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/pubblicazioni/rapporti/" title="Reports" aria-label="Go to page Reports"> Reports </a>
+																									</li>
+																									
+																								
+																							</ul>
+																						</div>
+																					</div>
+																				
+																					
+																					
+																					
+																					<div class="col-12 col-lg-6">
+																						<div class="link-list-wrapper">
+																							<ul class="link-list">
+
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/attivita_istituzionali/analisi_programmazione_economico_finanziaria/working_papers_prodotti_ricerca/working_papers.html" title="Treasury Working papers" aria-label="Go to page Treasury Working papers"> Treasury Working papers </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/pubblicazioni/note_tematiche/" title="Treasury Economic Focus" aria-label="Go to page Treasury Economic Focus"> Treasury Economic Focus </a>
+																									</li>
+																									
+																								
+																									<li>
+																										<a class="list-item dropdown-item" href="/en/pubblicazioni/newsletter/" title="Newsletter" aria-label="Go to page Newsletter"> Newsletter </a>
+																									</li>
+																									
+																								
+																							</ul>
+																						</div>
+																					</div>
+																				
+																			
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</li>
+												
+											
+										</ul>
+									</div>
+								</div>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+
+
+</header>
+
+
+
+	
+
+
+
+
+
+
+
+
+<!--inizio body -->
+<div class="main-wrapper" id="main-content" role="main">
+	<!--breadcrumb-->
+	
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+
+
+
+ <div class="breadcrumb-wrapper">  
+        <div class="container">
+          <nav aria-label="Menu breadcrumb">
+          <h2 class="sr-only">Menu breadcrumb</h2>
+            <ol class="breadcrumb">
+			
+<li class="breadcrumb-item"><a href="/en/index.html" title="Homepage" aria-label="Go to the page - Homepage">Home</a></li><li class="breadcrumb-item"><a href="/en/debito_pubblico/" >Public Debt</a></li>
+<li class="breadcrumb-item"><a href="/en/debito_pubblico/emissioni_titoli_di_stato_interni/" >Domestic Government Securities Issuances</a></li>
+<li class="breadcrumb-item"><a href="/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/" >Auction and Placement Results</a></li>
+<li class="breadcrumb-item active">Historical Data</li>
+
+<!--/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/achivio_dati_storici/index.html - IF NO -->
+ </ol>
+          </nav>
+        </div>
+      </div>
+
+	<!--header article-->
+	
+
+
+
+
+
+
+
+
+
+
+
+		  
+		  
+
+
+
+<!-- HEADER: tipologie di background a seconda della sezione: type-dipartimento, type-attivita, type-pubblicazioni, type-debitopubblico -->
+<div class="page-header type-debitopubblico" role="banner" aria-label="Public Debt Section">
+<div class="container">
+  <div class="wrap-icon">
+    <img src="/export/sites/sitodt/modules/img/img_internal_header/ico-sezione-debito.png" aria-hidden="true" alt=""> <!-- eliminato Public Debt Section -->
+  </div>
+  <h1>
+  Historical Data
+  </h1>
+</div>
+</div>
+<!-- / page-header -->
+
+	<div class="content-wrapper">
+		
+		
+
+
+
+
+
+
+
+
+
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+<aside class="page-aside" aria-label="menu laterale">
+ <h1 class="sr-only" id="menu-sottosezioni">Back</h1>
+ <button class="btn-aside" aria-label="Open or close the Menu">Menu</button>
+  <div class="aside-content">
+   <div class="header">
+<a href="/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/"> Go Back<span class="sr-only"> to the section Auction and Placement Results</span></a>
+
+   </div>
+
+	  <div class="inner" aria-labelledby="menu-sottosezioni">
+		  <nav class="menu-sottosezioni" aria-label="menu di navigazione contestuale">
+			  <h2 class="sr-only">
+				  Contextual navigation menu
+			  </h2>
+  <ul>
+<li class='first-item'>Historical Data</li></ul></nav>
+
+	</div>
+  </div>
+</aside>
+		
+		
+		
+		<!-- article content -->
+		
+
+
+
+
+
+<div class="page-content">
+
+      <div class="page-tool page-tool-external">                                           
+                 <!-- Sharing Tools -->                                  
+                  
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+
+	
+	
+
+	
+		
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+<div class="inner">
+	<div class="sharing-tools">
+		<button class="btn-share">
+			<span class="sr-only">Sharing tools</span>
+		</button>
+		<div class="wrap">
+
+
+			
+			
+			<input type="hidden" name="hiddenSocial" value="1" />
+
+			
+				<script>
+					etichetta = "Sito DT - ";
+					titoloPag = "Historical Data";
+					titoloDoc = "";
+					descrizione = "";
+					descrizione=descrizione.replace(/[\']/g,"`");
+					descrizione=descrizione.replace(/[\"]/g,"`");
+
+					testo = etichetta + titoloPag;
+					if (descrizione != ""){
+						testo += " - "+descrizione;
+					}
+					else {
+						testo += " - " + titoloDoc;
+					}                  
+
+					URLDoc = 'http://www.dt.mef.gov.it:80/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/achivio_dati_storici/index.html';
+					URLDocSP = encodeURIComponent('http://www.dt.mef.gov.it:80/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/achivio_dati_storici/index.html');
+					TITDocSP = encodeURIComponent(escape(testo));
+					TITDocSP2 = encodeURIComponent(testo);
+
+
+					URLDocLong = encodeURIComponent('http://www.dt.mef.gov.it:80/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/achivio_dati_storici/index.html');
+
+					document.write('<a href="javascript:conFb(\''
+								   + URLDocSP
+								   + '\',\''
+								   + TITDocSP
+								   + '\')" title="Share on Facebook - Opening external site new window - Content with title: \'' + titoloPag + '\'"'
+								   + ' aria-label="Share on Facebook - Opening external site new window - Content with title: \'' + titoloPag + '\'"'
+								   + ' class="btn-facebook"><span class="sr-only">Share on Facebook</span></a>');
+					document.write('<a href="javascript:conTw(\''
+								   + URLDocSP
+								   + '\',\''
+								   + TITDocSP
+								   + '\')" title="Share on Twitter - Opening external site new window - Content with title: \'' + titoloPag + '\'"'
+								   + ' aria-label="Share on Twitter - Opening external site new window - Content with title: \'' + titoloPag + '\'"'
+								   + ' class="btn-twitter"><span class="sr-only">Share on Twitter</span></a>');
+
+					document.write('<a title="Share on Whatsapp - Opening external site new window - Content with title: \'' + titoloPag + '\'"'
+								   + ' aria-label="Share on Whatsapp - Opening external site new window - Content with title: \'' + titoloPag + '\'"'
+								   + ' href="https://api.whatsapp.com/send?'+URLDocSP+'&text='+URLDocSP+'" data-action="share/whatsapp/share" '
+								   + ' onclick="javascript:window.open(this.href, \'\', \'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600 \');return false;"'
+								   + ' class="btn-whatsapp" ><span class="sr-only">Share on Whatsapp</span></a>');                                                                                 
+
+					document.write('<a href="mailto:?subject='
+								   + TITDocSP2
+								   + '&body='
+								   + TITDocSP2
+								   + URLDocLong
+								   + '" title="Send link by E-mail - Content with title: \'' + titoloPag + '\'"'
+								   + ' class="btn-mail"><span class="sr-only">Share by E-mail - Content with title: \'' + titoloPag + '\'"</span></a>');
+				</script>
+
+			
+
+			
+			<input type="hidden" name="hdn_longLink" value="http://www.dt.mef.gov.it:80/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/achivio_dati_storici/index.html" />
+			<input type="hidden" name="hdn_longLinkCod" value="http://www.dt.mef.gov.it:80/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/achivio_dati_storici/index.html" />
+			<input type="hidden" name="hdn_shortLink" value="http://www.dt.mef.gov.it:80/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/achivio_dati_storici/index.html" />
+			<input type="hidden" name="hdn_shortLinkCod" value="http://www.dt.mef.gov.it:80/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/achivio_dati_storici/index.html" />
+
+			<button class="btn-close sr-only">
+				Close sharing tools
+			</button>
+
+		</div>
+	</div>
+
+	
+
+	<button class="btn-print" aria-label="Stampa Historical Data" onclick="javascript:window.print();">
+		<span class="sr-only"> Manage notifications about the page: Auction+Results </span>
+	</button>
+
+	
+
+	<a
+	   href="/en/subscribe.html?list=true&amp;resourceType=documenti_en/debito_pubblico/risultati_aste&amp;title=Auction+Results&amp;back=/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/achivio_dati_storici/index.html"
+	   class="btn-alert"
+	   title="Sottoscrizione al contenuto  Historical Data"><span class="sr-only">Sottoscrizione al contenuto  Historical Data</span>
+	</a>
+	
+
+</div>
+           </div>
+		
+
+          <section class="page-intro">
+          <h2 class="sr-only">Introduction section  Historical Data</h2>
+            <div class="container">
+              <div class="box">
+			  
+                <div class="content">
+		<article id="main-content-article">
+		<h3 class="sr-only">Historical Data</h3>
+
+                    <div class="text">						
+					
+					
+					
+					
+					
+					
+
+					
+										
+					<!-- ************** Testo vs descrizione **********************  -->
+					
+					
+						
+
+						
+					<!-- ************** Testo vs descrizione **********************  -->
+					
+					
+						<p>This page contains historical data on Government Securities, which can be browsed by type.</p>				
+                    </div>
+                    <!-- / text -->
+                  </article>
+
+                  <!-- box-image -->
+				  
+                  <!-- box-image -->
+
+                                    <div class="article-footer">
+
+				      
+			
+                    <!-- box-tags -->
+					
+			<!-- Sezione In Evidenza -->
+			
+		<!-- FINE Sezione In Evidenza -->
+					
+                </div>
+
+				  
+                </div>
+                <!-- / inner -->
+								
+               
+                <!-- / page-tool -->
+				
+              </div>
+              <!-- / box -->
+            </div>
+            <!-- / container -->
+          </section>
+          <!-- / page-intro -->
+
+	
+          <section class="wrap-correlati">
+          <h2 class="sr-only">Related Content</h2>
+            <div class="container">
+              <div class="accordion" id="accordion-correlati">
+
+				<!-- ACCORDION ITEM GRUPPI ALLEGATI -->
+				
+				<!-- FINE ACCORDION ITEM GRUPPI ALLEGATI -->
+		
+				<!-- ACCORDION ITEM GRUPPI LINK -->
+				
+				
+				
+				
+					<div class="card">
+					  <div class="card-header" id="headingLink1">
+						<h3>
+						  <button type="button" data-toggle="collapse" data-target="#collapseLink1" 
+						  aria-expanded="false" aria-controls="collapseLink1" class="collapsed">
+							Archive
+						  </button>
+						</h3>
+					  </div>
+
+					  <div id="collapseLink1" class="collapse" 
+					  aria-labelledby="headingLink1" 
+					  data-parent="#accordion-correlati" aria-expanded="false" style="height: 0px;" role="region">
+						
+						<div class="card-body">
+						  <div class="box-links">
+							<ul>
+						   <!-- sottosezione Link Interni -->
+							
+							
+								<li>
+									
+									
+										 
+								  <a href="/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/achivio_dati_storici/risultati_aste_cct_7_anni/" 
+								  title="" 
+								  aria-label="" > 
+									7 year CCT auctions results from 2000 to 2010
+								  </a>
+								</li>
+							
+								<li>
+									
+									
+										 
+								  <a href="/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/achivio_dati_storici/risultati_aste_ctz_24_mesi/index.html" 
+								  title="" 
+								  aria-label="" > 
+									24 month CTZ auctions results from 2000 to 2021
+								  </a>
+								</li>
+							
+							
+							<!-- Fine sottosezione Link Interni -->
+															
+							<!-- sottosezione Link Esterni-->
+							
+							<!-- Fine sottosezione Link Esterni-->	
+							</ul>
+						  </div>
+						</div>
+					  </div>
+					</div>
+				
+				
+				<!-- / ACCORDION ITEM GRUPPI LINK -->
+							
+				<!-- ACCORDION ITEM GRUPPI MISTI -->
+				
+			    <!-- / ACCORDION ITEM GRUPPI MISTI -->
+			
+			
+
+			
+                <!-- / ACCORDION ITEM -->
+              </div>
+              <!-- / accordion -->
+            </div>
+            <!-- / container -->
+          </section>
+          <!-- wrap-correlati -->
+		  
+
+
+</div>
+<!-- / page-content -->
+		
+
+	</div>
+
+</div>
+<!--fine body -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+	
+	<footer class="it-footer main" id="footer">
+			<div class="it-footer-main it-footer-main-custom">
+				<div class="container">
+					<section>
+						<div class="row clearfix">
+							<div class="col-12">
+								<div class="it-brand-wrapper">
+									
+									
+										
+										
+										
+										<a href="http://www.mef.gov.it/" title="Ministry of Economy and Finance" aria-label="Go to site Ministry of Economy and Finance" data-focus-mouse="false" target="_self">
+
+											
+												
+												
+												<img class="icon it-brand-logo" src="/export/sites/sitodt/modules/assets/img/logo-dt-negative-footer-N0ONT5rg.svg" alt="Ministry of Economy and Finance logo" />
+											
+										</a>
+									
+								</div>
+							</div>
+						</div> 
+					</section>
+					<section class="it-footer-links">
+						<div class="row">
+							<div class="col-12 col-sm-6 col-lg-2 pb-2 mb-2">
+								<div class="link-list-wrapper">
+									
+									<ul class="link-list">
+										
+											
+												
+												
+												
+												
+												<li class="link-list--item">
+													<a href="/en/privacy.html" class="list-item list-item-bold" title="Privacy and Cookie policy" aria-label="Go to page Privacy and Cookie policy">Privacy and Cookie policy</a>
+												</li>
+											
+										
+											
+												
+												
+												
+												
+												<li class="link-list--item">
+													<a href="/en/contact.html" class="list-item list-item-bold" title="Contacts" aria-label="Go to page Contacts">Contacts</a>
+												</li>
+											
+										
+											
+												
+												
+												
+												
+												<li class="link-list--item">
+													<a href="/en/amministrazione_trasparente.html" class="list-item list-item-bold" title="Transparency" aria-label="Go to page Transparency">Transparency</a>
+												</li>
+											
+										
+											
+												
+												
+												
+												
+												<li class="link-list--item">
+													<a href="/en/map.html" class="list-item list-item-bold" title="" aria-label="">Site Map</a>
+												</li>
+											
+										
+									</ul>
+								</div>
+							</div>
+							<div class="col-12 col-sm-6 col-lg-2 pb-2 mb-2">
+								<div class="link-list-wrapper">
+									
+									<ul class="link-list">
+										
+											
+												
+												
+												
+												
+												<li class="link-list--item">
+													<a href="https://intranet.mef.gov.it" class="list-item list-item-bold" title="" aria-label="Reserved Area">Reserved Area</a>
+												</li>
+											
+										
+											
+												
+												
+												
+												
+												<li class="link-list--item">
+													<a href="https://form.agid.gov.it/view/7a07ad11-bec7-4d95-a919-60202251393e/" class="list-item list-item-bold" title="" aria-label="Accessibility">Accessibility</a>
+												</li>
+											
+										
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="horizontal-divider m-0 mt-5"></div>
+						<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end py-4">
+							<div class="link-list-wrapper link-list-wrapper--horizontal">
+								
+								<ul class="link-list link-underline">
+									
+										
+											
+											
+											
+												
+											
+											
+											
+											
+												
+											
+											<li class="link-list--item">
+												<a href="#" class="list-item list-item-bold" title="Cookie preferences" data-bs-toggle="modal" data-bs-target="#cookiePreferenze" aria-label="Cookie preferences - opens the panel for cookie preferences management">Cookie preferences</a>
+											</li>
+										
+									
+								</ul>
+							</div>
+							
+							
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<span></span>
+	
+	
+
+
+						</div>
+					</section>
+				</div>
+			</div>
+			<div class="it-footer-small-prints">
+				<div class="container it-footer-small-prints-container">
+					<ul class="link-list it-footer-small-prints-list">
+						
+						
+						
+						
+						<li class="link-list--item d-none d-xxl-inline">
+							<span class="list-item">MEF – </span>
+							<a href="http://www.mef.gov.it/" class="list-item list-item-bold" title="Go to site Ministry of Economy and Finance" target="_self">Ministry of Economy and Finance</a>
+							<span class="list-item"> – Department of Treasury</span>
+						</li>
+						
+						
+						
+						<li class="link-list--item">
+							<a class="list-item" href="https://www.google.it/maps/place/Ministero+dell'Economia+e+delle+Finanze/@41.9062895,12.4974917,17z/data=!3m1!4b1!4m6!3m5!1s0x132f61a876d0a995:0xb8f056abfc1bef40!8m2!3d41.9062895!4d12.4974917!16s%2Fg%2F1yl45btqf?entry=ttu" title="Redirect to Google Maps">
+								<span>Via Venti Settembre, 97 00187 Roma - Italia</span>
+							</a>
+						</li>
+						
+						
+						
+						<li class="link-list--item">
+							<a class="list-item" href="tel:003906476111" title="Go to Tel  +39 06476111">
+								<span>Tel  +39 06476111</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+
+
+
+
+
+
+<!-- Matomo  -->
+
+<script>
+
+  var _paq = window._paq = window._paq || [];
+
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+
+  _paq.push(["setCookieDomain", "*.www.dt.mef.gov.it"]);
+
+  _paq.push(["setDomains", ["*.www.dt.mef.gov.it"]]);
+
+  _paq.push(['trackPageView']);
+
+  _paq.push(['enableLinkTracking']);
+
+  (function() {
+
+    var u="https://aaws-aanalytics.sogei.it/piwik/";
+
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+
+    _paq.push(['setSiteId', '54']);
+
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+
+  })();
+
+</script>
+
+<noscript><p><img src="https://aaws-aanalytics.sogei.it/piwik/matomo.php?idsite=54&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+
+<!-- End Matomo Code -->
+
+			</footer>
+	
+
+	
+	<!-- BACK TO TOP -->
+	
+
+
+
+
+
+
+
+
+
+	<div class="d-flex align-items-center">
+		<a href="#" aria-hidden="true" tabindex="-1" data-bs-toggle="backtotop" class="back-to-top shadow" accesskey="0">
+			<svg class="icon icon-light" aria-hidden="true">
+				<use href="/export/system/modules/it.acn.dipartimentotesoro/resources/resources_boostrapitalia/bootstrap-italia/dist/svg/sprites.svg#it-arrow-up"></use>
+			</svg>
+		</a>
+	</div>
+
+ 
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- modale cerca start -->
+	<div class="modal fade search-modal" id="search-modal" tabindex="-1" style="display: none" data-focus-mouse="false" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content perfect-scrollbar">
+				<div class="modal-body">
+
+					<div id="search_simple">
+						<form id="fsearch" action="/en/_service/resultSimpleSearch.html" method="post" data-np-autofill-form-type="other" data-np-checked="1" data-np-watching="1">
+							<input type="hidden" name="csrf_token" value="33utrwSrKWS81WPsOri2k" />
+							<div class="container">
+								<div class="row variable-gutters">
+									<div class="col">
+										<div class="modal-title">
+											<button class="search-link d-md-none" type="button" data-bs-toggle="modal" data-bs-target="#search-modal" aria-label="Close and return to the previous page">
+												<svg class="icon icon-md" aria-hidden="true">
+													<use href="/export/system/modules/it.acn.dipartimentotesoro/resources/resources_boostrapitalia/bootstrap-italia/dist/svg/sprites.svg#it-arrow-left"></use>
+												</svg>
+											</button>
+											<h2>Cerca</h2>
+											<button class="search-link d-none d-md-block" type="button" data-bs-toggle="modal" data-bs-target="#search-modal" aria-label="Close and return to the previous page" data-focus-mouse="false">
+												<svg class="icon icon-md" aria-hidden="true">
+													<use href="/export/system/modules/it.acn.dipartimentotesoro/resources/resources_boostrapitalia/bootstrap-italia/dist/svg/sprites.svg#it-close-big"></use>
+												</svg>
+											</button>
+										</div>
+										<div class="form-group container p-3 mt-5">
+											<div class="input-group mb-3">
+												<span class="input-group-text" id="searchicon-form">
+													<svg class="icon" aria-hidden="true">
+														<use href="/export/system/modules/it.acn.dipartimentotesoro/resources/resources_boostrapitalia/bootstrap-italia/dist/svg/sprites.svg#it-search"></use>
+													</svg>
+												</span>
+												<input id="query" name="query" data-bs-autocomplete="[]" type="search" class="form-control" placeholder="Search" aria-label="form di ricerca" aria-describedby="searchicon-form" />
+												<button type="submit" class="btn btn-primary" id="search-submit">
+													<span class="">Search</span>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+
+			
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- / modale cerca end -->
+	
+
+
+
+	
+    <!-- JS -->
+    
+
+     	
+		
+
+
+
+
+
+
+<!-- Matomo  -->
+
+<script>
+
+  var _paq = window._paq = window._paq || [];
+
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+
+  _paq.push(["setCookieDomain", "*.www.dt.mef.gov.it"]);
+
+  _paq.push(["setDomains", ["*.www.dt.mef.gov.it"]]);
+
+  _paq.push(['trackPageView']);
+
+  _paq.push(['enableLinkTracking']);
+
+  (function() {
+
+    var u="https://aaws-aanalytics.sogei.it/piwik/";
+
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+
+    _paq.push(['setSiteId', '54']);
+
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+
+  })();
+
+</script>
+
+<noscript><p><img src="https://aaws-aanalytics.sogei.it/piwik/matomo.php?idsite=54&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+
+<!-- End Matomo Code -->
+	
+    	
+    
+    <!-- JS ICONS -->
+    <!--<script src="/export/system/modules/it.acn.dipartimentotesoro/resources/assets/vendor/feathericons/feather.min.js"></script>--!>
+
+	
+    
+
+    <!-- JS MAIN -->
+    <script src="/export/system/modules/it.acn.dipartimentotesoro/resources/assets/vendor/main.js"></script>
+
+
+		 
+        <script src="/export/system/modules/it.acn.dipartimentotesoro/resources/resources_boostrapitalia/bootstrap-italia/dist/js/bootstrap-italia.bundle.min.js"></script>
+		<script src="/export/system/modules/it.acn.dipartimentotesoro/resources/resources_boostrapitalia/assets/js/dt.js" defer=""></script>
+
+		<!-- COOKIE -->
+		<!-- Import CSS and Javascript (require that JQuery is already loaded) -->
+<link href="/export/system/modules/it.acn.cookieprefs/resources/assets/css/GDPR-cookie-bs5-agid.css" rel="stylesheet" />
+<script src="/export/system/modules/it.acn.cookieprefs/resources/js/cookie_consent.js"></script>
+
+<!-- Include preferences modal -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+		<!-- MODAL COOKIE PREFERENZE -->
+		<section class="modal fade it-dialog-scrollable cookiePreferenze" id="cookiePreferenze" tabindex="-1" role="dialog" aria-label="Modal window for managing the preferences on single cookies">
+			<div class="modal-dialog modal-xl" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title h4" id="titlePreferenze">Cookie preferences</h1>
+
+						<button type="button" id="prefModalCloseButton"class="btn-close" data-bs-dismiss="modal" aria-label="Close" title="Close">
+							<svg class="icon icon-lg icon-padded" aria-hidden="true">
+								<use href="/export/system/modules/it.acn.cookieprefs/resources/assets/svg/sprites.svg#it-close"></use>
+							</svg>
+						</button>
+
+					</div>
+					<div class="modal-body">
+						<form action="#" id="cookieConsentForm">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-md-12">
+										<p>This website uses technical cookies, analytical cookies with technical functions (<a href="https://webanalytics.italia.it/privacy" target="_blank" rel="noopener">WAI</a>) and, subject to your consent, third-party profiling cookies. You can freely give, refuse or revoke your consent at any time by accessing this panel from the cookie preferences, accessible from the footer. To find out more, consult the <a href="/en/privacy.html" aria-label="Legal notices on privacy policy" data-a11y-dialog-show="dialog-2">legal notices</a>.</p>
+										
+                                        
+									    <p class="text" id="dynaText"></p>
+
+									</div>
+								</div>
+								<div class="row">
+									<!-- WRAP COOKIE ELEMENTS -->
+									<div class="accordion accordion-left-icon" id="Accordion-Preferences">
+										
+											
+											
+												
+											
+											
+												
+													
+													
+													
+
+													<!-- Dati Tecnici -->
+													<div class="form-check form-check-group" role="group" aria-label="Technical cookies necessary for the site to function.">
+														
+														
+														
+															
+															
+														
+														<div class="toggles">
+															<label class="form-check-label" for="m-tecnici">Technical cookies necessary for the site to function.
+																<input type="checkbox" id="m-tecnici" data-category="Tecnici" name="h-consent-name-category" aria-labelledby="m-tecnici-help">
+																<span class="lever"></span>
+															</label>
+														</div>
+														<div id="m-tecnici-help" class="form-text"><p>The use of technically required cookies is necessary to ensure the correct and secure functioning of the website and its functionalities.</p></div>
+													</div>
+													
+														<div class="accordion-item">
+															<h2 class="accordion-header" id="flush-heading-m-tecnici">
+																<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-m-tecnici" aria-expanded="false" aria-controls="flush-collapse-m-tecnici">
+																	Show the details of each cookie
+																</button>
+															</h2>
+															<div id="flush-collapse-m-tecnici" class="accordion-collapse collapse" aria-labelledby="flush-heading-m-tecnici" data-bs-parent="#Accordion-Preferences">
+																<div class="accordion-body">
+																	<div class="link-list-wrapper">
+																		<ul class="link-list">
+																			
+																				<li class="listitem icon-left">
+																					<span class="list-item-title-icon-wrapper">
+																						<svg class="icon icon-primary" aria-hidden="true">
+																							<use href="/export/system/modules/it.acn.cookieprefs/resources/assets/svg/sprites.svg#it-arrow-right-triangle"></use>
+																						</svg>
+																						<span class="list-item-title">
+																							JSESSIONID
+																							: Sessions management
+																						</span>
+																					</span>
+																				</li>
+																			
+																				<li class="listitem icon-left">
+																					<span class="list-item-title-icon-wrapper">
+																						<svg class="icon icon-primary" aria-hidden="true">
+																							<use href="/export/system/modules/it.acn.cookieprefs/resources/assets/svg/sprites.svg#it-arrow-right-triangle"></use>
+																						</svg>
+																						<span class="list-item-title">
+																							COOKIE_CONSENT
+																							: Cookie preferences management
+																						</span>
+																					</span>
+																				</li>
+																			
+																				<li class="listitem icon-left">
+																					<span class="list-item-title-icon-wrapper">
+																						<svg class="icon icon-primary" aria-hidden="true">
+																							<use href="/export/system/modules/it.acn.cookieprefs/resources/assets/svg/sprites.svg#it-arrow-right-triangle"></use>
+																						</svg>
+																						<span class="list-item-title">
+																							_PK_SES.<WEBSITEID>
+																							: Piwik/Matomo (<a href="https://webanalytics.italia.it/privacy" target="_blank">Web Analytics Italia</a>)
+																						</span>
+																					</span>
+																				</li>
+																			
+																				<li class="listitem icon-left">
+																					<span class="list-item-title-icon-wrapper">
+																						<svg class="icon icon-primary" aria-hidden="true">
+																							<use href="/export/system/modules/it.acn.cookieprefs/resources/assets/svg/sprites.svg#it-arrow-right-triangle"></use>
+																						</svg>
+																						<span class="list-item-title">
+																							_PK_ID.<WEBSITEID>
+																							: Piwik/Matomo (<a href="https://webanalytics.italia.it/privacy" target="_blank">Web Analytics Italia</a>)
+																						</span>
+																					</span>
+																				</li>
+																			
+																		</ul>
+																	</div>
+																</div>
+															</div>
+														</div>
+													
+													<!-- / Dati Tecnici -->
+												
+												
+											
+										
+											
+											
+												
+											
+											
+												
+													
+													
+													
+
+													<!-- Dati Google Custom Search Engine -->
+													<div class="form-check form-check-group" role="group" aria-label="<span lang="en">Google Custom Search Engine</span> advanced site search function.">
+														
+														
+														
+															
+															
+														
+														<div class="toggles">
+															<label class="form-check-label" for="m-cse"><span lang="en">Google Custom Search Engine</span> advanced site search function.
+																<input type="checkbox" id="m-cse" data-category="Google Custom Search Engine" name="h-consent-name-category" aria-labelledby="m-cse-help">
+																<span class="lever"></span>
+															</label>
+														</div>
+														<div id="m-cse-help" class="form-text"><p>The service allows you to use the features of the Google search engine on this site.</p></div>
+													</div>
+													
+														<div class="accordion-item">
+															<h2 class="accordion-header" id="flush-heading-m-cse">
+																<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-m-cse" aria-expanded="false" aria-controls="flush-collapse-m-cse">
+																	Show the details of each cookie
+																</button>
+															</h2>
+															<div id="flush-collapse-m-cse" class="accordion-collapse collapse" aria-labelledby="flush-heading-m-cse" data-bs-parent="#Accordion-Preferences">
+																<div class="accordion-body">
+																	<div class="link-list-wrapper">
+																		<ul class="link-list">
+																			
+																				<li class="listitem icon-left">
+																					<span class="list-item-title-icon-wrapper">
+																						<svg class="icon icon-primary" aria-hidden="true">
+																							<use href="/export/system/modules/it.acn.cookieprefs/resources/assets/svg/sprites.svg#it-arrow-right-triangle"></use>
+																						</svg>
+																						<span class="list-item-title">
+																							NID
+																							
+																						</span>
+																					</span>
+																				</li>
+																			
+																				<li class="listitem icon-left">
+																					<span class="list-item-title-icon-wrapper">
+																						<svg class="icon icon-primary" aria-hidden="true">
+																							<use href="/export/system/modules/it.acn.cookieprefs/resources/assets/svg/sprites.svg#it-arrow-right-triangle"></use>
+																						</svg>
+																						<span class="list-item-title">
+																							OGPC
+																							
+																						</span>
+																					</span>
+																				</li>
+																			
+																				<li class="listitem icon-left">
+																					<span class="list-item-title-icon-wrapper">
+																						<svg class="icon icon-primary" aria-hidden="true">
+																							<use href="/export/system/modules/it.acn.cookieprefs/resources/assets/svg/sprites.svg#it-arrow-right-triangle"></use>
+																						</svg>
+																						<span class="list-item-title">
+																							1P_JAR
+																							
+																						</span>
+																					</span>
+																				</li>
+																			
+																		</ul>
+																	</div>
+																</div>
+															</div>
+														</div>
+													
+													<!-- / Dati Google Custom Search Engine -->
+												
+												
+											
+										
+											
+											
+												
+											
+											
+												
+												
+													
+													<!-- Categoria Social -->
+													<div class="pdm-hero">
+														<h2 class="hero-title h5 my-lg-3 my-2">Embedding of social elements.</h2>
+													</div>
+													
+														<p>Function that allows you to embed content from social networks within the pages.</p>
+													
+													<!-- / Categoria Social -->
+													
+														
+														
+														
+
+														<!-- Dati Social -->
+														<div class="form-check form-check-group" role="group" aria-label="YouTube embedding">
+															
+															
+															
+															<div class="toggles">
+																<label class="form-check-label" for="m-youtube">YouTube embedding
+																	<input type="checkbox" id="m-youtube" data-category="Social" name="h-consent-name-category" >
+																	<span class="lever"></span>
+																</label>
+															</div>
+															
+															
+																<div class="accordion-item">
+																	<h2 class="accordion-header" id="flush-heading-m-youtube">
+																		<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-m-youtube" aria-expanded="false" aria-controls="flush-collapse-m-youtube">
+																			Show the details of each cookie
+																		</button>
+																	</h2>
+																	<div id="flush-collapse-m-youtube" class="accordion-collapse collapse" aria-labelledby="flush-heading-m-youtube" data-bs-parent="#Accordion-Preferences">
+																		<div class="accordion-body">
+																			<div class="link-list-wrapper">
+																				<ul class="link-list">
+																					
+																						<li class="listitem icon-left">
+																							<span class="list-item-title-icon-wrapper">
+																								<svg class="icon icon-primary" aria-hidden="true">
+																									<use href="/export/system/modules/it.acn.cookieprefs/resources/assets/svg/sprites.svg#it-arrow-right-triangle"></use>
+																								</svg>
+																								<span class="list-item-title">
+																									CONSENT
+																									
+																								</span>
+																							</span>
+																						</li>
+																					
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															
+														</div>
+														<!-- / Dati Social -->
+													
+														
+														
+														
+
+														<!-- Dati Social -->
+														<div class="form-check form-check-group" role="group" aria-label="X embedding">
+															
+															
+															
+															<div class="toggles">
+																<label class="form-check-label" for="m-x">X embedding
+																	<input type="checkbox" id="m-x" data-category="Social" name="h-consent-name-category" >
+																	<span class="lever"></span>
+																</label>
+															</div>
+															
+															
+																<div class="accordion-item">
+																	<h2 class="accordion-header" id="flush-heading-m-x">
+																		<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-m-x" aria-expanded="false" aria-controls="flush-collapse-m-x">
+																			Show the details of each cookie
+																		</button>
+																	</h2>
+																	<div id="flush-collapse-m-x" class="accordion-collapse collapse" aria-labelledby="flush-heading-m-x" data-bs-parent="#Accordion-Preferences">
+																		<div class="accordion-body">
+																			<div class="link-list-wrapper">
+																				<ul class="link-list">
+																					
+																						<li class="listitem icon-left">
+																							<span class="list-item-title-icon-wrapper">
+																								<svg class="icon icon-primary" aria-hidden="true">
+																									<use href="/export/system/modules/it.acn.cookieprefs/resources/assets/svg/sprites.svg#it-arrow-right-triangle"></use>
+																								</svg>
+																								<span class="list-item-title">
+																									__cf_bm
+																									
+																								</span>
+																							</span>
+																						</li>
+																					
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															
+														</div>
+														<!-- / Dati Social -->
+													
+												
+											
+										
+									</div>
+									<!-- / WRAP COOKIE ELEMENTS-->
+								</div>
+							</div>
+							<!-- Modal Footer -->
+							<div class="modal-footer">
+								<button id="AcceptAllCookies" name="AcceptAll" type="submit" class="btn btn-icon rounded-pill btn-primary shadow mx-lg-2 mb-2" title="Accept all cookies" aria-label="Accept all cookies" onclick="setAcceptAllPreferencesAsCookie(); return false;">
+									<span>Accept all cookies</span>
+									<span class="rounded-icon ms-2">
+										<svg class="icon" aria-hidden="true">
+											<use href="/export/system/modules/it.acn.cookieprefs/resources/assets/svg/sprites.svg#it-check"></use>
+										</svg>
+									</span>
+								</button>
+								<button id="AcceptSelectedCookies" name="AcceptSelected" type="submit" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#cookiePreferenze" class="btn btn-icon rounded-pill shadow analogue-2-bg mx-lg-2 mb-2" title="Accept the selected cookies" aria-label="Accept the selected cookies" onclick="setSelectedPreferencesAsCookie(); return false;">
+									<span>Accept the selected cookies</span>
+									<span class="rounded-icon ms-2">
+										<svg class="icon" aria-hidden="true">
+											<use href="/export/system/modules/it.acn.cookieprefs/resources/assets/svg/sprites.svg#it-check-circle"></use>
+										</svg>
+									</span>
+								</button>
+								<button id="RejectAllCookies" name="RejectAll" type="submit" class="btn btn-icon rounded-pill btn-primary shadow mx-lg-2 mb-2" title="Reject all cookies" aria-label="Reject all cookies" onclick="setRejectAllPreferencesAsCookie(); return false;">
+									<span>Reject all cookies</span>
+									<span class="rounded-icon ms-2">
+										<svg class="icon" aria-hidden="true">
+											<use href="/export/system/modules/it.acn.cookieprefs/resources/assets/svg/sprites.svg#it-close"></use>
+										</svg>
+									</span>
+								</button>
+							</div>
+							<!-- Modal Footer -->
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+        <script>
+            $(document).ready(function() {
+                const xButton = $('#prefModalCloseButton');
+                if (!isPreferencesCookieSet()) {
+                    xButton.on('click', setRejectAllPreferencesAsCookie);
+                } else {
+                    let text = 'Renewal of consent: you gave your consent on ${dd/MM/yyyy}, there are ${days} days left until a new consent will be requested.';
+                    const cDate = "<strong>" + getConsensusDate() + "</strong>";
+                    const rDays = "<strong>" + getDaysToExpiration() + "</strong>";
+                    $('#dynaText').html(text.replace("${dd/MM/yyyy}", cDate).replace("${days}", rDays));
+                    getAllPreferences().forEach(pref => {
+                        if (getPreference(pref.name)) $('#' + pref.name).prop('checked', true);
+                    });                    
+                }
+                $('#m-tecnici').prop('checked', true).prop('disabled', true);
+            });
+        </script>
+		<!-- / MODAL COOKIE PREFERENZE -->
+
+	
+
+
+<!-- Include banner modal -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- cookie banner (fixed bottom) -->
+<section class="modal fade Gen-cookieModal" id="cookieModal" role="dialog" aria-label="Modal window for cookie management">
+	<div class="Gen-cookiebar modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title h4" id="titleDisclaimer">Information note</h1>
+
+					<button type="button" id="modalCloseButton" class="btn-close" data-bs-dismiss="modal" aria-label="Close" title="Close">
+						<svg class="icon icon-lg icon-padded" aria-hidden="true">
+							<use href="/export/system/modules/it.acn.cookieprefs/resources/assets/svg/sprites.svg#it-close"></use>
+						</svg>
+					</button>
+
+			</div>
+			<div class="modal-body">This website uses technical cookies, analytical cookies with technical functions <a href="https://webanalytics.italia.it/privacy" target="_blank" aria-label="(WAI) Web Analytics Italia - open in new page">(WAI)</a> and, subject to your consent, third-party profiling cookies. You can freely give, refuse or revoke your consent at any time by accessing the cookie preferences panel, accessible from the footer. To find out more, consult the <a href="/en/privacy.html" aria-label="Legal notices">Legal notices</a>.</div>
+			<div class="modal-footer">
+				<button id="AcceptAllCookiesModal" name="AcceptAll" type="button" class="btn btn-icon rounded-pill btn-primary shadow mx-lg-2 mb-2" title="Accept all cookies" aria-label="Accept all cookies" onclick="setAcceptAllPreferencesAsCookie()">
+					<span>Accept all cookies</span>
+					<span class="rounded-icon ms-2">
+						<svg class="icon" aria-hidden="true">
+							<use href="/export/system/modules/it.acn.cookieprefs/resources/assets/svg/sprites.svg#it-check"></use>
+						</svg>
+					</span>
+				</button>
+				<button id="Preferenze" type="button" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#cookiePreferenze" class="btn btn-icon rounded-pill shadow analogue-2-bg mx-lg-2 mb-2" title="Go to the cookie preferences - open the panel for managing cookie preferences" aria-label="Go to the cookie preferences - open the panel for managing cookie preferences">
+					<span>Go to the cookie preferences</span>
+					<span class="rounded-icon ms-2">
+						<svg class="icon" aria-hidden="true">
+							<use href="/export/system/modules/it.acn.cookieprefs/resources/assets/svg/sprites.svg#it-more-actions"></use>
+						</svg>
+					</span>
+				</button>
+				<button id="RejectAllCookiesModal" name="RejectAll" type="button" class="btn btn-icon rounded-pill btn-primary shadow mx-lg-2 mb-2" title="Reject all cookies" aria-label="Reject all cookies" onclick="setRejectAllPreferencesAsCookie()">
+					<span>Reject all cookies</span>
+					<span class="rounded-icon ms-2">
+						<svg class="icon" aria-hidden="true">
+							<use href="/export/system/modules/it.acn.cookieprefs/resources/assets/svg/sprites.svg#it-close"></use>
+						</svg>
+					</span>
+				</button>
+			</div>
+		</div>
+	</div>
+</section>
+<script>
+    $(document).ready(function() {
+        const closeButton = $('#modalCloseButton');
+        if (!isPreferencesCookieSet()) {
+            closeButton.on('click', setRejectAllPreferencesAsCookie);
+        }
+    });
+</script>
+<!-- / cookie banner -->
+
+
+<!-- COOKIE MODAL AND PREFERENCES BLOCK -->
+<script>
+	$(document).ready(function() {
+		$('#cookieModal, #cookiePreferenze').modal({
+			backdrop: 'static',
+			keyboard: false
+		})
+	});
+    
+        
+    <!-- COOKIE MODAL SHOW -->
+    $(document).ready(function() {
+        if(!isPreferencesCookieSet()) {
+            $("#cookieModal").modal('show');
+        }
+    });	
+
+</script>
+
+<!-- DISABLE CONTENTS ACCORDING TO COOKIE PREFERENCES -->
+	<script>
+		
+		const itemsToDisable = ['m-tecnici','m-cse','m-youtube','m-x'];
+		itemsToDisable.forEach((item) => {
+			if (!getPreference(item)) {  
+			    var divList = document.querySelectorAll("div[id^='" + item + "-content']");
+			    if(divList.length > 0){
+			        var idArray = [];
+			        for (let elem of divList) {
+			            idArray.push(elem.id);
+			        }
+			        idArray.forEach((idDiv) => {
+			            
+			            $("#" + idDiv).removeClass("embed-responsive embed-responsive-16by9").addClass("content-disabled");
+			            
+			            var $iframe = $('#' + idDiv + '> iframe:first');
+			            if ($iframe.length) {
+
+			                var iframeSrc = $iframe.attr("src");
+			                $("#" + idDiv).html('<div class="container container-flex"><p class="row"><strong>Cookie preferences:</strong></p><br><p class="row">Content disabled due to consents not provided.</p></div><br>');
+			                $('<a>',{
+			                    text:'Content link (opens in new window)',
+			                    href:iframeSrc,
+			                    target:'_blank'
+			                }).appendTo("#" + idDiv);
+			            }
+			            else {
+			                $("#" + idDiv).html('<div class="container container-flex"><p class="row"><strong>Cookie preferences:</strong></p><br><p class="row">Content disabled due to consents not provided.</p></div>');
+			            }
+			        
+			        });
+			    }
+			}
+		});
+	</script>
+
+
+	
+     <script>
+     
+  
+        $('.swiper-container.swiper-nav').each(function () {
+            var $this = $(this);
+            var swiperMenu = new Swiper(this, {
+                preventClicks: false,
+                preventClicksPropagation: false,
+                observer: true,
+                observeParents: true,
+                slidesPerView: 1,
+                spaceBetween: 20,
+                loop: false,
+                autoplay: false,
+
+                navigation: {
+                    nextEl: $this.siblings(".swiper-button-next")[0],
+                    prevEl: $this.siblings(".swiper-button-prev")[0]
+                }
+            });
+        });
+       
+        
+  /* ------------------------------------ *\
+            SWIPER ATTIVITA
+        \* ------------------------------------ */
+        createSwiperAttivita();
+
+        $(window).resize(function() {
+            createSwiperAttivita();
+        });
+
+        var swiperAttivita;
+
+        function createSwiperAttivita() {
+            var ww = $(window).width();
+            if (ww <= 1200) {
+                if (swiperAttivita) return;
+                else
+                    swiperAttivita = new Swiper('.swiper-container.swiper-attivita', {
+                        preventClicks: false,
+                        preventClicksPropagation: false,
+                        slidesPerView: 2,
+                        spaceBetween: 0,
+                        pagination: {
+                            el: '.swiper-attivita-pagination.swiper-pagination',
+                            clickable: true,
+                        },
+                        navigation: {
+                            nextEl: '.swiper-attivita-button.swiper-button-next',
+                            prevEl: '.swiper-attivita-button.swiper-button-prev',
+                        },
+
+                        breakpoints: {
+                            1199: {
+                                slidesPerView: 2,
+                            },
+                            768: {
+                                slidesPerView: 1,
+                            },
+                        },
+                    });
+            } else {
+                if (swiperAttivita) {
+                    swiperAttivita.destroy();
+                    swiperAttivita = undefined;
+                }
+            }
+        }
+        /* ------------------------------------ */
+        
+     /* ------------------------------------ *\
+        SWIPER ATTIVITA DEBITO
+    \* ------------------------------------ */
+        createSwiperDebito();
+
+        $(window).resize(function () {
+            createSwiperDebito()
+        });
+
+        var swiperDebito;
+
+        function createSwiperDebito() {
+            var ww = $(window).width();
+            if (ww <= 1200) {
+                if (swiperDebito)
+                    return;
+                else
+                    swiperDebito = new Swiper('.swiper-container.swiper-debito', {
+                        preventClicks: false,
+                        preventClicksPropagation: false,
+                        slidesPerView: 2,
+                        spaceBetween: 0,
+                        pagination: {
+                            el: '.swiper-debito-pagination.swiper-pagination',
+                            clickable: true
+                        },
+                        navigation: {
+                            nextEl: '.swiper-debito-button.swiper-button-next',
+                            prevEl: '.swiper-debito-button.swiper-button-prev'
+                        },
+
+                        breakpoints: {
+                            1199: {
+                                slidesPerView: 2
+                            },
+                            768: {
+                                slidesPerView: 1
+                            }
+                        }
+                    });
+
+            } else {
+                if (swiperDebito) {
+                    swiperDebito.destroy();
+                    swiperDebito = undefined;
+                }
+            }
+        }
+        /* ------------------------------------ */
+
+
+      /* ------------------------------------ *\
+          SWIPER EMISSIONI
+      \* ------------------------------------ */
+      createSwiperEmissioni();
+
+      $(window).resize(function () {
+        createSwiperEmissioni()
+      });
+
+      var swiperEmissioni;
+
+      function createSwiperEmissioni() {
+        var ww = $(window).width();
+        if (ww <= 1200) {
+          if (swiperEmissioni) 
+            return;
+          else 
+            swiperEmissioni = new Swiper('.swiper-container.swiper-emissioni', {
+              preventClicks: false,
+              preventClicksPropagation: false,
+              slidesPerView: 3,
+              spaceBetween: 0,
+              pagination: {
+                el: '.swiper-emissioni-pagination.swiper-pagination',
+                clickable: true
+              },
+              navigation: {
+                nextEl: '.swiper-emissioni-button.swiper-button-next',
+                prevEl: '.swiper-emissioni-button.swiper-button-prev'
+              },
+
+              breakpoints: {
+                1199: {
+                  slidesPerView: 2
+                },
+                768: {
+                  slidesPerView: 1
+                }
+              }
+            });
+
+          }
+        else {
+          if (swiperEmissioni) {
+            swiperEmissioni.destroy();
+            swiperEmissioni = undefined;
+          }
+        }
+      }
+      /* ------------------------------------ */
+
+      /* ------------------------------------ *\
+          SWIPER APPROFONDIMENTI DEBITO
+      \* ------------------------------------ */
+      createSwiperApprofondimenti();
+
+      $(window).resize(function () {
+        createSwiperApprofondimenti()
+      });
+
+      var swiperApprofondimenti;
+
+      function createSwiperApprofondimenti() {
+        var ww = $(window).width();
+        if (ww <= 1200) {
+          if (swiperApprofondimenti) 
+            return;
+          else 
+            swiperApprofondimenti = new Swiper('.swiper-container.swiper-approfondimenti', {
+              preventClicks: false,
+              preventClicksPropagation: false,
+              slidesPerView: 3,
+              spaceBetween: 0,
+              pagination: {
+                el: '.swiper-approfondimenti-pagination.swiper-pagination',
+                clickable: true
+              },
+              navigation: {
+                nextEl: '.swiper-approfondimenti-button.swiper-button-next',
+                prevEl: '.swiper-approfondimenti-button.swiper-button-prev'
+              },
+
+              breakpoints: {
+                1199: {
+                  slidesPerView: 2
+                },
+                768: {
+                  slidesPerView: 1
+                }
+              }
+            });
+
+          }
+        else {
+          if (swiperApprofondimenti) {
+            swiperApprofondimenti.destroy();
+            swiperApprofondimenti = undefined;
+          }
+        }
+      }
+      /* ------------------------------------ */
+
+      /* ------------------------------------ *\
+          SWIPER VISORE
+      \* ------------------------------------ */
+      var swiperVisore = new Swiper('.swiper-container.swiper-hp-visore', {
+        preventClicks: false,
+        preventClicksPropagation: false,
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: true,
+        autoplay: {
+          delay: 5000
+        },
+        speed: 3000,
+        pagination: {
+          el: '.swiper-hp-visore-pagination.swiper-pagination',
+          clickable: true
+        },
+        navigation: {
+          nextEl: '.swiper-hp-visore-button.swiper-button-next',
+          prevEl: '.swiper-hp-visore-button.swiper-button-prev'
+        }
+      });
+      
+      $('.swiper-controls .btn-play').on('click', function (e) {
+					e.preventDefault()
+					swiperVisore.autoplay.start();
+					$('.swiper-controls .btn-play').addClass('disabled');
+					$('.swiper-controls .btn-pause').removeClass('disabled');
+				})
+				$('.swiper-controls .btn-pause').on('click', function (e) {
+					e.preventDefault()
+					swiperVisore.autoplay.stop();
+					$('.swiper-controls .btn-play').removeClass('disabled');
+					$('.swiper-controls .btn-pause').addClass('disabled');
+				})
+      /* ------------------------------------ */
+
+      /* ------------------------------------ *\
+            SWIPER DATI
+        \* ------------------------------------ */
+        var swiperDati = new Swiper('.swiper-container.swiper-dati', {
+            preventClicks: false,
+            preventClicksPropagation: false,
+            slidesPerView: 1,
+            slidesPerColumn: 2,
+            spaceBetween: 0,
+
+            pagination: {
+                el: '.swiper-dati-pagination.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-dati-button.swiper-button-next',
+                prevEl: '.swiper-dati-button.swiper-button-prev',
+            },
+
+            /*        breakpoints: {
+              768: {
+                slidesPerView: 3
+              },
+              640: {
+                slidesPerView: 2
+              }
+            }*/
+        });
+      /* ------------------------------------ */
+
+      /* ------------------------------------ *\
+          SWIPER ASTE
+      \* ------------------------------------ */
+	/* ------------------------------------ *\
+            SWIPER ASTE
+        \* ------------------------------------ */
+        var swiperAste = new Swiper('.swiper-container.swiper-aste', {
+            preventClicks: false,
+            preventClicksPropagation: false,
+            slidesPerView: 4,
+            // slidesPerGroup: 4,
+            spaceBetween: 0,
+            pagination: {
+                el: '.swiper-aste-pagination.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-aste-button.swiper-button-next',
+                prevEl: '.swiper-aste-button.swiper-button-prev',
+            },
+
+            breakpoints: {
+                768: {
+                    slidesPerView: 3,
+                    // slidesPerGroup: 3,
+                },
+                640: {
+                    slidesPerView: 2,
+                    // slidesPerGroup: 2
+                },
+            },
+        });
+        
+       /* ------------------------------------ *\
+            SWIPER PUBBLICAZIONI
+        \* ------------------------------------ */
+        var swiperPubblicazioni = new Swiper('.swiper-container.swiper-pubblicazioni', {
+            preventClicks: false,
+            preventClicksPropagation: false,
+            slidesPerView: 2,
+            spaceBetween: 10,
+            pagination: {
+                el: '.swiper-pubblicazioni-pagination.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-pubblicazioni-button.swiper-button-next',
+                prevEl: '.swiper-pubblicazioni-button.swiper-button-prev',
+            },
+
+            breakpoints: {
+                     1440: {
+            			slidesPerView: 2,
+        		},
+        		992: {
+            		slidesPerView: 1
+        		}
+
+            },
+        });
+ 
+         /* ------------------------------------ *\
+            SWIPER HP PUBBLICAZIONI
+        \* ------------------------------------ */
+        var swiperHpPubblicazioni = new Swiper('.swiper-container.swiper-hp-pubblicazioni', {
+            preventClicks: false,
+            preventClicksPropagation: false,
+            slidesPerView: 4,
+            slidesPerGroup: 4,
+            spaceBetween: 0,
+            pagination: {
+                el: '.swiper-hp-pubblicazioni-pagination.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-hp-pubblicazioni-button.swiper-button-next',
+                prevEl: '.swiper-hp-pubblicazioni-button.swiper-button-prev',
+            },
+
+            breakpoints: {
+                1280: {
+                    slidesPerView: 3,
+                    slidesPerGroup: 3,
+                },
+                991: {
+                    slidesPerView: 2,
+                    slidesPerGroup: 2,
+                },
+                640: {
+                    slidesPerView: 1,
+                    slidesPerGroup: 1,
+                },
+            },
+        });
+    </script>
+
+     <script>
+      /* SWIPER GALLERY */
+      var swiperGallery = new Swiper('.swiper-container.swiper-gallery', {
+        preventClicks: false,
+        preventClicksPropagation: false,
+        slidesPerView: 2,
+        centeredSlides: true,
+        spaceBetween: 30,
+        pagination: {
+          el: '.swiper-gallery-pagination.swiper-pagination',
+          clickable: true
+        },
+        navigation: {
+          nextEl: '.swiper-gallery-button.swiper-button-next',
+          prevEl: '.swiper-gallery-button.swiper-button-prev'
+        },
+        breakpoints: {
+          1280: {
+            slidesPerView: 2,
+            centeredSlides: true,
+            spaceBetween: 0
+          },
+          990: {
+            slidesPerView: 1,
+            spaceBetween: 0
+          }
+        }
+      });
+    </script>
+    
+        <script>
+      /* ------------------------------------ *\
+          SWIPER DOCS
+      \* ------------------------------------ */
+      var swiperAllegatiDef = new Swiper('.swiper-container.swiper-allegatidef', {
+        preventClicks: false,
+        preventClicksPropagation: false,
+        observer: true, // necessario per visualizzare correttamente la swiper dentro ai tab
+        observeParents: true, // necessario per visualizzare correttamente la swiper dentro ai tab
+        slidesPerView: 2,
+        spaceBetween: 30,
+        pagination: {
+          el: '.swiper-allegatidef-pagination.swiper-pagination',
+          clickable: true
+        },
+        navigation: {
+          nextEl: '.swiper-allegatidef-button.swiper-button-next',
+          prevEl: '.swiper-allegatidef-button.swiper-button-prev'
+        },
+
+        breakpoints: {
+          1199: {
+            slidesPerView: 1
+          }
+        }
+      });
+      /* ------------------------------------ */
+    </script>
+
+  </body>
+</html>
+
+
