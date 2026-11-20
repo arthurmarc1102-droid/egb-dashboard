@@ -1,4 +1,4 @@
-"""Download test: Italian auction results (MEF pages and PDFs) and MEF legal notice. Saves text in probe/raw/."""
+"""Download test (run 2): Italian auction results (MEF pages and PDFs) and MEF legal notice. Saves text in probe/raw/."""
 import urllib.request, datetime, pathlib, re, time, io
 from pypdf import PdfReader
 UA = {"User-Agent": "egb-dashboard/1.0 (+https://github.com/arthurmarc1102-droid/egb-dashboard)"}
