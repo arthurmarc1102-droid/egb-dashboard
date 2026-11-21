@@ -1,6 +1,6 @@
 # EGB Dashboard
 
-Dashboard of euro-area government bond (EGB) markets, built on public end-of-day data: curves and spreads to Germany, slopes, butterflies, z-scores and percentiles, regressions and correlations, short rates, Eurex bond futures (basis, implied repo, cheapest-to-deliver), auctions, news and calendar.
+Dashboard of euro-area government bond (EGB) markets, built on public end-of-day data: curves and spreads to Germany, slopes, butterflies, boxes, z-scores and percentiles, regressions, betas and correlations, a builder for any weighted structure, a chart workbench, z-score backtests with sensitivity grids and scans, PCA of the curve with factor-neutral butterflies, carry and roll-down, rich / cheap against a fitted Nelson-Siegel curve, short rates, Eurex bond futures (basis, implied repo, cheapest-to-deliver), auctions, news and calendar. Every table and chart exports to CSV.
 
 Author: Arthur Marc. Plain HTML, CSS and JavaScript (D3 for charts). Everything derived is computed in the browser from the JSON files in `data/`.
 
@@ -18,4 +18,5 @@ Author: Arthur Marc. Plain HTML, CSS and JavaScript (D3 for charts). Everything 
 - `data/raw/`: archives (Eurex settlements, basket file) and the log of the last run.
 - `pipeline/update.py`: downloads, checks and builds the data files. `pipeline/sources.py`: source list and known limits.
 - `src/`: page sources. `python3 build.py` assembles them into `index.html`.
+- `tests/`: comparison of the page with an independent Python implementation (`pipeline/check_lab.py`).
 - `docs/`: source audit, architecture, plan and journal (in French).

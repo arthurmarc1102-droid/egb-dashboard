@@ -89,7 +89,11 @@ notes = [
     "Eurex keeps only 36 trading days of settlement prices: the script archives them each day, so futures history grows from November 2026.",
     "A daily value that jumps away from both neighbours by 75 bp or more and comes back is treated as a publication error and left out (for example Spain 5-year on 8 July 2016). Each one is listed in data/raw/update_log.txt.",
     "Auctions: Germany (Finanzagentur, history since 2015), Spain (Tesoro Publico) and Italy (MEF result PDFs) are refreshed each day. The AFT site refuses automated access, so French results are those read on 19 Nov 2026 and French dates follow the AFT calendar rule. The MEF terms of reuse were not found.",
-    "Each run is checked before it is published: data present, sorted, in range and fresh; futures basis and CTD recomputed; auction cover equal to bids over allotted; every tab opened in a browser on desktop and phone. A failed check keeps the previous data online. Results in data/raw/verify.txt.",
+    "Builder: any weighted sum of yields and structures, in bp (a weight of 1 on a yield adds that yield times 100). Saved structures stay in the browser and can be shared by link.",
+    "Backtest: z on the window ending on the decision day, trade at the next close by default, P&L in bp of the structure with a flat cost per trade; carry, roll-down and financing are not included, and the test is in sample.",
+    "PCA: covariance of daily changes in bp over the chosen window. Rich / cheap: level residual after the first three components. Factor-neutral butterfly: wing weights that cancel the first two components.",
+    "Carry and roll-down: funding at the euro short-term rate (a proxy, not repo), roll-down read on today's curve with linear interpolation between maturities. Fitted curve: Nelson-Siegel by least squares each day, decay parameter on a grid.",
+    "Each run is checked before it is published: data present, sorted, in range and fresh; futures basis and CTD recomputed; auction cover equal to bids over allotted; every tab opened in a browser on desktop and phone, the builder, backtest, CSV export and custom range used like a person would; backtests, PCA, fitted curve and carry recomputed by an independent Python implementation and compared with the page. A failed check keeps the previous data online. Results in data/raw/verify.txt.",
 ]
 if EXTRA.exists():
     extra = json.load(open(EXTRA))

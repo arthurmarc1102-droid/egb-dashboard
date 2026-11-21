@@ -14,13 +14,13 @@
   const SLOPES = [[2, 10], [5, 30], [2, 5], [5, 10], [10, 30], [2, 30]];
   const FLIES = [[2, 5, 10], [5, 10, 30], [2, 10, 30], [5, 7, 10], [10, 15, 30], [10, 20, 30]];
   const HEADLINE = [2, 5, 10, 30];                    // maturities shown when several countries share the matrix
-  const WINDOWS = { '1M': 21, '3M': 63, '6M': 126, '1Y': 252 };          // z-score windows, in observations
-  const RANGES = { '3M': 63, '6M': 126, '1Y': 252, '2Y': 504, '5Y': 1260, 'Max': Infinity }; // chart look-back
+  const WINDOWS = { '1M': 21, '3M': 63, '6M': 126, '1Y': 252, '2Y': 504 };          // z-score windows, in observations
+  const RANGES = { '3M': 63, '6M': 126, '1Y': 252, '2Y': 504, '5Y': 1260, 'Max': Infinity, 'Custom': 'custom' }; // chart look-back
   const HORIZONS = { '1D': 1, '1W': 5, '1M': 21, 'YTD': 'ytd' };
   const HEAT_BP = { '1D': 10, '1W': 20, '1M': 40, 'YTD': 80 };           // change (bp) at which the tint saturates
   const HEAT_RET = { '1D': 0.5, '1W': 1, '1M': 2, 'YTD': 4 };            // same, for approximate returns (%)
-  const CATS = { all: 'All', outright: 'Outright', spread: 'Spread', slope: 'Slope', fly: 'Fly', box: 'Box' };
-  const TABS = [['monitor', 'Monitor'], ['curves', 'Curves'], ['rv', 'RV screen'], ['analysis', 'Analysis'], ['rates', 'Rates'],
+  const CATS = { all: 'All', outright: 'Outright', spread: 'Spread', slope: 'Slope', fly: 'Fly', box: 'Box', custom: 'Custom' };
+  const TABS = [['monitor', 'Monitor'], ['curves', 'Curves'], ['rv', 'RV screen'], ['builder', 'Builder'], ['analysis', 'Analysis'], ['curvelab', 'PCA & carry'], ['backtest', 'Backtest'], ['rates', 'Rates'],
     ['futures', 'Futures'], ['auctions', 'Auctions'], ['blotter', 'Blotter'], ['sources', 'Sources']];
 
   const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
@@ -32,7 +32,8 @@
   const S = Object.assign({
     tab: 'monitor', countries: null, win: '3M', range: '1Y', horizon: '1D', metric: 'bp', tenor: 10,
     shape: 'level', compare: 'none', slope: '2s10s', rvCat: 'all', rvSort: 'absz', rvDir: -1, rvSel: null,
-    pairA: null, pairB: null, regY: null, regX: null, corrSet: null, aucCountry: 'all', futSel: null, tables: {}
+    pairA: null, pairB: null, regY: null, regX: null, corrSet: null, aucCountry: 'all', futSel: null, tables: {},
+    from: '', to: '', bDraft: null, bEdit: null, wbIds: null, wbMode: 'level', bt: null, btSel: null, clC: null, clWin: '1Y', clHor: '3M', clFly: null
   }, restore());
 
   function restore() { try { return JSON.parse(localStorage.getItem('egb-state') || '{}'); } catch (e) { return {}; } }
@@ -160,7 +161,7 @@
     return { beta, alpha: my - beta * mx, r2: (sxy * sxy) / (sxx * syy), corr: sxy / Math.sqrt(sxx * syy), n };
   }
 
-  const tail = (s, n) => (Number.isFinite(n) ? { ...s, dates: s.dates.slice(-n), values: s.values.slice(-n) } : s);
+  const tail = (s, n) => (n === 'custom' ? inRange(s) : Number.isFinite(n) ? { ...s, dates: s.dates.slice(-n), values: s.values.slice(-n) } : s);
 
   // ===================================================================== 4. universe of structures
   /** Build every outright, spread, slope, butterfly and box the loaded yield series allow. */
@@ -199,7 +200,7 @@
   const availCountries = () => ORDER.filter(c => hasDaily(c) || monthly().some(x => x.country === c));
   const DC = () => S.countries.filter(hasDaily);       // selected countries that have daily yields
   const dailyNames = () => { const n = ORDER.filter(hasDaily).map(c => COUNTRIES[c]); return n.length > 1 ? n.slice(0, -1).join(', ') + ' and ' + n[n.length - 1] : n.join(''); };
-  const visible = () => U.filter(u => shown(u.country));
+  const visible = () => U.filter(u => u.cat === 'custom' || shown(u.country));
   const tenorsAvail = () => [...new Set(U.filter(u => u.cat === 'outright').map(u => u.tenor))].sort((a, b) => a - b);
   const level = u => num(u.values[u.values.length - 1], u.unit === 'pct' ? (u.decimals || 3) : 1);
   const unitLabel = u => (u.unit === 'pct' ? '%' : 'bp');
@@ -425,7 +426,7 @@
       host.append(h('div', { class: 'scroll', style: 'max-height:300px;overflow-y:auto' }, h('table', { class: 't' },
         h('thead', null, h('tr', null, t.head.map(c => h('th', null, c)))), h('tbody', null, t.rows.map(r => h('tr', null, r.map(c => h('td', null, c))))))));
     } else mount(host, o.draw);
-    return panel({ ...o, tools: [o.tools, toggle] }, host);
+    return panel({ ...o, tools: [o.tools, csvButton(o.id.replace(/^p-/, ''), () => o.table()), toggle] }, host);
   }
   /** Rows for the table twin of a multi-series chart, newest first. */
   function seriesTable(series, dec, fmt) {
@@ -640,9 +641,9 @@
   }
   function detailPanel(u, id, span, title) {
     const n = WINDOWS[S.win], st = stats(u, n), dec = u.unit === 'pct' ? (u.decimals || 3) : 1, r = RANGES[S.range];
-    const roll = rolling(u.values, n), cut = Number.isFinite(r) ? -r : 0;
-    const view = { name: u.name, color: u.country ? COL[u.country] : COL.DE, dates: u.dates.slice(cut), values: u.values.slice(cut) };
-    const bands = { mean: roll.mean.slice(cut), sd: roll.sd.slice(cut) };
+    const roll = rolling(u.values, n), cut = rangeStart(u.dates), cutEnd = S.range === 'Custom' && S.to ? d3.bisectRight(u.dates, S.to) : u.dates.length; void r;
+    const view = { name: u.name, color: u.country ? COL[u.country] : COL.DE, dates: u.dates.slice(cut, cutEnd), values: u.values.slice(cut, cutEnd) };
+    const bands = { mean: roll.mean.slice(cut, cutEnd), sd: roll.sd.slice(cut, cutEnd) };
     const z = { name: 'Z-score', color: COL.ink2, dates: view.dates, values: view.values.map((v, i) => (v - bands.mean[i]) / bands.sd[i]) };
     const zOk = { ...z, dates: z.dates.filter((d, i) => Number.isFinite(z.values[i])), values: z.values.filter(Number.isFinite) };
     const host = h('div'), host2 = h('div');
@@ -744,7 +745,7 @@
     const list = (DATA.market.series || []).filter(s => s.group === group);
     if (!list.length) return h('div', { class: 'grid' }, panel({ id: 'p-' + group, title }, h('div', { class: 'empty' }, emptyText)));
     const palette = ORDER.map(c => COL[c]);
-    const series = list.map((s, i) => ({ name: s.name, short: s.short || '', color: palette[i % palette.length], dates: s.dates.slice(-Math.min(s.dates.length, RANGES[S.range])), values: s.values.slice(-Math.min(s.values.length, RANGES[S.range])) }));
+    const series = list.map((s, i) => ({ name: s.name, short: s.short || '', color: palette[i % palette.length], ...inRange({ dates: s.dates, values: s.values }) }));
     const rows = list.map(s => { const u = { ...s, unit: s.unit || 'pct' }; const L = s.values.length; return h('tr', null, h('td', null, h('span', { class: 'name' }, s.name)), h('td', { class: 'lvl' }, num(s.values[L - 1], dec)), h('td', null, day(s.dates[L - 1])),
       ...['1D', '1W', '1M'].map(k => { const d = change(u, HORIZONS[k]); return heatCell(unit === 'bp' || u.unit === 'pct' ? bp(d) : num(d, 2, true), d, HEAT_BP[k]); })); });
     const chartSeries = series.slice(0, 8);
@@ -848,6 +849,8 @@
       panel({ id: 'p-methods', span: 's12', title: 'Methods' }, methods));
   }
 
+/*__LAB__*/
+
   // ===================================================================== 8. shell
   const root = () => document.getElementById('view');
   function hasGroup(g) { return DATA.market && DATA.market.series.some(s => s.group === g); }
@@ -862,18 +865,19 @@
       h('div', { class: 'fgroup' }, h('span', { class: 'flabel' }, 'Countries'), h('div', { class: 'seg', role: 'group', 'aria-label': 'Countries shown' },
         avail.map(c => h('button', { type: 'button', 'aria-pressed': String(S.countries.includes(c)), title: COUNTRIES[c], onclick: () => toggle(c) }, h('i', { class: 'swatch', style: 'background:' + COL[c] }), c)))),
       h('div', { class: 'fgroup' }, h('span', { class: 'flabel' }, 'Z-score window'), seg(Object.keys(WINDOWS).map(k => [k, k]), S.win, v => set({ win: v }), 'Z-score window')),
-      h('div', { class: 'fgroup' }, h('span', { class: 'flabel' }, 'Chart range'), seg(Object.keys(RANGES).map(k => [k, k]), S.range, v => set({ range: v }), 'Chart range')),
+      h('div', { class: 'fgroup' }, h('span', { class: 'flabel' }, 'Chart range'), seg(Object.keys(RANGES).map(k => [k, k]), S.range, v => set(v === 'Custom' && !S.from ? { range: v, from: d3.timeFormat('%Y-%m-%d')(d3.timeYear.offset(new Date(), -3)) } : { range: v }), 'Chart range'),
+        S.range === 'Custom' ? h('span', { class: 'daterange' }, h('input', { class: 'inp', type: 'date', value: S.from || '', 'aria-label': 'Chart range from', onchange: e => set({ from: e.target.value }) }), h('span', { class: 'muted' }, 'to'), h('input', { class: 'inp', type: 'date', value: S.to || '', 'aria-label': 'Chart range to (empty: latest)', onchange: e => set({ to: e.target.value }) })) : null),
       h('div', { class: 'legend-key' }, h('span', null, h('i', { style: 'background:' + COL.up }), 'higher, wider, cheaper'), h('span', null, h('i', { style: 'background:' + COL.down }), 'lower, tighter, richer')));
   }
   function render() {
     redraws.length = 0; renderShell();
-    const v = { monitor: viewMonitor, curves: viewCurves, rv: viewRV, analysis: viewAnalysis, auctions: viewAuctions, blotter: viewBlotter, sources: viewSources,
+    const v = { builder: viewBuilder, curvelab: viewCurveLab, backtest: viewBacktest, monitor: viewMonitor, curves: viewCurves, rv: viewRV, analysis: viewAnalysis, auctions: viewAuctions, blotter: viewBlotter, sources: viewSources,
       rates: () => groupView('mm', 'Money market and policy rates', '', '%', 3), futures: viewFutures }[S.tab] || viewMonitor;
     root().replaceChildren(v());
     persist();
   }
   function go(tab) { if (location.hash !== '#' + tab) { try { history.replaceState(null, '', '#' + tab); } catch (e) { location.hash = tab; } } set({ tab }); window.scrollTo(0, 0); }
-  function fromHash() { const id = location.hash.replace('#', ''); if (tabsAvailable().some(t => t[0] === id) && id !== S.tab) set({ tab: id }); }
+  function fromHash() { const id = location.hash.replace('#', '').split('/')[0]; if (tabsAvailable().some(t => t[0] === id) && id !== S.tab) set({ tab: id }); }
 
   async function loadJSON(name) { try { const r = await fetch('data/' + name + '.json', { cache: 'no-cache' }); return r.ok ? await r.json() : null; } catch (e) { return null; } }
 
@@ -886,11 +890,11 @@
       root().replaceChildren(h('div', { class: 'grid' }, panel({ id: 'p-missing', title: 'No market data' }, h('div', { class: 'empty' }, 'The file data/market.json could not be loaded. The page needs it to show anything.'))));
       return;
     }
-    U = buildUniverse(market); BYID = new Map(U.map(u => [u.id, u]));
+    U = buildUniverse(market); BYID = new Map(U.map(u => [u.id, u])); initLab(market);
     const avail = availCountries();
     S.countries = (S.countries || avail).filter(c => avail.includes(c)); if (!S.countries.length) S.countries = avail;
     const tn = tenorsAvail(); if (!tn.includes(S.tenor)) S.tenor = tn.includes(10) ? 10 : tn[tn.length - 1];
-    const id = location.hash.replace('#', ''); if (tabsAvailable().some(t => t[0] === id)) S.tab = id; if (!tabsAvailable().some(t => t[0] === S.tab)) S.tab = 'monitor';
+    const id = location.hash.replace('#', '').split('/')[0]; if (tabsAvailable().some(t => t[0] === id)) S.tab = id; if (!tabsAvailable().some(t => t[0] === S.tab)) S.tab = 'monitor';
     const last = d3.max(U.filter(u => u.cat === 'outright'), u => u.dates[u.dates.length - 1]);
     document.getElementById('asof').replaceChildren('Close of ', h('b', null, fDow(parseD(last))), ...(market.private ? [h('span', { class: 'pill warn', style: 'margin-left:10px' }, 'Private version')] : []));
     document.getElementById('status').textContent = market.status || '';

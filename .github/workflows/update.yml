@@ -4,7 +4,7 @@ on:
     - cron: '17 19 * * 1-5'   # evening run, after Eurex settlement and the Banque de France export
     - cron: '23 6 * * 2-6'    # morning run, for sources published overnight
   push:
-    paths: ['pipeline/update.py', 'pipeline/auctions.py', 'pipeline/sources.py', 'pipeline/verify.py', 'pipeline/page_check.mjs', '.github/workflows/update.yml']
+    paths: ['pipeline/**', 'tests/**', 'index.html', '.github/workflows/update.yml']
   workflow_dispatch:
 permissions:
   contents: write
@@ -21,7 +21,7 @@ jobs:
         with: {python-version: '3.12'}
       - uses: actions/setup-node@v4
         with: {node-version: '20'}
-      - run: pip install openpyxl pypdf
+      - run: pip install openpyxl pypdf numpy
       - name: Download and build data
         run: python pipeline/update.py
       - name: Sources and limits
@@ -33,6 +33,10 @@ jobs:
           npm install --no-save --silent playwright@1.49.1
           npx playwright install --with-deps chromium > /dev/null
           node pipeline/page_check.mjs .
+      - name: Check the lab figures against an independent Python implementation
+        run: |
+          sh tests/run_lab_check.sh
+          tail -1 /tmp/lab_check.txt | sed 's/^/OK    lab: /' >> data/raw/verify.txt
       - name: Publish data
         run: |
           git config user.name "github-actions[bot]"

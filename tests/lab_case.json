@@ -1,0 +1,9 @@
+{"backtests": {
+  "A": {"id": "FR-DE_10Y", "p": {"win": 63, "entry": 2, "exit": 0.5, "stop": 4, "maxHold": 60, "cost": 0.5, "side": "both", "mode": "revert", "lag": 1, "from": "", "to": ""}, "legs": [["FR", 10, 1], ["DE", 10, -1]]},
+  "B": {"id": "DE_2s10s", "p": {"win": 126, "entry": 1.5, "exit": 0.5, "stop": 0, "maxHold": 0, "cost": 0.2, "side": "long", "mode": "trend", "lag": 0, "from": "", "to": ""}, "legs": [["DE", 2, -1], ["DE", 10, 1]]},
+  "C": {"id": "DE_2s5s10s", "p": {"win": 252, "entry": 2.5, "exit": 0, "stop": 0, "maxHold": 20, "cost": 1, "side": "both", "mode": "revert", "lag": 1, "from": "", "to": ""}, "legs": [["DE", 2, -1], ["DE", 5, 2], ["DE", 10, -1]]},
+  "D": {"id": "X1", "p": {"win": 63, "entry": 2, "exit": 0.5, "stop": 3.5, "maxHold": 40, "cost": 0.3, "side": "short", "mode": "revert", "lag": 1, "from": "", "to": ""}, "legs": [["FR", 2, -1], ["FR", 10, 1], ["DE", 2, 1], ["DE", 10, -1]]}
+ },
+ "custom": [{"id": "X1", "name": "my box", "legs": [{"id": "FR_2Y", "w": -1}, {"id": "FR_10Y", "w": 1}, {"id": "DE_2Y", "w": 1}, {"id": "DE_10Y", "w": -1}]}],
+ "pcaPage": [["DE", "1Y"], ["FR", "2Y"]],
+ "pca": [["DE", 252], ["FR", 504]], "carry": [["DE", 0.25], ["FR", 0.25]], "ns": [["DE", 252], ["FR", 504]]}
