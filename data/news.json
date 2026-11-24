@@ -2,6 +2,36 @@
 "note": "Titles and links from the ECB, Bundesbank and Banco de Espana feeds, read each day and archived (400 most recent). Press feeds are not included: their terms of use have not been read.",
 "items": [
 {
+"date": "2026-11-24",
+"source": "ECB",
+"title": "Boris Vujčić: Resilience in an age of shocks: lessons from central and eastern Europe",
+"url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261124~17928e5456.en.html"
+},
+{
+"date": "2026-11-24",
+"source": "Bundesbank",
+"title": "Invitation to bid by auction – Reopening 10-year Federal bond",
+"url": "https://www.bundesbank.de/en/press/press-releases/federal-securities/invitation-to-bid-by-auction-reopening-10-year-federal-bond-965006"
+},
+{
+"date": "2026-11-24",
+"source": "Bundesbank",
+"title": "Announcement – Federal Treasury discount paper (Bubills)",
+"url": "https://www.bundesbank.de/en/press/press-releases/federal-securities/announcement-federal-treasury-discount-paper-bubills--965000"
+},
+{
+"date": "2026-11-24",
+"source": "Banco de Espana",
+"title": "Main economic-financial indicators of non-financial corporations (2025 and 2026 Q3)",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-banco-espana/notas-banco-espana/las-empresas-mejoraron-su-situacion-economica-en-2025-y-mantuvieron-la-tendencia-en-los-nueve-primeros-meses-de-2026.html"
+},
+{
+"date": "2026-11-24",
+"source": "Banco de Espana",
+"title": "Main economic-financial indicators of non-financial corporations (2026 Q3)",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-banco-espana/cb-3t2026.html"
+},
+{
 "date": "2026-11-23",
 "source": "ECB",
 "title": "Philip R. Lane: Climate change and monetary policy",
@@ -350,5 +380,5 @@
 "url": "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260611~4d41bd5e83.en.html"
 }
 ],
-"updated": "2026-11-24T04:18:29+00:00"
+"updated": "2026-11-24T17:55:29+00:00"
 }

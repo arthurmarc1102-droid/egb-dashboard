@@ -5,7 +5,7 @@
   "eurex",
   "bbk_prices"
  ],
- "note": "Settlement prices and deliverable baskets: Eurex, shown with the written consent of Deutsche Boerse. Basis, implied repo and cheapest-to-deliver are shown for the German front contracts. Bond prices are the Bundesbank reference prices of 23 Nov 2026, set around midday in Frankfurt, while futures settle at 17:15 CET, so the basis is indicative. Bond value date 25 Nov 2026, delivery on the 10th of the delivery month. Net basis finances the bond at the euro short-term rate (2.444 % on 20 Nov 2026), not at a repo rate. No free price by bond is verified for French and Italian bonds, so their baskets show conversion factors only.",
+ "note": "Settlement prices and deliverable baskets: Eurex, shown with the written consent of Deutsche Boerse. Basis, implied repo and cheapest-to-deliver are shown for the German front contracts. Bond prices are the Bundesbank reference prices of 23 Nov 2026, set around midday in Frankfurt, while futures settle at 17:15 CET, so the basis is indicative. Bond value date 25 Nov 2026, delivery on the 10th of the delivery month. Net basis finances the bond at the euro short-term rate (2.443 % on 23 Nov 2026), not at a repo rate. No free price by bond is verified for French and Italian bonds, so their baskets show conversion factors only.",
  "products": [
   {
    "code": "FGBS",
@@ -138,7 +138,7 @@
        "gross_basis": -0.0743,
        "yield": 3.1334,
        "implied_repo": 4.646,
-       "net_basis": -0.0917,
+       "net_basis": -0.0918,
        "ctd": true
       },
       {
@@ -229,7 +229,7 @@
        "gross_basis": 0.4567,
        "yield": 3.2809,
        "implied_repo": -8.139,
-       "net_basis": 0.4389
+       "net_basis": 0.4388
       },
       {
        "isin": "DE000BU2Z056",
@@ -240,7 +240,7 @@
        "gross_basis": -0.1822,
        "yield": 3.2629,
        "implied_repo": 7.245,
-       "net_basis": -0.1915,
+       "net_basis": -0.1916,
        "ctd": true
       }
      ]
@@ -292,7 +292,7 @@
        "gross_basis": -0.1297,
        "yield": 3.6679,
        "implied_repo": 6.863,
-       "net_basis": -0.1602
+       "net_basis": -0.1603
       },
       {
        "isin": "DE000BU2D004",
@@ -315,7 +315,7 @@
        "gross_basis": 0.6334,
        "yield": 3.6733,
        "implied_repo": -38.444,
-       "net_basis": 0.6737
+       "net_basis": 0.6736
       },
       {
        "isin": "DE0001102614",
