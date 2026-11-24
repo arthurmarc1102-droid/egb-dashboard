@@ -1,11 +1,11 @@
 {
- "asof": "2026-11-20",
+ "asof": "2026-11-23",
  "private": false,
  "sources": [
   "eurex",
   "bbk_prices"
  ],
- "note": "Settlement prices and deliverable baskets: Eurex, shown with the written consent of Deutsche Boerse. Basis, implied repo and cheapest-to-deliver are shown for the German front contracts. Bond prices are the Bundesbank reference prices of 20 Nov 2026, set around midday in Frankfurt, while futures settle at 17:15 CET, so the basis is indicative. Bond value date 24 Nov 2026, delivery on the 10th of the delivery month. Net basis finances the bond at the euro short-term rate (2.441 % on 19 Nov 2026), not at a repo rate. No free price by bond is verified for French and Italian bonds, so their baskets show conversion factors only.",
+ "note": "Settlement prices and deliverable baskets: Eurex, shown with the written consent of Deutsche Boerse. Basis, implied repo and cheapest-to-deliver are shown for the German front contracts. Bond prices are the Bundesbank reference prices of 23 Nov 2026, set around midday in Frankfurt, while futures settle at 17:15 CET, so the basis is indicative. Bond value date 25 Nov 2026, delivery on the 10th of the delivery month. Net basis finances the bond at the euro short-term rate (2.444 % on 20 Nov 2026), not at a repo rate. No free price by bond is verified for French and Italian bonds, so their baskets show conversion factors only.",
  "products": [
   {
    "code": "FGBS",
@@ -18,9 +18,20 @@
      "label": "Dec 26",
      "delivery": "2026-12-10",
      "settle": 105.025,
-     "volume": 983430,
-     "open_interest": 3374734,
+     "volume": 828073,
+     "open_interest": 3312299,
      "basket": [
+      {
+       "isin": "DE000BU25018",
+       "coupon": 2.4,
+       "maturity": "2028-10-19",
+       "cf": 0.938364,
+       "price": 98.765,
+       "gross_basis": 0.2133,
+       "yield": 3.0778,
+       "implied_repo": -2.78,
+       "net_basis": 0.2155
+      },
       {
        "isin": "DE000BU22148",
        "coupon": 2.7,
@@ -28,43 +39,32 @@
        "cf": 0.946091,
        "price": 99.34,
        "gross_basis": -0.0232,
-       "yield": 3.0721,
-       "implied_repo": 3.175,
-       "net_basis": -0.0327,
+       "yield": 3.0727,
+       "implied_repo": 3.21,
+       "net_basis": -0.032,
        "ctd": true
-      },
-      {
-       "isin": "DE000BU25018",
-       "coupon": 2.4,
-       "maturity": "2028-10-19",
-       "cf": 0.938364,
-       "price": 98.76,
-       "gross_basis": 0.2083,
-       "yield": 3.0797,
-       "implied_repo": -2.344,
-       "net_basis": 0.2105
       },
       {
        "isin": "DE0001102465",
        "coupon": 0.25,
        "maturity": "2029-02-15",
        "cf": 0.885495,
-       "price": 94.058,
-       "gross_basis": 1.0589,
-       "yield": 3.0495,
-       "implied_repo": -25.017,
-       "net_basis": 1.1502
+       "price": 94.075,
+       "gross_basis": 1.0759,
+       "yield": 3.0446,
+       "implied_repo": -27.13,
+       "net_basis": 1.1616
       },
       {
        "isin": "DE0001102556",
        "coupon": 0.0,
        "maturity": "2028-11-15",
        "cf": 0.893556,
-       "price": 94.27,
-       "gross_basis": 0.4243,
-       "yield": 3.0323,
-       "implied_repo": -10.127,
-       "net_basis": 0.5266
+       "price": 94.285,
+       "gross_basis": 0.4393,
+       "yield": 3.0282,
+       "implied_repo": -11.182,
+       "net_basis": 0.5353
       }
      ]
     },
@@ -72,9 +72,9 @@
      "expiry": "20270308",
      "label": "Mar 27",
      "delivery": "2027-03-10",
-     "settle": 104.975,
-     "volume": 32801,
-     "open_interest": 138402,
+     "settle": 104.98,
+     "volume": 25973,
+     "open_interest": 142937,
      "basket": [
       {
        "isin": "DE000BU35025",
@@ -114,31 +114,31 @@
      "expiry": "20261208",
      "label": "Dec 26",
      "delivery": "2026-12-10",
-     "settle": 113.35,
-     "volume": 1054663,
-     "open_interest": 1947566,
+     "settle": 113.43,
+     "volume": 792296,
+     "open_interest": 1820298,
      "basket": [
       {
        "isin": "DE0001102564",
        "coupon": 0.0,
        "maturity": "2031-08-15",
        "cf": 0.761347,
-       "price": 86.47,
-       "gross_basis": 0.1713,
-       "yield": 3.1256,
-       "implied_repo": -4.458,
-       "net_basis": 0.2651
+       "price": 86.52,
+       "gross_basis": 0.1604,
+       "yield": 3.1149,
+       "implied_repo": -4.45,
+       "net_basis": 0.2485
       },
       {
        "isin": "DE000BU25075",
        "coupon": 2.9,
        "maturity": "2031-10-08",
        "cf": 0.872911,
-       "price": 98.88,
-       "gross_basis": -0.0645,
-       "yield": 3.1468,
-       "implied_repo": 4.316,
-       "net_basis": -0.0833,
+       "price": 98.94,
+       "gross_basis": -0.0743,
+       "yield": 3.1334,
+       "implied_repo": 4.646,
+       "net_basis": -0.0917,
        "ctd": true
       },
       {
@@ -146,22 +146,22 @@
        "coupon": 0.0,
        "maturity": "2031-08-15",
        "cf": 0.761347,
-       "price": 86.5,
-       "gross_basis": 0.2013,
-       "yield": 3.1181,
-       "implied_repo": -5.237,
-       "net_basis": 0.2951
+       "price": 86.56,
+       "gross_basis": 0.2004,
+       "yield": 3.1048,
+       "implied_repo": -5.557,
+       "net_basis": 0.2885
       },
       {
        "isin": "DE0001102580",
        "coupon": 0.0,
        "maturity": "2032-02-15",
        "cf": 0.739308,
-       "price": 85.06,
-       "gross_basis": 1.2594,
-       "yield": 3.1439,
-       "implied_repo": -33.315,
-       "net_basis": 1.3517
+       "price": 85.13,
+       "gross_basis": 1.2703,
+       "yield": 3.1293,
+       "implied_repo": -35.812,
+       "net_basis": 1.357
       }
      ]
     },
@@ -169,9 +169,9 @@
      "expiry": "20270308",
      "label": "Mar 27",
      "delivery": "2027-03-10",
-     "settle": 112.59,
-     "volume": 3692,
-     "open_interest": 23017,
+     "settle": 112.67,
+     "volume": 8358,
+     "open_interest": 30258,
      "basket": [
       {
        "isin": "DE0001102606",
@@ -205,42 +205,42 @@
      "expiry": "20261208",
      "label": "Dec 26",
      "delivery": "2026-12-10",
-     "settle": 122.61,
-     "volume": 1350001,
-     "open_interest": 2004009,
+     "settle": 122.87,
+     "volume": 1146525,
+     "open_interest": 1913833,
      "basket": [
       {
        "isin": "DE000BU2Z072",
        "coupon": 3.0,
        "maturity": "2036-08-15",
        "cf": 0.784157,
-       "price": 97.36,
-       "gross_basis": 1.2145,
-       "yield": 3.3201,
-       "implied_repo": -24.742,
-       "net_basis": 1.1898
+       "price": 97.49,
+       "gross_basis": 1.1406,
+       "yield": 3.3041,
+       "implied_repo": -24.757,
+       "net_basis": 1.1177
       },
       {
        "isin": "DE000BU2Z064",
        "coupon": 2.9,
        "maturity": "2036-02-15",
        "cf": 0.785735,
-       "price": 96.86,
-       "gross_basis": 0.521,
-       "yield": 3.2989,
-       "implied_repo": -8.917,
-       "net_basis": 0.5017
+       "price": 97.0,
+       "gross_basis": 0.4567,
+       "yield": 3.2809,
+       "implied_repo": -8.139,
+       "net_basis": 0.4389
       },
       {
        "isin": "DE000BU2Z056",
        "coupon": 2.6,
        "maturity": "2035-08-15",
        "cf": 0.774902,
-       "price": 94.9,
-       "gross_basis": -0.1107,
-       "yield": 3.2806,
-       "implied_repo": 5.288,
-       "net_basis": -0.1209,
+       "price": 95.03,
+       "gross_basis": -0.1822,
+       "yield": 3.2629,
+       "implied_repo": 7.245,
+       "net_basis": -0.1915,
        "ctd": true
       }
      ]
@@ -249,9 +249,9 @@
      "expiry": "20270308",
      "label": "Mar 27",
      "delivery": "2027-03-10",
-     "settle": 122.65,
-     "volume": 8146,
-     "open_interest": 15626,
+     "settle": 122.92,
+     "volume": 10018,
+     "open_interest": 20578,
      "basket": [
       {
        "isin": "DE000BU2Z064",
@@ -279,31 +279,31 @@
      "expiry": "20261208",
      "label": "Dec 26",
      "delivery": "2026-12-10",
-     "settle": 105.94,
-     "volume": 171459,
-     "open_interest": 383937,
+     "settle": 106.52,
+     "volume": 126832,
+     "open_interest": 354893,
      "basket": [
       {
        "isin": "DE000BU2D012",
        "coupon": 2.9,
        "maturity": "2056-08-15",
        "cf": 0.810737,
-       "price": 85.82,
-       "gross_basis": -0.0695,
-       "yield": 3.6932,
-       "implied_repo": 5.107,
-       "net_basis": -0.1026
+       "price": 86.23,
+       "gross_basis": -0.1297,
+       "yield": 3.6679,
+       "implied_repo": 6.863,
+       "net_basis": -0.1602
       },
       {
        "isin": "DE000BU2D004",
        "coupon": 2.5,
        "maturity": "2054-08-15",
        "cf": 0.75153,
-       "price": 79.4,
-       "gross_basis": -0.2171,
-       "yield": 3.7002,
-       "implied_repo": 9.177,
-       "net_basis": -0.2398,
+       "price": 79.8,
+       "gross_basis": -0.253,
+       "yield": 3.6733,
+       "implied_repo": 10.605,
+       "net_basis": -0.2738,
        "ctd": true
       },
       {
@@ -311,33 +311,33 @@
        "coupon": 0.0,
        "maturity": "2052-08-15",
        "cf": 0.365252,
-       "price": 39.3,
-       "gross_basis": 0.6052,
-       "yield": 3.6975,
-       "implied_repo": -34.649,
-       "net_basis": 0.6478
+       "price": 39.54,
+       "gross_basis": 0.6334,
+       "yield": 3.6733,
+       "implied_repo": -38.444,
+       "net_basis": 0.6737
       },
       {
        "isin": "DE0001102614",
        "coupon": 1.8,
        "maturity": "2053-08-15",
        "cf": 0.643086,
-       "price": 68.05,
-       "gross_basis": -0.0785,
-       "yield": 3.7031,
-       "implied_repo": 5.168,
-       "net_basis": -0.083
+       "price": 68.39,
+       "gross_basis": -0.1115,
+       "yield": 3.6775,
+       "implied_repo": 6.462,
+       "net_basis": -0.1153
       },
       {
        "isin": "DE0001030757",
        "coupon": 1.8,
        "maturity": "2053-08-15",
        "cf": 0.643086,
-       "price": 68.2,
-       "gross_basis": 0.0715,
-       "yield": 3.6917,
-       "implied_repo": 0.244,
-       "net_basis": 0.0671
+       "price": 68.52,
+       "gross_basis": 0.0185,
+       "yield": 3.6677,
+       "implied_repo": 1.93,
+       "net_basis": 0.0148
       }
      ]
     },
@@ -345,9 +345,9 @@
      "expiry": "20270308",
      "label": "Mar 27",
      "delivery": "2027-03-10",
-     "settle": 105.38,
-     "volume": 1014,
-     "open_interest": 6764,
+     "settle": 105.98,
+     "volume": 3662,
+     "open_interest": 9453,
      "basket": [
       {
        "isin": "DE0001102614",
@@ -368,16 +368,16 @@
        "cf": 0.644953
       },
       {
-       "isin": "DE000BU2D004",
-       "coupon": 2.5,
-       "maturity": "2054-08-15",
-       "cf": 0.752746
-      },
-      {
        "isin": "DE000BU2D012",
        "coupon": 2.9,
        "maturity": "2056-08-15",
        "cf": 0.811555
+      },
+      {
+       "isin": "DE000BU2D004",
+       "coupon": 2.5,
+       "maturity": "2054-08-15",
+       "cf": 0.752746
       }
      ]
     }
@@ -393,9 +393,9 @@
      "expiry": "20261208",
      "label": "Dec 26",
      "delivery": "2026-12-10",
-     "settle": 109.19,
-     "volume": 232544,
-     "open_interest": 776486,
+     "settle": 110.08,
+     "volume": 242279,
+     "open_interest": 798441,
      "basket": [
       {
        "isin": "FR0014012II5",
@@ -415,9 +415,9 @@
      "expiry": "20270308",
      "label": "Mar 27",
      "delivery": "2027-03-10",
-     "settle": 108.33,
-     "volume": 558,
-     "open_interest": 2029,
+     "settle": 109.19,
+     "volume": 1008,
+     "open_interest": 2612,
      "basket": [
       {
        "isin": "FR0014018YR0",
@@ -445,9 +445,9 @@
      "expiry": "20261208",
      "label": "Dec 26",
      "delivery": "2026-12-10",
-     "settle": 112.66,
-     "volume": 255916,
-     "open_interest": 634069,
+     "settle": 113.2,
+     "volume": 260880,
+     "open_interest": 642238,
      "basket": [
       {
        "isin": "IT0005706285",
@@ -491,9 +491,9 @@
      "expiry": "20270308",
      "label": "Mar 27",
      "delivery": "2027-03-10",
-     "settle": 111.95,
-     "volume": 896,
-     "open_interest": 2951,
+     "settle": 112.5,
+     "volume": 1052,
+     "open_interest": 3838,
      "basket": [
       {
        "isin": "IT0005648149",

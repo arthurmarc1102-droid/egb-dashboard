@@ -2,6 +2,30 @@
 "note": "Titles and links from the ECB, Bundesbank and Banco de Espana feeds, read each day and archived (400 most recent). Press feeds are not included: their terms of use have not been read.",
 "items": [
 {
+"date": "2026-11-23",
+"source": "ECB",
+"title": "Philip R. Lane: Climate change and monetary policy",
+"url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261123~b5816801a0.en.pdf"
+},
+{
+"date": "2026-11-23",
+"source": "ECB",
+"title": "ECB expands acceptance of DLT-based assets as eligible Eurosystem collateral",
+"url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261123~76b6f57b74.en.html"
+},
+{
+"date": "2026-11-23",
+"source": "Bundesbank",
+"title": "Auction result – Federal Treasury discount paper (Bubills)",
+"url": "https://www.bundesbank.de/en/press/press-releases/federal-securities/auction-result-federal-treasury-discount-paper-bubills--962478"
+},
+{
+"date": "2026-11-23",
+"source": "Banco de Espana",
+"title": "ECB expands acceptance of DLT-based assets as eligible Eurosystem collateral",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-bce/notas-prensa-bce/bce-colareral.html"
+},
+{
 "date": "2026-11-20",
 "source": "ECB",
 "title": "Christine Lagarde: Acting in time",
@@ -326,5 +350,5 @@
 "url": "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260611~4d41bd5e83.en.html"
 }
 ],
-"updated": "2026-11-21T21:50:06+00:00"
+"updated": "2026-11-24T04:18:29+00:00"
 }
