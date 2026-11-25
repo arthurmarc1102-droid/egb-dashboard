@@ -1,4 +1,4 @@
-Checks of 2026-11-25 15:25 UTC
+Checks of 2026-11-25 15:32 UTC
 OK    market: 29 daily series and 8 monthly series present, sorted, in range and fresh
 OK    market against the double-read snapshot of 19 Nov 2026: 6723 values, 0 differences
 OK    futures: 47 basket bonds checked against the Eurex file, gross basis and CTD recomputed

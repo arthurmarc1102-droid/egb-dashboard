@@ -182,18 +182,6 @@
    "note": "No country detail."
   },
   {
-   "id": "eurostat_daily",
-   "name": "10-year yields by country, daily",
-   "short": "Eurostat",
-   "publisher": "Eurostat",
-   "covers": "Was daily, by country",
-   "frequency": "Stopped",
-   "status": "planned",
-   "used": false,
-   "url": "https://ec.europa.eu/eurostat/cache/metadata/en/irt_lt_mcby_esms.htm",
-   "note": "The daily dataset no longer answers; mirrors stop in June 2025."
-  },
-  {
    "id": "bdf_oat",
    "name": "Indicative rates of Treasury bills and OAT",
    "short": "Banque de France",
@@ -266,6 +254,30 @@
    "note": "No free and reusable daily source was found. An asset swap proxy would need a swap curve first."
   },
   {
+   "id": "eurostat_mcby_d",
+   "name": "EMU convergence criterion series, daily data (irt_lt_mcby_d)",
+   "short": "Eurostat",
+   "publisher": "Eurostat",
+   "covers": "Daily 10-year yields by country, Italy included",
+   "frequency": "Withdrawn",
+   "status": "blocked",
+   "used": false,
+   "url": "https://ec.europa.eu/eurostat/cache/metadata/en/irt_lt_mcby_esms.htm",
+   "note": "No longer published: the dataset is absent from the Eurostat catalogue and every call to it returns HTTP 404 (tested from GitHub on 25 Nov 2026). The monthly series remain and are used."
+  },
+  {
+   "id": "bdi_bmk",
+   "name": "Benchmark government securities, gross yields, daily (table BMK0200)",
+   "short": "Banca d'Italia",
+   "publisher": "Banca d'Italia",
+   "covers": "Italy: benchmark BTP at 3, 5, 10 and 30 years, CCT",
+   "frequency": "Daily values, file refreshed about once a month",
+   "status": "planned",
+   "used": false,
+   "url": "https://www.bancaditalia.it/footer/copyright",
+   "note": "The download works (tested from GitHub on 25 Nov 2026: 13,870 daily rows). Not loaded: the bank's terms require its prior written authorisation to reproduce content on another site, and these yields come from a third-party market. To request from statistiche@bancaditalia.it."
+  },
+  {
    "id": "isin_other",
    "name": "Prices by bond for France, Italy and Spain",
    "short": "Stock exchanges and central banks",
@@ -279,7 +291,7 @@
   }
  ],
  "notes": [
-  "Daily yields since January 2015 for Germany, France and Spain, refreshed each weekday by a script on GitHub Actions. The French curve is the TEC index family of Euronext Paris, shown with its written authorisation. No daily source is verified for Italy. Spreads for the other countries are shown on monthly averages.",
+  "Daily yields since January 2015 for Germany, France and Spain, refreshed each weekday by a script on GitHub Actions. The French curve is the TEC index family of Euronext Paris, shown with its written authorisation. No daily Italian yield can be shown yet: Eurostat withdrew its daily series, and the daily table of Banca d'Italia needs a written authorisation (both are in the list of sources audited). Spreads for the other countries are shown on monthly averages.",
   "The three daily curves are not built the same way: an estimated par curve for Germany, yields interpolated between benchmark bonds for France, yields from market trades for Spain. Daily spreads are indicative.",
   "Yields are official daily fixings, not closing prices. The French TEC indices use prices taken at 11:00 and are published around 11:30. The German curve of a day is online the same afternoon (seen at 14:40 UTC on 25 Nov 2026); the Bundesbank reference prices of German bonds are set around midday. A 1-day change runs from one fixing to the next, and French and German yields may not be taken at the same time of day.",
   "Spanish yields are published two business days late, so Spain usually shows an older date than Germany and France.",
