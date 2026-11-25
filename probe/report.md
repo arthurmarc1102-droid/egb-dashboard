@@ -1,78 +1,35 @@
-# Download test, Eurex statistics page scripts, 2026-11-25 15:23 UTC
+# Download test, Eurex options by strike, 2026-11-25 15:31 UTC
 
-data attributes and config in the page: []
-components named in the page: ['main-navigation', 'slider']
-around the statistics container:  
-  tag: <meta name="twitter:title" content="Market statistics (online) " />
-  tag: <meta name="twitter:url" content="https://www.eurex.com/dynamic/action/ex-en/data/statistics/market-statistics-online/100/Market-statistics-online-">
-  tag: <meta property="og:title" content="Market statistics (online) "/>
-  tag: <meta property="og:url" content="https://www.eurex.com/dynamic/action/ex-en/data/statistics/market-statistics-online/100/Market-statistics-online-">
-  tag: <link rel="canonical" href="https://www.eurex.com/dynamic/action/ex-en/data/statistics/market-statistics-online/100/Market-statistics-online-">
-  tag: <a class="sub-navigation-point" data-sub-navigation-point
-href="/ex-en/data/statistics">
-  tag: <a class="sub-sub-navigation-point"
-href="/ex-en/data/statistics/market-statistics-online">
-  tag: <a class="sub-sub-navigation-point"
-href="/ex-en/data/statistics/trading-statistics">
-  tag: <a class="sub-sub-navigation-point"
-href="/ex-en/data/statistics/monthly-statistics">
-  tag: <a class="sub-sub-navigation-point"
-href="/ex-en/data/statistics/repo-statistics">
-  tag: <a class="sub-sub-navigation-point"
-href="/ex-en/data/statistics/snapshot-summary-report">
-  tag: <a class=""
-href="/ex-en/data/statistics">
-  tag: <a class="main-navigation-button"
-href="/ex-en/data/statistics/market-statistics-online">
-  tag: <a class="main-navigation-button"
-href="/ex-en/data/statistics/trading-statistics">
-  tag: <a class="main-navigation-button"
-href="/ex-en/data/statistics/monthly-statistics">
-  tag: <a class="main-navigation-button"
-href="/ex-en/data/statistics/repo-statistics">
-  tag: <a class="main-navigation-button"
-href="/ex-en/data/statistics/snapshot-summary-report">
-  tag: <a href=/ex-en/data/statistics id="linkable_2"
-class="breadcrumb-brick__link">
-  tag: <a href=/ex-en/data/statistics/market-statistics-online id="linkable_3"
-class="breadcrumb-brick__link">
-  tag: <a class="link parent-link "
-href="/ex-en/data/statistics"
-data-active-tab="false"
->
-  tag: <a class="link current-site"
-href="/ex-en/data/statistics/market-statistics-online"
-data-active-tab="true"
-current-site
->
-  tag: <a class="link "
-href="/ex-en/data/statistics/trading-statistics"
-data-active-tab="false"
->
-  tag: <a class="link "
-href="/ex-en/data/statistics/monthly-statistics"
-data-active-tab="false"
->
-  tag: <a class="link "
-href="/ex-en/data/statistics/repo-statistics"
-data-active-tab="false"
->
-  tag: <a class="link "
-href="/ex-en/data/statistics/snapshot-summary-report"
-data-active-tab="false"
->
-  tag: <a href="http://www.facebook.com/sharer.php?s=100&amp;u=https://www.eurex.com/dynamic/action/ex-en/data/statistics/market-statistics-online/100/Market-statistics-online-&amp;title=Market statistics (online) &amp;summary=&amp;images[0]=" class="dbx-link dbx-print-share__link ">
-  tag: <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.eurex.com/dynamic/action/ex-en/data/statistics/market-statistics-online/100/Market-statistics-online-&amp;title=Market statistics (online) &amp;summary=&amp;source=EUREX-EXCHANGE" class="dbx-link dbx-print-share__link ">
-  tag: <form class="dbx-form" id="" action="/ex-en/data/statistics/market-statistics-online/100!onlineStats" method="get" cssClass="formView" >
-## chunk map: 5657 chars, 0 script paths; start: (function () {
-  function getOrigin(anchor) {
-    return anchor.protocol + "//" + anchor.host;
-  }
-
-  function getAbsoluteUrl(url, baseUrl) {
-    // catch error if URL API is not supported (URL still exists in that case)
-    try {
-      return new URL(url, baseUrl);
-    } catch (e) {
-      // ignore
-contexts printed: 0
+## OGBL overview (viewType 3): 146371 chars, 1 tables
+  https://www.eurex.com/ex-en/data/statistics/market-statistics-online/100!onlineStats?productGroupId=13328&productId=70050&viewType=3&busDate=20261123
+  - header ['Product name', 'Contract type', 'Expiry', 'Traded contracts', 'Put/Call ratio', 'Open interest (unadjusted)', 'Open interest (adj.)', 'Strike price range', 'Strike price series'], 30 rows
+      OGBL |  |  | 9,581 | 2.545 | 24,122 | 17,355 | 111.5/133 | 44
+      &nbsp; | CALL |  | 2,703 | &nbsp; | 7,403 | 5,203 | &nbsp; | &nbsp;
+      &nbsp; | PUT |  | 6,878 | &nbsp; | 16,719 | 12,152 | &nbsp; | &nbsp;
+      OGBL |  |  | 5,245 | 0.974 | 16,066 | 12,339 | 111.5/133 | 44
+      &nbsp; | Call | &nbsp; | 28,107 | &nbsp; | 156,389 | 138,333 | &nbsp; | &nbsp;
+      &nbsp; | Put | &nbsp; | 33,721 | &nbsp; | 185,254 | 163,154 | &nbsp; | &nbsp;
+  date shown: Data is for Nov 23, 2026
+  links on that page for this product: 10
+    ?productGroupId=13328&productId=70050&viewType=&cp=Call&month=0&year=0&busDate=20261123
+    ?productGroupId=13328&productId=70050&viewType=&cp=Call&month=1&year=2027&busDate=20261123
+    ?productGroupId=13328&productId=70050&viewType=&cp=Call&month=2&year=2027&busDate=20261123
+    ?productGroupId=13328&productId=70050&viewType=&cp=Call&month=3&year=2027&busDate=20261123
+    ?productGroupId=13328&productId=70050&viewType=&cp=Call&month=6&year=2027&busDate=20261123
+    ?productGroupId=13328&productId=70050&viewType=&cp=Put&month=0&year=0&busDate=20261123
+    ?productGroupId=13328&productId=70050&viewType=&cp=Put&month=1&year=2027&busDate=20261123
+    ?productGroupId=13328&productId=70050&viewType=&cp=Put&month=2&year=2027&busDate=20261123
+    ?productGroupId=13328&productId=70050&viewType=&cp=Put&month=3&year=2027&busDate=20261123
+    ?productGroupId=13328&productId=70050&viewType=&cp=Put&month=6&year=2027&busDate=20261123
+## link ?productGroupId=13328&productId=70050&viewType=&cp=Call&month=0&year=0&busDate=20261123: 133139 chars, 0 tables
+  https://www.eurex.com/ex-en/data/statistics/market-statistics-online/100!onlineStats?productGroupId=13328&productId=70050&viewType=&cp=Call&month=0&year=0&busDate=20261123
+  date shown: not found
+## link ?productGroupId=13328&productId=70050&viewType=&cp=Call&month=1&year=2027&busDate=20261123: 133162 chars, 0 tables
+  https://www.eurex.com/ex-en/data/statistics/market-statistics-online/100!onlineStats?productGroupId=13328&productId=70050&viewType=&cp=Call&month=1&year=2027&busDate=20261123
+  date shown: not found
+## link ?productGroupId=13328&productId=70050&viewType=&cp=Call&month=2&year=2027&busDate=20261123: 133142 chars, 0 tables
+  https://www.eurex.com/ex-en/data/statistics/market-statistics-online/100!onlineStats?productGroupId=13328&productId=70050&viewType=&cp=Call&month=2&year=2027&busDate=20261123
+  date shown: not found
+## link ?productGroupId=13328&productId=70050&viewType=&cp=Call&month=3&year=2027&busDate=20261123: 133141 chars, 0 tables
+  https://www.eurex.com/ex-en/data/statistics/market-statistics-online/100!onlineStats?productGroupId=13328&productId=70050&viewType=&cp=Call&month=3&year=2027&busDate=20261123
+  date shown: not found
