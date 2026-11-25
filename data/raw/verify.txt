@@ -1,4 +1,4 @@
-Checks of 2026-11-25 14:55 UTC
+Checks of 2026-11-25 14:59 UTC
 OK    market: 29 daily series and 8 monthly series present, sorted, in range and fresh
 OK    market against the double-read snapshot of 19 Nov 2026: 6723 values, 0 differences
 OK    futures: 47 basket bonds checked against the Eurex file, gross basis and CTD recomputed
@@ -57,5 +57,5 @@ PAGE  ok   workbench: yields and bp structures on two charts (2)
 PAGE  ok   workbench: change since start on one chart
 PAGE  ok   phone: filters folded (0 groups shown), then open (3)
 PAGE  ok   phone: a country can be switched off from the open filters
-PAGE  share picture redrawn for "Fixings of Wed 25 Nov 2026", 119 kB
+PAGE  share picture kept: already drawn for "Fixings of Wed 25 Nov 2026"
 OK    brief and lab: 351 figures compared, 0 differences
