@@ -1,28 +1,36 @@
-"""Download test (run 8): the script chunks of the Eurex statistics page, to find the API call that returns option series by strike. Report in probe/report.md."""
-import urllib.request, datetime, pathlib, json, re
+"""Download test (run 9): Eurex online statistics, options on Euro-Bund futures: the expiry overview page, then one expiry by strike. Report in probe/report.md."""
+import urllib.request, datetime, pathlib, json, re, html
 UA = {"User-Agent": "egb-dashboard/1.0 (+https://github.com/arthurmarc1102-droid/egb-dashboard)"}
 S = "https://www.eurex.com/ex-en/data/statistics/market-statistics-online/100!onlineStats"
 A = "https://www.eurex.com/api/v1/"
-def get(u, extra=None):
-    with urllib.request.urlopen(urllib.request.Request(u, headers={**UA, **(extra or {})}), timeout=120) as r: return r.read()
-out = [f"# Download test, Eurex statistics page scripts, {datetime.datetime.utcnow():%Y-%m-%d %H:%M} UTC\n"]
-page = get(f"{S}?productGroupId=13328&productId=70050&viewType=3").decode("utf-8", "replace")
-out.append("data attributes and config in the page: " + str(sorted(set(re.findall(r'data-[a-z\-]*(?:url|api|endpoint|stat)[a-z\-]*="[^"]{0,160}"', page)))[:20]))
-out.append("components named in the page: " + str(sorted(set(re.findall(r'(?:data-component|data-module|data-react-class|is)="([A-Za-z0-9_\-]{3,60})"', page)))[:40]))
-i = page.find("onlineStats"); out.append("around the statistics container: " + re.sub(r"\s+", " ", page[page.find("<main"):][:200]))
-for m in re.finditer(r'(?i)<[^>]*(?:statistic|onlinestat)[^>]*>', page): out.append("  tag: " + m.group(0)[:300])
-chunk = next((s for s in re.findall(r'<script[^>]+src="([^"]+)"', page) if "chunkPathById" in s), None)
-paths = []
-if chunk:
-    t = get("https://www.eurex.com" + chunk).decode("utf-8", "replace"); paths = sorted(set(re.findall(r'["\'](/resource/[^"\']+?\.js)["\']', t)))
-    out.append(f"## chunk map: {len(t)} chars, {len(paths)} script paths; start: {t[:300]}")
-hits = 0
-for p in paths:
-    try: t = get("https://www.eurex.com" + p).decode("utf-8", "replace")
-    except Exception as e: out.append(f"- {p}: FAILED {e}"); continue
-    api = sorted(set(re.findall(r'api/v1/[A-Za-z0-9_\-/]*', t)))
-    if api or "tatistic" in t:
-        out.append(f"- {p}: {len(t)} chars, api strings {api[:30]}")
-        for m in list(re.finditer(r'api/v1/', t))[:6]: out.append("    context: " + t[max(0, m.start() - 260): m.start() + 420].replace("\n", " ")); hits += 1
-out.append(f"contexts printed: {hits}")
+def get(u):
+    with urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=120) as r: return r.read().decode("utf-8", "replace")
+def cell(x): return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", x))).strip()
+def tables(page):
+    res = []
+    for t in re.findall(r"(?s)<table.*?</table>", page):
+        head = [cell(x) for x in re.findall(r"(?s)<th[^>]*>(.*?)</th>", t)]
+        rows = [[cell(x) for x in re.findall(r"(?s)<td[^>]*>(.*?)</td>", r)] for r in re.findall(r"(?s)<tr[^>]*>(.*?)</tr>", t)]
+        res.append((head, [r for r in rows if r]))
+    return res
+raw = pathlib.Path("probe/raw"); raw.mkdir(parents=True, exist_ok=True)
+out = [f"# Download test, Eurex options by strike, {datetime.datetime.utcnow():%Y-%m-%d %H:%M} UTC\n"]
+js = json.loads(get(A + f"overallstatistics/70050?busdate={datetime.date.today():%Y%m%d}"))
+days = sorted(datetime.datetime.strptime(x[:10], "%d-%m-%Y").date() for x in js["header"]["tradingDates"]); bus = days[-2].strftime("%Y%m%d")
+def show(label, url, save=None):
+    try: page = get(url)
+    except Exception as e: out.append(f"## {label}: FAILED {e}\n  {url}"); return ""
+    if save: (raw / save).write_text(page[:600000])
+    tb = tables(page); out.append(f"## {label}: {len(page)} chars, {len(tb)} tables\n  {url}")
+    for head, rows in tb: out.append(f"  - header {head[:16]}, {len(rows)} rows"); out += ["      " + " | ".join(r)[:300] for r in rows[:4] + rows[-2:]]
+    m = re.search(r"Data is for[^<]*<[^>]*>([^<]*)", page); out.append(f"  date shown: {cell(m.group(0)) if m else 'not found'}")
+    return page
+p3 = show("OGBL overview (viewType 3)", f"{S}?productGroupId=13328&productId=70050&viewType=3&busDate={bus}", "eurex_ogbl_v3.html")
+links = sorted(set(html.unescape(x) for x in re.findall(r'href="(\?[^"]*productId=70050[^"]*)"', p3))); out.append(f"  links on that page for this product: {len(links)}"); out += ["    " + l for l in links[:30]]
+tried = 0
+for l in links:
+    if ("viewType=4" in l or "month=" in l) and tried < 4: show(f"link {l}", S + l, f"eurex_ogbl_series_{tried}.html"); tried += 1
+if not tried:
+    for extra in ("&viewType=4&cp=Call&month=12&year=2026", "&viewType=4&cp=Put&month=12&year=2026", "&viewType=3&cp=Call&month=12&year=2026", "&viewType=5&cp=Call&month=12&year=2026"):
+        show(f"guess {extra}", f"{S}?productGroupId=13328&productId=70050{extra}&busDate={bus}", f"eurex_ogbl_guess{extra[9:11]}.html")
 (pathlib.Path("probe") / "report.md").write_text("\n".join(out) + "\n"); print("\n".join(out)[:9000])
