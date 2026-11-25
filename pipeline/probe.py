@@ -1,31 +1,34 @@
-"""Download test (run 2): Italian auction results (MEF pages and PDFs) and MEF legal notice. Saves text in probe/raw/."""
-import urllib.request, datetime, pathlib, re, time, io
-from pypdf import PdfReader
+"""Download test (run 3): Eurostat daily EMU convergence yields (irt_lt_mcby_d). Report in probe/report.md."""
+import urllib.request, datetime, pathlib, json, re
 UA = {"User-Agent": "egb-dashboard/1.0 (+https://github.com/arthurmarc1102-droid/egb-dashboard)"}
-BASE = "https://www.dt.mef.gov.it"
-MEF = BASE + "/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/"
-PAGES = ["risultati_aste_btp_short_term", "risultati_aste_btp_3_anni", "risultati_aste_btp_5_anni", "risultati_aste_btp_7_anni", "risultati_aste_btp_10_anni",
-         "risultati_aste_btp_15_anni", "risultati_aste_btp_20_anni", "risultati_aste_btp_30_anni", "risultati_aste_btp_green"]
+API = "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/irt_lt_mcby_d?format=JSON&"
+GEO = ["DE", "FR", "IT", "ES", "NL", "BE", "AT", "PT", "IE", "FI", "GR"]
 def get(u):
-    with urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=90) as r: return r.read()
+    with urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=120) as r: return r.read()
 raw = pathlib.Path("probe/raw"); raw.mkdir(parents=True, exist_ok=True)
-out = [f"# Download test, Italian auctions, {datetime.datetime.utcnow():%Y-%m-%d %H:%M} UTC\n"]
-for name, url in [("mef_legal", BASE + "/en/note_legali/"), ("mef_legal_it", BASE + "/it/note_legali/")]:
-    try: b = get(url); (raw / f"{name}.txt").write_text(b.decode("utf-8", "replace")); out.append(f"- {name}: {len(b)} bytes")
-    except Exception as e: out.append(f"- {name}: {e}")
-for p in PAGES:
-    url = MEF + p + "/" + ("" if p.endswith("green") else "index.html")
-    try: page = get(url).decode("utf-8", "replace")
-    except Exception as e: out.append(f"## {p}: page failed {e}"); continue
-    pdfs = sorted(set(re.findall(r'href="([^"]+\.pdf)"', page)))
-    def key(u):
-        m = re.search(r"(\d{2})\.(\d{2})\.(\d{4})\.pdf$", u); return (m.group(3), m.group(2), m.group(1)) if m else ("0",)
-    pdfs.sort(key=key)
-    out.append(f"## {p}: {len(pdfs)} pdf links, last: {pdfs[-3:]}")
-    for u in pdfs[-2:]:
-        try:
-            b = get(BASE + u if u.startswith("/") else u); txt = "\n".join(pg.extract_text() or "" for pg in PdfReader(io.BytesIO(b)).pages)
-            (raw / f"mef_{p}_{key(u)[0]}{key(u)[1]}{key(u)[2]}.txt").write_text(txt); out.append(f"  - {u.split('/')[-1]}: {len(b)} bytes, {len(txt)} chars")
-        except Exception as e: out.append(f"  - {u}: {e}")
-        time.sleep(0.3)
-(pathlib.Path("probe") / "report.md").write_text("\n".join(out)); print("\n".join(out))
+out = [f"# Download test, Eurostat daily convergence yields, {datetime.datetime.utcnow():%Y-%m-%d %H:%M} UTC\n"]
+q = "&".join(f"geo={g}" for g in GEO)
+for label, extra in [("since 2015-01-01", "&sinceTimePeriod=2015-01-01"), ("since 2026-09-01", "&sinceTimePeriod=2026-09-01"), ("last 15 periods", "&lastTimePeriod=15")]:
+    url = API + q + extra
+    try:
+        b = get(url); js = json.loads(b)
+    except Exception as e:
+        out.append(f"## {label}: FAILED {e}\n  {url}"); continue
+    geo = js["dimension"]["geo"]["category"]["index"]; tim = js["dimension"]["time"]["category"]["index"]; nt = len(tim)
+    inv_t = {v: k for k, v in tim.items()}; days = [inv_t[i] for i in range(nt)]
+    out.append(f"## {label}: {len(b)} bytes, updated {js.get('updated')}, {nt} periods from {days[0]} to {days[-1]}, {len(js['value'])} values")
+    out.append(f"  url: {url}")
+    out.append(f"  dimensions: { {k: list(v['category']['index'])[:4] for k, v in js['dimension'].items() if k not in ('geo', 'time')} }, flags: {len(js.get('status', {}))}")
+    for g in GEO:
+        if g not in geo: out.append(f"  - {g}: not in the answer"); continue
+        vals = [(days[i], js["value"].get(str(geo[g] * nt + i))) for i in range(nt)]
+        have = [(d, v) for d, v in vals if v is not None]
+        if not have: out.append(f"  - {g}: no value"); continue
+        out.append(f"  - {g}: {len(have)} values, first {have[0][0]}, last 6: " + ", ".join(f"{d} {v}" for d, v in have[-6:]))
+    if label.startswith("since 2026"): (raw / "eurostat_mcby_d_recent.json").write_bytes(b)
+for name, url in [("eurostat_mcby_metadata", "https://ec.europa.eu/eurostat/cache/metadata/en/irt_lt_mcby_esms.htm"), ("eurostat_copyright", "https://ec.europa.eu/eurostat/web/main/help/copyright-notice")]:
+    try:
+        b = get(url); txt = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", re.sub(r"(?s)<(script|style).*?</\1>", " ", b.decode("utf-8", "replace"))))
+        (raw / f"{name}.txt").write_text(txt); out.append(f"- {name}: {len(b)} bytes, {len(txt)} chars of text")
+    except Exception as e: out.append(f"- {name}: FAILED {e}")
+(pathlib.Path("probe") / "report.md").write_text("\n".join(out) + "\n"); print("\n".join(out))
