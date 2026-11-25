@@ -4,7 +4,7 @@ on:
     - cron: '17 19 * * 1-5'   # evening run, after Eurex settlement and the Banque de France export
     - cron: '23 6 * * 2-6'    # morning run, for sources published overnight
   push:
-    paths: ['pipeline/**', 'tests/**', 'src/**', 'index.html', '.github/workflows/update.yml']
+    paths: ['pipeline/**', '!pipeline/probe.py', 'tests/**', 'src/**', 'index.html', '.github/workflows/update.yml']
   workflow_dispatch:
 permissions:
   contents: write
