@@ -1,4 +1,4 @@
-Run 2026-11-24 17:55 UTC
+Run 2026-11-25 03:02 UTC
 Checks:
   DE 1Y: 3020 days 2015-01-02 to 2026-11-24, day moves above 25 bp: [('2022-09-09', 26.0), ('2023-03-13', -26.0), ('2023-03-20', -26.0), ('2024-08-05', -27.0)]
   DE 2Y: 3020 days 2015-01-02 to 2026-11-24, day moves above 25 bp: [('2022-10-04', -29.0), ('2022-12-16', 33.0), ('2023-03-13', -36.0), ('2023-03-20', -33.0), ('2023-03-24', -29.0)]
@@ -47,9 +47,9 @@ Auctions:
   auctions.json: 201 results in the last 400 days, 12 upcoming; failed: []
 Calendar:
   ECB key rates: 12 changes read, latest {'date': '2026-09-16', 'dfr': 2.5, 'mro': 2.65, 'mlf': 2.9}; against previous file: 0 differences []
-  ECB meetings: 17, Eurostat euro-indicator releases: 48
-Eurex: 39 trading days offered (2026-09-30 to 2026-11-23), 18 rows fetched, archive 702 rows
-Eurex basket file: /resource/blob/2845860/d0cfc2bb2b7400dc87c4d80ab54a9676/data/deliverable-bonds-and-conversion-factors.csv | first lines: #Contract;ISIN;Coupon;Maturity;ConvFac || CONF SI 20261208 PS;CH0440081401;0.000000;24.07.2039;0.882313 || CONF SI 20261208 PS;CH0440081567;1.500000;26.10.2038;1.055529 || CONF SI 20261208 PS;CH0127181193;1.250000;27.06.2037;1.024786
+  ECB meetings: 17, Eurostat euro-indicator releases: 53
+Eurex: 40 trading days offered (2026-09-30 to 2026-11-24), 18 rows fetched, archive 720 rows
+Eurex basket file: /resource/blob/2845860/4a9b3e981cedf54b4d18da358813c7f0/data/deliverable-bonds-and-conversion-factors.csv | first lines: #Contract;ISIN;Coupon;Maturity;ConvFac || CONF SI 20261208 PS;CH0440081401;0.000000;24.07.2039;0.882313 || CONF SI 20261208 PS;CH0440081567;1.500000;26.10.2038;1.055529 || CONF SI 20261208 PS;CH0127181193;1.250000;27.06.2037;1.024786
 Eurex baskets parsed: 35 contracts, 153 bonds
-Bundesbank bond prices on 2026-11-23: 16 of 16 German deliverable bonds
-futures.json: FGBS Dec 26 105.025, Mar 27 104.98; FGBM Dec 26 113.43, Mar 27 112.67; FGBL Dec 26 122.87, Mar 27 122.92; FGBX Dec 26 106.52, Mar 27 105.98; FOAT Dec 26 110.08, Mar 27 109.19; FBTP Dec 26 113.2, Mar 27 112.5
+Bundesbank bond prices on 2026-11-24: 16 of 16 German deliverable bonds
+futures.json: FGBS Dec 26 105.05, Mar 27 105.015; FGBM Dec 26 113.53, Mar 27 112.77; FGBL Dec 26 123.04, Mar 27 123.09; FGBX Dec 26 106.7, Mar 27 106.22; FOAT Dec 26 110.11, Mar 27 109.25; FBTP Dec 26 113.1, Mar 27 112.42

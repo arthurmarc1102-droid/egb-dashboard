@@ -1,5 +1,5 @@
 {
-"asof": "2026-11-24",
+"asof": "2026-11-25",
 "note_results": "Medium and long-term lines. Germany: Finanzagentur workbook, allotted amount excludes the retention, history since 2015 in data/raw/auctions_de.csv. Spain: Tesoro Publico result pages, archived each day. Italy: MEF result PDFs, single-price auction, so the yield is the yield at the auction price. France: the AFT site refuses automated access, so French results are those read on 19 Nov 2026 and are not refreshed.",
 "note_upcoming": "Germany and Spain: issuers' calendars, read each day. France: date from the AFT calendar rule, not from a dated calendar. Italy: no machine-readable calendar found.",
 "results": [

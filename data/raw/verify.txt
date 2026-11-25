@@ -1,9 +1,9 @@
-Checks of 2026-11-24 17:56 UTC
+Checks of 2026-11-25 03:03 UTC
 OK    market: 29 daily series and 8 monthly series present, sorted, in range and fresh
 OK    market against the double-read snapshot of 19 Nov 2026: 6723 values, 0 differences
 OK    futures: 47 basket bonds checked against the Eurex file, gross basis and CTD recomputed
 OK    auctions: 201 results, cover = bids / allotted checked on 192; 12 upcoming
-OK    calendar: 65 events, ECB rates {'date': '2026-09-16', 'dfr': 2.5, 'mro': 2.65, 'mlf': 2.9}; news: 63 items
+OK    calendar: 70 events, ECB rates {'date': '2026-09-16', 'dfr': 2.5, 'mro': 2.65, 'mlf': 2.9}; news: 63 items
 PAGE  1440px monitor: 10 panels
 PAGE  1440px curves: 5 panels
 PAGE  1440px rv: 3 panels
