@@ -2,111 +2,150 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0f15">
+<meta name="description" content="Euro-area government bonds at the close: curves, spreads to Germany, relative value, futures basis, auctions. Public data, refreshed every day.">
 <title>EGB Dashboard</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="EGB Dashboard">
+<meta property="og:description" content="Euro-area government bonds at the close: curves, spreads to Germany, relative value, futures basis, auctions. Public data, refreshed every day.">
+<meta property="og:url" content="https://arthurmarc1102-droid.github.io/egb-dashboard/">
+<meta property="og:image" content="https://arthurmarc1102-droid.github.io/egb-dashboard/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0f15'/%3E%3Cpath d='M6 24C11 12 19 9 26 8' fill='none' stroke='%23e8e6e1' stroke-width='2.4' stroke-linecap='round'/%3E%3Ccircle cx='6' cy='24' r='3' fill='%23e8e6e1'/%3E%3Ccircle cx='15.25' cy='11.9' r='3' fill='%23e8e6e1'/%3E%3Ccircle cx='26' cy='8' r='3' fill='%23e8e6e1'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,200..800&amp;display=swap">
 <style>
 :root{
-  /* Layout idea: sticky header and tab rail, one filter row, then a 12-column grid of hairline panels.
-     Dark only, by choice (desk terminal). Hue is reserved for data; the interface itself is ink on navy. */
+  /* EGB Dashboard: a desk terminal, dark only by choice.
+     Hue belongs to the data and to nothing else: red = higher yield, wider, cheaper; blue = lower, tighter, richer;
+     one fixed hue per country. The interface itself is neutral ink on navy, so a coloured mark always means a number.
+     Two voices: words (the closing note) in a serif, numbers in a condensed sans with tabular figures.
+     Layout: masthead with five spaces, a row of sections, one filter row, then a 12-column grid of panes.
+     Under 900px the spaces move to a bar at the bottom of the screen and panes run edge to edge. */
   color-scheme: dark;
   --plane:#0a0f15;
   --surface:#101720;
   --raised:#17202b;
+  --hover:#141c27;
   --rule:#1f2b38;
   --axis:#2e3d4d;
   --ink:#e8e6e1;
   --ink-2:#aab2bb;
   --ink-3:#7f8a96;
-  /* Diverging pair, one meaning everywhere: warm = higher yield / wider / cheaper, cool = lower / tighter / richer */
   --up:#e66767;
   --down:#3987e5;
   --flat:#2a3644;
-  /* Categorical: one fixed hue per country, never reassigned */
   --c-DE:#3987e5; --c-FR:#d95926; --c-IT:#199e70; --c-ES:#c98500;
   --c-NL:#d55181; --c-BE:#0ca30c; --c-AT:#9085e9; --c-PT:#e66767;
   --font-data:"IBM Plex Sans Condensed","Roboto Condensed","Arial Narrow",system-ui,sans-serif;
   --font-text:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --gutter:16px;
+  --font-note:"Newsreader","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --gutter:20px;
+  --gap:10px;
+  --bar:0px;
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0}
+[hidden]{display:none !important}
+html{scrollbar-color:var(--axis) var(--plane)}
+html,body{margin:0; padding:0}
 body{
   background:var(--plane); color:var(--ink);
   font-family:var(--font-data); font-size:13.5px; line-height:1.35;
-  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; -webkit-text-size-adjust:100%;
+  padding-bottom:calc(var(--bar) + env(safe-area-inset-bottom, 0px));
 }
+::selection{background:var(--axis)}
 a{color:var(--ink); text-decoration:underline; text-decoration-color:var(--axis); text-underline-offset:2px}
 a:hover{text-decoration-color:var(--ink)}
-button{font:inherit; color:inherit}
+button,input,select{font:inherit; color:inherit}
 :focus-visible{outline:2px solid var(--ink); outline-offset:2px; border-radius:2px}
+main:focus{outline:0}
 .sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+.skip{position:absolute; left:8px; top:-48px; z-index:50; background:var(--ink); color:var(--plane); padding:8px 12px; border-radius:3px; text-decoration:none; font-weight:500}
+.skip:focus{top:8px}
 
-/* ---------- header and tabs ---------- */
-.top{position:sticky; top:0; z-index:20; background:var(--plane); border-bottom:1px solid var(--rule)}
-.masthead{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; padding:10px var(--gutter) 6px}
-.brand{font-size:19px; font-weight:600; letter-spacing:.01em; margin:0}
-.asof{color:var(--ink-2); font-size:13px}
+/* ---------- masthead, spaces, sections ---------- */
+.top{position:sticky; top:0; z-index:20; background:var(--plane)}
+.masthead{display:flex; align-items:stretch; gap:26px; padding:0 var(--gutter); min-height:52px; border-bottom:1px solid var(--rule)}
+.brand{margin:0; font-size:17px; font-weight:600; letter-spacing:.012em; display:flex; flex:none}
+.brand a{display:flex; align-items:center; gap:9px; color:var(--ink); text-decoration:none; white-space:nowrap}
+.brand svg{flex:none}
+.spaces{display:flex; align-items:stretch; gap:2px; min-width:0}
+.space{appearance:none; background:none; border:0; position:relative; padding:0 12px; color:var(--ink-2); font-size:14.5px; font-weight:500; white-space:nowrap; cursor:pointer}
+.space:hover{color:var(--ink)}
+.space[aria-current="page"]{color:var(--ink)}
+.space[aria-current="page"]::after{content:""; position:absolute; left:12px; right:12px; bottom:-1px; height:2px; background:var(--ink)}
+.space .short{display:none}
+.meta{margin-left:auto; display:flex; align-items:center; gap:10px; color:var(--ink-2); font-size:13px; white-space:nowrap; flex:0 1 auto; min-width:0; overflow:hidden}
 .asof b{color:var(--ink); font-weight:500}
-.status{margin-left:auto; color:var(--ink-3); font-size:12.5px}
-.tabs{display:flex; gap:2px; overflow-x:auto; padding:0 calc(var(--gutter) - 8px); scrollbar-width:none}
+.subnav{display:flex; align-items:center; gap:16px; padding:0 var(--gutter); min-height:42px; border-bottom:1px solid var(--rule)}
+.tabs{display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; flex:none; max-width:100%; margin-left:-10px}
 .tabs::-webkit-scrollbar{display:none}
-.tab{appearance:none; background:none; border:0; border-bottom:2px solid transparent; padding:8px 9px 7px; color:var(--ink-2);
-  font-size:14px; font-weight:500; white-space:nowrap; cursor:pointer}
-.tab:hover{color:var(--ink)}
-.tab[aria-selected="true"]{color:var(--ink); border-bottom-color:var(--ink)}
+.tab{appearance:none; background:none; border:0; border-radius:4px; padding:5px 10px; color:var(--ink-2); font-size:13.5px; font-weight:500; white-space:nowrap; cursor:pointer}
+.tab:hover{color:var(--ink); background:var(--surface)}
+.tab[aria-selected="true"]{color:var(--ink); background:var(--raised)}
+.about{color:var(--ink-3); font-family:var(--font-text); font-size:12.5px; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.legend-key{display:flex; gap:14px; align-items:center; color:var(--ink-3); font-size:12.5px; margin-left:auto; white-space:nowrap; flex:none}
+.legend-key i{display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:-1px}
+.k-up{background:var(--up)} .k-down{background:var(--down)}
+.fkey{display:none}
+@media (max-width:1040px){ .asof .pre{display:none} }
 
 /* ---------- filter row ---------- */
-.filters{display:flex; flex-wrap:wrap; gap:8px 18px; align-items:center; padding:10px var(--gutter) 2px}
-.fgroup{display:flex; align-items:center; gap:7px; min-width:0; max-width:100%}
-.flabel{color:var(--ink-3); font-size:12.5px}
-.seg{display:inline-flex; flex:0 1 auto; min-width:0; max-width:100%; border:1px solid var(--rule); border-radius:3px; overflow-x:auto; overflow-y:hidden; scrollbar-width:none; background:var(--surface)}
+.filters{display:flex; flex-wrap:wrap; gap:8px 20px; align-items:center; padding:10px var(--gutter) 0}
+.fgroup{display:flex; align-items:center; gap:8px; min-width:0; max-width:100%}
+.flabel{color:var(--ink-3); font-size:12.5px; white-space:nowrap}
+.ftoggle{display:none}
+.seg{display:inline-flex; flex:0 1 auto; min-width:0; max-width:100%; border:1px solid var(--rule); border-radius:4px; overflow-x:auto; overflow-y:hidden; scrollbar-width:none; background:var(--surface)}
 .seg::-webkit-scrollbar{display:none}
 .seg button{appearance:none; background:none; border:0; border-right:1px solid var(--rule); padding:4px 9px; color:var(--ink-2);
   font-size:13px; cursor:pointer; min-height:28px; display:inline-flex; align-items:center; gap:5px; flex:none}
 .seg button:last-child{border-right:0}
-.seg button:hover{color:var(--ink)}
+.seg button:hover{color:var(--ink); background:var(--hover)}
 .seg button[aria-pressed="true"]{background:var(--raised); color:var(--ink); box-shadow:inset 0 -2px 0 var(--ink)}
 .swatch{width:10px; height:3px; border-radius:1px; display:inline-block; flex:none}
-.legend-key{display:flex; gap:14px; align-items:center; color:var(--ink-3); font-size:12.5px; margin-left:auto}
-.legend-key i{display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:-1px}
-select.sel{font:inherit; font-size:13px; color:var(--ink); background:var(--surface); border:1px solid var(--rule); border-radius:3px;
+select.sel{font-size:13px; color:var(--ink); background-color:var(--surface); border:1px solid var(--rule); border-radius:4px;
   padding:4px 24px 4px 8px; min-height:28px; max-width:100%;
   appearance:none; background-image:linear-gradient(45deg,transparent 50%,var(--ink-2) 50%),linear-gradient(135deg,var(--ink-2) 50%,transparent 50%);
   background-position:calc(100% - 12px) 12px, calc(100% - 8px) 12px; background-size:4px 4px; background-repeat:no-repeat}
+select.sel:hover{border-color:var(--axis)}
 
-/* ---------- grid and panels ---------- */
-main{padding:10px var(--gutter) 28px}
-.grid{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:12px}
-.panel{grid-column:span 12; background:var(--surface); border:1px solid var(--rule); border-radius:3px; min-width:0; display:flex; flex-direction:column}
+/* ---------- grid and panes ---------- */
+main{padding:var(--gap) var(--gutter) 30px}
+.grid{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:var(--gap)}
+.panel{grid-column:span 12; background:var(--surface); border:1px solid var(--rule); border-radius:4px; min-width:0; display:flex; flex-direction:column}
 .s3{grid-column:span 3}.s4{grid-column:span 4}.s5{grid-column:span 5}.s6{grid-column:span 6}.s7{grid-column:span 7}.s8{grid-column:span 8}
-@media (max-width:1080px){.s3,.s4{grid-column:span 6}.s5,.s7,.s8{grid-column:span 12}}
+@media (max-width:1180px){.s3,.s4{grid-column:span 6}.s5,.s7,.s8{grid-column:span 12}}
 @media (max-width:760px){.s3,.s4,.s5,.s6,.s7,.s8{grid-column:span 12}}
-.panel > header{display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:9px 12px 0; min-width:0}
-.panel .tools{min-width:0; max-width:100%}
-.panel h2{font-size:14.5px; font-weight:600; margin:0; text-wrap:balance}
+.panel > header{display:flex; align-items:center; gap:4px 10px; flex-wrap:wrap; padding:11px 14px 0; min-width:0}
+.panel h2{font-size:14.5px; font-weight:600; margin:0; letter-spacing:.005em; text-wrap:balance}
 .panel .sub{color:var(--ink-3); font-size:12.5px}
-.panel .tools{margin-left:auto; display:flex; gap:8px; align-items:center; flex-wrap:wrap}
-.panel-body{padding:8px 12px 10px; min-width:0; flex:1; display:flex; flex-direction:column}
+.panel .tools{margin-left:auto; display:flex; gap:6px; align-items:center; flex-wrap:wrap; min-width:0; max-width:100%}
+.panel-body{padding:9px 14px 12px; min-width:0; flex:1; display:flex; flex-direction:column}
 .panel-body > .fill{flex:1; min-height:0}
-.panel > footer{margin-top:auto; padding:0 12px 9px; color:var(--ink-3); font-size:12px}
-.linkbtn{appearance:none; background:none; border:1px solid var(--rule); border-radius:3px; padding:3px 8px; color:var(--ink-2); font-size:12.5px; cursor:pointer; min-height:26px}
-.linkbtn:hover{color:var(--ink); border-color:var(--axis)}
+.panel > footer{margin-top:auto; padding:0 14px 10px; color:var(--ink-3); font-size:12px; font-family:var(--font-text); line-height:1.45}
+.linkbtn{appearance:none; background:none; border:1px solid var(--rule); border-radius:4px; padding:3px 8px; color:var(--ink-2); font-size:12.5px; cursor:pointer; min-height:26px}
+.linkbtn:hover{color:var(--ink); border-color:var(--axis); background:var(--hover)}
 .linkbtn[aria-pressed="true"]{color:var(--ink); background:var(--raised)}
-.empty{color:var(--ink-2); padding:14px 2px; font-family:var(--font-text); font-size:13px; max-width:62ch}
+.linkbtn:disabled{opacity:.45; cursor:not-allowed}
+.empty{color:var(--ink-2); padding:14px 2px; font-family:var(--font-text); font-size:13px; line-height:1.5; max-width:62ch}
 
 /* ---------- tables ---------- */
-.scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
+.scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:thin; scrollbar-color:var(--axis) transparent}
 table.t{border-collapse:collapse; width:100%; font-variant-numeric:tabular-nums}
-.t th{font-weight:500; color:var(--ink-3); font-size:12.5px; text-align:right; padding:4px 8px; border-bottom:1px solid var(--rule); white-space:nowrap}
+.t th{font-weight:500; color:var(--ink-3); font-size:12.5px; text-align:right; padding:4px 8px 5px; border-bottom:1px solid var(--axis); white-space:nowrap}
 .t td{padding:5px 8px; border-bottom:1px solid var(--rule); text-align:right; white-space:nowrap}
 .t tr:last-child td{border-bottom:0}
 .t th:first-child,.t td:first-child{text-align:left; position:sticky; left:0; background:var(--surface); z-index:1}
 .t td.l,.t th.l{text-align:left}
 .t td.wrap{white-space:normal; min-width:180px}
+.t tbody tr:hover td{background-color:var(--hover)}
 .t tbody tr.click{cursor:pointer}
-.t tbody tr.click:hover td{background:var(--raised)}
-.t tbody tr[aria-selected="true"] td{background:var(--raised)}
+.t tbody tr.click:hover td{background-color:var(--raised)}
+.t tbody tr[aria-selected="true"] td{background-color:var(--raised)}
 .t tbody tr.hot td:first-child{box-shadow:inset 3px 0 0 var(--ink)}
 .t th.sortable{cursor:pointer}
 .t th.sortable:hover{color:var(--ink)}
@@ -129,11 +168,10 @@ td.heat > span{position:relative}
 .chart svg{display:block; max-width:100%; touch-action:pan-y}
 .chart .tick, .axis-label{fill:var(--ink-3); font-size:11.5px; font-family:var(--font-data); font-variant-numeric:tabular-nums}
 .chart .endlabel{fill:var(--ink-2); font-size:12px; font-family:var(--font-data); font-variant-numeric:tabular-nums}
-.chart .endlabel b{fill:var(--ink)}
 .legend{display:flex; flex-wrap:wrap; gap:4px 14px; padding:0 0 6px; color:var(--ink-2); font-size:12.5px}
 .legend span{display:inline-flex; align-items:center; gap:6px}
 .legend i{width:14px; height:2px; border-radius:1px; display:inline-block}
-.tip{position:absolute; pointer-events:none; z-index:30; background:#0b1118; border:1px solid var(--axis); border-radius:3px; padding:6px 8px;
+.tip{position:absolute; pointer-events:none; z-index:30; background:#0b1118; border:1px solid var(--axis); border-radius:4px; padding:6px 8px;
   font-size:12.5px; min-width:120px; max-width:260px; box-shadow:0 6px 18px rgba(0,0,0,.45); font-variant-numeric:tabular-nums}
 .tip .d{color:var(--ink-2); margin-bottom:3px}
 .tip .r{display:flex; align-items:center; gap:7px; justify-content:space-between}
@@ -145,11 +183,12 @@ td.heat > span{position:relative}
 .stats{display:flex; flex-wrap:wrap; gap:6px 22px; padding:2px 0 8px}
 .stat{min-width:74px}
 .stat .k{color:var(--ink-3); font-size:12px}
-.stat .v{font-size:17px; font-weight:500}
+.stat .v{font-size:17px; font-weight:500; font-variant-numeric:tabular-nums}
 .stat .v small{font-size:12px; color:var(--ink-2); font-weight:400; margin-left:3px}
+.stats2{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px 16px}
 
-/* ---------- z bars (extremes) ---------- */
-.zlist{display:grid; grid-template-columns:minmax(96px,auto) 1fr auto; gap:5px 10px; align-items:center}
+/* ---------- z bars ---------- */
+.zlist{display:grid; grid-template-columns:minmax(96px,auto) 1fr auto; gap:6px 10px; align-items:center}
 .zlist .zn{font-weight:500; white-space:nowrap}
 .zlist .zv{text-align:right; font-variant-numeric:tabular-nums; min-width:44px}
 .ztrack{position:relative; height:10px; background:linear-gradient(var(--rule),var(--rule)) center/100% 1px no-repeat}
@@ -158,8 +197,8 @@ td.heat > span{position:relative}
 .zbar.pos{left:50%; border-radius:0 4px 4px 0; background:var(--up)}
 .zbar.neg{right:50%; border-radius:4px 0 0 4px; background:var(--down)}
 
-/* ---------- lists ---------- */
-.feed{display:flex; flex-direction:column; max-height:520px; overflow-y:auto}
+/* ---------- lists and prose ---------- */
+.feed{display:flex; flex-direction:column; max-height:520px; overflow-y:auto; scrollbar-width:thin; scrollbar-color:var(--axis) transparent}
 .feed.short{max-height:none}
 .item{display:grid; grid-template-columns:auto 1fr; gap:2px 10px; padding:7px 0; border-bottom:1px solid var(--rule)}
 .item:last-child{border-bottom:0}
@@ -171,57 +210,141 @@ td.heat > span{position:relative}
 .prose p{margin:0 0 8px}
 .prose code{font-family:var(--font-data); color:var(--ink); background:var(--raised); padding:0 4px; border-radius:2px; font-size:13px}
 .prose ul{margin:0 0 8px; padding-left:18px}
-.foot{padding:0 var(--gutter) 26px; color:var(--ink-3); font-size:12.5px; font-family:var(--font-text)}
+.foot{padding:0 var(--gutter) 28px; color:var(--ink-3); font-size:12.5px; font-family:var(--font-text); line-height:1.5; max-width:110ch}
+.foot p{margin:0 0 4px}
 .heatwrap td.hm{text-align:center; min-width:46px; padding:6px 4px; color:var(--ink)}
 .heatwrap th{text-align:center}
 .heatwrap th:first-child{text-align:left}
-@media (prefers-reduced-motion:no-preference){ .tab,.seg button,.linkbtn{transition:color .12s, background-color .12s} }
-@media (max-width:760px){
-  body{font-size:13px}
-  .legend-key{margin-left:0}
-  .status{margin-left:0; width:100%}
+td.hm.click{cursor:pointer}
+
+/* ---------- forms: builder, backtest ---------- */
+.inp{background:var(--raised); color:var(--ink); border:1px solid var(--axis); border-radius:4px; padding:4px 6px; font-size:13px; min-width:0; min-height:28px}
+.inp:hover{border-color:var(--ink-3)}
+input[type=date].inp{color-scheme:dark}
+.btn{appearance:none; background:var(--raised); color:var(--ink); border:1px solid var(--axis); border-radius:4px; padding:5px 11px; font-size:13px; cursor:pointer; min-height:30px}
+.btn:hover{border-color:var(--ink-3)}
+.btn.primary{background:var(--ink); border-color:var(--ink); color:var(--plane); font-weight:500}
+.btn.primary:hover{background:#fff; border-color:#fff}
+.btn:disabled{opacity:.45; cursor:not-allowed}
+.legs{display:flex; flex-direction:column; gap:6px; margin:4px 0 8px}
+.legrow{display:flex; align-items:center; gap:6px; flex-wrap:wrap}
+.legrow .sel{flex:1 1 180px; min-width:0}
+.row-actions{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:6px 0}
+.field{display:inline-flex; flex-direction:column; gap:3px; font-size:12px; color:var(--ink-3); min-width:0}
+.field > span{white-space:nowrap}
+.field .inp[type=text]{width:100%}
+.controls{display:flex; flex-wrap:wrap; gap:12px 16px; align-items:flex-end}
+.controls .sel{max-width:260px}
+.chips{display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:8px}
+.chip{display:inline-flex; align-items:center; gap:6px; background:var(--raised); border:1px solid var(--rule); border-radius:999px; padding:2px 4px 2px 10px; font-size:13px}
+.chip .x{appearance:none; background:none; border:0; color:var(--ink-3); font-size:15px; line-height:1; cursor:pointer; padding:0 6px}
+.chip .x:hover{color:var(--ink)}
+.daterange{display:inline-flex; gap:6px; align-items:center; margin-left:4px}
+.split{display:grid; grid-template-columns:minmax(0,3fr) minmax(0,2fr); gap:16px; align-items:start}
+
+/* ---------- brief: the closing note and the curve ladder ---------- */
+.panel.note{background:none; border-color:transparent; padding:8px 22px 6px 2px}
+.note .kicker{margin:0; font-size:13px; font-weight:500; color:var(--ink-3); letter-spacing:.005em}
+.note .headline{font-family:var(--font-note); font-optical-sizing:auto; font-variant-numeric:lining-nums; font-weight:500; font-size:31px; line-height:1.17; letter-spacing:-.008em;
+  margin:9px 0 18px; max-width:21em; text-wrap:balance}
+.lines{display:grid; grid-template-columns:max-content minmax(0,1fr); gap:7px 16px; margin:0; font-family:var(--font-text); font-size:13.5px; line-height:1.45; max-width:74ch}
+.lines dt{color:var(--ink-3)}
+.lines dt a{color:inherit}
+.lines dt a:hover{color:var(--ink)}
+.lines dd{margin:0}
+.note .by{margin:16px 0 0; color:var(--ink-3); font-family:var(--font-text); font-size:12px; line-height:1.45; max-width:74ch}
+@media (min-width:1181px){ #p-next{grid-row:span 2} }
+.ladder-t{table-layout:fixed}
+.ladder-t th,.ladder-t td{text-align:center; padding:5px 2px; overflow:hidden; text-overflow:ellipsis}
+.ladder-t th:first-child,.ladder-t td:first-child{text-align:left; padding-left:0}
+.ladder-t tbody tr.lv td{border-bottom:0; padding-bottom:2px}
+.ladder-t tbody tr.chg td{font-size:12.5px; padding-top:3px}
+.ladder-t .col-on{box-shadow:inset 0 0 0 99px rgba(232,230,225,.06)}
+
+@media (prefers-reduced-motion:no-preference){
+  .space,.tab,.seg button,.linkbtn,.btn,.inp,select.sel{transition:color .12s, background-color .12s, border-color .12s}
 }
 
-/* ---------- lab: builder, workbench, backtest, PCA & carry */
-.inp { background: var(--raised); color: var(--ink); border: 1px solid var(--axis); border-radius: 4px; padding: 4px 6px; font: inherit; font-size: 13px; min-width: 0; }
-.inp:focus-visible, .btn:focus-visible, .linkbtn:focus-visible, .chip .x:focus-visible { outline: 2px solid var(--down); outline-offset: 1px; }
-input[type=date].inp { color-scheme: dark; }
-.btn { background: var(--raised); color: var(--ink); border: 1px solid var(--axis); border-radius: 4px; padding: 5px 10px; font: inherit; font-size: 13px; cursor: pointer; }
-.btn:hover { border-color: var(--ink-3); }
-.btn.primary { background: var(--down); border-color: var(--down); color: #fff; }
-.btn:disabled { opacity: .45; cursor: not-allowed; }
-.legs { display: flex; flex-direction: column; gap: 6px; margin: 4px 0 8px; }
-.legrow { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-.legrow .sel { flex: 1 1 180px; min-width: 0; }
-.row-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 6px 0; }
-.field { display: inline-flex; flex-direction: column; gap: 3px; font-size: 12px; color: var(--ink-3); min-width: 0; }
-.field > span { white-space: nowrap; }
-.field .inp[type=text] { width: 100%; }
-.controls { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: flex-end; }
-.controls .sel { max-width: 260px; }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 8px; }
-.chip { display: inline-flex; align-items: center; gap: 6px; background: var(--raised); border: 1px solid var(--rule); border-radius: 999px; padding: 2px 4px 2px 10px; font-size: 13px; }
-.chip .x { background: none; border: 0; color: var(--ink-3); font-size: 15px; line-height: 1; cursor: pointer; padding: 0 6px; }
-.chip .x:hover { color: var(--ink); }
-.daterange { display: inline-flex; gap: 6px; align-items: center; margin-left: 8px; }
-.stats2 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 16px; }
-.split { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 16px; align-items: start; }
-td.hm.click { cursor: pointer; }
-@media (max-width: 760px) { .split { grid-template-columns: 1fr; } .stats2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .controls .sel { max-width: 100%; } }
+/* ---------- small screens: spaces at the bottom, panes edge to edge ---------- */
+@media (max-width:1180px){ .about{display:none} }
+@media (max-width:900px){
+  :root{--gutter:14px; --gap:8px; --bar:54px}
+  .masthead{min-height:46px; gap:10px}
+  .brand{font-size:16px}
+  .spaces{position:fixed; left:0; right:0; bottom:0; z-index:30; background:var(--plane); border-top:1px solid var(--rule);
+    height:calc(var(--bar) + env(safe-area-inset-bottom, 0px)); padding-bottom:env(safe-area-inset-bottom, 0px);
+    display:grid; grid-auto-flow:column; grid-auto-columns:minmax(0,1fr); gap:0}
+  .space{padding:0 2px; font-size:13.5px}
+  .space .long{display:none}
+  .space .short{display:inline}
+  .space[aria-current="page"]::after{left:26%; right:26%; top:-1px; bottom:auto}
+  .subnav{min-height:42px; padding-right:0}
+  .subnav.solo, .subnav .legend-key{display:none}
+  .tabs{flex:1 1 auto; padding-right:var(--gutter)}
+  .tab{padding:7px 10px}
+  .filters{padding-top:8px}
+  .ftoggle{display:flex; align-items:center; gap:10px; width:100%; appearance:none; background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:7px 10px; min-height:36px; cursor:pointer; text-align:left}
+  .ftoggle span:first-child{font-weight:500}
+  .ftoggle span:last-child{min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .ftoggle::after{content:""; margin-left:auto; flex:none; width:7px; height:7px; border-right:1.5px solid var(--ink-2); border-bottom:1.5px solid var(--ink-2); transform:rotate(45deg) translateY(-2px)}
+  .ftoggle[aria-expanded="true"]::after{transform:rotate(-135deg) translateY(-2px)}
+  .filters:not(.open) > .fgroup{display:none}
+  .filters.open > .fkey{display:flex; margin-left:0; flex-wrap:wrap; gap:6px 14px; white-space:normal}
+  .fgroup{flex-wrap:wrap; width:100%}
+  .flabel{width:100%}
+  .seg button{min-height:34px; padding:4px 11px}
+  .linkbtn{min-height:30px}
+  .daterange{margin-left:0; flex-wrap:wrap}
+  .stats2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .split{grid-template-columns:1fr}
+  .controls .sel{max-width:100%}
+}
+@media (max-width:760px){
+  /* sources: one card per dataset instead of a six-column table */
+  .t.src thead{display:none}
+  .t.src,.t.src tbody,.t.src tr,.t.src td{display:block}
+  .t.src tr{padding:11px 0; border-bottom:1px solid var(--rule)}
+  .t.src tr:first-child{padding-top:2px}
+  .t.src tr:last-child{border-bottom:0; padding-bottom:2px}
+  .t.src td,.t.src td:first-child{border:0; padding:2px 0; text-align:left; white-space:normal; position:static; min-width:0; background:none}
+  .t.src td:first-child{font-weight:500; margin-bottom:3px}
+  .t.src td[data-k]{display:grid; grid-template-columns:78px minmax(0,1fr); gap:10px; color:var(--ink-2)}
+  .t.src td[data-k]::before{content:attr(data-k); color:var(--ink-3)}
+  .t.src td[data-k]:empty{display:none}
+  .t.src td[data-k] > .pill{justify-self:start}
+  body{font-size:13px}
+  main{padding:var(--gap) 0 22px}
+  .panel{border-left:0; border-right:0; border-radius:0}
+  .panel > header{padding:11px var(--gutter) 0}
+  .panel-body{padding:9px var(--gutter) 12px}
+  .panel > footer{padding:0 var(--gutter) 10px}
+  .panel.note{padding:10px var(--gutter) 4px}
+  .note .headline{font-size:25px; margin:8px 0 14px}
+  .lines{gap:6px 12px; font-size:13px}
+  .t td{padding:6px 8px}
+  .foot{padding:4px var(--gutter) 22px}
+}
 
 </style>
 </head>
 <body>
-<div class="top">
+<a class="skip" href="#view">Skip to content</a>
+<header class="top">
   <div class="masthead">
-    <h1 class="brand">EGB Dashboard</h1>
-    <span class="asof" id="asof"></span>
-    <span class="status" id="status"></span>
+    <h1 class="brand"><a href="#home" aria-label="EGB Dashboard, back to the brief">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 17C7 8 13 6 19 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="3" cy="17" r="2.3" fill="currentColor"/><circle cx="10.25" cy="8" r="2.3" fill="currentColor"/><circle cx="19" cy="5" r="2.3" fill="currentColor"/></svg>
+      <span>EGB Dashboard</span></a></h1>
+    <nav class="spaces" id="spaces" aria-label="Main"></nav>
+    <div class="meta"><span class="asof" id="asof"></span><span id="status"></span></div>
   </div>
-  <nav class="tabs" id="tabs" role="tablist" aria-label="Sections"></nav>
-</div>
-<div class="filters" id="filters"></div>
-<main id="view">
+  <div class="subnav">
+    <nav class="tabs" id="tabs" role="tablist" aria-label="Sections" hidden></nav>
+    <span class="about" id="about"></span>
+    <span class="legend-key"><span><i class="k-up"></i>higher, wider, cheaper</span><span><i class="k-down"></i>lower, tighter, richer</span></span>
+  </div>
+</header>
+<div class="filters" id="filters" hidden></div>
+<main id="view" tabindex="-1">
   <div class="grid"><section class="panel"><div class="panel-body"><div class="empty">Loading market data.</div></div></section></div>
 </main>
 <footer class="foot" id="foot"></footer>
@@ -249,8 +372,26 @@ td.hm.click { cursor: pointer; }
   const HEAT_BP = { '1D': 10, '1W': 20, '1M': 40, 'YTD': 80 };           // change (bp) at which the tint saturates
   const HEAT_RET = { '1D': 0.5, '1W': 1, '1M': 2, 'YTD': 4 };            // same, for approximate returns (%)
   const CATS = { all: 'All', outright: 'Outright', spread: 'Spread', slope: 'Slope', fly: 'Fly', box: 'Box', custom: 'Custom' };
-  const TABS = [['monitor', 'Monitor'], ['curves', 'Curves'], ['rv', 'RV screen'], ['builder', 'Builder'], ['analysis', 'Analysis'], ['curvelab', 'PCA & carry'], ['backtest', 'Backtest'], ['rates', 'Rates'],
-    ['futures', 'Futures'], ['auctions', 'Auctions'], ['blotter', 'Blotter'], ['sources', 'Sources']];
+  // Sections: id -> [label, what the screen is for, filters it uses]
+  const TAB = {
+    home: ['Brief', 'The last close in one screen: what moved, what looks stretched, what comes next.', ['countries', 'win']],
+    monitor: ['Monitor', 'Yields, changes and spreads to Germany at the last close.', ['countries', 'win', 'range']],
+    curves: ['Curves', 'Curve snapshots and the history of yields, slopes and spreads.', ['countries', 'range']],
+    rates: ['Rates', 'The euro short-term rate and the ECB policy rates.', ['range']],
+    rv: ['RV screen', 'Every spread, slope, butterfly and box, ranked by z-score.', ['countries', 'win', 'range']],
+    builder: ['Builder', 'Build any weighted structure, save it, and chart anything against anything.', ['win', 'range']],
+    analysis: ['Analysis', 'Regressions, betas and correlations between any two series.', ['countries', 'win', 'range']],
+    curvelab: ['PCA & carry', 'Principal components, carry and roll-down, rich and cheap against a fitted curve.', ['countries']],
+    backtest: ['Backtest', 'Test a z-score rule on any structure, with costs and no look-ahead.', ['countries']],
+    futures: ['Futures', 'Eurex bond futures: settlement, deliverable baskets, basis and cheapest to deliver.', []],
+    auctions: ['Auctions', 'Government bond auctions: calendar and results.', ['countries']],
+    blotter: ['News & calendar', 'Official headlines and the events that can move rates.', ['countries']],
+    sources: ['Sources & methods', 'Where every number comes from, how it is computed, and what it cannot tell.', []],
+  };
+  // Spaces: [id, label, short label for the phone bar, sections]
+  const SPACES = [['home', 'Brief', 'Brief', ['home']], ['markets', 'Markets', 'Markets', ['monitor', 'curves', 'rates']],
+    ['relval', 'Relative value', 'RV', ['rv', 'builder', 'analysis', 'curvelab', 'backtest']],
+    ['supply', 'Futures & supply', 'Futures', ['futures', 'auctions']], ['news', 'News & sources', 'News', ['blotter', 'sources']]];
 
   const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
   const COL = {};                                     // resolved colours, filled at start-up
@@ -259,7 +400,7 @@ td.hm.click { cursor: pointer; }
   let BYID = new Map();
 
   const S = Object.assign({
-    tab: 'monitor', countries: null, win: '3M', range: '1Y', horizon: '1D', metric: 'bp', tenor: 10,
+    tab: 'home', last: {}, countries: null, win: '3M', range: '1Y', horizon: '1D', metric: 'bp', tenor: 10,
     shape: 'level', compare: 'none', slope: '2s10s', rvCat: 'all', rvSort: 'absz', rvDir: -1, rvSel: null,
     pairA: null, pairB: null, regY: null, regX: null, corrSet: null, aucCountry: 'all', futSel: null, tables: {},
     from: '', to: '', bDraft: null, bEdit: null, wbIds: null, wbMode: 'level', bt: null, btSel: null, clC: null, clWin: '1Y', clHor: '3M', clFly: null
@@ -590,7 +731,9 @@ td.hm.click { cursor: pointer; }
     const pad = (hi - lo) * .08, y = d3.scaleLinear().domain([lo - pad, hi + pad]).range([H - m.b, m.t]), yt = y.ticks(5), yf = y.tickFormat(5);
     svg.append('g').selectAll('line').data(yt).join('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', d => Math.round(y(d)) + .5).attr('y2', d => Math.round(y(d)) + .5).attr('stroke', COL.rule);
     svg.append('g').selectAll('text').data(yt).join('text').attr('class', 'tick').attr('x', m.l - 6).attr('y', d => y(d)).attr('dy', '.32em').attr('text-anchor', 'end').text(d => signFix(yf(d)));
-    svg.append('g').selectAll('text').data(tenors).join('text').attr('class', 'tick').attr('x', d => x(d)).attr('y', H - m.b + 15).attr('text-anchor', 'middle').text(d => d + 'Y');
+    const lab = [];                                                           // maturity labels: benchmarks first, the others where there is room
+    for (const t of [2, 5, 10, 30, 1, 3, 7, 15, 20, ...tenors].filter((t, i, a) => tenors.includes(t) && a.indexOf(t) === i)) if (lab.every(s => Math.abs(x(s) - x(t)) >= 24)) lab.push(t);
+    svg.append('g').selectAll('text').data(lab).join('text').attr('class', 'tick').attr('x', d => x(d)).attr('y', H - m.b + 15).attr('text-anchor', 'middle').text(d => d + 'Y');
     svg.append('text').attr('class', 'axis-label').attr('x', (m.l + W - m.r) / 2).attr('y', H - 3).attr('text-anchor', 'middle').text('Maturity');
     svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', H - m.b + .5).attr('y2', H - m.b + .5).attr('stroke', COL.axis);
     const line = d3.line().x(p => x(p.t)).y(p => y(p.v));
@@ -681,7 +824,7 @@ td.hm.click { cursor: pointer; }
       tools: seg([['bp', 'Change'], ['ret', 'Return']], S.metric, v => set({ metric: v }), 'Metric'), foot: sourceLine(outs.flatMap(u => u.src)) },
       h('div', { class: 'scroll' }, h('table', { class: 't' },
         h('thead', null, h('tr', null, ['Maturity', 'Yield', '1D', '1W', '1M', 'YTD', 'Z ' + S.win, 'Pctile', 'Range ' + S.win].map(x => h('th', null, x)))),
-        h('tbody', null, outs.map(u => { const st = stats(u, n); return h('tr', { class: 'click' + (Math.abs(st.z) >= 2 ? ' hot' : ''), onclick: () => set({ tab: 'rv', rvSel: u.id, rvCat: 'all' }) },
+        h('tbody', null, outs.map(u => { const st = stats(u, n); return h('tr', { class: 'click' + (Math.abs(st.z) >= 2 ? ' hot' : ''), onclick: () => go('rv', { rvSel: u.id, rvCat: 'all' }) },
           h('td', null, h('span', { class: 'name' }, u.tenor + 'Y')), h('td', { class: 'lvl' }, level(u)), ...Object.keys(HORIZONS).map(k => cell(u, k)),
           h('td', null, zChip(st.z)), h('td', null, num(st.pct, 0)), h('td', { svg: rangeBar(st) })); })))));
   }
@@ -737,7 +880,7 @@ td.hm.click { cursor: pointer; }
     const body = list.length ? h('div', { class: 'scroll' }, h('table', { class: 't' },
       h('thead', null, h('tr', null, ['Spread', 'bp', S.horizon, 'Z ' + S.win, 'Pctile', 'Range ' + S.win].map(c => h('th', null, c)))),
       h('tbody', null, list.map(u => { const st = stats(u, n), d = change(u, hz);
-        return h('tr', { class: 'click' + (Math.abs(st.z) >= 2 ? ' hot' : ''), onclick: () => set({ tab: 'rv', rvSel: u.id, rvCat: 'all' }) }, h('td', null, ctry(u.country), ' ', h('span', { class: 'muted' }, 'vs ' + REF)),
+        return h('tr', { class: 'click' + (Math.abs(st.z) >= 2 ? ' hot' : ''), onclick: () => go('rv', { rvSel: u.id, rvCat: 'all' }) }, h('td', null, ctry(u.country), ' ', h('span', { class: 'muted' }, 'vs ' + REF)),
           h('td', { class: 'lvl' }, level(u)), heatCell(bp(d), d, HEAT_BP[S.horizon]), h('td', null, zChip(st.z)), h('td', null, num(st.pct, 0)), h('td', { svg: rangeBar(st) })); }))))
       : h('div', { class: 'empty' }, `No daily spread for the selected countries. Daily yields are loaded for ${dailyNames()} only.`);
     return panel({ id: 'p-spreads', span: 's5', title: 'Spreads to Germany, daily', sub: `${T}-year, in bp`, tools: spreadSeg(),
@@ -754,7 +897,7 @@ td.hm.click { cursor: pointer; }
         h('div', { class: 'scroll' }, h('table', { class: 't' },
           h('thead', null, h('tr', null, ['Structure', 'Level', '1D', '1W', '1M', 'Z ' + S.win, 'Range ' + S.win].map(x => h('th', null, x)))),
           h('tbody', null, legs.map(([lg, kind]) => { const u = inst(`${c}_${lg}`); if (!u) return null; const st = stats(u, n);
-            return h('tr', { class: 'click' + (Math.abs(st.z) >= 2 ? ' hot' : ''), onclick: () => set({ tab: 'rv', rvSel: u.id, rvCat: 'all' }) },
+            return h('tr', { class: 'click' + (Math.abs(st.z) >= 2 ? ' hot' : ''), onclick: () => go('rv', { rvSel: u.id, rvCat: 'all' }) },
               h('td', null, h('span', { class: 'name' }, lg), ' ', h('span', { class: 'muted' }, kind)), h('td', { class: 'lvl' }, level(u)),
               ...['1D', '1W', '1M'].map(k => { const d = change(u, HORIZONS[k]); return heatCell(bp(d), d, HEAT_BP[k]); }), h('td', null, zChip(st.z)), h('td', { svg: rangeBar(st) })); })))));
     }
@@ -765,17 +908,17 @@ td.hm.click { cursor: pointer; }
         const st = stats(u, n), d = change(u, hz);
         const text = S.shape === 'z' ? num(st.z, 2, true) : S.shape === 'chg' ? bp(d) : level(u);
         const td = S.shape === 'chg' ? heatCell(text, d, HEAT_BP[S.horizon]) : heatCell(text, st.z, 3, `Level ${level(u)} bp, z-score ${num(st.z, 2, true)} over ${S.win}`);
-        td.classList.add('click'); td.style.cursor = 'pointer'; td.addEventListener('click', () => set({ tab: 'rv', rvSel: u.id, rvCat: 'all' })); return td;
+        td.classList.add('click'); td.style.cursor = 'pointer'; td.addEventListener('click', () => go('rv', { rvSel: u.id, rvCat: 'all' })); return td;
       }))))))
       : h('div', { class: 'empty' }, 'Slopes and butterflies need at least two maturities per country. Only one maturity is loaded so far.');
     return panel({ id: 'p-shape', span: 's6', title: 'Curve shape', sub: S.shape === 'chg' ? `change over ${S.horizon} in bp` : `${S.shape === 'z' ? 'z-score' : 'level in bp'}, tinted by z-score over ${S.win}`,
       tools: seg([['level', 'Level'], ['z', 'Z-score'], ['chg', 'Change']], S.shape, v => set({ shape: v }), 'Number shown') }, body);
   }
-  function panelExtremes(span) {
+  function panelExtremes(span, k) {
     const n = WINDOWS[S.win];
-    const list = visible().filter(u => u.cat !== 'outright').map(u => ({ u, st: stats(u, n) })).filter(o => Number.isFinite(o.st.z)).sort((a, b) => Math.abs(b.st.z) - Math.abs(a.st.z)).slice(0, 9);
+    const list = visible().filter(u => u.cat !== 'outright').map(u => ({ u, st: stats(u, n) })).filter(o => Number.isFinite(o.st.z)).sort((a, b) => Math.abs(b.st.z) - Math.abs(a.st.z)).slice(0, k || 9);
     const body = list.length ? h('div', { class: 'zlist' }, list.map(({ u, st }) => [
-      h('a', { class: 'zn', href: '#rv', onclick: e => { e.preventDefault(); set({ tab: 'rv', rvSel: u.id, rvCat: 'all' }); } }, u.name),
+      h('a', { class: 'zn', href: '#rv', title: u.long, onclick: e => { e.preventDefault(); go('rv', { rvSel: u.id, rvCat: 'all' }); } }, u.name),
       h('div', { class: 'ztrack' }, h('div', { class: 'zbar ' + (st.z >= 0 ? 'pos' : 'neg'), style: `width:${(50 * Math.min(3, Math.abs(st.z)) / 3).toFixed(1)}%` })),
       h('div', { class: 'zv' }, num(st.z, 2, true))]))
       : h('div', { class: 'empty' }, `No z-score yet: the loaded history is shorter than the ${S.win} window.`);
@@ -809,7 +952,7 @@ td.hm.click { cursor: pointer; }
   /** Calendar entries: the events file plus the upcoming auctions of the selected countries. */
   function allEvents() {
     const ev = ((DATA.events && DATA.events.events) || []).slice();
-    for (const a of ((DATA.auctions && DATA.auctions.upcoming) || [])) if (shown(a.country)) ev.push({ date: a.date, kind: 'Auction', title: `${COUNTRIES[a.country]}: ${a.title}`, url: a.url });
+    for (const a of ((DATA.auctions && DATA.auctions.upcoming) || [])) if (shown(a.country)) ev.push({ date: a.date, kind: 'Auction', title: `${COUNTRIES[a.country]}: ${a.title}`, url: a.url, size: Number.isFinite(a.amount_bn) ? `EUR ${num(a.amount_bn, 1)} bn` : null });
     return ev.sort((a, b) => a.date.localeCompare(b.date));
   }
   function nextEvents(k) { const today = new Date().toISOString().slice(0, 10); return allEvents().filter(e => e.date >= today).slice(0, k); }
@@ -1055,8 +1198,8 @@ td.hm.click { cursor: pointer; }
   function viewSources() {
     const M = DATA.sources || { sources: [] }, pill = s => h('span', { class: 'pill ' + ({ verified: 'ok', unverified: 'warn' }[s] || 'off') }, { verified: 'Verified', unverified: 'Not verified', planned: 'Planned', blocked: 'Not reachable' }[s] || s);
     const loaded = M.sources.filter(s => s.used), other = M.sources.filter(s => !s.used);
-    const tbl = list => h('div', { class: 'scroll' }, h('table', { class: 't' }, h('thead', null, h('tr', null, ['Dataset', 'Publisher', 'Covers', 'Frequency', 'Status', 'Note'].map((c, i) => h('th', { class: i ? 'l' : null }, c)))),
-      h('tbody', null, list.map(s => h('tr', null, h('td', null, s.url ? h('a', { href: s.url, target: '_blank', rel: 'noopener' }, s.name) : s.name), h('td', { class: 'l' }, s.publisher), h('td', { class: 'l wrap' }, s.covers), h('td', { class: 'l' }, s.frequency), h('td', { class: 'l' }, pill(s.status)), h('td', { class: 'l wrap' }, s.note || ''))))));
+    const tbl = list => h('div', { class: 'scroll' }, h('table', { class: 't src' }, h('thead', null, h('tr', null, ['Dataset', 'Publisher', 'Covers', 'Frequency', 'Status', 'Note'].map((c, i) => h('th', { class: i ? 'l' : null }, c)))),
+      h('tbody', null, list.map(s => h('tr', null, h('td', null, s.url ? h('a', { href: s.url, target: '_blank', rel: 'noopener' }, s.name) : s.name), h('td', { class: 'l', 'data-k': 'Publisher' }, s.publisher), h('td', { class: 'l wrap', 'data-k': 'Covers' }, s.covers), h('td', { class: 'l', 'data-k': 'Frequency' }, s.frequency), h('td', { class: 'l', 'data-k': 'Status' }, pill(s.status)), h('td', { class: 'l wrap', 'data-k': 'Note' }, s.note || ''))))));
     const methods = h('div', { class: 'prose' },
       h('h3', null, 'How the numbers are built'),
       h('p', null, 'Every derived number is computed in the browser from the published end-of-day yields. Changes are in basis points.'),
@@ -1068,6 +1211,8 @@ td.hm.click { cursor: pointer; }
         h('li', null, h('code', null, 'Z-score'), ' = (latest level minus mean) / sample standard deviation, over the selected window of observations, latest one included. It needs at least 90% of the window.'),
         h('li', null, h('code', null, 'Percentile'), ' = share of the window below the latest level.'),
         h('li', null, h('code', null, 'Regression'), ' = ordinary least squares on day-to-day changes in bp, on the days both series have a value.'),
+        h('li', null, h('code', null, 'Closing note'), ' = sentences written by the page from the day\'s moves. Bull or bear: yields lower or higher. Steeper or flatter: 2s10s wider or narrower. Twist: the 2-year and the 10-year move by at least 1 bp in opposite directions. Parallel: 2s10s unchanged. A butterfly that rises means its belly cheapened. Moves below 0.05 bp read as unchanged.'),
+        h('li', null, h('code', null, 'Largest moves'), ' = 1-day change divided by the standard deviation of the daily changes over the z-score window, the latest one included. One row per family: a country\'s 2, 5, 10 and 30-year yields, its spreads to Germany, its slopes.'),
         h('li', null, h('code', null, 'Approximate return'), ' = minus modified duration x yield change, plus the running yield over the period. Duration is that of an annual-pay par bond at the starting yield. Roll-down and convexity are ignored.')),
       h('h3', null, 'Reading the colours'),
       h('p', null, 'Red means a higher yield, a wider spread or a cheaper level. Blue means the opposite. Each country keeps one colour across all charts.'),
@@ -1077,6 +1222,222 @@ td.hm.click { cursor: pointer; }
       other.length ? panel({ id: 'p-src-other', span: 's12', title: 'Sources audited, not used yet' }, tbl(other)) : null,
       panel({ id: 'p-methods', span: 's12', title: 'Methods' }, methods));
   }
+
+  // ===================================================================== 7.0 brief: the last close in one screen
+  // Every word and every number of the closing note is produced from the data files when the page loads.
+  // Nothing is typed by hand, nothing is a forecast or an opinion. tests/ recomputes the same sentences in Python.
+  const BOND = { DE: 'Bunds', FR: 'OATs', IT: 'BTPs', ES: 'Bonos', NL: 'DSLs', BE: 'OLOs', AT: 'RAGBs', PT: 'PGBs' };
+  const REPO = 'https://github.com/arthurmarc1102-droid/egb-dashboard';
+  const fDowS = d3.utcFormat('%a %d %b'), fMonY = d3.utcFormat('%b %Y');
+  const lastOf = s => s.values[s.values.length - 1], dateOf = s => s.dates[s.dates.length - 1];
+  const still = x => Math.abs(x) < 0.05;                             // a move below a twentieth of a basis point reads as unchanged
+  const trim1 = x => { const s = Math.abs(x).toFixed(1); return s.endsWith('.0') ? s.slice(0, -2) : s; };
+  const bpw = x => trim1(x) + ' bp';                                 // size of a move, in words: 4 bp, 6.5 bp
+  const lv = x => (x < 0 && Number(Math.abs(x).toFixed(1)) !== 0 ? MINUS : '') + trim1(x);   // a level in bp: 26, 145.6, −5
+
+  /** The benchmark curve of one country in one sentence, from the day's moves in its 2-year and 10-year yields.
+      Desk vocabulary: bull = yields lower, bear = yields higher; steeper or flatter = 2s10s wider or narrower;
+      twist = the two ends move by at least 1 bp in opposite directions; parallel = 2s10s unchanged. */
+  function closeSentence(c) {
+    const b = inst(`${c}_10Y`), a = inst(`${c}_2Y`), sl = inst(`${c}_2s10s`);
+    if (!b || b.values.length < 2) return null;
+    const d10 = change(b, 1);
+    const ten = still(d10) ? `the 10-year yield was unchanged at ${level(b)} %` : `the 10-year yield ${d10 < 0 ? 'fell' : 'rose'} ${bpw(d10)} to ${level(b)} %`;
+    const late = dateOf(b) < lastDate() ? ` Data to ${fShort(parseD(dateOf(b)))}.` : '';          // this curve has no value yet for the page's close
+    if (!a || !sl || dateOf(a) !== dateOf(b)) return `${BOND[c]}${still(d10) ? '' : d10 < 0 ? ' rallied' : ' sold off'}: ${ten}.${late}`;   // one point only: no verdict on the whole curve when it did not move
+    const d2 = change(a, 1), ds = change(sl, 1), mid = (d2 + d10) / 2, shape = still(ds) ? '' : ds > 0 ? 'steepened' : 'flattened';
+    let verb;
+    if (still(d2) && still(d10)) verb = '';                                  // other maturities may have moved: state the two facts, no verb
+    else if (d2 * d10 < 0 && Math.abs(d2) >= 0.95 && Math.abs(d10) >= 0.95) verb = 'twist-' + shape;
+    else if (!shape) verb = (mid < 0 ? 'rallied' : 'sold off') + ' in a parallel move';
+    else verb = still(mid) ? shape : (mid < 0 ? 'bull-' : 'bear-') + shape;
+    return `${BOND[c]}${verb ? ' ' + verb : ''}: ${ten}, 2s10s ${still(ds) ? 'unchanged' : bpw(ds) + (ds > 0 ? ' steeper' : ' flatter')} at ${lv(lastOf(sl))} bp.${late}`;
+  }
+  /** Spread of one country to Germany: level, move of the day, z-score on the selected window. */
+  function spreadSentence(c, n) {
+    const u = inst(`${c}-${REF}_10Y`) || U.find(x => x.cat === 'spread' && x.country === c);
+    if (!u || u.values.length < 2) return null;
+    const st = stats(u, n), d = change(u, 1);
+    return { u, text: `${u.tenor}-year spread to Germany ${lv(st.last)} bp, ${still(d) ? 'unchanged' : bpw(d) + (d > 0 ? ' wider' : ' tighter')}` +
+      (Number.isFinite(st.z) ? `, ${S.win} z-score ${num(st.z, 2, true)}` : '') + (dateOf(u) < lastDate() ? `. Data to ${fShort(parseD(dateOf(u)))}.` : '.') };
+  }
+  /** Long end and belly of one curve. A butterfly that rises means the body yield rose against the wings: the belly cheapened. */
+  function shapeSentence(c) {
+    const s = inst(`${c}_5s30s`) || inst(`${c}_10s30s`), f = inst(`${c}_2s5s10s`) || U.find(x => x.cat === 'fly' && x.country === c), parts = [];
+    if (s && s.values.length > 1) { const d = change(s, 1); parts.push(`${s.legs} ${lv(lastOf(s))} bp, ${still(d) ? 'unchanged' : bpw(d) + (d > 0 ? ' steeper' : ' flatter')}`); }
+    if (f && f.values.length > 1) { const d = change(f, 1); parts.push(`${f.legs} fly ${lv(lastOf(f))} bp, ${still(d) ? 'unchanged' : 'belly ' + bpw(d) + (d > 0 ? ' cheaper' : ' richer')}`); }
+    return parts.length ? `${COUNTRIES[c]} ${parts.join('; ')}.` : null;
+  }
+  /** Text to nodes, keeping "10-year", "4 bp", "3.31 %" and "3M z-score +0.73" unbroken at line ends. */
+  function nb(text) {
+    const out = []; let i = 0;
+    for (const m of text.matchAll(/\d+-year|(?:\d+[MY] )?z-score [\u2212+]?\d+(?:\.\d+)?|[\u2212+]?\d+(?:\.\d+)? (?:bp|%)/g)) { if (m.index > i) out.push(text.slice(i, m.index)); out.push(h('span', { style: 'white-space:nowrap' }, m[0])); i = m.index + m[0].length; }
+    if (i < text.length) out.push(text.slice(i));
+    return out;
+  }
+  const stretched = n => visible().filter(u => u.cat !== 'outright').map(u => ({ u, st: stats(u, n) })).filter(o => Number.isFinite(o.st.z)).sort((a, b) => Math.abs(b.st.z) - Math.abs(a.st.z));
+  function futureSentence() {
+    const F = DATA.futures, p = F && F.products && F.products.find(x => x.code === 'FGBL'), c0 = p && p.contracts[0]; if (!c0) return null;
+    const ctd = (c0.basket || []).find(x => x.ctd);
+    return `Bund future ${c0.label} settled at ${num(c0.settle, 2)}` + (ctd ? `; cheapest to deliver ${num(ctd.coupon, 2)}% ${fMonY(parseD(ctd.maturity))}, implied repo ${num(ctd.implied_repo, 2)} %` : '') +
+      (F.asof && F.asof !== lastDate() ? ` (settlement of ${fShort(parseD(F.asof))})` : '') + '.';
+  }
+
+  // ---------- what comes next: auctions of the selected countries, the next ECB decision, first-tier euro-area data
+  const KEY_DATA = /inflation|HICP|GDP|unemployment|sentiment/i;
+  const todayISO = () => new Date().toISOString().slice(0, 10);
+  const daysTo = iso => Math.round((parseD(iso) - parseD(todayISO())) / 864e5);
+  const inDays = iso => { const k = daysTo(iso); return k <= 0 ? 'today' : k === 1 ? 'tomorrow' : `in ${k} days`; };
+  function keyEvents() {
+    const up = allEvents().filter(e => e.date >= todayISO());
+    return [...up.filter(e => e.kind === 'Auction').slice(0, 3), ...up.filter(e => e.kind === 'ECB').slice(0, 1), ...up.filter(e => e.kind === 'Data' && KEY_DATA.test(e.title)).slice(0, 3)]
+      .sort((a, b) => a.date.localeCompare(b.date));
+  }
+  function nextSentence() {
+    const ev = keyEvents(), first = ev.find(e => e.kind !== 'ECB'), ecb = ev.find(e => e.kind === 'ECB'), parts = [];
+    if (first) parts.push(`${first.title}${first.size ? ', ' + first.size : ''}, ${daysTo(first.date) > 1 ? 'on ' + fDowS(parseD(first.date)) : inDays(first.date)}.`);
+    if (ecb) parts.push(`ECB decision on ${fDowS(parseD(ecb.date))}, ${inDays(ecb.date)}.`);
+    return parts.join(' ') || null;
+  }
+  function panelNext(span) {
+    const ev = keyEvents();
+    return panel({ id: 'p-next', span, title: 'What comes next', sub: 'supply, ECB, first-tier data', tools: h('a', { href: '#blotter' }, 'Full calendar'),
+      foot: 'Auctions of the selected countries, the next ECB decision, and euro-area inflation, GDP, unemployment and sentiment releases.' },
+      ev.length ? h('div', { class: 'feed short' }, ev.map(e => h('div', { class: 'item' }, h('span', { class: 'when' }, fDowS(parseD(e.date))),
+        h('span', { class: 'what' }, e.url ? h('a', { href: e.url, target: '_blank', rel: 'noopener' }, e.title) : e.title),
+        h('span', { class: 'who' }, [e.kind, e.size, inDays(e.date)].filter(Boolean).join(', ')))))
+        : h('div', { class: 'empty' }, 'No upcoming event is loaded. The calendar refreshes with the daily update.'));
+  }
+
+  // ---------- largest moves of the day, measured against the usual size of a daily move
+  /** Last daily change in bp, and the same in standard deviations of the last n daily changes (today's included). */
+  function dayMove(u, n) {
+    const L = u.values.length, k = u.unit === 'pct' ? 100 : 1; if (L < 22) return null;
+    const ch = []; for (let i = Math.max(1, L - n); i < L; i++) ch.push((u.values[i] - u.values[i - 1]) * k);
+    const sd = d3.deviation(ch), d1 = ch[ch.length - 1];
+    return ch.length >= 20 && sd > 0 ? { d1, sd, score: d1 / sd } : null;
+  }
+  /** One row per family (a country's benchmark yields, its spreads to Germany, its slopes): the family's largest move, then the k largest of those.
+      Without the grouping, five maturities of one curve moving together would fill the list. */
+  function movers(n, k) {
+    const close = lastDate(), best = new Map();
+    for (const u of visible()) {
+      if (!(u.cat === 'slope' || ((u.cat === 'outright' || u.cat === 'spread') && HEADLINE.includes(u.tenor))) || dateOf(u) !== close) continue;
+      const m = dayMove(u, n); if (!m || still(m.d1)) continue;
+      const key = u.country + ' ' + u.cat, cur = best.get(key);
+      if (!cur || Math.abs(m.score) > Math.abs(cur.m.score)) best.set(key, { u, m });
+    }
+    return [...best.values()].sort((a, b) => Math.abs(b.m.score) - Math.abs(a.m.score)).slice(0, k);
+  }
+  function panelMovers(span) {
+    const n = WINDOWS[S.win], list = movers(n, 5);
+    return panel({ id: 'p-movers', span, title: 'Largest moves of the day', sub: `the biggest in each family, against its usual daily move`,
+      foot: `Families: a country's 2, 5, 10 and 30-year yields, its spreads to Germany, its slopes. Std dev = 1-day change divided by the standard deviation of the last ${n} daily changes. Butterflies and boxes are left out because German yields are published to the basis point.` },
+      list.length ? h('div', { class: 'scroll' }, h('table', { class: 't' },
+        h('thead', null, h('tr', null, ['Structure', 'Level', '1D bp', 'Std dev'].map(x => h('th', null, x)))),
+        h('tbody', null, list.map(({ u, m }) => h('tr', { class: 'click', onclick: () => go('rv', { rvSel: u.id, rvCat: 'all' }) },
+          h('td', null, h('span', { class: 'name' }, u.name)), h('td', { class: 'lvl' }, level(u), h('span', { class: 'muted' }, ' ' + unitLabel(u))),
+          heatCell(bp(m.d1), m.d1, HEAT_BP['1D']), h('td', null, num(m.score, 1, true)))))))
+        : h('div', { class: 'empty' }, 'No move to rank: the selected countries have no new close, or less than a month of history.'));
+  }
+
+  // ---------- curve ladder: the curves at the close, with the table underneath sharing the chart's columns
+  const LADDER = [1, 2, 3, 5, 7, 10, 15, 20, 30];
+  const ladderTenors = (cs, narrow) => {
+    const t = (narrow ? [2, 5, 10, 30] : LADDER).filter(x => cs.some(c => inst(`${c}_${x}Y`)));
+    return t.length >= 2 ? t : tenorsAvail().filter(x => cs.some(c => inst(`${c}_${x}Y`))).slice(0, narrow ? 4 : 9);
+  };
+  /** Each maturity is a band of equal width: the dot of the chart sits right above its yield and its change in the table. */
+  function ladder(host, cs) {
+    host.replaceChildren(); host.classList.add('chart');
+    const W = Math.max(280, Math.floor(host.clientWidth || 640)), narrow = W < 560, tenors = ladderTenors(cs, narrow), hz = HORIZONS[S.horizon];
+    const lab = narrow ? 60 : 118, cw = (W - lab) / tenors.length, H = narrow ? 170 : 216, m = { t: 14, b: 10 }, X = i => lab + (i + 0.5) * cw;
+    const rows = cs.map(c => ({ c, p: tenors.map((t, i) => { const u = inst(`${c}_${t}Y`); return u ? { i, t, u, v: lastOf(u), d: change(u, hz) } : null; }) })).filter(r => r.p.some(Boolean));
+    const vals = rows.flatMap(r => r.p.filter(Boolean).map(p => p.v)); let lo = d3.min(vals), hi = d3.max(vals); if (lo === hi) { lo -= .1; hi += .1; }
+    const pad = (hi - lo) * .1, y = d3.scaleLinear().domain([lo - pad, hi + pad]).range([H - m.b, m.t]), yt = y.ticks(4), yf = y.tickFormat(4);
+    const svg = d3.select(host).append('svg').attr('width', W).attr('height', H).attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Yield curves at the close, one column per maturity');
+    const band = svg.append('rect').attr('y', 0).attr('height', H).attr('width', cw).attr('fill', COL.ink).attr('opacity', 0);
+    svg.append('g').selectAll('line').data(yt).join('line').attr('x1', lab).attr('x2', W).attr('y1', d => Math.round(y(d)) + .5).attr('y2', d => Math.round(y(d)) + .5).attr('stroke', COL.rule);
+    svg.append('g').selectAll('text').data(yt).join('text').attr('class', 'tick').attr('x', lab - 10).attr('y', d => y(d)).attr('dy', '.32em').attr('text-anchor', 'end').text(d => signFix(yf(d)) + ' %');
+    const line = d3.line().x(p => X(p.i)).y(p => y(p.v));
+    for (const r of rows) {
+      const pts = r.p.filter(Boolean);
+      svg.append('path').attr('d', line(pts)).attr('fill', 'none').attr('stroke', COL[r.c]).attr('stroke-width', 2).attr('stroke-linejoin', 'round').attr('stroke-linecap', 'round');
+      svg.append('g').selectAll('circle').data(pts).join('circle').attr('cx', p => X(p.i)).attr('cy', p => y(p.v)).attr('r', 4).attr('fill', COL[r.c]).attr('stroke', COL.surface).attr('stroke-width', 2);
+    }
+    // the table: one column per band, so numbers line up under the dots
+    const cols = tenors.map(() => []), keep = (i, el) => { cols[i].push(el); el.addEventListener('pointerenter', () => on(i, false)); return el; };
+    const table = h('table', { class: 't ladder-t', style: `width:${W}px` }, h('colgroup', null, h('col', { style: `width:${lab}px` }), tenors.map(() => h('col'))),
+      h('thead', null, h('tr', null, h('th', null, 'Maturity'), tenors.map((t, i) => keep(i, h('th', null, t + 'Y'))))),
+      h('tbody', null, rows.map(r => [
+        h('tr', { class: 'lv' }, h('td', null, narrow ? ctry(r.c) : ctryRow(r.c)), r.p.map((p, i) => keep(i, p ? h('td', { class: 'lvl' }, level(p.u)) : h('td', { class: 'muted' }, DASH)))),
+        h('tr', { class: 'chg' }, h('td', { class: 'muted' }, S.horizon + ', bp'), r.p.map((p, i) => keep(i, p ? heatCell(bp(p.d), p.d, HEAT_BP[S.horizon]) : h('td', { class: 'muted' }, DASH))))])));
+    host.append(table);
+    const tip = tooltip(host); let cur = -1;
+    function on(i, withTip) {
+      if (i !== cur) { if (cur >= 0) cols[cur].forEach(el => el.classList.remove('col-on')); cur = i; if (i >= 0) cols[i].forEach(el => el.classList.add('col-on')); }
+      band.attr('x', lab + Math.max(0, i) * cw).attr('opacity', i >= 0 ? .06 : 0);
+      if (i >= 0 && withTip) tip.show(X(i), rows.map(r => (r.p[i] ? { color: COL[r.c], name: COUNTRIES[r.c], value: `${level(r.p[i].u)} %, ${bp(r.p[i].d)} bp` } : null)).filter(Boolean), `${tenors[i]}-year, change over ${S.horizon}`);
+      else tip.hide();
+    }
+    svg.append('rect').attr('x', lab).attr('y', 0).attr('width', W - lab).attr('height', H).attr('fill', 'transparent')
+      .on('pointermove', ev => on(Math.max(0, Math.min(tenors.length - 1, Math.floor((d3.pointer(ev, svg.node())[0] - lab) / cw))), true))
+      .on('pointerdown', ev => on(Math.max(0, Math.min(tenors.length - 1, Math.floor((d3.pointer(ev, svg.node())[0] - lab) / cw))), true))
+      .on('pointerleave', () => on(-1, false));
+    table.addEventListener('pointerleave', () => on(-1, false));
+  }
+  function panelLadder(span) {
+    const cs = DC(), host = h('div');
+    mount(host, el => ladder(el, cs));
+    return panel({ id: 'p-ladder', span, title: 'Curves at the close', sub: `yield in %, change over ${S.horizon} in bp`,
+      tools: [seg(Object.keys(HORIZONS).map(k => [k, k]), S.horizon, v => set({ horizon: v }), 'Change horizon'),
+        csvButton('curves_at_close', () => { const t = ladderTenors(cs, false); return { head: ['country', 'measure', ...t.map(x => x + 'Y')],
+          rows: cs.flatMap(c => [[c, 'yield_pct', ...t.map(x => { const u = inst(`${c}_${x}Y`); return u ? lastOf(u) : ''; })], [c, 'change_bp_' + S.horizon, ...t.map(x => { const u = inst(`${c}_${x}Y`); return u ? +change(u, HORIZONS[S.horizon]).toFixed(2) : ''; })]]) }; })],
+      foot: (sourceLine(U.filter(u => u.cat === 'outright' && cs.includes(u.country)).flatMap(u => u.src)) + (cs.length > 1 ? ' The curves are not built the same way: see Sources.' : '')).trim() }, host);
+  }
+
+  // ---------- futures, auction results and headlines, in short
+  function panelFuturesMini(span) {
+    const F = DATA.futures;
+    if (!F || !F.products || !F.products.length) return panel({ id: 'p-fut-mini', span, title: 'Bond futures' }, h('div', { class: 'empty' }, 'Futures data is not loaded. It comes back with the next daily update.'));
+    const rows = F.products.filter(p => p.contracts.length).map(p => { const c = p.contracts[0], ctd = (c.basket || []).find(x => x.ctd);
+      return h('tr', { class: 'click', onclick: () => go('futures', { futSel: p.code + ' ' + c.label }) }, h('td', null, h('span', { class: 'name' }, p.name), ' ', h('span', { class: 'muted' }, c.label)), h('td', { class: 'lvl' }, num(c.settle, 2)),
+        h('td', null, ctd ? `${num(ctd.coupon, 2)}% ${fMonY(parseD(ctd.maturity))}` : DASH), h('td', null, ctd ? num(ctd.implied_repo, 2) + ' %' : DASH), h('td', null, ctd ? num(ctd.net_basis, 3) : DASH)); });
+    return panel({ id: 'p-fut-mini', span, title: 'Bond futures', sub: F.asof ? 'Eurex settlement, ' + day(F.asof) : null, tools: h('a', { href: '#futures' }, 'Baskets and basis'),
+      foot: 'Cheapest to deliver = highest implied repo. Basis is indicative: bond prices are midday reference prices, futures settle at 17:15 CET.' },
+      h('div', { class: 'scroll' }, h('table', { class: 't' }, h('thead', null, h('tr', null, ['Front contract', 'Settle', 'Cheapest to deliver', 'Implied repo', 'Net basis'].map(x => h('th', null, x)))), h('tbody', null, rows))));
+  }
+  function panelResultsMini(span) {
+    const A = DATA.auctions, res = A ? (A.results || []).filter(a => shown(a.country)).slice(0, 4) : [];
+    return panel({ id: 'p-results-mini', span, title: 'Latest auctions', tools: h('a', { href: '#auctions' }, 'All results') },
+      res.length ? h('div', { class: 'feed short' }, auctionRows(res, false)) : h('div', { class: 'empty' }, A ? 'No auction result for the selected countries.' : 'Auction data is not loaded yet.'));
+  }
+  function panelHeadlines(span) {
+    const N = DATA.news, items = N && N.items ? N.items.slice(0, 5) : [];
+    return panel({ id: 'p-headlines', span, title: 'Official headlines', tools: h('a', { href: '#blotter' }, 'All') },
+      items.length ? h('div', { class: 'feed short' }, newsRows(items)) : h('div', { class: 'empty' }, 'News feeds are not loaded yet.'));
+  }
+
+  function viewHome() {
+    const dc = DC(), n = WINDOWS[S.win], focus = dc.includes(REF) ? REF : dc[0];
+    if (!focus) return h('div', { class: 'grid' },
+      panel({ id: 'p-note', span: 's12', title: 'Closing note' }, h('div', { class: 'empty' }, `The note needs daily yields, which are loaded for ${dailyNames()} only. Select one of them in Countries.`)),
+      panelNext('s4'), panelResultsMini('s4'), panelHeadlines('s4'));
+    const lines = [], link = (label, tab, patch) => h('a', { href: '#' + tab, onclick: e => { e.preventDefault(); go(tab, patch); } }, label);
+    for (const c of dc) if (c !== focus && c !== REF) { const s = spreadSentence(c, n); if (s) lines.push([COUNTRIES[c], link(COUNTRIES[c], 'rv', { rvSel: s.u.id, rvCat: 'all' }), s.text]); }
+    const shape = shapeSentence(focus); if (shape) lines.push(['Curve', link('Curve', 'curves'), shape]);
+    const top = stretched(n)[0];
+    if (top) lines.push(['Stretched', link('Stretched', 'rv', { rvSel: top.u.id, rvCat: 'all' }), `${top.u.name} is the most stretched level on a ${S.win} window: z-score ${num(top.st.z, 2, true)}, percentile ${num(top.st.pct, 0)}.`]);
+    const fut = futureSentence(); if (fut) lines.push(['Futures', link('Futures', 'futures'), fut]);
+    const nxt = nextSentence(); if (nxt) lines.push(['Next', link('Next', 'blotter'), nxt]);
+    const note = h('section', { class: 'panel note s5', id: 'p-note' },
+      h('h2', { class: 'kicker' }, 'Closing note, ' + fDow(parseD(lastDate()))),
+      h('p', { class: 'headline' }, nb(closeSentence(focus) || `${COUNTRIES[focus]}: not enough history for a closing sentence.`)),
+      h('dl', { class: 'lines' }, lines.map(([k, label, text]) => [h('dt', null, label), h('dd', { 'data-k': k }, nb(text))])),
+      h('p', { class: 'by' }, 'Written by the page from the data at each load. It describes the close; it is not a forecast or a recommendation.'));
+    return h('div', { class: 'grid' }, note, panelLadder('s7'), panelMovers('s4'), panelExtremes('s4', 6), panelNext('s4'), panelFuturesMini('s8'), panelResultsMini('s6'), panelHeadlines('s6'));
+  }
+
 
   // ===================================================================== 9. lab: custom structures, workbench, backtests, PCA, carry, fitted curve
   // Every number below is computed in the browser from data/market.json. pipeline/check_lab.py recomputes the same quantities in Python.
@@ -1577,30 +1938,64 @@ td.hm.click { cursor: pointer; }
   // ===================================================================== 8. shell
   const root = () => document.getElementById('view');
   function hasGroup(g) { return DATA.market && DATA.market.series.some(s => s.group === g); }
-  function tabsAvailable() { return TABS.filter(([id]) => (id === 'rates' ? hasGroup('mm') : id === 'futures' ? !!(DATA.futures && DATA.futures.products && DATA.futures.products.length) : true)); }
+  const tabOK = id => !!TAB[id] && (id === 'rates' ? hasGroup('mm') : id === 'futures' ? !!(DATA.futures && DATA.futures.products && DATA.futures.products.length) : true);
+  const spaceOf = tab => SPACES.find(s => s[3].includes(tab)) || SPACES[0];
+  let filtersOpen = false;                             // phone only: the filter row folds into one button
 
   function renderShell() {
-    const tabs = document.getElementById('tabs'); tabs.replaceChildren(...tabsAvailable().map(([id, name]) =>
-      h('button', { class: 'tab', role: 'tab', type: 'button', id: 'tab-' + id, 'aria-selected': String(S.tab === id), onclick: () => go(id) }, id === 'futures' && DATA.futures.private ? name + ' (private)' : name)));
-    const avail = availCountries();
+    const sp = spaceOf(S.tab), need = TAB[S.tab][2];
+    document.getElementById('spaces').replaceChildren(...SPACES.filter(s => s[3].some(tabOK)).map(([id, name, short, tabs]) =>
+      h('button', { class: 'space', type: 'button', id: 'space-' + id, 'aria-current': sp[0] === id ? 'page' : null, 'aria-label': name, 'data-tabs': tabs.filter(tabOK).join(','),
+        onclick: () => go(S.last && tabs.includes(S.last[id]) && tabOK(S.last[id]) ? S.last[id] : tabs.find(tabOK)) }, h('span', { class: 'long' }, name), h('span', { class: 'short' }, short))));
+    const tabs = sp[3].filter(tabOK), bar = document.getElementById('tabs');
+    bar.hidden = tabs.length < 2; bar.parentNode.classList.toggle('solo', tabs.length < 2);
+    bar.replaceChildren(...(tabs.length < 2 ? [] : tabs.map(id => h('button', { class: 'tab', role: 'tab', type: 'button', id: 'tab-' + id, 'aria-selected': String(S.tab === id), onclick: () => go(id) }, TAB[id][0]))));
+    const on = bar.querySelector('[aria-selected="true"]'); if (on && bar.scrollWidth > bar.clientWidth) bar.scrollLeft = on.offsetLeft - (bar.clientWidth - on.offsetWidth) / 2;   // keep the open section in sight on a phone
+    document.getElementById('about').textContent = TAB[S.tab][1];
+    document.title = (S.tab === 'home' ? '' : TAB[S.tab][0] + ' | ') + 'EGB Dashboard';
+
+    const avail = availCountries(), groups = [];
     const toggle = c => { const cur = S.countries.includes(c) ? S.countries.filter(x => x !== c) : ORDER.filter(x => S.countries.includes(x) || x === c); if (cur.length) set({ countries: cur }); };
-    const f = document.getElementById('filters'); f.replaceChildren(
-      h('div', { class: 'fgroup' }, h('span', { class: 'flabel' }, 'Countries'), h('div', { class: 'seg', role: 'group', 'aria-label': 'Countries shown' },
-        avail.map(c => h('button', { type: 'button', 'aria-pressed': String(S.countries.includes(c)), title: COUNTRIES[c], onclick: () => toggle(c) }, h('i', { class: 'swatch', style: 'background:' + COL[c] }), c)))),
-      h('div', { class: 'fgroup' }, h('span', { class: 'flabel' }, 'Z-score window'), seg(Object.keys(WINDOWS).map(k => [k, k]), S.win, v => set({ win: v }), 'Z-score window')),
-      h('div', { class: 'fgroup' }, h('span', { class: 'flabel' }, 'Chart range'), seg(Object.keys(RANGES).map(k => [k, k]), S.range, v => set(v === 'Custom' && !S.from ? { range: v, from: d3.timeFormat('%Y-%m-%d')(d3.timeYear.offset(new Date(), -3)) } : { range: v }), 'Chart range'),
-        S.range === 'Custom' ? h('span', { class: 'daterange' }, h('input', { class: 'inp', type: 'date', value: S.from || '', 'aria-label': 'Chart range from', onchange: e => set({ from: e.target.value }) }), h('span', { class: 'muted' }, 'to'), h('input', { class: 'inp', type: 'date', value: S.to || '', 'aria-label': 'Chart range to (empty: latest)', onchange: e => set({ to: e.target.value }) })) : null),
-      h('div', { class: 'legend-key' }, h('span', null, h('i', { style: 'background:' + COL.up }), 'higher, wider, cheaper'), h('span', null, h('i', { style: 'background:' + COL.down }), 'lower, tighter, richer')));
+    if (need.includes('countries')) groups.push(h('div', { class: 'fgroup' }, h('span', { class: 'flabel' }, 'Countries'), h('div', { class: 'seg', role: 'group', 'aria-label': 'Countries shown' },
+      avail.map(c => h('button', { type: 'button', 'aria-pressed': String(S.countries.includes(c)), title: COUNTRIES[c] + (hasDaily(c) ? '' : ': monthly data only'), onclick: () => toggle(c) }, h('i', { class: 'swatch', style: 'background:' + COL[c] }), c)))));
+    if (need.includes('win')) groups.push(h('div', { class: 'fgroup' }, h('span', { class: 'flabel' }, 'Z-score window'), seg(Object.keys(WINDOWS).map(k => [k, k]), S.win, v => set({ win: v }), 'Z-score window')));
+    if (need.includes('range')) groups.push(h('div', { class: 'fgroup' }, h('span', { class: 'flabel' }, 'Chart range'),
+      seg(Object.keys(RANGES).map(k => [k, k]), S.range, v => set(v === 'Custom' && !S.from ? { range: v, from: d3.timeFormat('%Y-%m-%d')(d3.timeYear.offset(new Date(), -3)) } : { range: v }), 'Chart range'),
+      S.range === 'Custom' ? h('span', { class: 'daterange' }, h('input', { class: 'inp', type: 'date', value: S.from || '', 'aria-label': 'Chart range from', onchange: e => set({ from: e.target.value }) }), h('span', { class: 'muted' }, 'to'), h('input', { class: 'inp', type: 'date', value: S.to || '', 'aria-label': 'Chart range to (empty: latest)', onchange: e => set({ to: e.target.value }) })) : null));
+    const f = document.getElementById('filters'); f.hidden = !groups.length; f.classList.toggle('open', filtersOpen);
+    const summary = [need.includes('countries') ? S.countries.join(' ') : null, need.includes('win') ? 'z ' + S.win : null, need.includes('range') ? 'range ' + (S.range === 'Custom' ? 'by dates' : S.range) : null].filter(Boolean).join(', ');
+    f.replaceChildren(h('button', { class: 'ftoggle', type: 'button', 'aria-expanded': String(filtersOpen), 'aria-controls': 'filters', onclick: () => { filtersOpen = !filtersOpen; renderShell(); } }, h('span', null, 'Filters'), h('span', { class: 'muted' }, summary)), ...groups,
+      h('div', { class: 'legend-key fkey' }, h('span', null, h('i', { class: 'k-up' }), 'higher, wider, cheaper'), h('span', null, h('i', { class: 'k-down' }), 'lower, tighter, richer')));
   }
   function render() {
-    redraws.length = 0; renderShell();
-    const v = { builder: viewBuilder, curvelab: viewCurveLab, backtest: viewBacktest, monitor: viewMonitor, curves: viewCurves, rv: viewRV, analysis: viewAnalysis, auctions: viewAuctions, blotter: viewBlotter, sources: viewSources,
-      rates: () => groupView('mm', 'Money market and policy rates', '', '%', 3), futures: viewFutures }[S.tab] || viewMonitor;
-    root().replaceChildren(v());
+    redraws.length = 0; if (!tabOK(S.tab)) S.tab = 'home'; renderShell();
+    const v = { home: viewHome, builder: viewBuilder, curvelab: viewCurveLab, backtest: viewBacktest, monitor: viewMonitor, curves: viewCurves, rv: viewRV, analysis: viewAnalysis, auctions: viewAuctions, blotter: viewBlotter, sources: viewSources,
+      rates: () => groupView('mm', 'Money market and policy rates', '', '%', 3), futures: viewFutures }[S.tab] || viewHome;
+    let node;
+    try { node = v(); } catch (e) {
+      // A screen that fails says so and offers the usual cure (settings saved by an older version); the error still reaches the console.
+      node = h('div', { class: 'grid' }, panel({ id: 'p-error', title: 'This screen could not be drawn' },
+        h('div', { class: 'empty' }, 'Something in the saved settings or in today\'s data stopped this screen. Resetting the settings usually fixes it; saved structures are kept.'),
+        h('div', { class: 'row-actions' }, h('button', { class: 'btn primary', type: 'button', onclick: () => { try { localStorage.removeItem('egb-state'); } catch (x) { /* nothing to reset */ } location.hash = ''; location.reload(); } }, 'Reset settings and reload'),
+          h('a', { href: '#home' }, 'Back to the brief'))));
+      setTimeout(() => { throw e; });
+    }
+    root().replaceChildren(node);
     persist();
   }
-  function go(tab) { if (location.hash !== '#' + tab) { try { history.replaceState(null, '', '#' + tab); } catch (e) { location.hash = tab; } } set({ tab }); window.scrollTo(0, 0); }
-  function fromHash() { const id = location.hash.replace('#', '').split('/')[0]; if (tabsAvailable().some(t => t[0] === id) && id !== S.tab) set({ tab: id }); }
+  /** Open a section, optionally with a state patch (a selected structure, for instance). The address follows, so Back works. */
+  function go(tab, patch) {
+    if (!tabOK(tab)) tab = 'home';
+    if (location.hash.replace('#', '').split('/')[0] !== tab) { try { history.pushState(null, '', '#' + tab); } catch (e) { location.hash = tab; } }
+    S.last = Object.assign({}, S.last, { [spaceOf(tab)[0]]: tab });
+    set(Object.assign({}, patch, { tab })); window.scrollTo(0, 0);
+  }
+  function fromHash() {
+    const id = location.hash.replace('#', '').split('/')[0] || 'home';
+    if (tabOK(id) && id !== S.tab) { S.last = Object.assign({}, S.last, { [spaceOf(id)[0]]: id }); set({ tab: id }); window.scrollTo(0, 0); }
+  }
+  /** Business days from one ISO date to another (weekends only: holidays are not known here). */
+  function bizDays(a, b) { let n = 0; for (let d = parseD(a); d < parseD(b);) { d = new Date(+d + 864e5); if (d.getUTCDay() % 6) n++; } return n; }
 
   async function loadJSON(name) { try { const r = await fetch('data/' + name + '.json', { cache: 'no-cache' }); return r.ok ? await r.json() : null; } catch (e) { return null; } }
 
@@ -1610,20 +2005,24 @@ td.hm.click { cursor: pointer; }
     const [market, auctions, news, events, sources, futures] = await Promise.all(['market', 'auctions', 'news', 'events', 'sources', 'futures'].map(loadJSON));
     Object.assign(DATA, { market, auctions, news, events, sources, futures });
     if (!market || !market.series || !market.series.length) {
-      root().replaceChildren(h('div', { class: 'grid' }, panel({ id: 'p-missing', title: 'No market data' }, h('div', { class: 'empty' }, 'The file data/market.json could not be loaded. The page needs it to show anything.'))));
+      root().replaceChildren(h('div', { class: 'grid' }, panel({ id: 'p-missing', title: 'Market data did not load' },
+        h('div', { class: 'empty' }, 'The page could not read its data file, so there is nothing to show yet. Check the connection and reload. If it still fails, the daily update may be running: try again in a few minutes.'),
+        h('div', { class: 'row-actions' }, h('button', { class: 'btn primary', type: 'button', onclick: () => location.reload() }, 'Reload')))));
       return;
     }
     U = buildUniverse(market); BYID = new Map(U.map(u => [u.id, u])); initLab(market);
     const avail = availCountries();
     S.countries = (S.countries || avail).filter(c => avail.includes(c)); if (!S.countries.length) S.countries = avail;
     const tn = tenorsAvail(); if (!tn.includes(S.tenor)) S.tenor = tn.includes(10) ? 10 : tn[tn.length - 1];
-    const id = location.hash.replace('#', '').split('/')[0]; if (tabsAvailable().some(t => t[0] === id)) S.tab = id; if (!tabsAvailable().some(t => t[0] === S.tab)) S.tab = 'monitor';
-    const last = d3.max(U.filter(u => u.cat === 'outright'), u => u.dates[u.dates.length - 1]);
-    document.getElementById('asof').replaceChildren('Close of ', h('b', null, fDow(parseD(last))), ...(market.private ? [h('span', { class: 'pill warn', style: 'margin-left:10px' }, 'Private version')] : []));
-    document.getElementById('status').textContent = market.status || '';
-    document.getElementById('foot').textContent = market.footer || '';
+    const id = location.hash.replace('#', '').split('/')[0]; S.tab = tabOK(id) ? id : 'home';      // no address: open on the brief
+    const last = lastDate(), st = market.status || '', gap = bizDays(last, new Date().toISOString().slice(0, 10));
+    document.getElementById('asof').replaceChildren(h('span', { class: 'pre' }, 'Close of '), h('b', null, fDow(parseD(last))));
+    const warn = market.private ? 'Private version' : /Not refreshed/.test(st) ? 'Partial update' : gap > 4 ? 'Data may be out of date' : '';
+    document.getElementById('status').replaceChildren(...(warn ? [h('span', { class: 'pill warn', title: st }, warn)] : []));
+    document.getElementById('foot').replaceChildren(h('p', null, market.footer || ''),
+      h('p', null, st ? st + ' ' : '', 'Built by Arthur Marc. ', h('a', { href: REPO, target: '_blank', rel: 'noopener' }, 'Code and data pipeline on GitHub'), '. ', h('a', { href: '#sources' }, 'Sources and methods'), '.'));
     render();
-    window.addEventListener('hashchange', fromHash);
+    window.addEventListener('hashchange', fromHash); window.addEventListener('popstate', fromHash);
     let w = root().clientWidth, timer = null;
     new ResizeObserver(() => { const nw = root().clientWidth; if (nw === w) return; w = nw; clearTimeout(timer); timer = setTimeout(() => redraws.forEach(fn => fn()), 120); }).observe(root());
   }

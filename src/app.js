@@ -20,8 +20,26 @@
   const HEAT_BP = { '1D': 10, '1W': 20, '1M': 40, 'YTD': 80 };           // change (bp) at which the tint saturates
   const HEAT_RET = { '1D': 0.5, '1W': 1, '1M': 2, 'YTD': 4 };            // same, for approximate returns (%)
   const CATS = { all: 'All', outright: 'Outright', spread: 'Spread', slope: 'Slope', fly: 'Fly', box: 'Box', custom: 'Custom' };
-  const TABS = [['monitor', 'Monitor'], ['curves', 'Curves'], ['rv', 'RV screen'], ['builder', 'Builder'], ['analysis', 'Analysis'], ['curvelab', 'PCA & carry'], ['backtest', 'Backtest'], ['rates', 'Rates'],
-    ['futures', 'Futures'], ['auctions', 'Auctions'], ['blotter', 'Blotter'], ['sources', 'Sources']];
+  // Sections: id -> [label, what the screen is for, filters it uses]
+  const TAB = {
+    home: ['Brief', 'The last close in one screen: what moved, what looks stretched, what comes next.', ['countries', 'win']],
+    monitor: ['Monitor', 'Yields, changes and spreads to Germany at the last close.', ['countries', 'win', 'range']],
+    curves: ['Curves', 'Curve snapshots and the history of yields, slopes and spreads.', ['countries', 'range']],
+    rates: ['Rates', 'The euro short-term rate and the ECB policy rates.', ['range']],
+    rv: ['RV screen', 'Every spread, slope, butterfly and box, ranked by z-score.', ['countries', 'win', 'range']],
+    builder: ['Builder', 'Build any weighted structure, save it, and chart anything against anything.', ['win', 'range']],
+    analysis: ['Analysis', 'Regressions, betas and correlations between any two series.', ['countries', 'win', 'range']],
+    curvelab: ['PCA & carry', 'Principal components, carry and roll-down, rich and cheap against a fitted curve.', ['countries']],
+    backtest: ['Backtest', 'Test a z-score rule on any structure, with costs and no look-ahead.', ['countries']],
+    futures: ['Futures', 'Eurex bond futures: settlement, deliverable baskets, basis and cheapest to deliver.', []],
+    auctions: ['Auctions', 'Government bond auctions: calendar and results.', ['countries']],
+    blotter: ['News & calendar', 'Official headlines and the events that can move rates.', ['countries']],
+    sources: ['Sources & methods', 'Where every number comes from, how it is computed, and what it cannot tell.', []],
+  };
+  // Spaces: [id, label, short label for the phone bar, sections]
+  const SPACES = [['home', 'Brief', 'Brief', ['home']], ['markets', 'Markets', 'Markets', ['monitor', 'curves', 'rates']],
+    ['relval', 'Relative value', 'RV', ['rv', 'builder', 'analysis', 'curvelab', 'backtest']],
+    ['supply', 'Futures & supply', 'Futures', ['futures', 'auctions']], ['news', 'News & sources', 'News', ['blotter', 'sources']]];
 
   const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
   const COL = {};                                     // resolved colours, filled at start-up
@@ -30,7 +48,7 @@
   let BYID = new Map();
 
   const S = Object.assign({
-    tab: 'monitor', countries: null, win: '3M', range: '1Y', horizon: '1D', metric: 'bp', tenor: 10,
+    tab: 'home', last: {}, countries: null, win: '3M', range: '1Y', horizon: '1D', metric: 'bp', tenor: 10,
     shape: 'level', compare: 'none', slope: '2s10s', rvCat: 'all', rvSort: 'absz', rvDir: -1, rvSel: null,
     pairA: null, pairB: null, regY: null, regX: null, corrSet: null, aucCountry: 'all', futSel: null, tables: {},
     from: '', to: '', bDraft: null, bEdit: null, wbIds: null, wbMode: 'level', bt: null, btSel: null, clC: null, clWin: '1Y', clHor: '3M', clFly: null
@@ -361,7 +379,9 @@
     const pad = (hi - lo) * .08, y = d3.scaleLinear().domain([lo - pad, hi + pad]).range([H - m.b, m.t]), yt = y.ticks(5), yf = y.tickFormat(5);
     svg.append('g').selectAll('line').data(yt).join('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', d => Math.round(y(d)) + .5).attr('y2', d => Math.round(y(d)) + .5).attr('stroke', COL.rule);
     svg.append('g').selectAll('text').data(yt).join('text').attr('class', 'tick').attr('x', m.l - 6).attr('y', d => y(d)).attr('dy', '.32em').attr('text-anchor', 'end').text(d => signFix(yf(d)));
-    svg.append('g').selectAll('text').data(tenors).join('text').attr('class', 'tick').attr('x', d => x(d)).attr('y', H - m.b + 15).attr('text-anchor', 'middle').text(d => d + 'Y');
+    const lab = [];                                                           // maturity labels: benchmarks first, the others where there is room
+    for (const t of [2, 5, 10, 30, 1, 3, 7, 15, 20, ...tenors].filter((t, i, a) => tenors.includes(t) && a.indexOf(t) === i)) if (lab.every(s => Math.abs(x(s) - x(t)) >= 24)) lab.push(t);
+    svg.append('g').selectAll('text').data(lab).join('text').attr('class', 'tick').attr('x', d => x(d)).attr('y', H - m.b + 15).attr('text-anchor', 'middle').text(d => d + 'Y');
     svg.append('text').attr('class', 'axis-label').attr('x', (m.l + W - m.r) / 2).attr('y', H - 3).attr('text-anchor', 'middle').text('Maturity');
     svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', H - m.b + .5).attr('y2', H - m.b + .5).attr('stroke', COL.axis);
     const line = d3.line().x(p => x(p.t)).y(p => y(p.v));
@@ -452,7 +472,7 @@
       tools: seg([['bp', 'Change'], ['ret', 'Return']], S.metric, v => set({ metric: v }), 'Metric'), foot: sourceLine(outs.flatMap(u => u.src)) },
       h('div', { class: 'scroll' }, h('table', { class: 't' },
         h('thead', null, h('tr', null, ['Maturity', 'Yield', '1D', '1W', '1M', 'YTD', 'Z ' + S.win, 'Pctile', 'Range ' + S.win].map(x => h('th', null, x)))),
-        h('tbody', null, outs.map(u => { const st = stats(u, n); return h('tr', { class: 'click' + (Math.abs(st.z) >= 2 ? ' hot' : ''), onclick: () => set({ tab: 'rv', rvSel: u.id, rvCat: 'all' }) },
+        h('tbody', null, outs.map(u => { const st = stats(u, n); return h('tr', { class: 'click' + (Math.abs(st.z) >= 2 ? ' hot' : ''), onclick: () => go('rv', { rvSel: u.id, rvCat: 'all' }) },
           h('td', null, h('span', { class: 'name' }, u.tenor + 'Y')), h('td', { class: 'lvl' }, level(u)), ...Object.keys(HORIZONS).map(k => cell(u, k)),
           h('td', null, zChip(st.z)), h('td', null, num(st.pct, 0)), h('td', { svg: rangeBar(st) })); })))));
   }
@@ -508,7 +528,7 @@
     const body = list.length ? h('div', { class: 'scroll' }, h('table', { class: 't' },
       h('thead', null, h('tr', null, ['Spread', 'bp', S.horizon, 'Z ' + S.win, 'Pctile', 'Range ' + S.win].map(c => h('th', null, c)))),
       h('tbody', null, list.map(u => { const st = stats(u, n), d = change(u, hz);
-        return h('tr', { class: 'click' + (Math.abs(st.z) >= 2 ? ' hot' : ''), onclick: () => set({ tab: 'rv', rvSel: u.id, rvCat: 'all' }) }, h('td', null, ctry(u.country), ' ', h('span', { class: 'muted' }, 'vs ' + REF)),
+        return h('tr', { class: 'click' + (Math.abs(st.z) >= 2 ? ' hot' : ''), onclick: () => go('rv', { rvSel: u.id, rvCat: 'all' }) }, h('td', null, ctry(u.country), ' ', h('span', { class: 'muted' }, 'vs ' + REF)),
           h('td', { class: 'lvl' }, level(u)), heatCell(bp(d), d, HEAT_BP[S.horizon]), h('td', null, zChip(st.z)), h('td', null, num(st.pct, 0)), h('td', { svg: rangeBar(st) })); }))))
       : h('div', { class: 'empty' }, `No daily spread for the selected countries. Daily yields are loaded for ${dailyNames()} only.`);
     return panel({ id: 'p-spreads', span: 's5', title: 'Spreads to Germany, daily', sub: `${T}-year, in bp`, tools: spreadSeg(),
@@ -525,7 +545,7 @@
         h('div', { class: 'scroll' }, h('table', { class: 't' },
           h('thead', null, h('tr', null, ['Structure', 'Level', '1D', '1W', '1M', 'Z ' + S.win, 'Range ' + S.win].map(x => h('th', null, x)))),
           h('tbody', null, legs.map(([lg, kind]) => { const u = inst(`${c}_${lg}`); if (!u) return null; const st = stats(u, n);
-            return h('tr', { class: 'click' + (Math.abs(st.z) >= 2 ? ' hot' : ''), onclick: () => set({ tab: 'rv', rvSel: u.id, rvCat: 'all' }) },
+            return h('tr', { class: 'click' + (Math.abs(st.z) >= 2 ? ' hot' : ''), onclick: () => go('rv', { rvSel: u.id, rvCat: 'all' }) },
               h('td', null, h('span', { class: 'name' }, lg), ' ', h('span', { class: 'muted' }, kind)), h('td', { class: 'lvl' }, level(u)),
               ...['1D', '1W', '1M'].map(k => { const d = change(u, HORIZONS[k]); return heatCell(bp(d), d, HEAT_BP[k]); }), h('td', null, zChip(st.z)), h('td', { svg: rangeBar(st) })); })))));
     }
@@ -536,17 +556,17 @@
         const st = stats(u, n), d = change(u, hz);
         const text = S.shape === 'z' ? num(st.z, 2, true) : S.shape === 'chg' ? bp(d) : level(u);
         const td = S.shape === 'chg' ? heatCell(text, d, HEAT_BP[S.horizon]) : heatCell(text, st.z, 3, `Level ${level(u)} bp, z-score ${num(st.z, 2, true)} over ${S.win}`);
-        td.classList.add('click'); td.style.cursor = 'pointer'; td.addEventListener('click', () => set({ tab: 'rv', rvSel: u.id, rvCat: 'all' })); return td;
+        td.classList.add('click'); td.style.cursor = 'pointer'; td.addEventListener('click', () => go('rv', { rvSel: u.id, rvCat: 'all' })); return td;
       }))))))
       : h('div', { class: 'empty' }, 'Slopes and butterflies need at least two maturities per country. Only one maturity is loaded so far.');
     return panel({ id: 'p-shape', span: 's6', title: 'Curve shape', sub: S.shape === 'chg' ? `change over ${S.horizon} in bp` : `${S.shape === 'z' ? 'z-score' : 'level in bp'}, tinted by z-score over ${S.win}`,
       tools: seg([['level', 'Level'], ['z', 'Z-score'], ['chg', 'Change']], S.shape, v => set({ shape: v }), 'Number shown') }, body);
   }
-  function panelExtremes(span) {
+  function panelExtremes(span, k) {
     const n = WINDOWS[S.win];
-    const list = visible().filter(u => u.cat !== 'outright').map(u => ({ u, st: stats(u, n) })).filter(o => Number.isFinite(o.st.z)).sort((a, b) => Math.abs(b.st.z) - Math.abs(a.st.z)).slice(0, 9);
+    const list = visible().filter(u => u.cat !== 'outright').map(u => ({ u, st: stats(u, n) })).filter(o => Number.isFinite(o.st.z)).sort((a, b) => Math.abs(b.st.z) - Math.abs(a.st.z)).slice(0, k || 9);
     const body = list.length ? h('div', { class: 'zlist' }, list.map(({ u, st }) => [
-      h('a', { class: 'zn', href: '#rv', onclick: e => { e.preventDefault(); set({ tab: 'rv', rvSel: u.id, rvCat: 'all' }); } }, u.name),
+      h('a', { class: 'zn', href: '#rv', title: u.long, onclick: e => { e.preventDefault(); go('rv', { rvSel: u.id, rvCat: 'all' }); } }, u.name),
       h('div', { class: 'ztrack' }, h('div', { class: 'zbar ' + (st.z >= 0 ? 'pos' : 'neg'), style: `width:${(50 * Math.min(3, Math.abs(st.z)) / 3).toFixed(1)}%` })),
       h('div', { class: 'zv' }, num(st.z, 2, true))]))
       : h('div', { class: 'empty' }, `No z-score yet: the loaded history is shorter than the ${S.win} window.`);
@@ -580,7 +600,7 @@
   /** Calendar entries: the events file plus the upcoming auctions of the selected countries. */
   function allEvents() {
     const ev = ((DATA.events && DATA.events.events) || []).slice();
-    for (const a of ((DATA.auctions && DATA.auctions.upcoming) || [])) if (shown(a.country)) ev.push({ date: a.date, kind: 'Auction', title: `${COUNTRIES[a.country]}: ${a.title}`, url: a.url });
+    for (const a of ((DATA.auctions && DATA.auctions.upcoming) || [])) if (shown(a.country)) ev.push({ date: a.date, kind: 'Auction', title: `${COUNTRIES[a.country]}: ${a.title}`, url: a.url, size: Number.isFinite(a.amount_bn) ? `EUR ${num(a.amount_bn, 1)} bn` : null });
     return ev.sort((a, b) => a.date.localeCompare(b.date));
   }
   function nextEvents(k) { const today = new Date().toISOString().slice(0, 10); return allEvents().filter(e => e.date >= today).slice(0, k); }
@@ -826,8 +846,8 @@
   function viewSources() {
     const M = DATA.sources || { sources: [] }, pill = s => h('span', { class: 'pill ' + ({ verified: 'ok', unverified: 'warn' }[s] || 'off') }, { verified: 'Verified', unverified: 'Not verified', planned: 'Planned', blocked: 'Not reachable' }[s] || s);
     const loaded = M.sources.filter(s => s.used), other = M.sources.filter(s => !s.used);
-    const tbl = list => h('div', { class: 'scroll' }, h('table', { class: 't' }, h('thead', null, h('tr', null, ['Dataset', 'Publisher', 'Covers', 'Frequency', 'Status', 'Note'].map((c, i) => h('th', { class: i ? 'l' : null }, c)))),
-      h('tbody', null, list.map(s => h('tr', null, h('td', null, s.url ? h('a', { href: s.url, target: '_blank', rel: 'noopener' }, s.name) : s.name), h('td', { class: 'l' }, s.publisher), h('td', { class: 'l wrap' }, s.covers), h('td', { class: 'l' }, s.frequency), h('td', { class: 'l' }, pill(s.status)), h('td', { class: 'l wrap' }, s.note || ''))))));
+    const tbl = list => h('div', { class: 'scroll' }, h('table', { class: 't src' }, h('thead', null, h('tr', null, ['Dataset', 'Publisher', 'Covers', 'Frequency', 'Status', 'Note'].map((c, i) => h('th', { class: i ? 'l' : null }, c)))),
+      h('tbody', null, list.map(s => h('tr', null, h('td', null, s.url ? h('a', { href: s.url, target: '_blank', rel: 'noopener' }, s.name) : s.name), h('td', { class: 'l', 'data-k': 'Publisher' }, s.publisher), h('td', { class: 'l wrap', 'data-k': 'Covers' }, s.covers), h('td', { class: 'l', 'data-k': 'Frequency' }, s.frequency), h('td', { class: 'l', 'data-k': 'Status' }, pill(s.status)), h('td', { class: 'l wrap', 'data-k': 'Note' }, s.note || ''))))));
     const methods = h('div', { class: 'prose' },
       h('h3', null, 'How the numbers are built'),
       h('p', null, 'Every derived number is computed in the browser from the published end-of-day yields. Changes are in basis points.'),
@@ -839,6 +859,8 @@
         h('li', null, h('code', null, 'Z-score'), ' = (latest level minus mean) / sample standard deviation, over the selected window of observations, latest one included. It needs at least 90% of the window.'),
         h('li', null, h('code', null, 'Percentile'), ' = share of the window below the latest level.'),
         h('li', null, h('code', null, 'Regression'), ' = ordinary least squares on day-to-day changes in bp, on the days both series have a value.'),
+        h('li', null, h('code', null, 'Closing note'), ' = sentences written by the page from the day\'s moves. Bull or bear: yields lower or higher. Steeper or flatter: 2s10s wider or narrower. Twist: the 2-year and the 10-year move by at least 1 bp in opposite directions. Parallel: 2s10s unchanged. A butterfly that rises means its belly cheapened. Moves below 0.05 bp read as unchanged.'),
+        h('li', null, h('code', null, 'Largest moves'), ' = 1-day change divided by the standard deviation of the daily changes over the z-score window, the latest one included. One row per family: a country\'s 2, 5, 10 and 30-year yields, its spreads to Germany, its slopes.'),
         h('li', null, h('code', null, 'Approximate return'), ' = minus modified duration x yield change, plus the running yield over the period. Duration is that of an annual-pay par bond at the starting yield. Roll-down and convexity are ignored.')),
       h('h3', null, 'Reading the colours'),
       h('p', null, 'Red means a higher yield, a wider spread or a cheaper level. Blue means the opposite. Each country keeps one colour across all charts.'),
@@ -849,35 +871,71 @@
       panel({ id: 'p-methods', span: 's12', title: 'Methods' }, methods));
   }
 
+/*__HOME__*/
+
 /*__LAB__*/
 
   // ===================================================================== 8. shell
   const root = () => document.getElementById('view');
   function hasGroup(g) { return DATA.market && DATA.market.series.some(s => s.group === g); }
-  function tabsAvailable() { return TABS.filter(([id]) => (id === 'rates' ? hasGroup('mm') : id === 'futures' ? !!(DATA.futures && DATA.futures.products && DATA.futures.products.length) : true)); }
+  const tabOK = id => !!TAB[id] && (id === 'rates' ? hasGroup('mm') : id === 'futures' ? !!(DATA.futures && DATA.futures.products && DATA.futures.products.length) : true);
+  const spaceOf = tab => SPACES.find(s => s[3].includes(tab)) || SPACES[0];
+  let filtersOpen = false;                             // phone only: the filter row folds into one button
 
   function renderShell() {
-    const tabs = document.getElementById('tabs'); tabs.replaceChildren(...tabsAvailable().map(([id, name]) =>
-      h('button', { class: 'tab', role: 'tab', type: 'button', id: 'tab-' + id, 'aria-selected': String(S.tab === id), onclick: () => go(id) }, id === 'futures' && DATA.futures.private ? name + ' (private)' : name)));
-    const avail = availCountries();
+    const sp = spaceOf(S.tab), need = TAB[S.tab][2];
+    document.getElementById('spaces').replaceChildren(...SPACES.filter(s => s[3].some(tabOK)).map(([id, name, short, tabs]) =>
+      h('button', { class: 'space', type: 'button', id: 'space-' + id, 'aria-current': sp[0] === id ? 'page' : null, 'aria-label': name, 'data-tabs': tabs.filter(tabOK).join(','),
+        onclick: () => go(S.last && tabs.includes(S.last[id]) && tabOK(S.last[id]) ? S.last[id] : tabs.find(tabOK)) }, h('span', { class: 'long' }, name), h('span', { class: 'short' }, short))));
+    const tabs = sp[3].filter(tabOK), bar = document.getElementById('tabs');
+    bar.hidden = tabs.length < 2; bar.parentNode.classList.toggle('solo', tabs.length < 2);
+    bar.replaceChildren(...(tabs.length < 2 ? [] : tabs.map(id => h('button', { class: 'tab', role: 'tab', type: 'button', id: 'tab-' + id, 'aria-selected': String(S.tab === id), onclick: () => go(id) }, TAB[id][0]))));
+    const on = bar.querySelector('[aria-selected="true"]'); if (on && bar.scrollWidth > bar.clientWidth) bar.scrollLeft = on.offsetLeft - (bar.clientWidth - on.offsetWidth) / 2;   // keep the open section in sight on a phone
+    document.getElementById('about').textContent = TAB[S.tab][1];
+    document.title = (S.tab === 'home' ? '' : TAB[S.tab][0] + ' | ') + 'EGB Dashboard';
+
+    const avail = availCountries(), groups = [];
     const toggle = c => { const cur = S.countries.includes(c) ? S.countries.filter(x => x !== c) : ORDER.filter(x => S.countries.includes(x) || x === c); if (cur.length) set({ countries: cur }); };
-    const f = document.getElementById('filters'); f.replaceChildren(
-      h('div', { class: 'fgroup' }, h('span', { class: 'flabel' }, 'Countries'), h('div', { class: 'seg', role: 'group', 'aria-label': 'Countries shown' },
-        avail.map(c => h('button', { type: 'button', 'aria-pressed': String(S.countries.includes(c)), title: COUNTRIES[c], onclick: () => toggle(c) }, h('i', { class: 'swatch', style: 'background:' + COL[c] }), c)))),
-      h('div', { class: 'fgroup' }, h('span', { class: 'flabel' }, 'Z-score window'), seg(Object.keys(WINDOWS).map(k => [k, k]), S.win, v => set({ win: v }), 'Z-score window')),
-      h('div', { class: 'fgroup' }, h('span', { class: 'flabel' }, 'Chart range'), seg(Object.keys(RANGES).map(k => [k, k]), S.range, v => set(v === 'Custom' && !S.from ? { range: v, from: d3.timeFormat('%Y-%m-%d')(d3.timeYear.offset(new Date(), -3)) } : { range: v }), 'Chart range'),
-        S.range === 'Custom' ? h('span', { class: 'daterange' }, h('input', { class: 'inp', type: 'date', value: S.from || '', 'aria-label': 'Chart range from', onchange: e => set({ from: e.target.value }) }), h('span', { class: 'muted' }, 'to'), h('input', { class: 'inp', type: 'date', value: S.to || '', 'aria-label': 'Chart range to (empty: latest)', onchange: e => set({ to: e.target.value }) })) : null),
-      h('div', { class: 'legend-key' }, h('span', null, h('i', { style: 'background:' + COL.up }), 'higher, wider, cheaper'), h('span', null, h('i', { style: 'background:' + COL.down }), 'lower, tighter, richer')));
+    if (need.includes('countries')) groups.push(h('div', { class: 'fgroup' }, h('span', { class: 'flabel' }, 'Countries'), h('div', { class: 'seg', role: 'group', 'aria-label': 'Countries shown' },
+      avail.map(c => h('button', { type: 'button', 'aria-pressed': String(S.countries.includes(c)), title: COUNTRIES[c] + (hasDaily(c) ? '' : ': monthly data only'), onclick: () => toggle(c) }, h('i', { class: 'swatch', style: 'background:' + COL[c] }), c)))));
+    if (need.includes('win')) groups.push(h('div', { class: 'fgroup' }, h('span', { class: 'flabel' }, 'Z-score window'), seg(Object.keys(WINDOWS).map(k => [k, k]), S.win, v => set({ win: v }), 'Z-score window')));
+    if (need.includes('range')) groups.push(h('div', { class: 'fgroup' }, h('span', { class: 'flabel' }, 'Chart range'),
+      seg(Object.keys(RANGES).map(k => [k, k]), S.range, v => set(v === 'Custom' && !S.from ? { range: v, from: d3.timeFormat('%Y-%m-%d')(d3.timeYear.offset(new Date(), -3)) } : { range: v }), 'Chart range'),
+      S.range === 'Custom' ? h('span', { class: 'daterange' }, h('input', { class: 'inp', type: 'date', value: S.from || '', 'aria-label': 'Chart range from', onchange: e => set({ from: e.target.value }) }), h('span', { class: 'muted' }, 'to'), h('input', { class: 'inp', type: 'date', value: S.to || '', 'aria-label': 'Chart range to (empty: latest)', onchange: e => set({ to: e.target.value }) })) : null));
+    const f = document.getElementById('filters'); f.hidden = !groups.length; f.classList.toggle('open', filtersOpen);
+    const summary = [need.includes('countries') ? S.countries.join(' ') : null, need.includes('win') ? 'z ' + S.win : null, need.includes('range') ? 'range ' + (S.range === 'Custom' ? 'by dates' : S.range) : null].filter(Boolean).join(', ');
+    f.replaceChildren(h('button', { class: 'ftoggle', type: 'button', 'aria-expanded': String(filtersOpen), 'aria-controls': 'filters', onclick: () => { filtersOpen = !filtersOpen; renderShell(); } }, h('span', null, 'Filters'), h('span', { class: 'muted' }, summary)), ...groups,
+      h('div', { class: 'legend-key fkey' }, h('span', null, h('i', { class: 'k-up' }), 'higher, wider, cheaper'), h('span', null, h('i', { class: 'k-down' }), 'lower, tighter, richer')));
   }
   function render() {
-    redraws.length = 0; renderShell();
-    const v = { builder: viewBuilder, curvelab: viewCurveLab, backtest: viewBacktest, monitor: viewMonitor, curves: viewCurves, rv: viewRV, analysis: viewAnalysis, auctions: viewAuctions, blotter: viewBlotter, sources: viewSources,
-      rates: () => groupView('mm', 'Money market and policy rates', '', '%', 3), futures: viewFutures }[S.tab] || viewMonitor;
-    root().replaceChildren(v());
+    redraws.length = 0; if (!tabOK(S.tab)) S.tab = 'home'; renderShell();
+    const v = { home: viewHome, builder: viewBuilder, curvelab: viewCurveLab, backtest: viewBacktest, monitor: viewMonitor, curves: viewCurves, rv: viewRV, analysis: viewAnalysis, auctions: viewAuctions, blotter: viewBlotter, sources: viewSources,
+      rates: () => groupView('mm', 'Money market and policy rates', '', '%', 3), futures: viewFutures }[S.tab] || viewHome;
+    let node;
+    try { node = v(); } catch (e) {
+      // A screen that fails says so and offers the usual cure (settings saved by an older version); the error still reaches the console.
+      node = h('div', { class: 'grid' }, panel({ id: 'p-error', title: 'This screen could not be drawn' },
+        h('div', { class: 'empty' }, 'Something in the saved settings or in today\'s data stopped this screen. Resetting the settings usually fixes it; saved structures are kept.'),
+        h('div', { class: 'row-actions' }, h('button', { class: 'btn primary', type: 'button', onclick: () => { try { localStorage.removeItem('egb-state'); } catch (x) { /* nothing to reset */ } location.hash = ''; location.reload(); } }, 'Reset settings and reload'),
+          h('a', { href: '#home' }, 'Back to the brief'))));
+      setTimeout(() => { throw e; });
+    }
+    root().replaceChildren(node);
     persist();
   }
-  function go(tab) { if (location.hash !== '#' + tab) { try { history.replaceState(null, '', '#' + tab); } catch (e) { location.hash = tab; } } set({ tab }); window.scrollTo(0, 0); }
-  function fromHash() { const id = location.hash.replace('#', '').split('/')[0]; if (tabsAvailable().some(t => t[0] === id) && id !== S.tab) set({ tab: id }); }
+  /** Open a section, optionally with a state patch (a selected structure, for instance). The address follows, so Back works. */
+  function go(tab, patch) {
+    if (!tabOK(tab)) tab = 'home';
+    if (location.hash.replace('#', '').split('/')[0] !== tab) { try { history.pushState(null, '', '#' + tab); } catch (e) { location.hash = tab; } }
+    S.last = Object.assign({}, S.last, { [spaceOf(tab)[0]]: tab });
+    set(Object.assign({}, patch, { tab })); window.scrollTo(0, 0);
+  }
+  function fromHash() {
+    const id = location.hash.replace('#', '').split('/')[0] || 'home';
+    if (tabOK(id) && id !== S.tab) { S.last = Object.assign({}, S.last, { [spaceOf(id)[0]]: id }); set({ tab: id }); window.scrollTo(0, 0); }
+  }
+  /** Business days from one ISO date to another (weekends only: holidays are not known here). */
+  function bizDays(a, b) { let n = 0; for (let d = parseD(a); d < parseD(b);) { d = new Date(+d + 864e5); if (d.getUTCDay() % 6) n++; } return n; }
 
   async function loadJSON(name) { try { const r = await fetch('data/' + name + '.json', { cache: 'no-cache' }); return r.ok ? await r.json() : null; } catch (e) { return null; } }
 
@@ -887,20 +945,24 @@
     const [market, auctions, news, events, sources, futures] = await Promise.all(['market', 'auctions', 'news', 'events', 'sources', 'futures'].map(loadJSON));
     Object.assign(DATA, { market, auctions, news, events, sources, futures });
     if (!market || !market.series || !market.series.length) {
-      root().replaceChildren(h('div', { class: 'grid' }, panel({ id: 'p-missing', title: 'No market data' }, h('div', { class: 'empty' }, 'The file data/market.json could not be loaded. The page needs it to show anything.'))));
+      root().replaceChildren(h('div', { class: 'grid' }, panel({ id: 'p-missing', title: 'Market data did not load' },
+        h('div', { class: 'empty' }, 'The page could not read its data file, so there is nothing to show yet. Check the connection and reload. If it still fails, the daily update may be running: try again in a few minutes.'),
+        h('div', { class: 'row-actions' }, h('button', { class: 'btn primary', type: 'button', onclick: () => location.reload() }, 'Reload')))));
       return;
     }
     U = buildUniverse(market); BYID = new Map(U.map(u => [u.id, u])); initLab(market);
     const avail = availCountries();
     S.countries = (S.countries || avail).filter(c => avail.includes(c)); if (!S.countries.length) S.countries = avail;
     const tn = tenorsAvail(); if (!tn.includes(S.tenor)) S.tenor = tn.includes(10) ? 10 : tn[tn.length - 1];
-    const id = location.hash.replace('#', '').split('/')[0]; if (tabsAvailable().some(t => t[0] === id)) S.tab = id; if (!tabsAvailable().some(t => t[0] === S.tab)) S.tab = 'monitor';
-    const last = d3.max(U.filter(u => u.cat === 'outright'), u => u.dates[u.dates.length - 1]);
-    document.getElementById('asof').replaceChildren('Close of ', h('b', null, fDow(parseD(last))), ...(market.private ? [h('span', { class: 'pill warn', style: 'margin-left:10px' }, 'Private version')] : []));
-    document.getElementById('status').textContent = market.status || '';
-    document.getElementById('foot').textContent = market.footer || '';
+    const id = location.hash.replace('#', '').split('/')[0]; S.tab = tabOK(id) ? id : 'home';      // no address: open on the brief
+    const last = lastDate(), st = market.status || '', gap = bizDays(last, new Date().toISOString().slice(0, 10));
+    document.getElementById('asof').replaceChildren(h('span', { class: 'pre' }, 'Close of '), h('b', null, fDow(parseD(last))));
+    const warn = market.private ? 'Private version' : /Not refreshed/.test(st) ? 'Partial update' : gap > 4 ? 'Data may be out of date' : '';
+    document.getElementById('status').replaceChildren(...(warn ? [h('span', { class: 'pill warn', title: st }, warn)] : []));
+    document.getElementById('foot').replaceChildren(h('p', null, market.footer || ''),
+      h('p', null, st ? st + ' ' : '', 'Built by Arthur Marc. ', h('a', { href: REPO, target: '_blank', rel: 'noopener' }, 'Code and data pipeline on GitHub'), '. ', h('a', { href: '#sources' }, 'Sources and methods'), '.'));
     render();
-    window.addEventListener('hashchange', fromHash);
+    window.addEventListener('hashchange', fromHash); window.addEventListener('popstate', fromHash);
     let w = root().clientWidth, timer = null;
     new ResizeObserver(() => { const nw = root().clientWidth; if (nw === w) return; w = nw; clearTimeout(timer); timer = setTimeout(() => redraws.forEach(fn => fn()), 120); }).observe(root());
   }

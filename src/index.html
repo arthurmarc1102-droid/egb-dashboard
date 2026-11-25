@@ -2,24 +2,43 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0f15">
+<meta name="description" content="Euro-area government bonds at the close: curves, spreads to Germany, relative value, futures basis, auctions. Public data, refreshed every day.">
 <title>EGB Dashboard</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="EGB Dashboard">
+<meta property="og:description" content="Euro-area government bonds at the close: curves, spreads to Germany, relative value, futures basis, auctions. Public data, refreshed every day.">
+<meta property="og:url" content="https://arthurmarc1102-droid.github.io/egb-dashboard/">
+<meta property="og:image" content="https://arthurmarc1102-droid.github.io/egb-dashboard/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0f15'/%3E%3Cpath d='M6 24C11 12 19 9 26 8' fill='none' stroke='%23e8e6e1' stroke-width='2.4' stroke-linecap='round'/%3E%3Ccircle cx='6' cy='24' r='3' fill='%23e8e6e1'/%3E%3Ccircle cx='15.25' cy='11.9' r='3' fill='%23e8e6e1'/%3E%3Ccircle cx='26' cy='8' r='3' fill='%23e8e6e1'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,200..800&amp;display=swap">
 <style>
 /*__CSS__*/
 </style>
 </head>
 <body>
-<div class="top">
+<a class="skip" href="#view">Skip to content</a>
+<header class="top">
   <div class="masthead">
-    <h1 class="brand">EGB Dashboard</h1>
-    <span class="asof" id="asof"></span>
-    <span class="status" id="status"></span>
+    <h1 class="brand"><a href="#home" aria-label="EGB Dashboard, back to the brief">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 17C7 8 13 6 19 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="3" cy="17" r="2.3" fill="currentColor"/><circle cx="10.25" cy="8" r="2.3" fill="currentColor"/><circle cx="19" cy="5" r="2.3" fill="currentColor"/></svg>
+      <span>EGB Dashboard</span></a></h1>
+    <nav class="spaces" id="spaces" aria-label="Main"></nav>
+    <div class="meta"><span class="asof" id="asof"></span><span id="status"></span></div>
   </div>
-  <nav class="tabs" id="tabs" role="tablist" aria-label="Sections"></nav>
-</div>
-<div class="filters" id="filters"></div>
-<main id="view">
+  <div class="subnav">
+    <nav class="tabs" id="tabs" role="tablist" aria-label="Sections" hidden></nav>
+    <span class="about" id="about"></span>
+    <span class="legend-key"><span><i class="k-up"></i>higher, wider, cheaper</span><span><i class="k-down"></i>lower, tighter, richer</span></span>
+  </div>
+</header>
+<div class="filters" id="filters" hidden></div>
+<main id="view" tabindex="-1">
   <div class="grid"><section class="panel"><div class="panel-body"><div class="empty">Loading market data.</div></div></section></div>
 </main>
 <footer class="foot" id="foot"></footer>

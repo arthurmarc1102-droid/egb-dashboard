@@ -1,28 +1,24 @@
 # EGB Dashboard — Architecture, plan et journal
 
-Mis à jour le 19 novembre 2026.
+Mis à jour le 25 novembre 2026.
 
 ## 1. Ce qui existe aujourd'hui
 
-Un artefact Claude nommé **EGB Dashboard**. C'est un instantané daté du 19/11/2026 : il n'est pas encore mis à jour automatiquement.
+Un site public, hébergé gratuitement sur GitHub Pages : https://arthurmarc1102-droid.github.io/egb-dashboard/ . Les données sont mises à jour chaque jour ouvré par GitHub Actions, avec un historique depuis janvier 2015. L'ancien artefact Claude (instantané du 20/11/2026) n'est plus mis à jour.
 
-**Version publique depuis le 20/11/2026.** Arthur indique avoir obtenu les autorisations écrites d'Euronext Paris (indices TEC) et de Deutsche Börse (Eurex). Ces accords n'ont pas été vus par Claude : leurs conditions exactes (mention à afficher, délai, périmètre) restent à reporter sur la page. Construction : `build_market.py --spain --france --authorised`, `build_futures.py --authorised`, `build_sources.py --france --authorised`.
+**Autorisations.** Arthur indique avoir obtenu les autorisations écrites d'Euronext Paris (indices TEC) et de Deutsche Börse (Eurex). Ces accords n'ont pas été vus par Claude : leurs conditions exactes (mention à afficher, délai, périmètre) restent à reporter sur la page.
 
-Neuf onglets, en anglais :
+Depuis la refonte du 25/11/2026, la page s'ouvre sur le **Brief** et range 13 écrans dans 5 espaces, en anglais :
 
-| Onglet | Contenu | Données réelles chargées |
+| Espace | Écrans | Contenu |
 |---|---|---|
-| Monitor | Vue du matin : taux, variations, spreads, forme de courbe, z-scores extrêmes, adjudications, blotter | Oui |
-| Curves | Courbe du jour (comparaison 1 semaine, 1 mois, 3 mois), historiques par maturité, pentes, spreads | Oui |
-| RV screen | Toutes les structures triables, détail avec moyenne glissante et bandes, spread libre entre deux séries | Oui (Allemagne, France, Espagne partielle) |
-| Analysis | Régression entre deux séries, bêta glissant, matrice de corrélations | Oui |
-| Rates | €STR, taux directeurs BCE | Oui |
-| Futures (private) | Cours de compensation Eurex, paniers livrables, base, repo implicite, CTD pour les contrats allemands | Oui, aperçu privé |
-| Auctions | Calendrier et derniers résultats DE, FR, IT, ES | Oui |
-| Blotter | Titres officiels, calendrier des catalyseurs, taux directeurs | Oui |
-| Sources | Statut de chaque source, méthodes, limites connues | Oui |
+| Brief | Brief | Note de clôture écrite par la page à partir des données, courbes à la clôture avec leur tableau, plus forts mouvements, z-scores extrêmes, prochains événements, futures, dernières adjudications, titres |
+| Markets | Monitor, Curves, Rates | Taux et variations par pays, spreads, pentes, historiques par maturité, €STR et taux directeurs BCE |
+| Relative value | RV screen, Builder, Analysis, PCA & carry, Backtest | Structures triables avec z-score et percentile, structures sur mesure, régressions, bêtas, corrélations, ACP, carry et roll-down, rich/cheap, backtests de z-score |
+| Futures & supply | Futures, Auctions | Cours de compensation Eurex, paniers livrables, base, repo implicite, CTD ; calendrier et résultats des adjudications |
+| News & sources | News & calendar, Sources & methods | Titres officiels, calendrier, taux BCE ; statut de chaque source, méthodes, limites connues |
 
-Filtres communs en haut de page : pays, fenêtre de z-score (1, 3, 6, 12 mois), période des graphiques.
+Filtres communs : pays, fenêtre de z-score (1, 3, 6, 12, 24 mois), période des graphiques (avec plage libre). Sur téléphone, les cinq espaces sont dans une barre fixe en bas de l'écran et les filtres se replient dans un bouton.
 
 ## 2. Architecture
 
@@ -36,10 +32,12 @@ data/futures.json   Eurex : cours, paniers, base, CTD (aperçu privé)
 data/sources.json   statut de chaque source, limites
 ```
 
+Sources de la page dans `src/` : `index.html` (gabarit), `style.css`, `app.js` (moteur et écrans), `home.js` (Brief), `lab.js` (builder, ACP, carry, backtests). `python3 build.py` les assemble en un seul `index.html`. `preview.png` est l'image affichée quand le lien est partagé ; le pipeline la redessine à chaque nouvelle clôture.
+
 Trois choix à retenir :
 
 1. **Tout est calculé dans le navigateur** à partir des fichiers JSON : spreads, pentes, butterflies, boxes, z-scores, percentiles, régressions, corrélations. Les fichiers ne contiennent que des données publiées.
-2. **Aucun appel à un site externe depuis la page.** Les en-têtes CORS n'ont pas pu être testés, et un artefact Claude ne peut pas appeler de site externe. Le script quotidien télécharge, la page lit des fichiers statiques.
+2. **Aucun appel de données à un site externe depuis la page** (elle ne charge ailleurs que la bibliothèque D3, sur cdnjs, et les polices, sur Google Fonts). Les en-têtes CORS n'ont pas pu être testés, et un artefact Claude ne peut pas appeler de site externe. Le script quotidien télécharge, la page lit des fichiers statiques.
 3. **La page et les données sont séparées.** Mettre à jour le dashboard, c'est remplacer les fichiers `data/`. Supprimer `data/futures.json` fait disparaître l'onglet Futures. Les séries non republiables portent `"restricted": true` dans `market.json` : la version publique se construit sans elles (`build_market.py` sans l'option `--france`).
 
 Format d'une série dans `market.json` :
@@ -124,11 +122,10 @@ Alternative sans GitHub, une tâche planifiée Claude qui relit les sources chaq
 
 ## 7. Décisions à prendre
 
-1. **GitHub** : oui ou non pour l'hébergement et la mise à jour quotidienne.
-2. **Eurex** : demander l'accord de Deutsche Börse (data.services@deutsche-boerse.com), ou garder l'onglet Futures privé.
-3. **France** : envoyer à Euronext la demande d'autorisation de republier les indices TEC (brouillon de mail préparé le 19/11). Adresse donnée sur la page de la Banque de France : `indexEOD@euronext.com`.
-4. **Euribor** : demander confirmation à l'EMMI pour un affichage non commercial avec un jour de retard.
-5. **Nom affiché** sur la page (ton nom, ton LinkedIn) : pas encore tranché.
+1. **Nom affiché** : depuis le 25/11, le pied de page indique « Built by Arthur Marc » avec un lien vers le dépôt GitHub. À confirmer par Arthur (ajouter LinkedIn, ou retirer).
+2. **Mentions Euronext et Eurex** : reporter sur la page les conditions exactes des autorisations (non vues par Claude).
+3. **Euribor** : demander confirmation à l'EMMI pour un affichage non commercial avec un jour de retard. Non chargé en attendant.
+4. **AFT** : le site refuse les scripts. Demander à l'AFT un accès ou un fichier ; sinon les résultats français restent ceux lus le 19/11.
 
 ## 8. Journal
 
@@ -167,3 +164,15 @@ Alternative sans GitHub, une tâche planifiée Claude qui relit les sources chaq
 - Nouveaux onglets : Builder (structure pondérée quelconque, jusqu'à 8 jambes, poids bêta, sauvegarde dans le navigateur, lien de partage ; tableau de bord des structures ; workbench jusqu'à 8 séries en niveau, variation ou z-score), PCA & carry (ACP sur fenêtre au choix, trajectoires des facteurs, rich/cheap à 3 facteurs, fly neutre aux 2 premiers facteurs, carry et roll-down 1M à 1Y, trades de courbe et de spread, courbe Nelson-Siegel ajustée et résidus), Backtest (z-score, retour à la moyenne ou tendance, achat/vente, seuils, stop, durée max, coûts, exécution à la clôture suivante, dates ; P&L, trades, grille de sensibilité, scan de toutes les structures).
 - Plage de dates libre (Custom), fenêtre z 2 ans, export CSV sur tous les graphiques et tableaux.
 - Vérifications : 204 chiffres de la page (4 backtests dont une structure perso, ACP DE 1 an et FR 2 ans, Nelson-Siegel, carry et roll-down) recalculés par une implémentation Python indépendante (numpy) : 0 écart. Contrôle navigateur étendu aux interactions (construire, sauvegarder, retrouver dans l'écran RV, backtester, scanner, télécharger un CSV, plage 2022, workbench). Les deux tournent à chaque mise à jour.
+
+**25/11/2026 — refonte de l'interface (brief 04)**
+- Navigation : 13 écrans rangés dans 5 espaces (Brief, Markets, Relative value, Futures & supply, News & sources). Les anciennes adresses (`#rv`, `#builder/s=…`) marchent toujours ; une adresse sans écran ouvre le Brief. Renommés : Blotter → News & calendar, Sources → Sources & methods.
+- Brief : note de clôture écrite par la page à chaque chargement, avec des règles fixes listées dans Sources & methods : mouvement du jour (bull ou bear, steepening ou flattening, twist, parallèle), spreads à l'Allemagne avec z-score, 5s30s et fly, niveau le plus tendu, future Bund et CTD, prochain événement. Chaque mot dépend d'un chiffre chargé. Si la courbe d'un pays est en retard sur la clôture, la phrase le dit (« Data to 20 Nov »). Quand le 2 ans et le 10 ans n'ont pas bougé, la phrase donne les faits sans qualifier toute la courbe.
+- Courbes à la clôture : chaque point du graphique est à la verticale de sa colonne dans le tableau (niveaux et variations sur 1 jour, 1 semaine, 1 mois, depuis le début de l'année).
+- Plus forts mouvements : variation du jour divisée par l'écart-type des variations quotidiennes sur la fenêtre ; une ligne par famille (pays et type de structure).
+- Identité : fond sombre unique, interface en encre neutre, couleur réservée aux données (rouge = taux plus haut, spread plus large, niveau moins cher ; bleu = l'inverse ; une couleur par pays). Deux voix : Newsreader (serif) pour le seul titre de la note, IBM Plex Sans Condensed pour les données.
+- Téléphone : espaces dans une barre fixe en bas, filtres repliés dans un bouton (avec la légende des couleurs), panneaux bord à bord, tableau des sources en fiches, étiquettes de maturité allégées sur les graphiques étroits.
+- États : écran d'erreur avec remise à zéro des réglages, message si les données ne se chargent pas, états vides explicites, focus clavier visible, lien d'évitement, animations coupées si le système le demande.
+- Partage : balises Open Graph, icône, image `preview.png` (le Brief en 1200 × 630).
+- Vérifications avant l'envoi : `pipeline/check_home.py` réécrit le Brief en Python, sans reprendre le code de la page ; comparaison mot pour mot (351 éléments avec le réglage par défaut, 0 écart ; 4 autres réglages de pays et de fenêtre, 0 écart). Contrôle navigateur réécrit pour la nouvelle navigation : 13 écrans à 1440 px et 390 px, aucun débordement horizontal, alignement graphique / tableau, builder, backtest, CSV, plage libre, bouton retour. Largeurs de 360 à 1200 px testées en local avec les vraies polices : aucun débordement. États testés : un seul pays, pays sans données quotidiennes, anciens réglages enregistrés, réglages cassés, fichier de données absent, navigation au clavier.
+

@@ -31,5 +31,23 @@ for c in ('DE', 'FR'):
     py = Q[f'carry_{c}_0.25']; rows = [r for r in cr if r[0].startswith(c)]
     for r, (t, ca, ro) in zip(rows, py):
         cmp(f'carry {c} {t}Y', pn(r[2]), ca, .051); cmp(f'roll {c} {t}Y', pn(r[3]), ro, .051)
+# ---- the brief: every sentence and number against the independent Python version (exact text)
+if len(sys.argv) > 3:
+    H = json.load(open(sys.argv[3])); G = P['out']['home']
+    def same(label, page, py):
+        global bad, tot; tot += 1
+        if page != py: bad += 1; print('DIFF', label, '| page:', page, '| python:', py)
+    same('brief headline', G['headline'], H['headline'])
+    for k, v in H['lines'].items():
+        if v is not None: same('brief line ' + k, G['lines'].get(k), v)
+    same('brief movers, order', [r[0] for r in G['movers']], [r[0] for r in H['movers']])
+    for r, e in zip(G['movers'], H['movers']):
+        for i, what in ((1, 'level'), (2, '1D'), (3, 'std dev')): same(f'brief mover {e[0]} {what}', r[i], e[i])
+    same('brief z-scores, order', [r[0] for r in G['extremes']], [r[0] for r in H['extremes']])
+    for r, e in zip(G['extremes'], H['extremes']): same(f'brief z-score {e[0]}', r[1], e[1])
+    same('brief ladder maturities', G['tenors'], H['tenors'])
+    for i, (r, e) in enumerate(zip(G['ladder'], H['ladder'])):
+        for t, a_, b_ in zip(H['tenors'], r, e): same(f'brief ladder row {i} {t}', a_, b_)
+    print('brief:', G['headline'])
 print(f'{tot} figures compared, {bad} differences')
 sys.exit(1 if bad or P['errs'] else 0)
