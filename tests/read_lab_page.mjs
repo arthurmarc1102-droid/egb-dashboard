@@ -18,6 +18,13 @@ for (const [k, bt] of Object.entries(cases.backtests)) {
   out['bt_' + k] = await page.$$eval('#p-bt-stats .stat', ss => Object.fromEntries(ss.map(s => [s.querySelector('.k').innerText.trim(), s.querySelector('.v').innerText.trim()])));
   await page.close();
 }
+for (const [k, w] of Object.entries(cases.walkforward || {})) {
+  const page = await open({ tab: 'backtest', btSel: w.id, bt: w.p, wf: w.wf, countries: ['DE', 'FR', 'ES'] }, 'backtest');
+  await page.click('#p-wf button.btn'); await page.waitForSelector('#p-wf .stat, #p-wf .empty', { timeout: 60000 }); await page.waitForTimeout(300);
+  out['wf_' + k] = { stats: await page.$$eval('#p-wf .stat', ss => Object.fromEntries(ss.map(s => [s.querySelector('.k').innerText.trim(), s.querySelector('.v').innerText.trim()]))),
+    blocks: await tableOf(page, '#p-wf'), note: await page.$eval('#p-wf p.muted', e => e.innerText).catch(() => '') };
+  await page.close();
+}
 for (const [c, win] of cases.pcaPage) {
   const page = await open({ tab: 'curvelab', clC: c, clWin: win, clHor: '3M', countries: ['DE', 'FR', 'ES'], tables: { 'p-pca-load': true } }, 'curvelab');
   out[`pca_${c}_${win}`] = { foot: await page.$eval('#p-pca-load footer', e => e.innerText), loadings: await tableOf(page, '#p-pca-load'), resid: await tableOf(page, '#p-pca-rc'), fly: await tableOf(page, '#p-pca-fly'), ns: await tableOf(page, '#p-ns'), carry: await tableOf(page, '#p-carry') };

@@ -12,10 +12,25 @@ def cmp(label, page, py, tol):
     if not ok: bad += 1; print('DIFF', label, page, py)
 print('page errors:', P['errs'])
 K = {'Total P&L': ('total', .051), 'Trades': ('trades', 0), 'Hit ratio': ('hit', .51), 'Average trade': ('avg', .051), 'Average holding': ('days', .51), 'Max drawdown': ('mdd', .051), 'Sharpe (daily, annualised)': ('sharpe', .0051), 'Time in market': ('inmarket', .51)}
-for k in ('A', 'B', 'C', 'D'):
+for k in sorted(x[3:] for x in Q if x.startswith('bt_')):
     pg, py = P['out']['bt_' + k], Q['bt_' + k]
     for lab, (key, tol) in K.items(): cmp(f'backtest {k} {lab}', pn(pg[lab]), py[key], tol)
+    if py.get('carry') is not None or 'Of which carry' in pg: cmp(f'backtest {k} carry', pn(pg.get('Of which carry', '')), py.get('carry'), .051)
     print(f'backtest {k}: page', {l: pg[l] for l in ('Total P&L', 'Trades', 'Hit ratio')}, '| python', round(py['total'], 2), py['trades'], round(py['hit'] or 0, 1))
+# ---- walk-forward: totals, then the pair kept and the result of every block
+for k in sorted(x[3:] for x in Q if x.startswith('wf_')):
+    pg, py = P['out']['wf_' + k], Q['wf_' + k]; st = pg['stats']
+    for lab, key, tol in (('Out of sample', 'total', .051), ('Trades', 'trades', 0), ('Hit ratio', 'hit', .51), ('Sharpe (daily, annualised)', 'sharpe', .0051), ('Max drawdown', 'mdd', .051),
+                          ('Rules of the screen', 'fixed', .051), ('Best pair in hindsight', 'hind', .051)):
+        cmp(f'walk-forward {k} {lab}', pn(st.get(lab, '')), py[key], tol)
+    if py.get('carry') is not None or 'Of which carry' in st: cmp(f'walk-forward {k} carry', pn(st.get('Of which carry', '')), py.get('carry'), .051)
+    a_, b_ = [int(x) for x in re.findall(r'\d+', st['Blocks with a rule'])]; cmp(f'walk-forward {k} blocks with a rule', a_, py['traded'], 0); cmp(f'walk-forward {k} blocks', b_, len(py['blocks']), 0)
+    cmp(f'walk-forward {k} block rows', len(pg['blocks']), len(py['blocks']), 0)
+    for i, (row, blk) in enumerate(zip(pg['blocks'], py['blocks'])):
+        cmp(f'walk-forward {k} block {i} window', pn(row[1]), blk['win'], 0); cmp(f'walk-forward {k} block {i} entry', pn(row[2]), blk['entry'], 1e-9)
+        cmp(f'walk-forward {k} block {i} training Sharpe', pn(row[3]), blk['sharpe'], .0051); cmp(f'walk-forward {k} block {i} trades', pn(row[4]), blk['trades'], 0)
+        cmp(f'walk-forward {k} block {i} P&L', pn(row[5]), blk['pnl'] if blk['win'] is not None else None, .051)
+    print(f'walk-forward {k}: page', st.get('Out of sample'), st.get('Blocks with a rule'), '| python', round(py['total'], 2), py['traded'], 'of', len(py['blocks']))
 for (c, w), n in ((('DE', '1Y'), 252), (('FR', '2Y'), 504)):
     pg, py = P['out'][f'pca_{c}_{w}'], Q[f'pca_{c}_{n}']
     shares = [float(x.split(' ')[1]) for x in pg['foot'].split('changes: ')[1].split(', first')[0].split(', ')]

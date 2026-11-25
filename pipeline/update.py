@@ -236,7 +236,7 @@ def main():
         add(f"FR_{t}Y", series(f"FR_{t}Y", "yield", "FR", t, f"France {t}Y", fr[t], 3, "bdf_tec", kind="TEC constant-maturity index") if fr and fr.get(t) else None)
 
     last = max(s["dates"][-1] for s in out if s["group"] == "yield")
-    FOOTER = "Daily data from official sources. Every source, its status and the methods are listed under Sources. No number on this page is estimated or filled in."
+    FOOTER = "Daily data from official sources. Every source, its status and the methods are listed under Sources. No data point is invented or filled in: everything else is computed from the published values."
     now = dt.datetime.now(dt.timezone.utc)
     failed = [k for k, v in ok.items() if not v]
     status = f"Updated {now:%d %b %Y %H:%M} UTC from official sources." + (f" Not refreshed this time: {', '.join(failed)}." if failed else "")

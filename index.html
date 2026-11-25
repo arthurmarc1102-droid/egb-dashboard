@@ -534,7 +534,8 @@ input[type=date].inp{color-scheme:dark}
   const tail = (s, n) => (n === 'custom' ? inRange(s) : Number.isFinite(n) ? { ...s, dates: s.dates.slice(-n), values: s.values.slice(-n) } : s);
 
   // ===================================================================== 4. universe of structures
-  /** Build every outright, spread, slope, butterfly and box the loaded yield series allow. */
+  /** Build every outright, spread, slope, butterfly and box the loaded yield series allow.
+      `comp` gives each structure as weights on yields (in bp): it is what the carry of a structure is computed from. */
   function buildUniverse(market) {
     const Y = {};
     for (const s of market.series) if (s.group === 'yield') (Y[s.country] = Y[s.country] || {})[s.tenor] = s;
@@ -543,23 +544,23 @@ input[type=date].inp{color-scheme:dark}
     const src = (...ss) => [...new Set(ss.map(s => s.source))];
     for (const c of ORDER) for (const t of tenors(c)) {
       const s = Y[c][t];
-      add({ id: `${c}_${t}Y`, cat: 'outright', country: c, tenor: t, name: `${c} ${t}Y`, long: `${COUNTRIES[c]} ${t}-year yield`, unit: 'pct', decimals: s.decimals, dates: s.dates, values: s.values, src: src(s) });
+      add({ id: `${c}_${t}Y`, cat: 'outright', country: c, tenor: t, name: `${c} ${t}Y`, long: `${COUNTRIES[c]} ${t}-year yield`, unit: 'pct', decimals: s.decimals, dates: s.dates, values: s.values, src: src(s), comp: { [`${c}_${t}Y`]: 1 } });
     }
     for (const c of ORDER) if (c !== REF && Y[REF]) for (const t of tenors(c)) if (Y[REF][t]) {
       add({ id: `${c}-${REF}_${t}Y`, cat: 'spread', country: c, tenor: t, name: `${c}${DASH}${REF} ${t}Y`, long: `${COUNTRIES[c]} minus ${COUNTRIES[REF]}, ${t}-year`, unit: 'bp',
-        ...join([Y[c][t], Y[REF][t]], (a, b) => (a - b) * 100), src: src(Y[c][t], Y[REF][t]) });
+        ...join([Y[c][t], Y[REF][t]], (a, b) => (a - b) * 100), src: src(Y[c][t], Y[REF][t]), comp: { [`${c}_${t}Y`]: 1, [`${REF}_${t}Y`]: -1 } });
     }
     for (const c of ORDER) for (const [a, b] of SLOPES) if (Y[c] && Y[c][a] && Y[c][b]) {
       add({ id: `${c}_${a}s${b}s`, cat: 'slope', country: c, legs: `${a}s${b}s`, name: `${c} ${a}s${b}s`, long: `${COUNTRIES[c]} ${b}-year minus ${a}-year`, unit: 'bp',
-        ...join([Y[c][a], Y[c][b]], (x, y) => (y - x) * 100), src: src(Y[c][a], Y[c][b]) });
+        ...join([Y[c][a], Y[c][b]], (x, y) => (y - x) * 100), src: src(Y[c][a], Y[c][b]), comp: { [`${c}_${b}Y`]: 1, [`${c}_${a}Y`]: -1 } });
     }
     for (const c of ORDER) for (const [a, b, d] of FLIES) if (Y[c] && Y[c][a] && Y[c][b] && Y[c][d]) {
       add({ id: `${c}_${a}s${b}s${d}s`, cat: 'fly', country: c, legs: `${a}s${b}s${d}s`, name: `${c} ${a}s${b}s${d}s`, long: `${COUNTRIES[c]} butterfly: 2 x ${b}-year minus ${a}-year minus ${d}-year`, unit: 'bp',
-        ...join([Y[c][a], Y[c][b], Y[c][d]], (x, y, z) => (2 * y - x - z) * 100), src: src(Y[c][a], Y[c][b], Y[c][d]) });
+        ...join([Y[c][a], Y[c][b], Y[c][d]], (x, y, z) => (2 * y - x - z) * 100), src: src(Y[c][a], Y[c][b], Y[c][d]), comp: { [`${c}_${b}Y`]: 2, [`${c}_${a}Y`]: -1, [`${c}_${d}Y`]: -1 } });
     }
     for (const c of ORDER) if (c !== REF) for (const [a, b] of SLOPES) if (Y[c] && Y[REF] && Y[c][a] && Y[c][b] && Y[REF][a] && Y[REF][b]) {
       add({ id: `${c}-${REF}_${a}s${b}s`, cat: 'box', country: c, legs: `${a}s${b}s`, name: `${c}${DASH}${REF} ${a}s${b}s box`, long: `${COUNTRIES[c]} ${a}s${b}s slope minus ${COUNTRIES[REF]} ${a}s${b}s slope`, unit: 'bp',
-        ...join([Y[c][a], Y[c][b], Y[REF][a], Y[REF][b]], (ca, cb, ra, rb) => ((cb - ca) - (rb - ra)) * 100), src: src(Y[c][a], Y[c][b], Y[REF][a], Y[REF][b]) });
+        ...join([Y[c][a], Y[c][b], Y[REF][a], Y[REF][b]], (ca, cb, ra, rb) => ((cb - ca) - (rb - ra)) * 100), src: src(Y[c][a], Y[c][b], Y[REF][a], Y[REF][b]), comp: { [`${c}_${b}Y`]: 1, [`${c}_${a}Y`]: -1, [`${REF}_${b}Y`]: -1, [`${REF}_${a}Y`]: 1 } });
     }
     return out;
   }
@@ -1214,6 +1215,8 @@ input[type=date].inp{color-scheme:dark}
         h('li', null, h('code', null, 'Regression'), ' = ordinary least squares on day-to-day changes in bp, on the days both series have a value.'),
         h('li', null, h('code', null, 'Daily note'), ' = sentences written by the page from the day\'s moves. Bull or bear: yields lower or higher. Steeper or flatter: 2s10s wider or narrower. Twist: the 2-year and the 10-year move by at least 1 bp in opposite directions. Parallel: 2s10s unchanged. A butterfly that rises means its belly cheapened. Moves below 0.05 bp read as unchanged.'),
         h('li', null, h('code', null, 'Largest moves'), ' = 1-day change divided by the standard deviation of the daily changes over the z-score window, the latest one included. One row per family: a country\'s 2, 5, 10 and 30-year yields, its spreads to Germany, its slopes.'),
+        h('li', null, h('code', null, 'Carry in a backtest'), ' = optional. A long position in a structure gains when it rises and pays the carry and roll-down of its yield legs, by calendar day. Carry = (yield minus euro short-term rate) / modified duration; roll-down = slope of the curve down to the next shorter maturity. Duration is the maturity itself when the yield is not positive. These are estimates from constant-maturity curves, not figures bond by bond.'),
+        h('li', null, h('code', null, 'Walk-forward'), ' = before each test block, 25 pairs of z window and entry level are tested on the training span that ends the day before. The pair with the best Sharpe ratio there (at least 3 trades, Sharpe ratio above zero) is traded on the block; without one the block is not traded. Each block is a separate test.'),
         h('li', null, h('code', null, 'Approximate return'), ' = minus modified duration x yield change, plus the running yield over the period. Duration is that of an annual-pay par bond at the starting yield. Roll-down and convexity are ignored.')),
       h('h3', null, 'Reading the colours'),
       h('p', null, 'Red means a higher yield, a wider spread or a cheaper level. Blue means the opposite. Each country keeps one colour across all charts.'),
@@ -1444,7 +1447,7 @@ input[type=date].inp{color-scheme:dark}
   // Every number below is computed in the browser from data/market.json. pipeline/check_lab.py recomputes the same quantities in Python.
 
   const LAB_TABS = [['builder', 'Builder'], ['curvelab', 'PCA & carry'], ['backtest', 'Backtest']];
-  const BT_DEF = { win: 63, entry: 2, exit: 0.5, stop: 4, maxHold: 60, cost: 0.5, side: 'both', mode: 'revert', lag: 1, from: '', to: '' };
+  const BT_DEF = { win: 63, entry: 2, exit: 0.5, stop: 4, maxHold: 60, cost: 0.5, side: 'both', mode: 'revert', lag: 1, carry: 0, from: '', to: '' };
   let BASE = [];                                          // universe built from the data, before custom structures
   const EXTRA = new Map();                                // series usable as legs but not shown in the screens (money market)
 
@@ -1462,8 +1465,10 @@ input[type=date].inp{color-scheme:dark}
     const k = legs.map(l => (l.s.unit === 'pct' ? 100 : 1));
     const j = join(legs.map(l => l.s), (...v) => v.reduce((a, x, i) => a + legs[i].w * x * k[i], 0));
     const country = legs[0].s.country && COUNTRIES[legs[0].s.country] ? legs[0].s.country : REF;
+    let comp = {};                                          // weights on yields, when every leg is itself made of yields
+    for (const l of legs) { if (!l.s.comp) { comp = null; break; } for (const [id, w] of Object.entries(l.s.comp)) comp[id] = (comp[id] || 0) + l.w * w; }
     return { id: c.id, cat: 'custom', country, name: c.name || legsText(c.legs), long: 'custom: ' + legsText(c.legs) + ', in bp', unit: 'bp', ...j,
-      src: [...new Set(legs.flatMap(l => l.s.src || []))], def: c };
+      src: [...new Set(legs.flatMap(l => l.s.src || []))], def: c, comp };
   }
   function legsText(legs) {
     return legs.filter(l => Number(l.w)).map((l, i) => { const w = Number(l.w), s = legSeries(l.id), a = Math.abs(w);
@@ -1516,18 +1521,54 @@ input[type=date].inp{color-scheme:dark}
     return { ...s, dates: s.dates.slice(a, b), values: s.values.slice(a, b) };
   }
 
-  // ---------- 9.4 maths: backtest
+  // ---------- 9.4 maths: carry through time, backtest, walk-forward
+  const CPD = new Map(), SCARRY = new WeakMap(), DAYNUM = new WeakMap();
+  const dayNums = u => { let a = DAYNUM.get(u); if (!a) { a = Float64Array.from(u.dates, x => parseD(x) / 864e5); DAYNUM.set(u, a); } return a; };
+  /** Carry and roll-down of one constant-maturity yield, in bp of yield per calendar day, on each date where it can be computed.
+      Carry = (yield - funding) / modified duration. Roll-down = slope of the country's curve between this maturity and the next shorter one with a value that day.
+      Funding = euro short-term rate of the date, or the latest earlier one. Same definitions as the carry table, taken to one day. */
+  function carryPerDay(id) {
+    if (CPD.has(id)) return CPD.get(id);
+    const u = BASE.find(x => x.id === id && x.cat === 'outright'), estr = EXTRA.get('ESTR'), out = new Map();
+    if (u && estr) {
+      const shorter = BASE.filter(x => x.cat === 'outright' && x.country === u.country && x.tenor < u.tenor).sort((a, b) => b.tenor - a.tenor)
+        .map(x => ({ t: x.tenor, m: new Map(x.dates.map((dt, i) => [dt, x.values[i]])) }));
+      u.dates.forEach((dt, i) => {
+        const y = u.values[i], j = d3.bisectRight(estr.dates, dt) - 1, sh = shorter.find(q => q.m.has(dt));
+        if (j >= 0 && sh) out.set(dt, ((y - estr.values[j]) / dmod(y / 100, u.tenor) + (y - sh.m.get(dt)) / (u.tenor - sh.t)) * 100 / 365);
+      });
+    }
+    CPD.set(id, out); return out;
+  }
+  /** Carry and roll-down of a structure in bp per calendar day on each of its dates: weighted sum over its yield legs (NaN when a leg has none that day).
+      Null when the structure is not made of yields only. */
+  function structureCarry(u) {
+    if (SCARRY.has(u)) return SCARRY.get(u);
+    let out = null;
+    if (u.comp) {
+      const legs = Object.entries(u.comp).filter(([, w]) => w).map(([id, w]) => ({ w, m: carryPerDay(id) }));
+      if (legs.length) out = u.dates.map(dt => { let a = 0; for (const l of legs) { const c = l.m.get(dt); if (!Number.isFinite(c)) return NaN; a += l.w * c; } return a; });
+    }
+    SCARRY.set(u, out); return out;
+  }
   /** Z-score signal backtest on one series.
       Z is computed on the window ending on the decision day (that day included), like the RV screen.
       A decision taken at the fixing of day t is executed at the fixing of day t + lag (lag 1 by default: no look-ahead).
       Mean reversion: sell the structure when z >= entry, buy when z <= -entry; exit when |z| falls back to the exit level,
       stop when |z| reaches the stop level against the position, or after maxHold days. Trend: the opposite direction, exit on the exit level.
-      P&L is in bp of the structure level (yields converted to bp), minus the round-trip cost charged at exit. */
+      P&L is in bp of the structure level (yields converted to bp), minus the round-trip cost charged at exit.
+      With carry: a long position in the structure gains when it rises and pays the carry and roll-down of its yield legs, day by day;
+      the test then starts on the first day the carry can be computed. */
   function backtest(u, p) {
     const k = u.unit === 'pct' ? 100 : 1, v = u.values.map(x => x * k), d = u.dates, L = v.length, n = Math.max(5, Math.round(p.win));
     const { mean, sd } = fastRolling(v, n), z = v.map((x, i) => (sd[i] > 0 ? (x - mean[i]) / sd[i] : NaN));
-    const lag = p.lag ? 1 : 0, from = p.from ? d3.bisectLeft(d, p.from) : 0, to = p.to ? d3.bisectRight(d, p.to) - 1 : L - 1;
+    const cs = p.carry ? structureCarry(u) : null, c0 = cs ? cs.findIndex(Number.isFinite) : -1, useCarry = c0 >= 0;
+    const acc = new Float64Array(L), gap = useCarry ? new Uint8Array(L) : null;      // acc[i]: carry of one unit held from the first day to day i, in bp
+    if (useCarry) { const dn = dayNums(u); for (let i = 1; i < L; i++) { const c = cs[i - 1]; if (Number.isFinite(c)) acc[i] = acc[i - 1] + c * Math.round(dn[i] - dn[i - 1]); else { acc[i] = acc[i - 1]; gap[i] = 1; } } }
+    const lag = p.lag ? 1 : 0, from = Math.max(p.from ? d3.bisectLeft(d, p.from) : 0, useCarry ? c0 : 0), to = p.to ? d3.bisectRight(d, p.to) - 1 : L - 1;
     const start = Math.max(n - 1, from), trades = [], pos = new Array(L).fill(0);
+    const close = (tr, x, why) => { const cy = useCarry ? -tr.dir * (acc[x] - acc[tr.entryIdx]) : 0;
+      Object.assign(tr, { exitIdx: x, exitDate: d[x], exitLevel: v[x], zOut: z[why === 'open' ? x : x - lag], why, days: x - tr.entryIdx, carry: cy, pnl: tr.dir * (v[x] - tr.entryLevel) + cy - p.cost }); };
     let dir = 0, ie = -1, t = start;
     const allowed = s => p.side === 'both' || (p.side === 'long' && s > 0) || (p.side === 'short' && s < 0);
     for (t = start; t <= to; t++) {
@@ -1543,21 +1584,18 @@ input[type=date].inp{color-scheme:dark}
         if (zz <= p.exit) why = 'target';
         else if (p.mode !== 'trend' && p.stop > 0 && zz >= p.stop) why = 'stop';
         else if (p.maxHold > 0 && t - ie >= p.maxHold) why = 'time';
-        if (why && t + lag <= to) {
-          const x = t + lag, tr = trades[trades.length - 1];
-          Object.assign(tr, { exitIdx: x, exitDate: d[x], exitLevel: v[x], zOut: zt, why, days: x - ie, pnl: dir * (v[x] - v[ie]) - p.cost });
-          dir = 0; t = x - 1;                                       // next decision from the exit day
-        }
+        if (why && t + lag <= to) { close(trades[trades.length - 1], t + lag, why); dir = 0; t = t + lag - 1; }   // next decision from the exit day
       }
     }
     const last = trades[trades.length - 1];
-    if (last && last.exitIdx == null) Object.assign(last, { exitIdx: to, exitDate: d[to], exitLevel: v[to], zOut: z[to], why: 'open', days: to - last.entryIdx, pnl: last.dir * (v[to] - last.entryLevel) - p.cost });
+    if (last && last.exitIdx == null) close(last, to, 'open');
     for (const tr of trades) for (let i = tr.entryIdx + 1; i <= tr.exitIdx; i++) pos[i] = tr.dir;  // position held over (i - 1, i]
     // daily equity, marked to market, cost charged on the exit day
-    const eq = [], eqd = []; let cum = 0; const daily = [];
+    const eq = [], eqd = []; let cum = 0, miss = 0; const daily = [];
     const exitCost = new Map(trades.map(tr => [tr.exitIdx, p.cost]));
     for (let i = start; i <= to; i++) {
-      const dp = i > start ? pos[i] * (v[i] - v[i - 1]) - (exitCost.get(i) || 0) : 0;
+      const dp = i > start ? pos[i] * ((v[i] - v[i - 1]) - (acc[i] - acc[i - 1])) - (exitCost.get(i) || 0) : 0;
+      if (useCarry && i > start && pos[i] && gap[i]) miss++;
       cum += dp; daily.push(dp); eq.push(cum); eqd.push(d[i]);
     }
     let peak = -Infinity, mdd = 0; for (const e of eq) { peak = Math.max(peak, e); mdd = Math.min(mdd, e - peak); }
@@ -1567,7 +1605,35 @@ input[type=date].inp{color-scheme:dark}
     return { trades, closed: closed.length, wins, hit: trades.length ? wins / trades.length : NaN, total: cum, avg: trades.length ? d3.sum(trades, tr => tr.pnl) / trades.length : NaN,
       avgDays: trades.length ? d3.mean(trades, tr => tr.days) : NaN, mdd, perYear: years > 0 ? cum / years : NaN, sharpe: ds > 0 ? dm / ds * Math.sqrt(252) : NaN,
       inMarket: eqd.length ? pos.slice(start, to + 1).filter(x => x).length / eqd.length : NaN, equity: { dates: eqd, values: eq }, z: { dates: d, values: z }, level: { dates: d, values: v },
-      start: d[start], end: d[to], years };
+      start: d[start], end: d[to], years, carry: useCarry ? d3.sum(trades, tr => tr.carry) : null, carryMiss: miss, carryNA: !!p.carry && !useCarry };
+  }
+  /** Walk-forward test: the two main rules are chosen on the past only.
+      The period is cut in consecutive test blocks. Before each block, every pair (z window, entry level) of the grid is tested on the training span that ends the day before the block.
+      The pair with the best Sharpe ratio there, among those with at least WF_MIN trades and a Sharpe ratio above zero, is traded on the block; if none qualifies the block is not traded.
+      Each block is a separate test: a trade still open at the end of a block is closed at the block's last fixing. The other rules are those of the screen. */
+  const WF_WINS = [21, 63, 126, 252, 504], WF_ENTS = [1, 1.5, 2, 2.5, 3], WF_MIN = 3, WF_EPS = 1e-9;
+  function walkForward(u, p, wf) {
+    const d = u.dates, L = d.length, cs = p.carry ? structureCarry(u) : null, c0 = cs ? cs.findIndex(Number.isFinite) : -1;
+    const to = p.to ? d3.bisectRight(d, p.to) - 1 : L - 1, base = Math.max(p.from ? d3.bisectLeft(d, p.from) : 0, WF_WINS[WF_WINS.length - 1] - 1, c0 >= 0 ? c0 : 0), s0 = base + wf.train;
+    const rules = (wn, en, a, b) => ({ ...p, win: wn, entry: en, exit: Math.min(p.exit, en - 0.1), from: d[a], to: d[b] });
+    const best = (a, b, need) => { let pick = null;
+      for (const wn of WF_WINS) for (const en of WF_ENTS) { const r = backtest(u, rules(wn, en, a, b));
+        if (r.trades.length >= need && Number.isFinite(r.sharpe) && r.sharpe > (pick ? pick.sharpe + WF_EPS : 0)) pick = { win: wn, entry: en, sharpe: r.sharpe, trades: r.trades.length, total: r.total }; }
+      return pick; };
+    const blocks = [], eqd = [], eq = [], daily = [], trades = []; let cum = 0;
+    for (let s = s0; s < to; s += wf.test) {
+      const e = Math.min(s + wf.test - 1, to), pick = best(s - wf.train, s - 1, WF_MIN), r = pick ? backtest(u, rules(pick.win, pick.entry, s, e)) : null;
+      if (r) { r.equity.dates.forEach((dt, i) => { const dp = i ? r.equity.values[i] - r.equity.values[i - 1] : 0; cum += dp; daily.push(dp); eqd.push(dt); eq.push(cum); });
+        for (const tr of r.trades) trades.push({ ...tr, win: pick.win, entry: pick.entry }); }
+      else for (let i = s; i <= e; i++) { daily.push(0); eqd.push(d[i]); eq.push(cum); }
+      blocks.push({ from: d[s], to: d[e], pick, pnl: r ? r.total : 0, trades: r ? r.trades.length : 0, carry: r ? r.carry : null });
+    }
+    if (!blocks.length) return { blocks, need: s0 + 2, have: to + 1 };
+    let peak = -Infinity, mdd = 0; for (const x of eq) { peak = Math.max(peak, x); mdd = Math.min(mdd, x - peak); }
+    const years = (parseD(eqd[eqd.length - 1]) - parseD(eqd[0])) / (365.25 * 864e5), dm = d3.mean(daily.slice(1)), ds = d3.deviation(daily.slice(1)), wins = trades.filter(tr => tr.pnl > 0).length;
+    const fixed = backtest(u, { ...p, from: d[s0], to: d[to] }), hp = best(s0, to, 1), hind = hp ? { ...hp, r: backtest(u, rules(hp.win, hp.entry, s0, to)) } : null;
+    return { blocks, equity: { dates: eqd, values: eq }, total: cum, perYear: years > 0 ? cum / years : NaN, sharpe: ds > 0 ? dm / ds * Math.sqrt(252) : NaN, mdd, trades, hit: trades.length ? wins / trades.length : NaN,
+      traded: blocks.filter(b => b.pick).length, fixed, hind, start: d[s0], end: d[to], carry: c0 >= 0 ? d3.sum(trades, tr => tr.carry) : null };
   }
 
   // ---------- 9.5 maths: symmetric eigen decomposition (Jacobi), PCA
@@ -1871,11 +1937,15 @@ input[type=date].inp{color-scheme:dark}
 
   // ---------- 9.11 view: backtest
   let SCAN = null;                                          // results of the last scan, kept in memory only
+  let WFRES = null;                                         // result of the last walk-forward run and the settings it belongs to
   function viewBacktest() {
     const p = Object.assign({}, BT_DEF, S.bt || {}); S.bt = p;
     if (!BYID.has(S.btSel) || EXTRA.has(S.btSel) && !U.includes(BYID.get(S.btSel))) S.btSel = (inst('FR-DE_10Y') || inst('DE_2s10s') || U[0]).id;
     const u = BYID.get(S.btSel), r = backtest(u, p), up = patch => set({ bt: Object.assign({}, p, patch) });
-    const dmin = u.dates[0], dmax = u.dates[u.dates.length - 1];
+    const dmin = u.dates[0], dmax = u.dates[u.dates.length - 1], estr = EXTRA.get('ESTR');
+    const carryNote = !p.carry ? 'Carry, roll-down and financing are not included.'
+      : r.carryNA ? 'Carry cannot be computed for this structure, so it is not included: every leg must be a yield with a shorter maturity loaded for the same country.'
+      : `Carry and roll-down are included (${bp(r.carry)} bp in total): estimated each day from the constant-maturity curves and funded at the euro short-term rate, a proxy for repo. That rate starts on ${estr ? day(estr.dates[0]) : DASH}, so the test cannot start earlier.${r.carryMiss ? ` Carry missing on ${r.carryMiss} held days, counted as zero.` : ''}`;
     const ctl = panel({ id: 'p-bt-ctl', span: 's12', title: 'Z-score backtest', sub: 'rules, then results below; every change reruns the test',
       tools: [h('button', { class: 'linkbtn', type: 'button', onclick: () => set({ bt: { ...BT_DEF } }) }, 'Reset rules')] },
       h('div', { class: 'controls' },
@@ -1889,12 +1959,13 @@ input[type=date].inp{color-scheme:dark}
         field('Max days (0 = none)', numInput(p.maxHold, v => up({ maxHold: Math.max(0, Math.round(v)) }), { label: 'Maximum holding period in trading days', step: 1, min: 0, w: '64px' })),
         field('Cost, bp per trade', numInput(p.cost, v => up({ cost: Math.max(0, v) }), { label: 'Round-trip cost in bp', step: 0.1, min: 0, w: '64px' })),
         field('Execution', seg([[1, 'Next fixing'], [0, 'Same fixing']], p.lag, v => up({ lag: v }), 'Execution')),
+        field('Carry and roll-down', seg([[0, 'Off'], [1, 'On']], p.carry ? 1 : 0, v => up({ carry: v }), 'Carry and roll-down in the P&L')),
         field('From', h('input', { class: 'inp', type: 'date', value: p.from || '', min: dmin, max: dmax, 'aria-label': 'Start date', onchange: e => up({ from: e.target.value }) })),
         field('To', h('input', { class: 'inp', type: 'date', value: p.to || '', min: dmin, max: dmax, 'aria-label': 'End date', onchange: e => up({ to: e.target.value }) }))));
     const st = panel({ id: 'p-bt-stats', span: 's4', title: 'Results', sub: `${day(r.start)} to ${day(r.end)}`, foot: sourceLine(u.src) },
       h('div', { class: 'stats stats2' }, stat('Total P&L', bp(r.total), 'bp'), stat('Per year', bp(r.perYear), 'bp'), stat('Trades', String(r.trades.length)), stat('Hit ratio', num(r.hit * 100, 0), '%'),
-        stat('Average trade', bp(r.avg), 'bp'), stat('Average holding', num(r.avgDays, 0), 'days'), stat('Max drawdown', num(r.mdd, 1), 'bp'), stat('Sharpe (daily, annualised)', num(r.sharpe, 2)), stat('Time in market', num(r.inMarket * 100, 0), '%')),
-      h('p', { class: 'muted', style: 'font-size:12px;margin:8px 0 0' }, `${u.name}: P&L in bp of the structure, long = gain when it rises. Carry, roll-down and financing are not included. ${p.lag ? 'Decision at a fixing, trade at the next fixing.' : 'Decision and trade at the same fixing: optimistic.'} In-sample test: the rules were not chosen out of sample.`));
+        stat('Average trade', bp(r.avg), 'bp'), stat('Average holding', num(r.avgDays, 0), 'days'), stat('Max drawdown', num(r.mdd, 1), 'bp'), stat('Sharpe (daily, annualised)', num(r.sharpe, 2)), stat('Time in market', num(r.inMarket * 100, 0), '%'), p.carry && !r.carryNA ? stat('Of which carry', bp(r.carry), 'bp') : null),
+      h('p', { class: 'muted', style: 'font-size:12px;margin:8px 0 0' }, `${u.name}: P&L in bp of the structure, long = gain when it rises. ${carryNote} ${p.lag ? 'Decision at a fixing, trade at the next fixing.' : 'Decision and trade at the same fixing: optimistic.'} In-sample test: the rules were not chosen out of sample.`));
     const eq = { name: 'Cumulative P&L', color: COL[u.country] || COL.DE, dates: r.equity.dates, values: r.equity.values };
     const eqP = chartPanel({ id: 'p-bt-eq', span: 's8', title: 'Cumulative P&L', sub: 'bp, marked to market each day, cost charged at exit', draw: host => lineChart(host, { series: [eq], decimals: 1, unit: 'bp', zero: true, height: 260, label: 'Cumulative P&L of the backtest' }), table: () => seriesTable([eq], 1) });
     // signal chart: z-score with the thresholds, and the position
@@ -1912,7 +1983,7 @@ input[type=date].inp{color-scheme:dark}
       h('div', { class: 'sub', style: 'color:var(--ink-3);padding-top:6px' }, 'Position: +1 long, ' + MINUS + '1 short'), h3);
     const tradeRows = r.trades.slice().reverse();
     const trP = panel({ id: 'p-bt-trades', span: 's4', title: 'Trades', sub: `${r.trades.length}, newest first`,
-      tools: csvButton('backtest_trades', () => ({ head: ['signal_date', 'entry_date', 'side', 'entry_level_bp', 'z_in', 'exit_date', 'exit_level_bp', 'z_out', 'reason', 'days', 'pnl_bp'], rows: r.trades.map(t => [t.signalDate, t.entryDate, t.dir > 0 ? 'buy' : 'sell', +t.entryLevel.toFixed(3), +t.zIn.toFixed(3), t.exitDate, +t.exitLevel.toFixed(3), Number.isFinite(t.zOut) ? +t.zOut.toFixed(3) : '', t.why, t.days, +t.pnl.toFixed(3)]) })) },
+      tools: csvButton('backtest_trades', () => ({ head: ['signal_date', 'entry_date', 'side', 'entry_level_bp', 'z_in', 'exit_date', 'exit_level_bp', 'z_out', 'reason', 'days', 'pnl_bp', 'carry_bp'], rows: r.trades.map(t => [t.signalDate, t.entryDate, t.dir > 0 ? 'buy' : 'sell', +t.entryLevel.toFixed(3), +t.zIn.toFixed(3), t.exitDate, +t.exitLevel.toFixed(3), Number.isFinite(t.zOut) ? +t.zOut.toFixed(3) : '', t.why, t.days, +t.pnl.toFixed(3), +(t.carry || 0).toFixed(3)]) })) },
       tradeRows.length ? h('div', { class: 'scroll', style: 'max-height:430px;overflow-y:auto' }, h('table', { class: 't' }, h('thead', null, h('tr', null, ['In', 'Side', 'Out', 'Why', 'Days', 'P&L'].map(x => h('th', null, x)))),
         h('tbody', null, tradeRows.map(t => h('tr', null, h('td', null, fShort(parseD(t.entryDate)) + ' ' + t.entryDate.slice(2, 4)), h('td', null, t.dir > 0 ? 'Buy' : 'Sell'), h('td', null, fShort(parseD(t.exitDate)) + ' ' + t.exitDate.slice(2, 4)),
           h('td', { class: 'muted' }, t.why), h('td', null, String(t.days)), heatCell(bp(t.pnl), t.pnl, 20)))))) : h('div', { class: 'empty' }, 'No trade with these rules: lower the entry level or lengthen the period.'));
@@ -1932,7 +2003,36 @@ input[type=date].inp{color-scheme:dark}
         SCAN ? csvButton('backtest_scan', () => ({ head: ['structure', 'total_bp', 'per_year_bp', 'trades', 'hit_ratio', 'avg_trade_bp', 'max_drawdown_bp', 'sharpe'], rows: SCAN.rows.map(({ u: x, r: q }) => [x.name, +q.total.toFixed(2), +(q.perYear || 0).toFixed(2), q.trades.length, +(q.hit || 0).toFixed(3), +(q.avg || 0).toFixed(2), +q.mdd.toFixed(2), +(q.sharpe || 0).toFixed(2)]) })) : null] },
       SCAN ? h('div', { class: 'scroll', style: 'max-height:360px;overflow-y:auto' }, h('table', { class: 't' }, h('thead', null, h('tr', null, ['Structure', 'Total', 'Per year', 'Trades', 'Hit', 'Max DD', 'Sharpe'].map(x => h('th', null, x)))),
         h('tbody', null, SCAN.rows.map(({ u: x, r: q }) => h('tr', { class: 'click', 'aria-selected': String(x.id === S.btSel), onclick: () => set({ btSel: x.id }) }, h('td', null, h('span', { class: 'name' }, x.name)), heatCell(bp(q.total), q.total, 200), h('td', null, bp(q.perYear)), h('td', null, String(q.trades.length)), h('td', null, num(q.hit * 100, 0) + ' %'), h('td', null, num(q.mdd, 0)), h('td', null, num(q.sharpe, 2))))))) : h('div', { class: 'empty' }, 'The scan runs the current rules on every structure: about one second.'));
-    return h('div', { class: 'grid' }, ctl, st, eqP, sig, trP, sens, scanP);
+    // walk-forward: rules chosen on the past only
+    const wf = Object.assign({ train: 504, test: 126 }, S.wf || {}), wfKey = JSON.stringify([u.id, u.values.length, p, wf]), W = WFRES && WFRES.key === wfKey ? WFRES.res : null;
+    const col = COL[u.country] || COL.DE, span = b => `${fShort(parseD(b.from))} ${b.from.slice(2, 4)} to ${fShort(parseD(b.to))} ${b.to.slice(2, 4)}`;
+    let wfBody;
+    if (!W) wfBody = h('div', { class: 'empty' }, `Click Run walk-forward. Before each block, the ${WF_WINS.length * WF_ENTS.length} pairs of z window and entry level are tested on the training span, and the best one is traded on the block: about one second.`);
+    else if (!W.blocks.length) wfBody = h('div', { class: 'empty' }, `Not enough history for these settings: the test needs ${W.need} fixings (the longest z window, the training span and a first block) and this period has ${W.have}. Shorten the training span or widen the dates.`);
+    else {
+      const hw = h('div'), a = { name: 'Walk-forward', color: col, dates: W.equity.dates, values: W.equity.values }, i0 = W.fixed.equity.dates.indexOf(W.start);
+      const f = { name: 'Rules of the screen, same period', color: COL.ink2, dates: W.fixed.equity.dates.slice(i0), values: W.fixed.equity.values.slice(i0) };
+      mount(hw, el => lineChart(el, { series: [a, f], decimals: 1, unit: 'bp', zero: true, height: 240, label: 'Cumulative P&L, walk-forward against the fixed rules of the screen' }));
+      wfBody = [h('div', { class: 'stats', style: 'margin-top:12px;gap:8px 28px' }, stat('Out of sample', bp(W.total), 'bp'), stat('Per year', bp(W.perYear), 'bp'), stat('Trades', String(W.trades.length)), stat('Hit ratio', num(W.hit * 100, 0), '%'),
+          stat('Sharpe (daily, annualised)', num(W.sharpe, 2)), stat('Max drawdown', num(W.mdd, 1), 'bp'), stat('Blocks with a rule', `${W.traded} of ${W.blocks.length}`),
+          stat('Rules of the screen', bp(W.fixed.total), 'bp'), W.hind ? stat('Best pair in hindsight', bp(W.hind.r.total), 'bp') : null, W.carry != null ? stat('Of which carry', bp(W.carry), 'bp') : null),
+        h('p', { class: 'muted', style: 'font-size:12px;margin:8px 0 10px' }, `Out of sample from ${day(W.start)} to ${day(W.end)}. Rules of the screen: z on ${p.win} days, entry at ${p.entry}, traded over the same dates.` +
+          (W.hind ? ` Best pair in hindsight: ${W.hind.win} days and entry at ${W.hind.entry}, the best Sharpe ratio on the same dates, picked after the fact. Nobody could have traded it: it is there for scale.` : '')),
+        hw,
+        h('div', { class: 'scroll', style: 'max-height:320px;overflow-y:auto;margin-top:10px' }, h('table', { class: 't' }, h('thead', null, h('tr', null, ['Block', 'Z window', 'Entry |z|', 'Training Sharpe', 'Trades', 'P&L'].map(x => h('th', null, x)))),
+          h('tbody', null, W.blocks.map(b => h('tr', null, h('td', null, h('span', { class: 'name' }, span(b))), h('td', null, b.pick ? b.pick.win + ' days' : DASH), h('td', null, b.pick ? String(b.pick.entry) : DASH),
+            h('td', null, b.pick ? num(b.pick.sharpe, 2) : h('span', { class: 'muted' }, 'no pair qualified')), h('td', null, String(b.trades)), b.pick ? heatCell(bp(b.pnl), b.pnl, 40) : h('td', { class: 'muted' }, 'not traded')))))) ];
+    }
+    const wfP = panel({ id: 'p-wf', span: 's12', title: 'Walk-forward test', sub: 'the two main rules are chosen on the past only, then traded on the next block',
+      tools: [h('button', { class: 'btn', type: 'button', onclick: () => { WFRES = { key: wfKey, res: walkForward(u, p, wf) }; render(); } }, 'Run walk-forward'),
+        W && W.blocks.length ? csvButton('walk_forward_blocks', () => ({ head: ['block_from', 'block_to', 'z_window', 'entry_z', 'training_sharpe', 'training_trades', 'trades', 'pnl_bp'],
+          rows: W.blocks.map(b => [b.from, b.to, b.pick ? b.pick.win : '', b.pick ? b.pick.entry : '', b.pick ? +b.pick.sharpe.toFixed(3) : '', b.pick ? b.pick.trades : '', b.trades, +b.pnl.toFixed(2)]) })) : null],
+      foot: `Pairs tested before each block: z window of ${WF_WINS.join(', ')} days with entry at ${WF_ENTS.join(', ')}. The pair kept has the best Sharpe ratio on the training span, with at least ${WF_MIN} trades and a Sharpe ratio above zero; otherwise the block is not traded. Exit, stop, holding limit, side, cost${p.carry ? ', carry' : ''} and execution are those set above. A trade still open at the end of a block is closed there. The first block starts after ${WF_WINS[WF_WINS.length - 1]} fixings plus the training span.` },
+      h('div', { class: 'controls' },
+        field('Training span', seg([[252, '1Y'], [504, '2Y'], [756, '3Y']], wf.train, v => set({ wf: { ...wf, train: v } }), 'Training span')),
+        field('Test block', seg([[63, '3M'], [126, '6M'], [252, '1Y']], wf.test, v => set({ wf: { ...wf, test: v } }), 'Length of a test block'))),
+      wfBody);
+    return h('div', { class: 'grid' }, ctl, st, eqP, sig, trP, sens, scanP, wfP);
   }
 
 

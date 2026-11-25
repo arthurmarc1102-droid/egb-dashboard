@@ -74,6 +74,13 @@ await page.fill('#p-bt-ctl input[aria-label="Entry level of |z|"]', '1'); await 
 const after = await page.$eval('#p-bt-stats .stat .v', e => e.innerText); check(before !== after, `backtest reruns when a rule changes (${before} -> ${after})`);
 await page.click('#p-bt-scan button:has-text("Run")'); await page.waitForTimeout(2500);
 const scan = await page.$$eval('#p-bt-scan tbody tr', r => r.length); check(scan > 10, `backtest scan lists ${scan} structures`);
+// carry in the P&L, then the walk-forward test
+await page.click('#p-bt-ctl [aria-label="Carry and roll-down in the P&L"] button:has-text("On")'); await page.waitForTimeout(900);
+const carryOn = await page.$$eval('#p-bt-stats .stat .k', k => k.map(e => e.innerText.trim())), carryTxt = await page.$eval('#p-bt-stats p.muted', e => e.innerText);
+check(carryOn.includes('Of which carry') || /cannot be computed/.test(carryTxt), `backtest: carry switched on (${carryOn.includes('Of which carry') ? 'carry shown in the results' : 'not available for this structure, and the page says so'})`);
+await page.click('#p-wf button:has-text("Run walk-forward")'); await page.waitForSelector('#p-wf .stat, #p-wf .empty', { timeout: 60000 }); await page.waitForTimeout(600);
+const wfStats = await page.$$eval('#p-wf .stat', s => s.length), wfRows = await page.$$eval('#p-wf tbody tr', r => r.length), wfSvg = await page.$$eval('#p-wf svg', s => s.length);
+check(wfStats >= 8 && wfRows > 2 && wfSvg === 1, `walk-forward: ${wfStats} figures, ${wfRows} blocks, ${wfSvg} chart`);
 const [dl] = await Promise.all([page.waitForEvent('download', { timeout: 5000 }).catch(() => null), page.click('#p-bt-trades button:has-text("CSV")')]);
 const csv = dl ? fs.readFileSync(await dl.path(), 'utf8') : ''; check(csv.startsWith('signal_date,entry_date') && csv.split('\n').length > 2, `CSV download of trades (${csv.split('\n').length - 1} rows)`);
 await nav(page, 'curves'); await page.waitForTimeout(400); await page.click('#filters button:has-text("Custom")'); await page.waitForTimeout(400);

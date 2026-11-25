@@ -182,7 +182,8 @@
   const tail = (s, n) => (n === 'custom' ? inRange(s) : Number.isFinite(n) ? { ...s, dates: s.dates.slice(-n), values: s.values.slice(-n) } : s);
 
   // ===================================================================== 4. universe of structures
-  /** Build every outright, spread, slope, butterfly and box the loaded yield series allow. */
+  /** Build every outright, spread, slope, butterfly and box the loaded yield series allow.
+      `comp` gives each structure as weights on yields (in bp): it is what the carry of a structure is computed from. */
   function buildUniverse(market) {
     const Y = {};
     for (const s of market.series) if (s.group === 'yield') (Y[s.country] = Y[s.country] || {})[s.tenor] = s;
@@ -191,23 +192,23 @@
     const src = (...ss) => [...new Set(ss.map(s => s.source))];
     for (const c of ORDER) for (const t of tenors(c)) {
       const s = Y[c][t];
-      add({ id: `${c}_${t}Y`, cat: 'outright', country: c, tenor: t, name: `${c} ${t}Y`, long: `${COUNTRIES[c]} ${t}-year yield`, unit: 'pct', decimals: s.decimals, dates: s.dates, values: s.values, src: src(s) });
+      add({ id: `${c}_${t}Y`, cat: 'outright', country: c, tenor: t, name: `${c} ${t}Y`, long: `${COUNTRIES[c]} ${t}-year yield`, unit: 'pct', decimals: s.decimals, dates: s.dates, values: s.values, src: src(s), comp: { [`${c}_${t}Y`]: 1 } });
     }
     for (const c of ORDER) if (c !== REF && Y[REF]) for (const t of tenors(c)) if (Y[REF][t]) {
       add({ id: `${c}-${REF}_${t}Y`, cat: 'spread', country: c, tenor: t, name: `${c}${DASH}${REF} ${t}Y`, long: `${COUNTRIES[c]} minus ${COUNTRIES[REF]}, ${t}-year`, unit: 'bp',
-        ...join([Y[c][t], Y[REF][t]], (a, b) => (a - b) * 100), src: src(Y[c][t], Y[REF][t]) });
+        ...join([Y[c][t], Y[REF][t]], (a, b) => (a - b) * 100), src: src(Y[c][t], Y[REF][t]), comp: { [`${c}_${t}Y`]: 1, [`${REF}_${t}Y`]: -1 } });
     }
     for (const c of ORDER) for (const [a, b] of SLOPES) if (Y[c] && Y[c][a] && Y[c][b]) {
       add({ id: `${c}_${a}s${b}s`, cat: 'slope', country: c, legs: `${a}s${b}s`, name: `${c} ${a}s${b}s`, long: `${COUNTRIES[c]} ${b}-year minus ${a}-year`, unit: 'bp',
-        ...join([Y[c][a], Y[c][b]], (x, y) => (y - x) * 100), src: src(Y[c][a], Y[c][b]) });
+        ...join([Y[c][a], Y[c][b]], (x, y) => (y - x) * 100), src: src(Y[c][a], Y[c][b]), comp: { [`${c}_${b}Y`]: 1, [`${c}_${a}Y`]: -1 } });
     }
     for (const c of ORDER) for (const [a, b, d] of FLIES) if (Y[c] && Y[c][a] && Y[c][b] && Y[c][d]) {
       add({ id: `${c}_${a}s${b}s${d}s`, cat: 'fly', country: c, legs: `${a}s${b}s${d}s`, name: `${c} ${a}s${b}s${d}s`, long: `${COUNTRIES[c]} butterfly: 2 x ${b}-year minus ${a}-year minus ${d}-year`, unit: 'bp',
-        ...join([Y[c][a], Y[c][b], Y[c][d]], (x, y, z) => (2 * y - x - z) * 100), src: src(Y[c][a], Y[c][b], Y[c][d]) });
+        ...join([Y[c][a], Y[c][b], Y[c][d]], (x, y, z) => (2 * y - x - z) * 100), src: src(Y[c][a], Y[c][b], Y[c][d]), comp: { [`${c}_${b}Y`]: 2, [`${c}_${a}Y`]: -1, [`${c}_${d}Y`]: -1 } });
     }
     for (const c of ORDER) if (c !== REF) for (const [a, b] of SLOPES) if (Y[c] && Y[REF] && Y[c][a] && Y[c][b] && Y[REF][a] && Y[REF][b]) {
       add({ id: `${c}-${REF}_${a}s${b}s`, cat: 'box', country: c, legs: `${a}s${b}s`, name: `${c}${DASH}${REF} ${a}s${b}s box`, long: `${COUNTRIES[c]} ${a}s${b}s slope minus ${COUNTRIES[REF]} ${a}s${b}s slope`, unit: 'bp',
-        ...join([Y[c][a], Y[c][b], Y[REF][a], Y[REF][b]], (ca, cb, ra, rb) => ((cb - ca) - (rb - ra)) * 100), src: src(Y[c][a], Y[c][b], Y[REF][a], Y[REF][b]) });
+        ...join([Y[c][a], Y[c][b], Y[REF][a], Y[REF][b]], (ca, cb, ra, rb) => ((cb - ca) - (rb - ra)) * 100), src: src(Y[c][a], Y[c][b], Y[REF][a], Y[REF][b]), comp: { [`${c}_${b}Y`]: 1, [`${c}_${a}Y`]: -1, [`${REF}_${b}Y`]: -1, [`${REF}_${a}Y`]: 1 } });
     }
     return out;
   }
@@ -862,6 +863,8 @@
         h('li', null, h('code', null, 'Regression'), ' = ordinary least squares on day-to-day changes in bp, on the days both series have a value.'),
         h('li', null, h('code', null, 'Daily note'), ' = sentences written by the page from the day\'s moves. Bull or bear: yields lower or higher. Steeper or flatter: 2s10s wider or narrower. Twist: the 2-year and the 10-year move by at least 1 bp in opposite directions. Parallel: 2s10s unchanged. A butterfly that rises means its belly cheapened. Moves below 0.05 bp read as unchanged.'),
         h('li', null, h('code', null, 'Largest moves'), ' = 1-day change divided by the standard deviation of the daily changes over the z-score window, the latest one included. One row per family: a country\'s 2, 5, 10 and 30-year yields, its spreads to Germany, its slopes.'),
+        h('li', null, h('code', null, 'Carry in a backtest'), ' = optional. A long position in a structure gains when it rises and pays the carry and roll-down of its yield legs, by calendar day. Carry = (yield minus euro short-term rate) / modified duration; roll-down = slope of the curve down to the next shorter maturity. Duration is the maturity itself when the yield is not positive. These are estimates from constant-maturity curves, not figures bond by bond.'),
+        h('li', null, h('code', null, 'Walk-forward'), ' = before each test block, 25 pairs of z window and entry level are tested on the training span that ends the day before. The pair with the best Sharpe ratio there (at least 3 trades, Sharpe ratio above zero) is traded on the block; without one the block is not traded. Each block is a separate test.'),
         h('li', null, h('code', null, 'Approximate return'), ' = minus modified duration x yield change, plus the running yield over the period. Duration is that of an annual-pay par bond at the starting yield. Roll-down and convexity are ignored.')),
       h('h3', null, 'Reading the colours'),
       h('p', null, 'Red means a higher yield, a wider spread or a cheaper level. Blue means the opposite. Each country keeps one colour across all charts.'),

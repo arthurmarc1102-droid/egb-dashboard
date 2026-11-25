@@ -126,6 +126,137 @@
      -1
     ]
    ]
+  },
+  "E": {
+   "id": "FR-DE_10Y",
+   "p": {
+    "win": 63,
+    "entry": 2,
+    "exit": 0.5,
+    "stop": 4,
+    "maxHold": 60,
+    "cost": 0.5,
+    "side": "both",
+    "mode": "revert",
+    "lag": 1,
+    "carry": 1,
+    "from": "",
+    "to": ""
+   },
+   "legs": [
+    [
+     "FR",
+     10,
+     1
+    ],
+    [
+     "DE",
+     10,
+     -1
+    ]
+   ]
+  },
+  "F": {
+   "id": "DE_2s5s10s",
+   "p": {
+    "win": 126,
+    "entry": 1.5,
+    "exit": 0.25,
+    "stop": 0,
+    "maxHold": 30,
+    "cost": 0.3,
+    "side": "both",
+    "mode": "revert",
+    "lag": 1,
+    "carry": 1,
+    "from": "",
+    "to": ""
+   },
+   "legs": [
+    [
+     "DE",
+     2,
+     -1
+    ],
+    [
+     "DE",
+     5,
+     2
+    ],
+    [
+     "DE",
+     10,
+     -1
+    ]
+   ]
+  },
+  "G": {
+   "id": "X1",
+   "p": {
+    "win": 63,
+    "entry": 2,
+    "exit": 0.5,
+    "stop": 4,
+    "maxHold": 40,
+    "cost": 0.5,
+    "side": "both",
+    "mode": "revert",
+    "lag": 1,
+    "carry": 1,
+    "from": "",
+    "to": ""
+   },
+   "legs": [
+    [
+     "FR",
+     2,
+     -1
+    ],
+    [
+     "FR",
+     10,
+     1
+    ],
+    [
+     "DE",
+     2,
+     1
+    ],
+    [
+     "DE",
+     10,
+     -1
+    ]
+   ]
+  },
+  "H": {
+   "id": "ES-DE_10Y",
+   "p": {
+    "win": 126,
+    "entry": 2,
+    "exit": 0,
+    "stop": 0,
+    "maxHold": 0,
+    "cost": 0.5,
+    "side": "both",
+    "mode": "trend",
+    "lag": 1,
+    "carry": 1,
+    "from": "",
+    "to": ""
+   },
+   "legs": [
+    [
+     "ES",
+     10,
+     1
+    ],
+    [
+     "DE",
+     10,
+     -1
+    ]
+   ]
   }
  },
  "custom": [
@@ -200,5 +331,116 @@
   ],
   "win": 63,
   "label": "3M"
+ },
+ "walkforward": {
+  "W1": {
+   "id": "FR-DE_10Y",
+   "p": {
+    "win": 63,
+    "entry": 2,
+    "exit": 0.5,
+    "stop": 4,
+    "maxHold": 60,
+    "cost": 0.5,
+    "side": "both",
+    "mode": "revert",
+    "lag": 1,
+    "carry": 0,
+    "from": "",
+    "to": ""
+   },
+   "wf": {
+    "train": 504,
+    "test": 126
+   },
+   "legs": [
+    [
+     "FR",
+     10,
+     1
+    ],
+    [
+     "DE",
+     10,
+     -1
+    ]
+   ]
+  },
+  "W2": {
+   "id": "DE_2s10s",
+   "p": {
+    "win": 63,
+    "entry": 2,
+    "exit": 0.5,
+    "stop": 4,
+    "maxHold": 60,
+    "cost": 0.3,
+    "side": "both",
+    "mode": "revert",
+    "lag": 1,
+    "carry": 1,
+    "from": "",
+    "to": ""
+   },
+   "wf": {
+    "train": 252,
+    "test": 63
+   },
+   "legs": [
+    [
+     "DE",
+     2,
+     -1
+    ],
+    [
+     "DE",
+     10,
+     1
+    ]
+   ]
+  },
+  "W3": {
+   "id": "X1",
+   "p": {
+    "win": 63,
+    "entry": 2,
+    "exit": 0.5,
+    "stop": 4,
+    "maxHold": 40,
+    "cost": 0.5,
+    "side": "both",
+    "mode": "revert",
+    "lag": 1,
+    "carry": 1,
+    "from": "",
+    "to": ""
+   },
+   "wf": {
+    "train": 756,
+    "test": 252
+   },
+   "legs": [
+    [
+     "FR",
+     2,
+     -1
+    ],
+    [
+     "FR",
+     10,
+     1
+    ],
+    [
+     "DE",
+     2,
+     1
+    ],
+    [
+     "DE",
+     10,
+     -1
+    ]
+   ]
+  }
  }
 }
