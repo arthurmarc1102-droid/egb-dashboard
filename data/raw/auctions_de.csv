@@ -1,4 +1,5 @@
 country,date,security,isin,bids_bn,amount_bn,avg_yield,stop_yield,bid_cover,url
+DE,2026-11-25,Bund 3.00% 15 Aug 2036,DE000BU2Z072,5.18,3.821,3.22,,1.4,https://www.deutsche-finanzagentur.de/en/federal-securities/issuances/issuance-results
 DE,2026-11-18,Bund 3.30% 15 Nov 2033,DE000BU27022,3.417,2.272,3.27,,1.5,https://www.deutsche-finanzagentur.de/en/federal-securities/issuances/issuance-results
 DE,2026-11-17,Schatz 3.00% 13 Dec 2028,DE000BU22155,6.822,3.807,3.1,,1.8,https://www.deutsche-finanzagentur.de/en/federal-securities/issuances/issuance-results
 DE,2026-11-11,Bund 3.40% 15 May 2047,DE000BU2T000,1.56,0.853,3.65,,1.8,https://www.deutsche-finanzagentur.de/en/federal-securities/issuances/issuance-results

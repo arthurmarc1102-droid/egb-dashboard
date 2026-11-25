@@ -1,38 +1,52 @@
-Checks of 2026-11-25 03:03 UTC
+Checks of 2026-11-25 14:40 UTC
 OK    market: 29 daily series and 8 monthly series present, sorted, in range and fresh
 OK    market against the double-read snapshot of 19 Nov 2026: 6723 values, 0 differences
 OK    futures: 47 basket bonds checked against the Eurex file, gross basis and CTD recomputed
-OK    auctions: 201 results, cover = bids / allotted checked on 192; 12 upcoming
-OK    calendar: 70 events, ECB rates {'date': '2026-09-16', 'dfr': 2.5, 'mro': 2.65, 'mlf': 2.9}; news: 63 items
+OK    auctions: 203 results, cover = bids / allotted checked on 194; 11 upcoming
+OK    calendar: 70 events, ECB rates {'date': '2026-09-16', 'dfr': 2.5, 'mro': 2.65, 'mlf': 2.9}; news: 69 items
+PAGE  ok   1440px: the page opens on the brief
+PAGE  ok   1440px: 5 spaces, 13 sections (1+3+5+2+2)
+PAGE  1440px home: 8 panels
 PAGE  1440px monitor: 10 panels
 PAGE  1440px curves: 5 panels
+PAGE  1440px rates: 3 panels
 PAGE  1440px rv: 3 panels
 PAGE  1440px builder: 4 panels, empty: Build a structure above and save it: it will be listed here with its z-score and changes.
 PAGE  1440px analysis: 3 panels
 PAGE  1440px curvelab: 8 panels
 PAGE  1440px backtest: 7 panels, empty: The scan runs the current rules on every structure: about one second.
-PAGE  1440px rates: 3 panels
 PAGE  1440px futures: 3 panels
 PAGE  1440px auctions: 2 panels
 PAGE  1440px blotter: 3 panels
 PAGE  1440px sources: 3 panels
-PAGE  1440px header: Close of Tue 24 Nov 2026
+PAGE  ok   1440px: spaces in the masthead
+PAGE  1440px header: Close of Wed 25 Nov 2026
+PAGE  ok   390px: the page opens on the brief
+PAGE  ok   390px: 5 spaces, 13 sections (1+3+5+2+2)
+PAGE  390px home: 8 panels
 PAGE  390px monitor: 10 panels
 PAGE  390px curves: 5 panels
+PAGE  390px rates: 3 panels
 PAGE  390px rv: 3 panels
 PAGE  390px builder: 4 panels, empty: Build a structure above and save it: it will be listed here with its z-score and changes.
 PAGE  390px analysis: 3 panels
 PAGE  390px curvelab: 8 panels
 PAGE  390px backtest: 7 panels, empty: The scan runs the current rules on every structure: about one second.
-PAGE  390px rates: 3 panels
 PAGE  390px futures: 3 panels
 PAGE  390px auctions: 2 panels
 PAGE  390px blotter: 3 panels
 PAGE  390px sources: 3 panels
-PAGE  390px header: Close of Tue 24 Nov 2026
+PAGE  ok   390px: spaces in a bar at the bottom of the screen
+PAGE  390px header: Wed 25 Nov 2026
+PAGE  fonts: Newsreader 1 of 3 faces loaded, IBM Plex Sans Condensed 3 of 12 faces loaded, IBM Plex Sans 4 of 12 faces loaded
+PAGE  ok   brief headline: Bunds bull-flattened: the 10-year yield fell 4 bp to 3.27 %, 2s10s 1 bp flatter at 25 bp.
+PAGE  ok   brief: 5 moves, 6 z-scores, 7 coming events
+PAGE  ok   curve ladder: dots sit above their columns (155, 229, 303 vs 155, 229, 303)
+PAGE  ok   brief: a move opens the RV screen
+PAGE  ok   the Back button returns to the brief
 PAGE  ok   builder: Fly template gives 3 legs (3)
 PAGE  ok   builder: saved structure listed
-PAGE  ok   builder: preview level −20.0bp
+PAGE  ok   builder: preview level −23.0bp
 PAGE  ok   RV screen: custom structure in category Custom
 PAGE  ok   backtest opened on the custom structure (Test fly)
 PAGE  ok   backtest reruns when a rule changes (+72.5bp -> +86.0bp)
@@ -41,4 +55,7 @@ PAGE  ok   CSV download of trades (192 rows)
 PAGE  ok   custom range 2022: 257 rows, 03 Jan 2022 to 30 Dec 2022
 PAGE  ok   workbench: yields and bp structures on two charts (2)
 PAGE  ok   workbench: change since start on one chart
-OK    lab: 267 figures compared, 0 differences
+PAGE  ok   phone: filters folded (0 groups shown), then open (3)
+PAGE  ok   phone: a country can be switched off from the open filters
+PAGE  share picture redrawn for "Close of Wed 25 Nov 2026", 118 kB
+OK    brief and lab: 351 figures compared, 0 differences

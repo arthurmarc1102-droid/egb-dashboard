@@ -4,6 +4,30 @@
 "note_upcoming": "Germany and Spain: issuers' calendars, read each day. France: date from the AFT calendar rule, not from a dated calendar. Italy: no machine-readable calendar found.",
 "results": [
 {
+"country": "IT",
+"date": "2026-11-25",
+"security": "BTP Short Term 3.00% 30 Oct 2028",
+"isin": "IT0005729733",
+"bids_bn": 3.193,
+"amount_bn": 2.0,
+"avg_yield": 3.4,
+"stop_yield": null,
+"bid_cover": 1.6,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_short_term/BTP-Short-Term-Auction-Results-25.11.2026.pdf"
+},
+{
+"country": "DE",
+"date": "2026-11-25",
+"security": "Bund 3.00% 15 Aug 2036",
+"isin": "DE000BU2Z072",
+"bids_bn": 5.18,
+"amount_bn": 3.821,
+"avg_yield": 3.22,
+"stop_yield": null,
+"bid_cover": 1.4,
+"url": "https://www.deutsche-finanzagentur.de/en/federal-securities/issuances/issuance-results"
+},
+{
 "country": "ES",
 "date": "2026-11-19",
 "security": "Obligacion 3.75% 30 Jul 2034",
@@ -2417,14 +2441,6 @@
 }
 ],
 "upcoming": [
-{
-"country": "DE",
-"date": "2026-11-25",
-"title": "Bund 3.00% 15 Aug 2036, reopening",
-"isin": "DE000BU2Z072",
-"amount_bn": 5.0,
-"url": "https://www.deutsche-finanzagentur.de/en/federal-securities/issuances/issuance-calendar"
-},
 {
 "country": "DE",
 "date": "2026-12-01",

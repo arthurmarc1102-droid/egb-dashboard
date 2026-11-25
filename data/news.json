@@ -2,6 +2,30 @@
 "note": "Titles and links from the ECB, Bundesbank and Banco de Espana feeds, read each day and archived (400 most recent). Press feeds are not included: their terms of use have not been read.",
 "items": [
 {
+"date": "2026-11-25",
+"source": "ECB",
+"title": "Card payments edge past cash in shops; euro area consumers want both",
+"url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261125~26d1ade228.en.html"
+},
+{
+"date": "2026-11-25",
+"source": "Bundesbank",
+"title": "Reopening Federal bond issue – Auction result",
+"url": "https://www.bundesbank.de/en/press/press-releases/federal-securities/reopening-federal-bond-issue-auction-result--1017086"
+},
+{
+"date": "2026-11-25",
+"source": "Bundesbank",
+"title": "Auction announcement – Reopening of five-year Federal notes  (Bundesobligationen – “Bobls”) series 194 by auction",
+"url": "https://www.bundesbank.de/en/press/press-releases/federal-securities/auction-announcement-reopening-of-five-year-federal-notes-bundesobligationen-bobls-series-194-by-auction-964488"
+},
+{
+"date": "2026-11-25",
+"source": "Banco de Espana",
+"title": "Card payments edge past cash in shops; euro area consumers want both",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-bce/notas-prensa-bce/card-payments-edge-past-cash-in-shops-euro-area-consumers-want-both-.html"
+},
+{
 "date": "2026-11-24",
 "source": "ECB",
 "title": "Boris Vujčić: Resilience in an age of shocks: lessons from central and eastern Europe",
@@ -30,6 +54,18 @@
 "source": "Banco de Espana",
 "title": "Main economic-financial indicators of non-financial corporations (2026 Q3)",
 "url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-banco-espana/cb-3t2026.html"
+},
+{
+"date": "2026-11-24",
+"source": "Banco de Espana",
+"title": "Main economic-financial indicators of non-financial corporations (2025 and 2026 Q3)",
+"url": "https://www.bde.es/wbe/en/inicio/noticias/las-empresas-mejoraron-su-situacion-economica-en-2025-y-mantuvieron-la-tendencia-en-los-nueve-primeros-meses-de-2026.html"
+},
+{
+"date": "2026-11-24",
+"source": "Banco de Espana",
+"title": "Consolidated financial statement of the Eurosystem as at 20 November 2026",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-bce/notas-prensa-bce/estado-financiero-consolidado-del-eurosistema-a-20-de-noviembre-de-2026.html"
 },
 {
 "date": "2026-11-23",
@@ -380,5 +416,5 @@
 "url": "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260611~4d41bd5e83.en.html"
 }
 ],
-"updated": "2026-11-25T03:02:54+00:00"
+"updated": "2026-11-25T14:40:04+00:00"
 }
