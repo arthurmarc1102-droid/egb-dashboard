@@ -1,25 +1,36 @@
-"""Download test (run 4): is the Eurostat daily convergence dataset still published? Table of contents and SDMX attempts. Report in probe/report.md."""
-import urllib.request, datetime, pathlib, re
+"""Download test (run 5): Eurex statistics API, what it returns for futures and which product numbers are options. Report in probe/report.md."""
+import urllib.request, datetime, pathlib, json, time
 UA = {"User-Agent": "egb-dashboard/1.0 (+https://github.com/arthurmarc1102-droid/egb-dashboard)"}
-B = "https://ec.europa.eu/eurostat/api/dissemination/"
+B = "https://www.eurex.com/api/v1/overallstatistics/"
 def get(u):
-    with urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=180) as r: return r.read()
+    with urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=90) as r: return r.read()
 raw = pathlib.Path("probe/raw"); raw.mkdir(parents=True, exist_ok=True)
-out = [f"# Download test, Eurostat daily yields (catalogue and SDMX), {datetime.datetime.utcnow():%Y-%m-%d %H:%M} UTC\n"]
+out = [f"# Download test, Eurex statistics API, {datetime.datetime.utcnow():%Y-%m-%d %H:%M} UTC\n"]
+day = None
 try:
-    toc = get(B + "catalogue/toc/txt?lang=en").decode("utf-8", "replace"); lines = toc.splitlines()
-    out.append(f"## table of contents: {len(toc)} bytes, {len(lines)} lines")
-    hits = [l for l in lines if re.search(r"irt_lt_mcby|irt_euryld|irt_lt_gby|irt_h_|irt_st_d|_d\b.*(yield|interest)|(yield|interest).*daily", l, re.I)]
-    out += ["  " + re.sub(r"\s+", " ", l)[:230] for l in hits[:60]]
-    (raw / "eurostat_toc_interest.txt").write_text("\n".join(l for l in lines if re.search(r"irt_|interest rate|yield", l, re.I)))
-except Exception as e: out.append(f"## table of contents: FAILED {e}")
-tests = [("sdmx 2.1 data, daily, IT", B + "sdmx/2.1/data/irt_lt_mcby_d/D.MCBY.IT?startPeriod=2026-09-01&format=SDMX-CSV"),
-         ("sdmx 2.1 data, daily, upper case", B + "sdmx/2.1/data/IRT_LT_MCBY_D/D.MCBY.IT?startPeriod=2026-09-01&format=SDMX-CSV"),
-         ("sdmx 2.1 dataflow, daily", B + "sdmx/2.1/dataflow/ESTAT/irt_lt_mcby_d/latest?detail=allstubs"),
-         ("statistics 1.0, daily, upper case", B + "statistics/1.0/data/IRT_LT_MCBY_D?format=JSON&geo=IT&lastTimePeriod=5"),
-         ("statistics 1.0, monthly (control, known to work)", B + "statistics/1.0/data/irt_lt_mcby_m?format=JSON&geo=IT&lastTimePeriod=3"),
-         ("sdmx 2.1 data, euro yield curves daily (control)", B + "sdmx/2.1/data/irt_euryld_d/D.PAR.Y10.EA?startPeriod=2026-11-01&format=SDMX-CSV")]
-for label, url in tests:
-    try: b = get(url); out.append(f"## {label}: {len(b)} bytes\n  {url}\n  " + b[:600].decode("utf-8", "replace").replace("\n", "\n  "))
-    except Exception as e: out.append(f"## {label}: FAILED {e}\n  {url}")
-(pathlib.Path("probe") / "report.md").write_text("\n".join(out) + "\n"); print("\n".join(out))
+    b = get(B + f"34656?busdate={datetime.date.today():%Y%m%d}"); js = json.loads(b); (raw / "eurex_fgbl.json").write_bytes(b)
+    hd = js.get("header", {}); days = hd.get("tradingDates", []); day = days[-1] if days else None
+    out.append(f"## FGBL (34656): {len(b)} bytes, top keys {list(js)}, header keys {list(hd)}")
+    out.append("  header without dates: " + json.dumps({k: v for k, v in hd.items() if k != "tradingDates"})[:900])
+    rows = js.get("dataRows", []); out.append(f"  {len(rows)} rows, keys of a row: {list(rows[0]) if rows else None}")
+    out.append("  first row: " + json.dumps(rows[0])[:700] if rows else "  no row")
+    out.append(f"  last trading dates: {days[-3:]}")
+except Exception as e: out.append(f"## FGBL: FAILED {e}")
+bus = (datetime.datetime.strptime(day[:10], "%d-%m-%Y").strftime("%Y%m%d") if day else f"{datetime.date.today():%Y%m%d}")
+out.append(f"\n## scan of product numbers, busdate {bus}")
+found = {}
+for pid in list(range(34630, 34720)) + list(range(42050, 42080)):
+    try:
+        js = json.loads(get(B + f"{pid}?busdate={bus}")); hd = js.get("header", {}); rows = js.get("dataRows", [])
+        label = {k: v for k, v in hd.items() if k != "tradingDates" and isinstance(v, (str, int, float))}
+        types = sorted({str(r.get("contractType")) for r in rows})
+        out.append(f"- {pid}: {len(rows)} rows, contract types {types}, {json.dumps(label)[:260]}")
+        found[pid] = js
+    except Exception as e:
+        if "404" not in str(e): out.append(f"- {pid}: {e}")
+    time.sleep(0.15)
+for pid, js in found.items():
+    rows = js.get("dataRows", [])
+    if any(str(r.get("contractType")) not in ("M", "None") for r in rows) or any("strike" in json.dumps(r).lower() for r in rows[:3]):
+        (raw / f"eurex_{pid}.json").write_text(json.dumps(js)[:200000]); out.append(f"\n## {pid} sample rows\n  " + "\n  ".join(json.dumps(r)[:500] for r in rows[:4]))
+(pathlib.Path("probe") / "report.md").write_text("\n".join(out) + "\n"); print("\n".join(out)[:6000])
