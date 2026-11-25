@@ -6,12 +6,9 @@ on:
   push:
     paths: ['pipeline/**', '!pipeline/probe.py', 'tests/**', 'src/**', 'index.html', '.github/workflows/update.yml']
   workflow_dispatch:
-# one data update at a time: a second run waits, so two runs never publish over each other
-concurrency:
-  group: data-update
-  cancel-in-progress: false
 permissions:
   contents: write
+# one data update at a time: a second run waits for the first one
 concurrency:
   group: update
   cancel-in-progress: false
@@ -21,6 +18,7 @@ jobs:
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
+        with: {ref: main}        # a run that waited starts from the latest data, not from the commit that queued it
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
       - uses: actions/setup-node@v4
