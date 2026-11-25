@@ -1,4 +1,4 @@
-"""Independent Python implementation of the brief (closing note, largest moves, z-scores, curve ladder),
+"""Independent Python implementation of the brief (daily note, largest moves, z-scores, curve ladder),
 written from the rules stated on the page, not from its code. Prints what the page should show, as JSON.
 python3 pipeline/check_home.py data/market.json data/futures.json '{"countries": ["DE", "FR", "ES"], "win": 63, "label": "3M"}'"""
 import datetime as dt, json, sys
@@ -66,7 +66,7 @@ def stats(u):
     sd = w.std(ddof=1)
     return dict(last=last, z=(last - w.mean()) / sd if sd > 0 else float("nan"), pct=100 * ((w < last).sum() + 0.5 * (w == last).sum()) / len(w))
 
-# ---- the closing note
+# ---- the daily note
 def close_sentence(c):
     b, a, sl = BY.get(f"{c}_10Y"), BY.get(f"{c}_2Y"), BY.get(f"{c}_2s10s")
     d10 = change(b)

@@ -1,5 +1,5 @@
-  // ===================================================================== 7.0 brief: the last close in one screen
-  // Every word and every number of the closing note is produced from the data files when the page loads.
+  // ===================================================================== 7.0 brief: the latest fixings in one screen
+  // Every word and every number of the daily note is produced from the data files when the page loads.
   // Nothing is typed by hand, nothing is a forecast or an opinion. tests/ recomputes the same sentences in Python.
   const BOND = { DE: 'Bunds', FR: 'OATs', IT: 'BTPs', ES: 'Bonos', NL: 'DSLs', BE: 'OLOs', AT: 'RAGBs', PT: 'PGBs' };
   const REPO = 'https://github.com/arthurmarc1102-droid/egb-dashboard';
@@ -18,7 +18,7 @@
     if (!b || b.values.length < 2) return null;
     const d10 = change(b, 1);
     const ten = still(d10) ? `the 10-year yield was unchanged at ${level(b)} %` : `the 10-year yield ${d10 < 0 ? 'fell' : 'rose'} ${bpw(d10)} to ${level(b)} %`;
-    const late = dateOf(b) < lastDate() ? ` Data to ${fShort(parseD(dateOf(b)))}.` : '';          // this curve has no value yet for the page's close
+    const late = dateOf(b) < lastDate() ? ` Data to ${fShort(parseD(dateOf(b)))}.` : '';          // this curve has no value yet for the page's date
     if (!a || !sl || dateOf(a) !== dateOf(b)) return `${BOND[c]}${still(d10) ? '' : d10 < 0 ? ' rallied' : ' sold off'}: ${ten}.${late}`;   // one point only: no verdict on the whole curve when it did not move
     const d2 = change(a, 1), ds = change(sl, 1), mid = (d2 + d10) / 2, shape = still(ds) ? '' : ds > 0 ? 'steepened' : 'flattened';
     let verb;
@@ -113,10 +113,10 @@
         h('tbody', null, list.map(({ u, m }) => h('tr', { class: 'click', onclick: () => go('rv', { rvSel: u.id, rvCat: 'all' }) },
           h('td', null, h('span', { class: 'name' }, u.name)), h('td', { class: 'lvl' }, level(u), h('span', { class: 'muted' }, ' ' + unitLabel(u))),
           heatCell(bp(m.d1), m.d1, HEAT_BP['1D']), h('td', null, num(m.score, 1, true)))))))
-        : h('div', { class: 'empty' }, 'No move to rank: the selected countries have no new close, or less than a month of history.'));
+        : h('div', { class: 'empty' }, 'No move to rank: the selected countries have no new fixing, or less than a month of history.'));
   }
 
-  // ---------- curve ladder: the curves at the close, with the table underneath sharing the chart's columns
+  // ---------- curve ladder: the curves at the latest fixing, with the table underneath sharing the chart's columns
   const LADDER = [1, 2, 3, 5, 7, 10, 15, 20, 30];
   const ladderTenors = (cs, narrow) => {
     const t = (narrow ? [2, 5, 10, 30] : LADDER).filter(x => cs.some(c => inst(`${c}_${x}Y`)));
@@ -130,7 +130,7 @@
     const rows = cs.map(c => ({ c, p: tenors.map((t, i) => { const u = inst(`${c}_${t}Y`); return u ? { i, t, u, v: lastOf(u), d: change(u, hz) } : null; }) })).filter(r => r.p.some(Boolean));
     const vals = rows.flatMap(r => r.p.filter(Boolean).map(p => p.v)); let lo = d3.min(vals), hi = d3.max(vals); if (lo === hi) { lo -= .1; hi += .1; }
     const pad = (hi - lo) * .1, y = d3.scaleLinear().domain([lo - pad, hi + pad]).range([H - m.b, m.t]), yt = y.ticks(4), yf = y.tickFormat(4);
-    const svg = d3.select(host).append('svg').attr('width', W).attr('height', H).attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Yield curves at the close, one column per maturity');
+    const svg = d3.select(host).append('svg').attr('width', W).attr('height', H).attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Yield curves at the latest fixing, one column per maturity');
     const band = svg.append('rect').attr('y', 0).attr('height', H).attr('width', cw).attr('fill', COL.ink).attr('opacity', 0);
     svg.append('g').selectAll('line').data(yt).join('line').attr('x1', lab).attr('x2', W).attr('y1', d => Math.round(y(d)) + .5).attr('y2', d => Math.round(y(d)) + .5).attr('stroke', COL.rule);
     svg.append('g').selectAll('text').data(yt).join('text').attr('class', 'tick').attr('x', lab - 10).attr('y', d => y(d)).attr('dy', '.32em').attr('text-anchor', 'end').text(d => signFix(yf(d)) + ' %');
@@ -164,9 +164,9 @@
   function panelLadder(span) {
     const cs = DC(), host = h('div');
     mount(host, el => ladder(el, cs));
-    return panel({ id: 'p-ladder', span, title: 'Curves at the close', sub: `yield in %, change over ${S.horizon} in bp`,
+    return panel({ id: 'p-ladder', span, title: 'Curves at the latest fixing', sub: `yield in %, change over ${S.horizon} in bp`,
       tools: [seg(Object.keys(HORIZONS).map(k => [k, k]), S.horizon, v => set({ horizon: v }), 'Change horizon'),
-        csvButton('curves_at_close', () => { const t = ladderTenors(cs, false); return { head: ['country', 'measure', ...t.map(x => x + 'Y')],
+        csvButton('curves_latest_fixing', () => { const t = ladderTenors(cs, false); return { head: ['country', 'measure', ...t.map(x => x + 'Y')],
           rows: cs.flatMap(c => [[c, 'yield_pct', ...t.map(x => { const u = inst(`${c}_${x}Y`); return u ? lastOf(u) : ''; })], [c, 'change_bp_' + S.horizon, ...t.map(x => { const u = inst(`${c}_${x}Y`); return u ? +change(u, HORIZONS[S.horizon]).toFixed(2) : ''; })]]) }; })],
       foot: (sourceLine(U.filter(u => u.cat === 'outright' && cs.includes(u.country)).flatMap(u => u.src)) + (cs.length > 1 ? ' The curves are not built the same way: see Sources.' : '')).trim() }, host);
   }
@@ -196,7 +196,7 @@
   function viewHome() {
     const dc = DC(), n = WINDOWS[S.win], focus = dc.includes(REF) ? REF : dc[0];
     if (!focus) return h('div', { class: 'grid' },
-      panel({ id: 'p-note', span: 's12', title: 'Closing note' }, h('div', { class: 'empty' }, `The note needs daily yields, which are loaded for ${dailyNames()} only. Select one of them in Countries.`)),
+      panel({ id: 'p-note', span: 's12', title: 'Daily note' }, h('div', { class: 'empty' }, `The note needs daily yields, which are loaded for ${dailyNames()} only. Select one of them in Countries.`)),
       panelNext('s4'), panelResultsMini('s4'), panelHeadlines('s4'));
     const lines = [], link = (label, tab, patch) => h('a', { href: '#' + tab, onclick: e => { e.preventDefault(); go(tab, patch); } }, label);
     for (const c of dc) if (c !== focus && c !== REF) { const s = spreadSentence(c, n); if (s) lines.push([COUNTRIES[c], link(COUNTRIES[c], 'rv', { rvSel: s.u.id, rvCat: 'all' }), s.text]); }
@@ -206,9 +206,9 @@
     const fut = futureSentence(); if (fut) lines.push(['Futures', link('Futures', 'futures'), fut]);
     const nxt = nextSentence(); if (nxt) lines.push(['Next', link('Next', 'blotter'), nxt]);
     const note = h('section', { class: 'panel note s5', id: 'p-note' },
-      h('h2', { class: 'kicker' }, 'Closing note, ' + fDow(parseD(lastDate()))),
-      h('p', { class: 'headline' }, nb(closeSentence(focus) || `${COUNTRIES[focus]}: not enough history for a closing sentence.`)),
+      h('h2', { class: 'kicker' }, 'Daily note, ' + fDow(parseD(lastDate()))),
+      h('p', { class: 'headline' }, nb(closeSentence(focus) || `${COUNTRIES[focus]}: not enough history to describe the day.`)),
       h('dl', { class: 'lines' }, lines.map(([k, label, text]) => [h('dt', null, label), h('dd', { 'data-k': k }, nb(text))])),
-      h('p', { class: 'by' }, 'Written by the page from the data at each load. It describes the close; it is not a forecast or a recommendation.'));
+      h('p', { class: 'by' }, 'Written by the page from the data at each load. Moves run from one official daily fixing to the next, not from close to close. This is not a forecast or a recommendation.'));
     return h('div', { class: 'grid' }, note, panelLadder('s7'), panelMovers('s4'), panelExtremes('s4', 6), panelNext('s4'), panelFuturesMini('s8'), panelResultsMini('s6'), panelHeadlines('s6'));
   }

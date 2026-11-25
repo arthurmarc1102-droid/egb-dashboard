@@ -77,7 +77,7 @@
   // ---------- 9.4 maths: backtest
   /** Z-score signal backtest on one series.
       Z is computed on the window ending on the decision day (that day included), like the RV screen.
-      A decision taken at the close of day t is executed at the close of day t + lag (lag 1 by default: no look-ahead).
+      A decision taken at the fixing of day t is executed at the fixing of day t + lag (lag 1 by default: no look-ahead).
       Mean reversion: sell the structure when z >= entry, buy when z <= -entry; exit when |z| falls back to the exit level,
       stop when |z| reaches the stop level against the position, or after maxHold days. Trend: the opposite direction, exit on the exit level.
       P&L is in bp of the structure level (yields converted to bp), minus the round-trip cost charged at exit. */
@@ -446,13 +446,13 @@
         p.mode === 'revert' ? field('Stop at |z| (0 = none)', numInput(p.stop, v => up({ stop: Math.max(0, v) }), { label: 'Stop level of |z|, 0 for none', step: 0.1, min: 0, w: '64px' })) : null,
         field('Max days (0 = none)', numInput(p.maxHold, v => up({ maxHold: Math.max(0, Math.round(v)) }), { label: 'Maximum holding period in trading days', step: 1, min: 0, w: '64px' })),
         field('Cost, bp per trade', numInput(p.cost, v => up({ cost: Math.max(0, v) }), { label: 'Round-trip cost in bp', step: 0.1, min: 0, w: '64px' })),
-        field('Execution', seg([[1, 'Next close'], [0, 'Same close']], p.lag, v => up({ lag: v }), 'Execution')),
+        field('Execution', seg([[1, 'Next fixing'], [0, 'Same fixing']], p.lag, v => up({ lag: v }), 'Execution')),
         field('From', h('input', { class: 'inp', type: 'date', value: p.from || '', min: dmin, max: dmax, 'aria-label': 'Start date', onchange: e => up({ from: e.target.value }) })),
         field('To', h('input', { class: 'inp', type: 'date', value: p.to || '', min: dmin, max: dmax, 'aria-label': 'End date', onchange: e => up({ to: e.target.value }) }))));
     const st = panel({ id: 'p-bt-stats', span: 's4', title: 'Results', sub: `${day(r.start)} to ${day(r.end)}`, foot: sourceLine(u.src) },
       h('div', { class: 'stats stats2' }, stat('Total P&L', bp(r.total), 'bp'), stat('Per year', bp(r.perYear), 'bp'), stat('Trades', String(r.trades.length)), stat('Hit ratio', num(r.hit * 100, 0), '%'),
         stat('Average trade', bp(r.avg), 'bp'), stat('Average holding', num(r.avgDays, 0), 'days'), stat('Max drawdown', num(r.mdd, 1), 'bp'), stat('Sharpe (daily, annualised)', num(r.sharpe, 2)), stat('Time in market', num(r.inMarket * 100, 0), '%')),
-      h('p', { class: 'muted', style: 'font-size:12px;margin:8px 0 0' }, `${u.name}: P&L in bp of the structure, long = gain when it rises. Carry, roll-down and financing are not included. ${p.lag ? 'Decision at a close, trade at the next close.' : 'Decision and trade at the same close: optimistic.'} In-sample test: the rules were not chosen out of sample.`));
+      h('p', { class: 'muted', style: 'font-size:12px;margin:8px 0 0' }, `${u.name}: P&L in bp of the structure, long = gain when it rises. Carry, roll-down and financing are not included. ${p.lag ? 'Decision at a fixing, trade at the next fixing.' : 'Decision and trade at the same fixing: optimistic.'} In-sample test: the rules were not chosen out of sample.`));
     const eq = { name: 'Cumulative P&L', color: COL[u.country] || COL.DE, dates: r.equity.dates, values: r.equity.values };
     const eqP = chartPanel({ id: 'p-bt-eq', span: 's8', title: 'Cumulative P&L', sub: 'bp, marked to market each day, cost charged at exit', draw: host => lineChart(host, { series: [eq], decimals: 1, unit: 'bp', zero: true, height: 260, label: 'Cumulative P&L of the backtest' }), table: () => seriesTable([eq], 1) });
     // signal chart: z-score with the thresholds, and the position

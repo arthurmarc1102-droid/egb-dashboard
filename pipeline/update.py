@@ -236,11 +236,12 @@ def main():
         add(f"FR_{t}Y", series(f"FR_{t}Y", "yield", "FR", t, f"France {t}Y", fr[t], 3, "bdf_tec", kind="TEC constant-maturity index") if fr and fr.get(t) else None)
 
     last = max(s["dates"][-1] for s in out if s["group"] == "yield")
+    FOOTER = "Daily data from official sources. Every source, its status and the methods are listed under Sources. No number on this page is estimated or filled in."
     now = dt.datetime.now(dt.timezone.utc)
     failed = [k for k, v in ok.items() if not v]
     status = f"Updated {now:%d %b %Y %H:%M} UTC from official sources." + (f" Not refreshed this time: {', '.join(failed)}." if failed else "")
     json.dump(dict(generated=now.isoformat(timespec="seconds"), private=False, status=status,
-                   footer=prev.get("footer", ""), series=out), open(DATA / "market.json", "w"), separators=(",", ":"))
+                   footer=FOOTER, series=out), open(DATA / "market.json", "w"), separators=(",", ":"))
     log(f"market.json: {len(out)} series, last daily date {last}")
 
     # ---- comparison with the double-read snapshot of 19 Nov 2026

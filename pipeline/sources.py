@@ -20,7 +20,7 @@ def s(id, name, publisher, covers, frequency, status, used, url, note, short=Non
 
 sources = [
     # ------------------------------------------------------------------ used on the page
-    s("bbk_curve", "Term structure of listed Federal securities", "Deutsche Bundesbank", "Germany, par yields, 1 to 30 years, since 1997", "Daily, next morning", "verified", True,
+    s("bbk_curve", "Term structure of listed Federal securities", "Deutsche Bundesbank", "Germany, par yields, 1 to 30 years, since 1997", "Daily, online the same afternoon", "verified", True,
       "https://www.bundesbank.de/en/statistics/money-and-capital-markets/interest-rates-and-yields/daily-term-structure-on-listed-federal-securities-651570",
       "Estimated curve (Svensson), two decimals: not quotes of benchmark bonds. Downloaded each weekday from the Bundesbank API. Reuse is free with the source named."),
     s("bde_yields", "Interest rates on the secondary market, table 1.3", "Banco de Espana", "Spain, government bonds at 3, 5, 10 and 15 years, daily since 2015 (file since 1979)", "Daily", "verified", True,
@@ -60,10 +60,10 @@ sources = [
       "https://ec.europa.eu/eurostat/cache/metadata/en/irt_lt_mcby_esms.htm", "The daily dataset no longer answers; mirrors stop in June 2025."),
     s("bdf_oat", "Indicative rates of Treasury bills and OAT", "Banque de France", "France, daily", "Stopped on 10 July 2024", "planned", False,
       "https://www.banque-france.fr/fr/statistiques/themes-statistiques-et-series-webstat-associees/taux-et-cours", "The page sends readers to monthly figures from Agence France Tresor."),
-    s("bdf_tec", "TEC constant-maturity indices, 1 to 30 years", "Banque de France, calculated by Euronext Paris", "France, daily since 2004", "Daily", "verified" if FRANCE else "planned", FRANCE,
+    s("bdf_tec", "TEC constant-maturity indices, 1 to 30 years", "Banque de France, calculated by Euronext Paris", "France, daily since 2004", "Daily, around 11:30" if FRANCE else "Daily", "verified" if FRANCE else "planned", FRANCE,
       "https://www.banque-france.fr/fr/statistiques/taux-et-cours/indices-obligataires-2026-11-18",
       (("TEC indices are calculated and administered by Euronext Paris and shown with its written authorisation. " if AUTH else "Private use only: the page gives the values for information and forbids redistribution, sub-licensing and commercial use without prior written authorisation from Euronext Paris (contact on the page: indexEOD@euronext.com). ") +
-       "Yields interpolated between the two nearest government bonds. Downloaded each weekday from the Banque de France export (history since 2004)." if FRANCE else
+       "Yields interpolated between the two nearest government bonds, from MTS prices taken at 11:00 (technical note of the Banque de France, 2020 version). Downloaded each weekday from the Banque de France export (history since 2004)." if FRANCE else
        "The data exist and were read (10-year at 4.913 % on 17 Nov 2026). Kept out: the page forbids redistribution without written authorisation from Euronext Paris."), short="Banque de France (TEC, Euronext)"),
     s("it_bmk", "Benchmark government bond yields, table BMK0200", "Banca d'Italia", "Italy, benchmark BTP yields (3, 10 and 30 years seen), daily", "Daily", "unverified", False,
       "https://www.bancaditalia.it/statistiche/tematiche/mercati/index.html",
@@ -81,6 +81,7 @@ sources = [
 notes = [
     "Daily yields since January 2015 for Germany, France and Spain, refreshed each weekday by a script on GitHub Actions. The French curve is the TEC index family of Euronext Paris, shown with its written authorisation. No daily source is verified for Italy. Spreads for the other countries are shown on monthly averages.",
     "The three daily curves are not built the same way: an estimated par curve for Germany, yields interpolated between benchmark bonds for France, yields from market trades for Spain. Daily spreads are indicative.",
+    "Yields are official daily fixings, not closing prices. The French TEC indices use prices taken at 11:00 and are published around 11:30. The German curve of a day is online the same afternoon (seen at 14:40 UTC on 25 Nov 2026); the Bundesbank reference prices of German bonds are set around midday. A 1-day change runs from one fixing to the next, and French and German yields may not be taken at the same time of day.",
     "Spanish yields are published two business days late, so Spain usually shows an older date than Germany and France.",
     "On 27 and 28 August and on 1 September 2026 the published German curve has a kink at the short end (2-year above 3-year). These are the values of the source.",
     "A few French days look odd and are kept as published, because the Banque de France daily pages show the same numbers: 1, 2 and 5 October 2026 (2-year unchanged at 3.688), 9 March 2026 (1-year above 2-year), 29 to 31 December 2025.",
@@ -89,9 +90,9 @@ notes = [
     "Eurex keeps only 36 trading days of settlement prices: the script archives them each day, so futures history grows from November 2026.",
     "A daily value that jumps away from both neighbours by 75 bp or more and comes back is treated as a publication error and left out (for example Spain 5-year on 8 July 2016). Each one is listed in data/raw/update_log.txt.",
     "Auctions: Germany (Finanzagentur, history since 2015), Spain (Tesoro Publico) and Italy (MEF result PDFs) are refreshed each day. The AFT site refuses automated access, so French results are those read on 19 Nov 2026 and French dates follow the AFT calendar rule. The MEF terms of reuse were not found.",
-    "Brief: the closing note is written by the page from the data at each load, with fixed rules listed under Methods; it describes the close and is not a forecast. An independent Python version of the same rules is compared with the page, word for word, at each update.",
+    "Brief: the daily note is written by the page from the data at each load, with fixed rules listed under Methods; it describes the move from one fixing to the next and is not a forecast. An independent Python version of the same rules is compared with the page, word for word, at each update.",
     "Builder: any weighted sum of yields and structures, in bp (a weight of 1 on a yield adds that yield times 100). Saved structures stay in the browser and can be shared by link.",
-    "Backtest: z on the window ending on the decision day, trade at the next close by default, P&L in bp of the structure with a flat cost per trade; carry, roll-down and financing are not included, and the test is in sample.",
+    "Backtest: z on the window ending on the decision day, trade at the next fixing by default, P&L in bp of the structure with a flat cost per trade; carry, roll-down and financing are not included, and the test is in sample.",
     "PCA: covariance of daily changes in bp over the chosen window. Rich / cheap: level residual after the first three components. Factor-neutral butterfly: wing weights that cancel the first two components.",
     "Carry and roll-down: funding at the euro short-term rate (a proxy, not repo), roll-down read on today's curve with linear interpolation between maturities. Fitted curve: Nelson-Siegel by least squares each day, decay parameter on a grid.",
     "Each run is checked before it is published: data present, sorted, in range and fresh; futures basis and CTD recomputed; auction cover equal to bids over allotted; every tab opened in a browser on desktop and phone, the builder, backtest, CSV export and custom range used like a person would; backtests, PCA, fitted curve and carry recomputed by an independent Python implementation and compared with the page. A failed check keeps the previous data online. Results in data/raw/verify.txt.",

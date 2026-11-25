@@ -22,8 +22,8 @@
   const CATS = { all: 'All', outright: 'Outright', spread: 'Spread', slope: 'Slope', fly: 'Fly', box: 'Box', custom: 'Custom' };
   // Sections: id -> [label, what the screen is for, filters it uses]
   const TAB = {
-    home: ['Brief', 'The last close in one screen: what moved, what looks stretched, what comes next.', ['countries', 'win']],
-    monitor: ['Monitor', 'Yields, changes and spreads to Germany at the last close.', ['countries', 'win', 'range']],
+    home: ['Brief', 'The latest fixings in one screen: what moved, what looks stretched, what comes next.', ['countries', 'win']],
+    monitor: ['Monitor', 'Yields, changes and spreads to Germany at the latest fixing.', ['countries', 'win', 'range']],
     curves: ['Curves', 'Curve snapshots and the history of yields, slopes and spreads.', ['countries', 'range']],
     rates: ['Rates', 'The euro short-term rate and the ECB policy rates.', ['range']],
     rv: ['RV screen', 'Every spread, slope, butterfly and box, ranked by z-score.', ['countries', 'win', 'range']],
@@ -850,8 +850,9 @@
       h('tbody', null, list.map(s => h('tr', null, h('td', null, s.url ? h('a', { href: s.url, target: '_blank', rel: 'noopener' }, s.name) : s.name), h('td', { class: 'l', 'data-k': 'Publisher' }, s.publisher), h('td', { class: 'l wrap', 'data-k': 'Covers' }, s.covers), h('td', { class: 'l', 'data-k': 'Frequency' }, s.frequency), h('td', { class: 'l', 'data-k': 'Status' }, pill(s.status)), h('td', { class: 'l wrap', 'data-k': 'Note' }, s.note || ''))))));
     const methods = h('div', { class: 'prose' },
       h('h3', null, 'How the numbers are built'),
-      h('p', null, 'Every derived number is computed in the browser from the published end-of-day yields. Changes are in basis points.'),
+      h('p', null, 'Every derived number is computed in the browser from the published daily yields. Changes are in basis points.'),
       h('ul', null,
+        h('li', null, h('code', null, 'Fixing'), ' = the official yield of a day, set during the trading day and not at the close. Germany: curve estimated by the Bundesbank, online the same afternoon. France: TEC indices, from prices taken at 11:00 and published around 11:30. Spain: yields from the trades of the day, published two business days later. A 1-day change runs from one fixing to the next.'),
         h('li', null, h('code', null, 'Spread'), ' = country yield minus German yield at the same maturity, in bp.'),
         h('li', null, h('code', null, 'Slope'), ' = long yield minus short yield, in bp (2s10s = 10-year minus 2-year).'),
         h('li', null, h('code', null, 'Butterfly'), ' = 2 x body minus the two wings, in bp (2s5s10s = 2 x 5-year minus 2-year minus 10-year).'),
@@ -859,7 +860,7 @@
         h('li', null, h('code', null, 'Z-score'), ' = (latest level minus mean) / sample standard deviation, over the selected window of observations, latest one included. It needs at least 90% of the window.'),
         h('li', null, h('code', null, 'Percentile'), ' = share of the window below the latest level.'),
         h('li', null, h('code', null, 'Regression'), ' = ordinary least squares on day-to-day changes in bp, on the days both series have a value.'),
-        h('li', null, h('code', null, 'Closing note'), ' = sentences written by the page from the day\'s moves. Bull or bear: yields lower or higher. Steeper or flatter: 2s10s wider or narrower. Twist: the 2-year and the 10-year move by at least 1 bp in opposite directions. Parallel: 2s10s unchanged. A butterfly that rises means its belly cheapened. Moves below 0.05 bp read as unchanged.'),
+        h('li', null, h('code', null, 'Daily note'), ' = sentences written by the page from the day\'s moves. Bull or bear: yields lower or higher. Steeper or flatter: 2s10s wider or narrower. Twist: the 2-year and the 10-year move by at least 1 bp in opposite directions. Parallel: 2s10s unchanged. A butterfly that rises means its belly cheapened. Moves below 0.05 bp read as unchanged.'),
         h('li', null, h('code', null, 'Largest moves'), ' = 1-day change divided by the standard deviation of the daily changes over the z-score window, the latest one included. One row per family: a country\'s 2, 5, 10 and 30-year yields, its spreads to Germany, its slopes.'),
         h('li', null, h('code', null, 'Approximate return'), ' = minus modified duration x yield change, plus the running yield over the period. Duration is that of an annual-pay par bond at the starting yield. Roll-down and convexity are ignored.')),
       h('h3', null, 'Reading the colours'),
@@ -956,7 +957,7 @@
     const tn = tenorsAvail(); if (!tn.includes(S.tenor)) S.tenor = tn.includes(10) ? 10 : tn[tn.length - 1];
     const id = location.hash.replace('#', '').split('/')[0]; S.tab = tabOK(id) ? id : 'home';      // no address: open on the brief
     const last = lastDate(), st = market.status || '', gap = bizDays(last, new Date().toISOString().slice(0, 10));
-    document.getElementById('asof').replaceChildren(h('span', { class: 'pre' }, 'Close of '), h('b', null, fDow(parseD(last))));
+    document.getElementById('asof').replaceChildren(h('span', { class: 'pre' }, 'Fixings of '), h('b', null, fDow(parseD(last))));
     const warn = market.private ? 'Private version' : /Not refreshed/.test(st) ? 'Partial update' : gap > 4 ? 'Data may be out of date' : '';
     document.getElementById('status').replaceChildren(...(warn ? [h('span', { class: 'pill warn', title: st }, warn)] : []));
     document.getElementById('foot').replaceChildren(h('p', null, market.footer || ''),

@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0a0f15">
-<meta name="description" content="Euro-area government bonds at the close: curves, spreads to Germany, relative value, futures basis, auctions. Public data, refreshed every day.">
+<meta name="description" content="Euro-area government bonds, day by day: curves, spreads to Germany, relative value, futures basis, auctions. Public data, refreshed every day.">
 <title>EGB Dashboard</title>
 <meta property="og:type" content="website">
 <meta property="og:title" content="EGB Dashboard">
-<meta property="og:description" content="Euro-area government bonds at the close: curves, spreads to Germany, relative value, futures basis, auctions. Public data, refreshed every day.">
+<meta property="og:description" content="Euro-area government bonds, day by day: curves, spreads to Germany, relative value, futures basis, auctions. Public data, refreshed every day.">
 <meta property="og:url" content="https://arthurmarc1102-droid.github.io/egb-dashboard/">
 <meta property="og:image" content="https://arthurmarc1102-droid.github.io/egb-dashboard/preview.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -374,8 +374,8 @@ input[type=date].inp{color-scheme:dark}
   const CATS = { all: 'All', outright: 'Outright', spread: 'Spread', slope: 'Slope', fly: 'Fly', box: 'Box', custom: 'Custom' };
   // Sections: id -> [label, what the screen is for, filters it uses]
   const TAB = {
-    home: ['Brief', 'The last close in one screen: what moved, what looks stretched, what comes next.', ['countries', 'win']],
-    monitor: ['Monitor', 'Yields, changes and spreads to Germany at the last close.', ['countries', 'win', 'range']],
+    home: ['Brief', 'The latest fixings in one screen: what moved, what looks stretched, what comes next.', ['countries', 'win']],
+    monitor: ['Monitor', 'Yields, changes and spreads to Germany at the latest fixing.', ['countries', 'win', 'range']],
     curves: ['Curves', 'Curve snapshots and the history of yields, slopes and spreads.', ['countries', 'range']],
     rates: ['Rates', 'The euro short-term rate and the ECB policy rates.', ['range']],
     rv: ['RV screen', 'Every spread, slope, butterfly and box, ranked by z-score.', ['countries', 'win', 'range']],
@@ -1202,8 +1202,9 @@ input[type=date].inp{color-scheme:dark}
       h('tbody', null, list.map(s => h('tr', null, h('td', null, s.url ? h('a', { href: s.url, target: '_blank', rel: 'noopener' }, s.name) : s.name), h('td', { class: 'l', 'data-k': 'Publisher' }, s.publisher), h('td', { class: 'l wrap', 'data-k': 'Covers' }, s.covers), h('td', { class: 'l', 'data-k': 'Frequency' }, s.frequency), h('td', { class: 'l', 'data-k': 'Status' }, pill(s.status)), h('td', { class: 'l wrap', 'data-k': 'Note' }, s.note || ''))))));
     const methods = h('div', { class: 'prose' },
       h('h3', null, 'How the numbers are built'),
-      h('p', null, 'Every derived number is computed in the browser from the published end-of-day yields. Changes are in basis points.'),
+      h('p', null, 'Every derived number is computed in the browser from the published daily yields. Changes are in basis points.'),
       h('ul', null,
+        h('li', null, h('code', null, 'Fixing'), ' = the official yield of a day, set during the trading day and not at the close. Germany: curve estimated by the Bundesbank, online the same afternoon. France: TEC indices, from prices taken at 11:00 and published around 11:30. Spain: yields from the trades of the day, published two business days later. A 1-day change runs from one fixing to the next.'),
         h('li', null, h('code', null, 'Spread'), ' = country yield minus German yield at the same maturity, in bp.'),
         h('li', null, h('code', null, 'Slope'), ' = long yield minus short yield, in bp (2s10s = 10-year minus 2-year).'),
         h('li', null, h('code', null, 'Butterfly'), ' = 2 x body minus the two wings, in bp (2s5s10s = 2 x 5-year minus 2-year minus 10-year).'),
@@ -1211,7 +1212,7 @@ input[type=date].inp{color-scheme:dark}
         h('li', null, h('code', null, 'Z-score'), ' = (latest level minus mean) / sample standard deviation, over the selected window of observations, latest one included. It needs at least 90% of the window.'),
         h('li', null, h('code', null, 'Percentile'), ' = share of the window below the latest level.'),
         h('li', null, h('code', null, 'Regression'), ' = ordinary least squares on day-to-day changes in bp, on the days both series have a value.'),
-        h('li', null, h('code', null, 'Closing note'), ' = sentences written by the page from the day\'s moves. Bull or bear: yields lower or higher. Steeper or flatter: 2s10s wider or narrower. Twist: the 2-year and the 10-year move by at least 1 bp in opposite directions. Parallel: 2s10s unchanged. A butterfly that rises means its belly cheapened. Moves below 0.05 bp read as unchanged.'),
+        h('li', null, h('code', null, 'Daily note'), ' = sentences written by the page from the day\'s moves. Bull or bear: yields lower or higher. Steeper or flatter: 2s10s wider or narrower. Twist: the 2-year and the 10-year move by at least 1 bp in opposite directions. Parallel: 2s10s unchanged. A butterfly that rises means its belly cheapened. Moves below 0.05 bp read as unchanged.'),
         h('li', null, h('code', null, 'Largest moves'), ' = 1-day change divided by the standard deviation of the daily changes over the z-score window, the latest one included. One row per family: a country\'s 2, 5, 10 and 30-year yields, its spreads to Germany, its slopes.'),
         h('li', null, h('code', null, 'Approximate return'), ' = minus modified duration x yield change, plus the running yield over the period. Duration is that of an annual-pay par bond at the starting yield. Roll-down and convexity are ignored.')),
       h('h3', null, 'Reading the colours'),
@@ -1223,8 +1224,8 @@ input[type=date].inp{color-scheme:dark}
       panel({ id: 'p-methods', span: 's12', title: 'Methods' }, methods));
   }
 
-  // ===================================================================== 7.0 brief: the last close in one screen
-  // Every word and every number of the closing note is produced from the data files when the page loads.
+  // ===================================================================== 7.0 brief: the latest fixings in one screen
+  // Every word and every number of the daily note is produced from the data files when the page loads.
   // Nothing is typed by hand, nothing is a forecast or an opinion. tests/ recomputes the same sentences in Python.
   const BOND = { DE: 'Bunds', FR: 'OATs', IT: 'BTPs', ES: 'Bonos', NL: 'DSLs', BE: 'OLOs', AT: 'RAGBs', PT: 'PGBs' };
   const REPO = 'https://github.com/arthurmarc1102-droid/egb-dashboard';
@@ -1243,7 +1244,7 @@ input[type=date].inp{color-scheme:dark}
     if (!b || b.values.length < 2) return null;
     const d10 = change(b, 1);
     const ten = still(d10) ? `the 10-year yield was unchanged at ${level(b)} %` : `the 10-year yield ${d10 < 0 ? 'fell' : 'rose'} ${bpw(d10)} to ${level(b)} %`;
-    const late = dateOf(b) < lastDate() ? ` Data to ${fShort(parseD(dateOf(b)))}.` : '';          // this curve has no value yet for the page's close
+    const late = dateOf(b) < lastDate() ? ` Data to ${fShort(parseD(dateOf(b)))}.` : '';          // this curve has no value yet for the page's date
     if (!a || !sl || dateOf(a) !== dateOf(b)) return `${BOND[c]}${still(d10) ? '' : d10 < 0 ? ' rallied' : ' sold off'}: ${ten}.${late}`;   // one point only: no verdict on the whole curve when it did not move
     const d2 = change(a, 1), ds = change(sl, 1), mid = (d2 + d10) / 2, shape = still(ds) ? '' : ds > 0 ? 'steepened' : 'flattened';
     let verb;
@@ -1338,10 +1339,10 @@ input[type=date].inp{color-scheme:dark}
         h('tbody', null, list.map(({ u, m }) => h('tr', { class: 'click', onclick: () => go('rv', { rvSel: u.id, rvCat: 'all' }) },
           h('td', null, h('span', { class: 'name' }, u.name)), h('td', { class: 'lvl' }, level(u), h('span', { class: 'muted' }, ' ' + unitLabel(u))),
           heatCell(bp(m.d1), m.d1, HEAT_BP['1D']), h('td', null, num(m.score, 1, true)))))))
-        : h('div', { class: 'empty' }, 'No move to rank: the selected countries have no new close, or less than a month of history.'));
+        : h('div', { class: 'empty' }, 'No move to rank: the selected countries have no new fixing, or less than a month of history.'));
   }
 
-  // ---------- curve ladder: the curves at the close, with the table underneath sharing the chart's columns
+  // ---------- curve ladder: the curves at the latest fixing, with the table underneath sharing the chart's columns
   const LADDER = [1, 2, 3, 5, 7, 10, 15, 20, 30];
   const ladderTenors = (cs, narrow) => {
     const t = (narrow ? [2, 5, 10, 30] : LADDER).filter(x => cs.some(c => inst(`${c}_${x}Y`)));
@@ -1355,7 +1356,7 @@ input[type=date].inp{color-scheme:dark}
     const rows = cs.map(c => ({ c, p: tenors.map((t, i) => { const u = inst(`${c}_${t}Y`); return u ? { i, t, u, v: lastOf(u), d: change(u, hz) } : null; }) })).filter(r => r.p.some(Boolean));
     const vals = rows.flatMap(r => r.p.filter(Boolean).map(p => p.v)); let lo = d3.min(vals), hi = d3.max(vals); if (lo === hi) { lo -= .1; hi += .1; }
     const pad = (hi - lo) * .1, y = d3.scaleLinear().domain([lo - pad, hi + pad]).range([H - m.b, m.t]), yt = y.ticks(4), yf = y.tickFormat(4);
-    const svg = d3.select(host).append('svg').attr('width', W).attr('height', H).attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Yield curves at the close, one column per maturity');
+    const svg = d3.select(host).append('svg').attr('width', W).attr('height', H).attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Yield curves at the latest fixing, one column per maturity');
     const band = svg.append('rect').attr('y', 0).attr('height', H).attr('width', cw).attr('fill', COL.ink).attr('opacity', 0);
     svg.append('g').selectAll('line').data(yt).join('line').attr('x1', lab).attr('x2', W).attr('y1', d => Math.round(y(d)) + .5).attr('y2', d => Math.round(y(d)) + .5).attr('stroke', COL.rule);
     svg.append('g').selectAll('text').data(yt).join('text').attr('class', 'tick').attr('x', lab - 10).attr('y', d => y(d)).attr('dy', '.32em').attr('text-anchor', 'end').text(d => signFix(yf(d)) + ' %');
@@ -1389,9 +1390,9 @@ input[type=date].inp{color-scheme:dark}
   function panelLadder(span) {
     const cs = DC(), host = h('div');
     mount(host, el => ladder(el, cs));
-    return panel({ id: 'p-ladder', span, title: 'Curves at the close', sub: `yield in %, change over ${S.horizon} in bp`,
+    return panel({ id: 'p-ladder', span, title: 'Curves at the latest fixing', sub: `yield in %, change over ${S.horizon} in bp`,
       tools: [seg(Object.keys(HORIZONS).map(k => [k, k]), S.horizon, v => set({ horizon: v }), 'Change horizon'),
-        csvButton('curves_at_close', () => { const t = ladderTenors(cs, false); return { head: ['country', 'measure', ...t.map(x => x + 'Y')],
+        csvButton('curves_latest_fixing', () => { const t = ladderTenors(cs, false); return { head: ['country', 'measure', ...t.map(x => x + 'Y')],
           rows: cs.flatMap(c => [[c, 'yield_pct', ...t.map(x => { const u = inst(`${c}_${x}Y`); return u ? lastOf(u) : ''; })], [c, 'change_bp_' + S.horizon, ...t.map(x => { const u = inst(`${c}_${x}Y`); return u ? +change(u, HORIZONS[S.horizon]).toFixed(2) : ''; })]]) }; })],
       foot: (sourceLine(U.filter(u => u.cat === 'outright' && cs.includes(u.country)).flatMap(u => u.src)) + (cs.length > 1 ? ' The curves are not built the same way: see Sources.' : '')).trim() }, host);
   }
@@ -1421,7 +1422,7 @@ input[type=date].inp{color-scheme:dark}
   function viewHome() {
     const dc = DC(), n = WINDOWS[S.win], focus = dc.includes(REF) ? REF : dc[0];
     if (!focus) return h('div', { class: 'grid' },
-      panel({ id: 'p-note', span: 's12', title: 'Closing note' }, h('div', { class: 'empty' }, `The note needs daily yields, which are loaded for ${dailyNames()} only. Select one of them in Countries.`)),
+      panel({ id: 'p-note', span: 's12', title: 'Daily note' }, h('div', { class: 'empty' }, `The note needs daily yields, which are loaded for ${dailyNames()} only. Select one of them in Countries.`)),
       panelNext('s4'), panelResultsMini('s4'), panelHeadlines('s4'));
     const lines = [], link = (label, tab, patch) => h('a', { href: '#' + tab, onclick: e => { e.preventDefault(); go(tab, patch); } }, label);
     for (const c of dc) if (c !== focus && c !== REF) { const s = spreadSentence(c, n); if (s) lines.push([COUNTRIES[c], link(COUNTRIES[c], 'rv', { rvSel: s.u.id, rvCat: 'all' }), s.text]); }
@@ -1431,10 +1432,10 @@ input[type=date].inp{color-scheme:dark}
     const fut = futureSentence(); if (fut) lines.push(['Futures', link('Futures', 'futures'), fut]);
     const nxt = nextSentence(); if (nxt) lines.push(['Next', link('Next', 'blotter'), nxt]);
     const note = h('section', { class: 'panel note s5', id: 'p-note' },
-      h('h2', { class: 'kicker' }, 'Closing note, ' + fDow(parseD(lastDate()))),
-      h('p', { class: 'headline' }, nb(closeSentence(focus) || `${COUNTRIES[focus]}: not enough history for a closing sentence.`)),
+      h('h2', { class: 'kicker' }, 'Daily note, ' + fDow(parseD(lastDate()))),
+      h('p', { class: 'headline' }, nb(closeSentence(focus) || `${COUNTRIES[focus]}: not enough history to describe the day.`)),
       h('dl', { class: 'lines' }, lines.map(([k, label, text]) => [h('dt', null, label), h('dd', { 'data-k': k }, nb(text))])),
-      h('p', { class: 'by' }, 'Written by the page from the data at each load. It describes the close; it is not a forecast or a recommendation.'));
+      h('p', { class: 'by' }, 'Written by the page from the data at each load. Moves run from one official daily fixing to the next, not from close to close. This is not a forecast or a recommendation.'));
     return h('div', { class: 'grid' }, note, panelLadder('s7'), panelMovers('s4'), panelExtremes('s4', 6), panelNext('s4'), panelFuturesMini('s8'), panelResultsMini('s6'), panelHeadlines('s6'));
   }
 
@@ -1518,7 +1519,7 @@ input[type=date].inp{color-scheme:dark}
   // ---------- 9.4 maths: backtest
   /** Z-score signal backtest on one series.
       Z is computed on the window ending on the decision day (that day included), like the RV screen.
-      A decision taken at the close of day t is executed at the close of day t + lag (lag 1 by default: no look-ahead).
+      A decision taken at the fixing of day t is executed at the fixing of day t + lag (lag 1 by default: no look-ahead).
       Mean reversion: sell the structure when z >= entry, buy when z <= -entry; exit when |z| falls back to the exit level,
       stop when |z| reaches the stop level against the position, or after maxHold days. Trend: the opposite direction, exit on the exit level.
       P&L is in bp of the structure level (yields converted to bp), minus the round-trip cost charged at exit. */
@@ -1887,13 +1888,13 @@ input[type=date].inp{color-scheme:dark}
         p.mode === 'revert' ? field('Stop at |z| (0 = none)', numInput(p.stop, v => up({ stop: Math.max(0, v) }), { label: 'Stop level of |z|, 0 for none', step: 0.1, min: 0, w: '64px' })) : null,
         field('Max days (0 = none)', numInput(p.maxHold, v => up({ maxHold: Math.max(0, Math.round(v)) }), { label: 'Maximum holding period in trading days', step: 1, min: 0, w: '64px' })),
         field('Cost, bp per trade', numInput(p.cost, v => up({ cost: Math.max(0, v) }), { label: 'Round-trip cost in bp', step: 0.1, min: 0, w: '64px' })),
-        field('Execution', seg([[1, 'Next close'], [0, 'Same close']], p.lag, v => up({ lag: v }), 'Execution')),
+        field('Execution', seg([[1, 'Next fixing'], [0, 'Same fixing']], p.lag, v => up({ lag: v }), 'Execution')),
         field('From', h('input', { class: 'inp', type: 'date', value: p.from || '', min: dmin, max: dmax, 'aria-label': 'Start date', onchange: e => up({ from: e.target.value }) })),
         field('To', h('input', { class: 'inp', type: 'date', value: p.to || '', min: dmin, max: dmax, 'aria-label': 'End date', onchange: e => up({ to: e.target.value }) }))));
     const st = panel({ id: 'p-bt-stats', span: 's4', title: 'Results', sub: `${day(r.start)} to ${day(r.end)}`, foot: sourceLine(u.src) },
       h('div', { class: 'stats stats2' }, stat('Total P&L', bp(r.total), 'bp'), stat('Per year', bp(r.perYear), 'bp'), stat('Trades', String(r.trades.length)), stat('Hit ratio', num(r.hit * 100, 0), '%'),
         stat('Average trade', bp(r.avg), 'bp'), stat('Average holding', num(r.avgDays, 0), 'days'), stat('Max drawdown', num(r.mdd, 1), 'bp'), stat('Sharpe (daily, annualised)', num(r.sharpe, 2)), stat('Time in market', num(r.inMarket * 100, 0), '%')),
-      h('p', { class: 'muted', style: 'font-size:12px;margin:8px 0 0' }, `${u.name}: P&L in bp of the structure, long = gain when it rises. Carry, roll-down and financing are not included. ${p.lag ? 'Decision at a close, trade at the next close.' : 'Decision and trade at the same close: optimistic.'} In-sample test: the rules were not chosen out of sample.`));
+      h('p', { class: 'muted', style: 'font-size:12px;margin:8px 0 0' }, `${u.name}: P&L in bp of the structure, long = gain when it rises. Carry, roll-down and financing are not included. ${p.lag ? 'Decision at a fixing, trade at the next fixing.' : 'Decision and trade at the same fixing: optimistic.'} In-sample test: the rules were not chosen out of sample.`));
     const eq = { name: 'Cumulative P&L', color: COL[u.country] || COL.DE, dates: r.equity.dates, values: r.equity.values };
     const eqP = chartPanel({ id: 'p-bt-eq', span: 's8', title: 'Cumulative P&L', sub: 'bp, marked to market each day, cost charged at exit', draw: host => lineChart(host, { series: [eq], decimals: 1, unit: 'bp', zero: true, height: 260, label: 'Cumulative P&L of the backtest' }), table: () => seriesTable([eq], 1) });
     // signal chart: z-score with the thresholds, and the position
@@ -2016,7 +2017,7 @@ input[type=date].inp{color-scheme:dark}
     const tn = tenorsAvail(); if (!tn.includes(S.tenor)) S.tenor = tn.includes(10) ? 10 : tn[tn.length - 1];
     const id = location.hash.replace('#', '').split('/')[0]; S.tab = tabOK(id) ? id : 'home';      // no address: open on the brief
     const last = lastDate(), st = market.status || '', gap = bizDays(last, new Date().toISOString().slice(0, 10));
-    document.getElementById('asof').replaceChildren(h('span', { class: 'pre' }, 'Close of '), h('b', null, fDow(parseD(last))));
+    document.getElementById('asof').replaceChildren(h('span', { class: 'pre' }, 'Fixings of '), h('b', null, fDow(parseD(last))));
     const warn = market.private ? 'Private version' : /Not refreshed/.test(st) ? 'Partial update' : gap > 4 ? 'Data may be out of date' : '';
     document.getElementById('status').replaceChildren(...(warn ? [h('span', { class: 'pill warn', title: st }, warn)] : []));
     document.getElementById('foot').replaceChildren(h('p', null, market.footer || ''),

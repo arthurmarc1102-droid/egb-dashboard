@@ -97,7 +97,7 @@ check(folded === 0 && open === 3, `phone: filters folded (${folded} groups shown
 await ph.click('#filters button[title="France"]'); await ph.waitForTimeout(400);
 check(await ph.$eval('#filters button[title="France"]', e => e.getAttribute('aria-pressed') === 'false'), 'phone: a country can be switched off from the open filters');
 await ph.close();
-// ---- picture shown when the link is shared: the brief at 1200 x 630, redrawn when a new close is published
+// ---- picture shown when the link is shared: the brief at 1200 x 630, redrawn when new daily fixings are published
 if (process.env.PREVIEW) {
   const pv = await newPage({ width: 1200, height: 630 });
   await pv.goto('http://localhost:8765/'); await pv.waitForSelector('#p-note .headline'); await pv.evaluate(() => document.fonts.ready); await pv.waitForTimeout(700);

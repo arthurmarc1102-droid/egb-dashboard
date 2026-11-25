@@ -1,5 +1,5 @@
 #!/bin/sh
-# Recomputes the brief (closing note, moves, z-scores, curve ladder) and the lab figures (backtests, PCA, fitted curve, carry and roll-down)
+# Recomputes the brief (daily note, moves, z-scores, curve ladder) and the lab figures (backtests, PCA, fitted curve, carry and roll-down)
 # in Python and compares them with what the page shows.
 set -e
 node tests/read_lab_page.mjs . tests/lab_case.json > /tmp/lab_page.json

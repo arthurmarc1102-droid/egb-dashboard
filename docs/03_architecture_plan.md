@@ -12,7 +12,7 @@ Depuis la refonte du 25/11/2026, la page s'ouvre sur le **Brief** et range 13 é
 
 | Espace | Écrans | Contenu |
 |---|---|---|
-| Brief | Brief | Note de clôture écrite par la page à partir des données, courbes à la clôture avec leur tableau, plus forts mouvements, z-scores extrêmes, prochains événements, futures, dernières adjudications, titres |
+| Brief | Brief | Note du jour écrite par la page à partir des données, courbes au dernier fixing avec leur tableau, plus forts mouvements, z-scores extrêmes, prochains événements, futures, dernières adjudications, titres |
 | Markets | Monitor, Curves, Rates | Taux et variations par pays, spreads, pentes, historiques par maturité, €STR et taux directeurs BCE |
 | Relative value | RV screen, Builder, Analysis, PCA & carry, Backtest | Structures triables avec z-score et percentile, structures sur mesure, régressions, bêtas, corrélations, ACP, carry et roll-down, rich/cheap, backtests de z-score |
 | Futures & supply | Futures, Auctions | Cours de compensation Eurex, paniers livrables, base, repo implicite, CTD ; calendrier et résultats des adjudications |
@@ -32,7 +32,7 @@ data/futures.json   Eurex : cours, paniers, base, CTD (aperçu privé)
 data/sources.json   statut de chaque source, limites
 ```
 
-Sources de la page dans `src/` : `index.html` (gabarit), `style.css`, `app.js` (moteur et écrans), `home.js` (Brief), `lab.js` (builder, ACP, carry, backtests). `python3 build.py` les assemble en un seul `index.html`. `preview.png` est l'image affichée quand le lien est partagé ; le pipeline la redessine à chaque nouvelle clôture.
+Sources de la page dans `src/` : `index.html` (gabarit), `style.css`, `app.js` (moteur et écrans), `home.js` (Brief), `lab.js` (builder, ACP, carry, backtests). `python3 build.py` les assemble en un seul `index.html`. `preview.png` est l'image affichée quand le lien est partagé ; le pipeline la redessine à chaque nouvelle date de données.
 
 Trois choix à retenir :
 
@@ -167,8 +167,8 @@ Alternative sans GitHub, une tâche planifiée Claude qui relit les sources chaq
 
 **25/11/2026 — refonte de l'interface (brief 04)**
 - Navigation : 13 écrans rangés dans 5 espaces (Brief, Markets, Relative value, Futures & supply, News & sources). Les anciennes adresses (`#rv`, `#builder/s=…`) marchent toujours ; une adresse sans écran ouvre le Brief. Renommés : Blotter → News & calendar, Sources → Sources & methods.
-- Brief : note de clôture écrite par la page à chaque chargement, avec des règles fixes listées dans Sources & methods : mouvement du jour (bull ou bear, steepening ou flattening, twist, parallèle), spreads à l'Allemagne avec z-score, 5s30s et fly, niveau le plus tendu, future Bund et CTD, prochain événement. Chaque mot dépend d'un chiffre chargé. Si la courbe d'un pays est en retard sur la clôture, la phrase le dit (« Data to 20 Nov »). Quand le 2 ans et le 10 ans n'ont pas bougé, la phrase donne les faits sans qualifier toute la courbe.
-- Courbes à la clôture : chaque point du graphique est à la verticale de sa colonne dans le tableau (niveaux et variations sur 1 jour, 1 semaine, 1 mois, depuis le début de l'année).
+- Brief : note du jour écrite par la page à chaque chargement, avec des règles fixes listées dans Sources & methods : mouvement du jour (bull ou bear, steepening ou flattening, twist, parallèle), spreads à l'Allemagne avec z-score, 5s30s et fly, niveau le plus tendu, future Bund et CTD, prochain événement. Chaque mot dépend d'un chiffre chargé. Si la courbe d'un pays est en retard sur la date de la page, la phrase le dit (« Data to 20 Nov »). Quand le 2 ans et le 10 ans n'ont pas bougé, la phrase donne les faits sans qualifier toute la courbe.
+- Courbes au dernier fixing : chaque point du graphique est à la verticale de sa colonne dans le tableau (niveaux et variations sur 1 jour, 1 semaine, 1 mois, depuis le début de l'année).
 - Plus forts mouvements : variation du jour divisée par l'écart-type des variations quotidiennes sur la fenêtre ; une ligne par famille (pays et type de structure).
 - Identité : fond sombre unique, interface en encre neutre, couleur réservée aux données (rouge = taux plus haut, spread plus large, niveau moins cher ; bleu = l'inverse ; une couleur par pays). Deux voix : Newsreader (serif) pour le seul titre de la note, IBM Plex Sans Condensed pour les données.
 - Téléphone : espaces dans une barre fixe en bas, filtres repliés dans un bouton (avec la légende des couleurs), panneaux bord à bord, tableau des sources en fiches, étiquettes de maturité allégées sur les graphiques étroits.
