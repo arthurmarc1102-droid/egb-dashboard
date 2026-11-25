@@ -22,7 +22,7 @@ def show(label, url, save=None):
     except Exception as e: out.append(f"## {label}: FAILED {e}\n  {url}"); return ""
     if save: (raw / save).write_text(page[:600000])
     tb = tables(page); out.append(f"## {label}: {len(page)} chars, {len(tb)} tables\n  {url}")
-    for head, rows in tb: out.append(f"  - header {head[:16]}, {len(rows)} rows"); out += ["      " + " | ".join(r)[:300] for r in rows[:4] + rows[-2:]]
+    for head, rows in tb: out.append(f"  - header {head[:16]}, {len(rows)} rows"); out.extend("      " + " | ".join(r)[:300] for r in rows[:4] + rows[-2:])
     m = re.search(r"Data is for[^<]*<[^>]*>([^<]*)", page); out.append(f"  date shown: {cell(m.group(0)) if m else 'not found'}")
     return page
 p3 = show("OGBL overview (viewType 3)", f"{S}?productGroupId=13328&productId=70050&viewType=3&busDate={bus}", "eurex_ogbl_v3.html")
