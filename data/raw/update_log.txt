@@ -1,4 +1,4 @@
-Run 2026-11-25 14:40 UTC
+Run 2026-11-25 14:54 UTC
 Checks:
   DE 1Y: 3021 days 2015-01-02 to 2026-11-25, day moves above 25 bp: [('2022-09-09', 26.0), ('2023-03-13', -26.0), ('2023-03-20', -26.0), ('2024-08-05', -27.0)]
   DE 2Y: 3021 days 2015-01-02 to 2026-11-25, day moves above 25 bp: [('2022-10-04', -29.0), ('2022-12-16', 33.0), ('2023-03-13', -36.0), ('2023-03-20', -33.0), ('2023-03-24', -29.0)]
@@ -40,7 +40,7 @@ Auctions:
   Germany emissionsergebnisse_aktuell_en.xlsx: 113 coupon-bond auctions since 2015
   Spain bonos-del-estado: 3 auctions on the page
   Spain obligaciones-del-estado: 4 auctions on the page
-  Italy: 1 new result PDFs read, archive 61 auctions
+  Italy: 0 new result PDFs read, archive 61 auctions
   Germany calendar: 2 upcoming coupon-bond auctions
   Spain calendar: 4 upcoming bond auctions
   Auctions against the readings of 19 Nov 2026: 61 figures compared, 0 differences, []
