@@ -25,7 +25,7 @@ for g in ("DE", "FR", "IT", "ES", "NL", "BE", "AT", "PT"):
     if not s or (TODAY - dt.date.fromisoformat(s["dates"][-1])).days > 75: FAIL.append(f"{g}_10Y_M: missing or older than 75 days")
 OK.append(f"market: {len(need)} daily series and 8 monthly series present, sorted, in range and fresh")
 # curve sanity: 30Y minus 1Y within -300 / +400 bp, DE minus FR 10Y never above 100 bp on the last day
-for c in ("DE", "FR"):
+for c in ("DE", "FR", "BE"):
     a, b = S[f"{c}_1Y"], S[f"{c}_30Y"]; sl = (b["values"][-1] - a["values"][-1]) * 100
     if not -300 < sl < 400: FAIL.append(f"{c} 1s30s at {sl:.0f} bp, outside -300/+400")
 # against the double-read snapshot (warning only: sources may revise)

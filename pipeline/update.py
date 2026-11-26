@@ -49,6 +49,7 @@ def sdmx(js):
 # ---------------------------------------------------------------- sources
 DE_TENORS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 20, 25, 30]
 FR_TENORS = [1, 2, 3, 5, 7, 10, 15, 20, 25, 30]
+BE_TENORS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 20, 25, 30]
 ES_CODES = {"D_G0B1F0ZN": 3, "D_G0B1F0ZO": 5, "D_G0B1F0ZP": 10, "D_G0B1F0ZQ": 15}
 EZ = ["DE", "FR", "IT", "ES", "NL", "BE", "AT", "PT"]
 
@@ -94,6 +95,17 @@ def fetch_es():
         for code, t in ES_CODES.items():
             v = num(r[col[code]]) if col.get(code) is not None and col[code] < len(r) else None
             if v is not None: out[t][d] = v
+    return out
+
+
+def fetch_be():
+    """National Bank of Belgium, NBB.Stat dataflow DF_IROLOBE2: average yield on OLOs with a fixed residual term, daily."""
+    txt = get(f"https://nsidisseminate-stat.nbb.be/rest/data/BE2,DF_IROLOBE2,1.0/D..F?startPeriod={START}")
+    out = defaultdict(dict)
+    for r in csv.DictReader(io.StringIO(txt)):
+        m = re.fullmatch(r"(\d+)Y", r.get("IROLOBE2_MATUR", "")); v = num(r.get("OBS_VALUE", ""))
+        if m and int(m.group(1)) in BE_TENORS and v is not None and re.fullmatch(r"\d{4}-\d{2}-\d{2}", r.get("TIME_PERIOD", "")): out[int(m.group(1))][r["TIME_PERIOD"]] = v
+    if not out: raise RuntimeError("no Belgian yield in the answer")
     return out
 
 
@@ -214,6 +226,7 @@ def main():
     de = run("Germany (Bundesbank)", fetch_de)
     fr = run("France (Banque de France TEC)", fetch_fr)
     es = run("Spain (Banco de Espana)", fetch_es)
+    be = run("Belgium (National Bank of Belgium)", fetch_be)
     estr = run("ESTR (Bundesbank)", fetch_estr)
     mo = run("Monthly 10Y (Eurostat)", fetch_monthly)
 
@@ -231,6 +244,9 @@ def main():
     for t in sorted(ES_CODES.values()):
         if es and es.get(t): es[t] = drop_spikes(f"ES {t}Y", es[t]); checks(f"ES {t}Y", es[t], 30)
         add(f"ES_{t}Y", series(f"ES_{t}Y", "yield", "ES", t, f"Spain {t}Y", es[t], 2, "bde_yields", kind="yield from market trades") if es and es.get(t) else None)
+    for t in BE_TENORS:
+        if be and be.get(t): be[t] = drop_spikes(f"BE {t}Y", be[t]); checks(f"BE {t}Y", be[t], 30)
+        add(f"BE_{t}Y", series(f"BE_{t}Y", "yield", "BE", t, f"Belgium {t}Y", be[t], 2, "nbb_olo", kind="average yield on OLOs at a fixed residual term") if be and be.get(t) else None)
     for t in FR_TENORS:
         if fr and fr.get(t): fr[t] = drop_spikes(f"FR {t}Y", fr[t]); checks(f"FR {t}Y", fr[t], 25)
         add(f"FR_{t}Y", series(f"FR_{t}Y", "yield", "FR", t, f"France {t}Y", fr[t], 3, "bdf_tec", kind="TEC constant-maturity index") if fr and fr.get(t) else None)
