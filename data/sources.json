@@ -26,6 +26,18 @@
    "note": "Fuente: Elaboracion propia con datos extraidos del sitio web del Banco de Espana (www.bde.es), file ead002.csv. Yields set by the bank from market trades, not benchmark quotes: they move unevenly from day to day. Published two business days late. Downloaded each weekday."
   },
   {
+   "id": "nbb_olo",
+   "name": "Yields on OLOs at a fixed residual term (DF_IROLOBE2)",
+   "short": "National Bank of Belgium",
+   "publisher": "National Bank of Belgium",
+   "covers": "Belgium, 1 to 30 years, daily since 2015",
+   "frequency": "Daily",
+   "status": "verified",
+   "used": true,
+   "url": "https://dataexplorer.nbb.be/vis?lc=en&df%5Bds%5D=disseminate&df%5Bid%5D=DF_IROLOBE2&df%5Bag%5D=BE2&df%5Bvs%5D=1.0&dq=D..F",
+   "note": "Source: National Bank of Belgium, NBB.Stat. Average yield on OLOs with the given residual term, two decimals. Downloaded each weekday from the NBB SDMX service (tested from GitHub on 26 Nov 2026). The NBB allows distribution of its information when it is accurately presented and the NBB is cited."
+  },
+  {
    "id": "eurostat_mcby",
    "name": "Long-term government bond yields, Maastricht definition",
    "short": "Eurostat",

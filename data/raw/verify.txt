@@ -1,9 +1,9 @@
-Checks of 2026-11-26 02:13 UTC
-OK    market: 29 daily series and 8 monthly series present, sorted, in range and fresh
+Checks of 2026-11-26 09:12 UTC
+OK    market: 34 daily series and 8 monthly series present, sorted, in range and fresh
 OK    market against the double-read snapshot of 19 Nov 2026: 6723 values, 0 differences
 OK    futures: 47 basket bonds checked against the Eurex file, gross basis and CTD recomputed
 OK    auctions: 201 results, cover = bids / allotted checked on 192; 11 upcoming
-OK    calendar: 70 events, ECB rates {'date': '2026-09-16', 'dfr': 2.5, 'mro': 2.65, 'mlf': 2.9}; news: 71 items
+OK    calendar: 70 events, ECB rates {'date': '2026-09-16', 'dfr': 2.5, 'mro': 2.65, 'mlf': 2.9}; news: 72 items
 PAGE  ok   1440px: the page opens on the brief
 PAGE  ok   1440px: 5 spaces, 13 sections (1+3+5+2+2)
 PAGE  1440px home: 8 panels
@@ -50,7 +50,7 @@ PAGE  ok   builder: preview level −23.0bp
 PAGE  ok   RV screen: custom structure in category Custom
 PAGE  ok   backtest opened on the custom structure (Test fly)
 PAGE  ok   backtest reruns when a rule changes (+72.5bp -> +86.0bp)
-PAGE  ok   backtest scan lists 76 structures
+PAGE  ok   backtest scan lists 124 structures
 PAGE  ok   backtest: carry switched on (carry shown in the results)
 PAGE  ok   walk-forward: 10 figures, 11 blocks, 1 chart
 PAGE  ok   CSV download of trades (128 rows)

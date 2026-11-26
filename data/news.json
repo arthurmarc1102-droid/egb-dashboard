@@ -2,6 +2,12 @@
 "note": "Titles and links from the ECB, Bundesbank and Banco de Espana feeds, read each day and archived (400 most recent). Press feeds are not included: their terms of use have not been read.",
 "items": [
 {
+"date": "2026-11-26",
+"source": "Banco de Espana",
+"title": "Climate change indicators: November 2026",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-bce/notas-prensa-bce/climate-change-indicators-november-2026.html"
+},
+{
 "date": "2026-11-25",
 "source": "ECB",
 "title": "Card payments edge past cash in shops; euro area consumers want both",
@@ -428,5 +434,5 @@
 "url": "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260611~4d41bd5e83.en.html"
 }
 ],
-"updated": "2026-11-26T02:13:12+00:00"
+"updated": "2026-11-26T09:11:29+00:00"
 }
