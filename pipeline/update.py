@@ -19,10 +19,10 @@ LOG = []
 def log(*a): LOG.append(" ".join(str(x) for x in a)); print(*a, flush=True)
 
 
-def get(url, binary=False, tries=3):
+def get(url, binary=False, tries=3, accept=None):
     for i in range(tries):
         try:
-            with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=120) as r:
+            with urllib.request.urlopen(urllib.request.Request(url, headers={**UA, **({'Accept': accept} if accept else {})}), timeout=120) as r:
                 b = r.read()
                 return b if binary else b.decode("utf-8-sig", "replace")
         except Exception as e:
@@ -100,7 +100,7 @@ def fetch_es():
 
 def fetch_be():
     """National Bank of Belgium, NBB.Stat dataflow DF_IROLOBE2: average yield on OLOs with a fixed residual term, daily."""
-    txt = get(f"https://nsidisseminate-stat.nbb.be/rest/data/BE2,DF_IROLOBE2,1.0/D..F?startPeriod={START}")
+    txt = get(f"https://nsidisseminate-stat.nbb.be/rest/data/BE2,DF_IROLOBE2,1.0/D..F?startPeriod={START}", accept="application/vnd.sdmx.data+csv;version=1.0.0")
     out = defaultdict(dict)
     for r in csv.DictReader(io.StringIO(txt)):
         m = re.fullmatch(r"(\d+)Y", r.get("IROLOBE2_MATUR", "")); v = num(r.get("OBS_VALUE", ""))

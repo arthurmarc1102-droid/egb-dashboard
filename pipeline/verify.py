@@ -11,7 +11,7 @@ def bdays(a, b):
 # ---------------- market data
 M = json.load(open(D / "market.json")); S = {s["id"]: s for s in M["series"]}
 need = {**{f"DE_{t}Y": 6 for t in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 20, 25, 30)}, **{f"FR_{t}Y": 6 for t in (1, 2, 3, 5, 7, 10, 15, 20, 25, 30)},
-        **{f"ES_{t}Y": 8 for t in (3, 5, 10)}, "ESTR": 6}
+        **{f"ES_{t}Y": 8 for t in (3, 5, 10)}, **{f"BE_{t}Y": 6 for t in (1, 2, 5, 10, 30)}, "ESTR": 6}
 for k, lag in need.items():
     s = S.get(k)
     if not s: FAIL.append(f"{k}: series missing"); continue
@@ -26,6 +26,7 @@ for g in ("DE", "FR", "IT", "ES", "NL", "BE", "AT", "PT"):
 OK.append(f"market: {len(need)} daily series and 8 monthly series present, sorted, in range and fresh")
 # curve sanity: 30Y minus 1Y within -300 / +400 bp, DE minus FR 10Y never above 100 bp on the last day
 for c in ("DE", "FR", "BE"):
+    if f"{c}_1Y" not in S or f"{c}_30Y" not in S: continue          # already reported as missing above
     a, b = S[f"{c}_1Y"], S[f"{c}_30Y"]; sl = (b["values"][-1] - a["values"][-1]) * 100
     if not -300 < sl < 400: FAIL.append(f"{c} 1s30s at {sl:.0f} bp, outside -300/+400")
 # against the double-read snapshot (warning only: sources may revise)
