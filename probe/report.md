@@ -1,74 +1,17 @@
-# Download test, BE NL PT AT details, 2026-11-26 09:05 UTC
+# Download test, PT AT NL, 2026-11-26 09:15 UTC
 
-## NBB daily fixed-maturity OLO yields since 2015: 4424820 bytes, 88950 rows
-  - 1Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 2Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 3Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 4Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 5Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 6Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 7Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 8Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 9Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 10Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 11Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 12Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 13Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 14Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 15Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 16Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 17Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 18Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 19Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 20Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 21Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 22Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 23Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 24Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 25Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 26Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 27Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 28Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 29Y: 2965 values, 2015-01-02 to 2026-11-25
-  - 30Y: 2965 values, 2015-01-02 to 2026-11-25
-## NBB structure: 21360 bytes; names: ['1 year', '10 years', '11 years', '12 years', '12 years and more', '13 years', '14 years', '15 years', '16 years', '17 years', '18 years', '19 years', '2 years', '20 years', '21 years', '22 years', '23 years', '24 years', '25 years', '26 years', '27 years', '28 years', '29 years', '3 years', '30 years', '4 years', '5 years', '6 years', '6 years and more', '7 years', '8 years', '8 years and more', '9 years', 'Annual', 'Availability (A) for DF_IROLOBE2', 'Average yield on OLOs with residual term of:', 'Average yield on the whole of the loans with residual term of:', 'CL_OBS_STATUS', 'Code list for concept \\', 'Daily']
-## Riksbank government bond series
-  - SEGVB2YC: SE GVB 2 Year | Swedish Government Bond, maturity 2 years | source Refinitiv | 1987-01-07 to 2026-11-25 closed False
-  - SEGVB5YC: SE GVB 5 Year | Swedish Government Bond, maturity 5 years | source Refinitiv | 1985-01-02 to 2026-11-25 closed False
-  - SEGVB7YC: SE GVB 7 Year | Swedish Government Bond, maturity 7 years | source Refinitiv | 1987-01-02 to 2026-11-25 closed False
-  - SEGVB10YC: SE GVB 10 Year | Swedish Government Bond, maturity 10 years | source Refinitiv | 1987-01-02 to 2026-11-25 closed False
-  - SEGVB5YSTFIXC: SE STFIX 5 Year | Swedish Fixing rate maturity 5 years | source Refinitiv | 1990-07-02 to 2019-12-30 closed True
-  - USGVB5Y: US 5 Year | International Government Bond USA, maturity 5 years | source Refinitiv | 1987-02-02 to 2026-11-25 closed False
-  - JPGVB5Y: JP 5 Year | International Government Bond Japan, maturity 5 years | source Refinitiv | 1987-03-23 to 2026-11-25 closed False
-  - DEGVB5Y: DE 5 Year | International Government Bond Germany, maturity 5 years | source Refinitiv | 1987-02-09 to 2026-11-25 closed False
-  - NLGVB5Y: NL 5 Year | International Government Bond Dutchland, maturity 5 years | source Refinitiv | 1987-02-09 to 2026-11-25 closed False
-  - FRGVB5Y: FR 5 Year | International Government Bond France, maturity 5 years | source Refinitiv | 1988-02-08 to 2026-11-25 closed False
-  - GBGVB5Y: GB 5 Year | Iternational Government Bond United Kingdom, maturity 5 years | source Refinitiv | 1987-01-02 to 2026-11-25 closed False
-  - EMGVB5Y: EU 5 Year | International Government Bond EUR, maturity 5 years | source Refinitiv | 1999-01-04 to 2026-11-25 closed False
-  - USGVB10Y: US 10 Year | International Government Bond USA, maturity 10 years | source Refinitiv | 1991-01-02 to 2026-11-25 closed False
-  - JPGVB10Y: JP 10 Year | International Government Bond Japan, maturity 10 years | source Refinitiv | 1987-01-05 to 2026-11-25 closed False
-  - DEGVB10Y: DE 10 Year | International Government Bond Germany, maturity 10 years | source Refinitiv | 1987-02-09 to 2026-11-25 closed False
-  - NLGVB10Y: NL 10 Year | International Government Bond Dutchland, maturity 10 years | source Refinitiv | 1987-02-09 to 2026-11-25 closed False
-  - FRGVB10Y: FR 10 Year | International Government Bond France, maturity 10 years | source Refinitiv | 1988-02-08 to 2026-11-25 closed False
-  - GBGVB10Y: GB 10 Year | International Government Bond United Kingdom, maturity 10 years | source Refinitiv | 1987-01-02 to 2026-11-25 closed False
-  - EMGVB10Y: EU 10 Year | International Government Bond EUR, maturity 10 years | source Refinitiv | 1999-01-04 to 2026-11-25 closed False
-  - NOGVB10Y: NO 10 Year | International Government Bond Norway, maturity 10 years | source Refinitiv | 1990-05-31 to 2026-11-25 closed False
-  - DKGVB10Y: DK 10 Year | International Government Bond Denmark, maturity 10 years | source Refinitiv | 1982-01-04 to 2026-11-25 closed False
-  - FIGVB10Y: FI 10 Year | International Government Bond Finland, maturity 10 years | source Refinitiv | 1990-04-02 to 2026-11-25 closed False
-## BPstat domain 26 (secondary market) datasets
-  - 690b7b36fd36c0dbe249c48cbbc39524: Source; Flows, stocks and prices; Indicators; Metrics; Periodicity; Residual maturity; Reference territory; Unit of measure | 14 series, updated 2026-11-23T17:00:00Z
-      detail: FAILED string indices must be integers, not 'str'
-  - 93441ab6408be15acced35b8ed98cd97: Source; Flows, stocks and prices; Indicators; Metrics; Periodicity; Unit of measure | 1 series, updated 2026-11-12T17:00:00Z
-      detail: FAILED string indices must be integers, not 'str'
-  - f773d814da50caa6a60bb5c4ec672077: Base index; Source; Flows, stocks and prices; Indicators; Metrics; Periodicity; Reference territory; Unit of measure | 2 series, updated 2026-11-03T17:00:00Z
-      detail: FAILED string indices must be integers, not 'str'
-## OeNB report 2.8 text:  --> --> --> --> --> --> --> --> DATA - Deposit and lending rates&lt;sup&gt;1&lt;/sup&gt; - outstanding amounts --> Toggle navigation DE DE EN EN --> metadata close --> Excel CSV Deposit and lending rates 1 - outstanding amounts &#160; 2023 2024 2025 Apr. 26 May 26 June 26 July 26 Aug. 26 Sep. 26 % per annum Deposits 2 &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; of households 3 &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; overnight 0.62 1.02 0.57 0.40 0.41 0.40 0.43 0.45 0.46 of which savings deposits 1.07 1.73 0.92 0.64 0.64 0.63 0.69 0.70 0.72 with agreed maturity &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&#160;&#160;&#160;up to 2 years 1.58 2.52 1.74 1.32 1.32 1.34 1.41 1.44 1.48 &#160;&#160;&#160;&#160;over 2 years 1.51 2.38 1.92 1.75 1.73 1.73 1.75 1.75 1.75 of nonfinancial corporations 3 &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; overnight 0.55 0.96 0.56 0.50 0.51 0.53 0.56 0.55 0.58 with agreed maturity &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&#160;&#160;&#160;up to 2 years 2.86 3.42 2.17 1.88 1.90 1.99 2.08 2.11 2.23 &#160;&#160;&#160;&#160;over 2 years 1.99 3.12 2.22 2.12 2.16 2.22 2.30 2.36 2.43 Loans 2 &#160; 3 &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; to households 4 &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; revolving and overdraft loans 5.94 6.58 5.73 5.58 5.69 5.70 5.72 5.92 5.94 &#160;&#160;&#160;&#160;sole p
-  links: ['@{/stabfrage/createReport(lang=DE,report=${staResultModel.reportNummer})}', '@{/stabfrage/createReport(lang=EN,report=${staResultModel.reportNummer})}']
-## OeNB report 2.8.1:  error page The choosen report is not available! 
-  export links: []
-## OeNB report 2.8.2:  error page The choosen report is not available! 
-  export links: []
-## OeNB report 2.9:  --> --> --> --> --> --> --> --> DATA - Deposit rates&lt;sup&gt;1&lt;/sup&gt; - new business --> Toggle navigation DE DE EN EN --> metadata close --> Excel CSV Deposit rates 1 - new business &#160; 2023 2024 2025 Apr. 26 May 26 June 26 July 26 Aug. 26 Sep. 26 % per annum Deposits 2 &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; of households 3 &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; with agreed maturity &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&#160;&#160;&#160;up to 1 year 2.78 3.00 1.76 1.75 1.77 2.04 2.10 2.15 2.18 &#160;&#160;&#160;&#160;of which savings deposits 2.72 2.97 1.74 1.70 1.72 2.04 2.09 2.10 2.15 &#160;&#160;&#160;&#160;over 1 year and up to 2 years 2.71 2.75 1.78 1.70 1.81 1.87 2.11 2.18 2.25 &#160;&#160;&#160;&#160;of which savings deposits 2.71 2.81 1.74 1.64 1.73 1.79 2.08 2.07 2.12 &#160;&#160;&#160;&
-  export links: []
-## OeNB report 2.8.3:  error page The choosen report is not available! 
-  export links: []
+## OK BPstat /domains/26/datasets/690b7b36fd36c0dbe249c48cbbc39524/?lang=EN: 1351956 bytes
+  {"version":"2.0","label":"Source; Flows, stocks and prices; Indicators; Metrics; Periodicity; Residual maturity; Reference territory; Unit of measure","id":["18","19","23","29","40","45","63","70","reference_date"],"size":[1,1,1,1,2,6,1,1,8669],"extension":{"num_series":14,"obs_updated_at":"2026-11-23T17:00:00Z","series":[{"id":12099454,"label":"Yield on Treasury bonds with fixed rate and residual maturity of 2 years","dimension_category":[{"dimension_id":70,"category_id":3327},{"dimension_id":63,"category_id":349},{"dimension_id":45,"category_id":2743},{"dimension_id":40,"category_id":4263},{"dimension_id":29,"category_id":3610},{"dimension_id":23,"category_id":3482},{"dimension_id":19,"category_id":14},{"dimension_id":18,"category_id":4314}],"href":"https://bpstat.bportugal.pt/data/v1/series/?series_ids=12099454&lang=EN"},{"id":12099455,"label":"Yield on Treasury bonds with fixed rate and residual maturity of 3 years","dimension_category":[{"dimension_id":70,"category_id":3327},{"dimension_id":63,"category_id":349},{"dimension_id":45,"category_id":2747},{"dimension_id":40,"category_id":4263},{"dimension_id":29,"category_id":3610},{"dimension_id":23,"category_id":3482},{"dimension_id":19,"category_id":14},{"dimension_id":18,"category_id":4314}],"href":"https://bpstat.bportugal.pt/data/v1/series/?series_ids=12099455&lang=EN"},{"id":12099456,"label":"Yield on Treasury bonds with fixed rate and residual maturity of 4 years","dimension_category":[{"dimension_id":70,"category_id":3327},{"dimension_id":63,"category_id":349},{"dimension_id":45,"category_id":2749},{"dimension_id":40,"category_id":4263},{"dimension_id":29,"category_id":3610},{"dimension_id":23,"category_id":3482},{"dimension_id":19,"category_id":14},{"dimension_id":18,"category_id":4314}],"href":"https://bpstat.bportugal.pt/data/v1/series/?series_ids=12099456&lang=EN"},{"id":12099457,"label":"Yield on Treasury bonds with fixed rate and residual maturity of 5 years","dimension_category":[{"dimension_id":70,"category_id":3327},{"dimension_id":63,"category_id":349},{"dimension_id":45,"category_id":2750},{"dimension_id":40,"category_id":4263},{"dimension_id":29,"category_id":3610},{"dimension_id":23,"category_id":3482},{"dimension_id":19,"category_id":14},{"dimension_id":18,"category_id":4314}],"href":"https://bpstat.bportugal.pt/data/v1/series/?series_ids=12099457&lang=EN"},{"id":12099458,"label":"Yield on Treasury bonds with fixed rate and residual maturity of 7 years","dimension_category":[{"dimens
+## FAILED BPstat /datasets/690b7b36fd36c0dbe249c48cbbc39524/?lang=EN: HTTP Error 404: Not Found
+## FAILED BPstat /domains/26/datasets/690b7b36fd36c0dbe249c48cbbc39524/series/?lang=EN: HTTP Error 404: Not Found
+## OK BPstat /domains/26/datasets/93441ab6408be15acced35b8ed98cd97/?lang=EN: 12965 bytes
+  {"version":"2.0","label":"Source; Flows, stocks and prices; Indicators; Metrics; Periodicity; Unit of measure","id":["18","19","23","29","40","70","reference_date"],"size":[1,1,1,1,1,1,479],"extension":{"num_series":1,"obs_updated_at":"2026-11-12T17:00:00Z","series":[{"id":12560132,"label":"Stock market indices Euro Stoxx 50 - monthly","dimension_category":[{"dimension_id":18,"category_id":4312},{"dimension_id":19,"category_id":14},{"dimension_id":23,"category_id":3559},{"dimension_id":29,"category_id":3636},{"dimension_id":40,"category_id":4264},{"dimension_id":70,"category_id":4478}],"href":"https://bpstat.bportugal.pt/data/v1/series/?series_ids=12560132&lang=EN"}]},"value":[900.8,859.1,841.0,869.4,881.5,866.4,905.3,955.8,951.1,930.7,730.8,658.0,648.1,636.0,708.9,701.6,710.5,711.1,760.5,780.0,761.6,809.0,837.8,828.3,861.4,880.8,852.9,883.8,901.7,923.4,953.5,997.9,1038.1,1032.6,970.4,1023.5,1098.5,1069.9,1048.9,1115.4,1087.9,1116.8,1120.3,1116.5,962.1,846.0,889.6,872.8,858.7,871.8,959.2,982.1,1002.1,1045.5,1003.1,1000.9,1016.6,1007.0,1003.1,985.9,1000.0,1045.7,1082.3,1060.8,1085.1,1105.2,1056.9,989.0,951.7,968.6,980.0,1012.4,1033.5,1043.5,1128.4,1140.8,1114.2,1113.7,1157.6,1236.1,1321.9,1285.9,1359.4,1326.3,1433.3,1456.9,1396.1,1365.7,1427.4,1358.7,1284.6,1373.6,1397.1,1302.5,1327.7,1323.3,1320.6,1296.7,1312.8,1300.1,1346.7,1377.7,1362.5,1435.5,1432.9,1419.6,1407.2,1455.1,1506.8,1611.0,1595.6,1612.2,1671.1,1673.8,1665.9,1590.9,1601.4,1694.5,1700.5,1818.0,1850.3,2005.4,2077.2,2137.3,2164.7,2220.9,2398.4,2674.8,2407.6,2581.4,2331.2,2423.7,2532.0,2676.0,2878.0,3153.3,3120.9,3357.8,3406.8,3480.6,2978.1,2671.0,2887.1,3179.1,3342.3,3547.2,3484.2,3559.9,3757.9,3629.5,3788.7,3638.6,3769.1,3669.7,3922.9,4314.4,4904.5,4684.5,5182.6,5249.6,5303.9,5200.9,5145.4,5122.8,5175.1,4915.2,5057.5,4790.1,4772.4,4779.9,4318.9,4185.0,4525.0,4426.2,4243.9,4091.4,3744.0,3296.7,3478.6,3658.3,3806.1,3670.3,3624.7,3784.1,3574.2,3425.8,3133.4,2685.8,2709.3,2204.4,2519.0,2656.8,2386.4,2248.2,2140.7,2036.9,2324.2,2330.1,2419.5,2519.8,2556.7,2395.9,2575.0,2630.5,2760.7,2839.1,2893.2,2787.5,2787.5,2749.6,2811.1,2720.1,2670.8,2726.3,2811.7,2876.4,2951.0,2984.6,3058.3,3055.7,2930.1,3076.7,3181.5,3326.5,3263.8,3428.5,3320.2,3447.1,3578.9,3691.4,3774.5,3853.7,3839.9,3637.2,3648.9,3691.9,3808.7,3899.4,4004.8,3987.2,4119.9,4178.5,4087.1,4181.0,4392.3,4512.6,4489.8,4315.7,4294.6,4381.7,4489.8,4394.9,4399.7,3792.8,3724.5,3628.1,3825.0,3777.8,3352.8,3367.8,3365.6,3038.2,2591.8,2430.3,2447.6,2237.
+## FAILED BPstat /datasets/93441ab6408be15acced35b8ed98cd97/?lang=EN: HTTP Error 404: Not Found
+## FAILED BPstat /domains/26/datasets/93441ab6408be15acced35b8ed98cd97/series/?lang=EN: HTTP Error 404: Not Found
+## FAILED OeNB https://www.oenb.at/isadataservice/hierarchy?lang=EN: HTTP Error 404: Not Found
+## FAILED OeNB https://www.oenb.at/isadataservice/main?lang=EN: HTTP Error 404: Not Found
+## FAILED OeNB https://www.oenb.at/en/Statistics/User-Defined-Tables/interest-rates-and-exchange-rates/austrian-government-bond-yields.html: HTTP Error 404: Not Found
+## FAILED OeNB https://www.oenb.at/en/Statistics/Standardized-Tables/interest-rates-and-exchange-rates/austrian-government-bond-yields.html: HTTP Error 404: Not Found
+## FAILED OeNB https://www.oenb.at/en/Statistics/Data-Service.html: HTTP Error 404: Not Found
+## FAILED DSTA https://english.dsta.nl/documents/2025/04/30/yields-on-dsls-from-2010-onwards: HTTP Error 404: Not Found
+## OK DSTA https://english.dsta.nl/latest/statistical-information/yields-on-dsls: 207510 bytes; candidate links ['/documents/2010/09/01/yields-on-dsls-from-2002-to-2009', '/documents/2026/11/02/yields-on-dsls-from-2010-onwards']
