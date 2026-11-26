@@ -1,0 +1,4408 @@
+<!DOCTYPE HTML>
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+	<link rel="shortcut icon" href="/isawebstat/img/fav-icon_logo_data_prod.png" />
+	
+
+    <link rel="stylesheet" href="/isawebstat/webjars/jquery-ui/1.14.2/jquery-ui.css"/>
+    <link rel="stylesheet" href="/isawebstat/webjars/bootstrap/5.3.8/css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="/isawebstat/webjars/bootstrap-icons/1.7.2/font/bootstrap-icons.css" type="text/css"/>
+<!--    <link rel="stylesheet" th:href="@{/webjars/datatables/css/jquery.dataTables.css}" type="text/css"/> -->
+<!--    <link rel="stylesheet" th:href="@{/webjars/datatables-select/css/select.dataTables.css}" type="text/css"/> -->
+<!--    <link rel="stylesheet" th:href="@{/webjars/datatables-fixedheader/fixedHeader.dataTables.min.css}" type="text/css"/> -->
+<!--<link rel="stylesheet" th:href="@{/webjars/font-awesome.min.css/font-awesome.min.css}" type="text/css"/>-->
+<!--   <link rel="stylesheet" th:href="@{/css/oenb.css}"/> -->
+    <link rel="stylesheet" href="/isawebstat/css/isaNew.css"/>
+
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/2.3.8/css/dataTables.dataTables.css"/> -->
+    <link rel="stylesheet" href="/isawebstat/webjars/datatables/2.3.7/css/dataTables.dataTables.css" type="text/css"/>
+    <!--  <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/4.0.6/css/fixedHeader.dataTables.css"/> -->
+    <link rel="stylesheet" href="/isawebstat/webjars/datatables-fixedheader/3.2.4/fixedHeader.dataTables.min.css" type="text/css"/>
+    <link rel="stylesheet" href="/isawebstat/css/stAbfrage.css"/>
+    <link rel="stylesheet" href="/isawebstat/css/tablestyles.css"/>
+
+ <!--   <link rel="stylesheet" th:href="@{/css/fixedHeader.dataTables.min.css}"/> -->
+
+    <!-- Schriftart Lato lokal geladen -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>DATA - Deposit and lending rates&lt;sup&gt;1&lt;/sup&gt; - outstanding amounts</title>
+    <style>
+        /* Lato Font Faces - lokal geladen */
+        @font-face {
+            font-family: 'Lato';
+           /* src: url('./static/fonts/Lato-Light.woff') format('woff'); */
+            font-weight: 300;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Lato';
+            /*src: url('./static/fonts/Lato-Regular.woff') format('woff'); */
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Lato';
+            /*src: url('./static/fonts/Lato-Bold.woff') format('woff'); */
+            font-weight: 700;
+            font-display: swap;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6rem;
+            color: #333;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+    </style>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no"/>
+
+</head>
+
+<body>
+	<!-- Matomo Code -->
+	<script type="text/javascript" class="cmplazyload" data-cmp-vendor="s974">
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="//www.oenb.at/analytics/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; 
+        g.setAttribute('data-cmp-ab', '1'); 
+        g.src=u+'matomo.js'; 
+        s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+
+    <!-- fuer iFrame -->
+    <script src="https://www.oenb.at/docroot/oenb25/utils/oenb-iframe-child-embed.js"></script>
+    <!-- Ende iFrame -->
+
+<!--  Logo raus
+<div class="container container-header text-end padding-top-md padding-bottom-md container-no-border-top" id="header">
+    <img class="float-start" height="100" th:src="@{/img/Logo_Data.png}" alt="Logo Data">
+    <img alt="OeNB Logo" height="90" th:src="@{/img/logo.png}" width="308">
+</div>
+-->
+<!-- Header Sprachumschalter raus
+<nav class="navbar navbar-light navbar-expand-md margin-top-md">
+    <div class="container no-vertical-padding">
+          <button aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+                data-bs-target="#collapsibleNavbar" data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>Toggle navigation
+        </button>
+        
+        <div class="collapse navbar-collapse navbar-primary" id="collapsibleNavbar">
+        
+        	<ul id="langnav">
+  				<li class="first"><a th:if="${lang eq 'EN'}" th:href="@{/stabfrage/createReport(lang=DE,report=${staResultModel.reportNummer})}" th:aria-label="#{text.sprache.de.tooltip}">DE</a><span th:unless="${lang eq 'EN'}">DE</span></li>
+  				<li class="last"><a th:if="${lang eq 'DE'}" th:href="@{/stabfrage/createReport(lang=EN,report=${staResultModel.reportNummer})}" th:aria-label="#{text.sprache.en.tooltip}">EN</a><span th:unless="${lang eq 'DE'}">EN</span></li>
+			</ul>
+			<ul class="navbar-nav right"> 
+			 	<li class="nav-item">
+		         	<a class="nav-link" target="_blank" th:href="@{/dynabfrage(lang=${lang})}" th:text="#{text.link.zurDynAbfrage}"></a>
+		        </li>
+			</ul>
+			
+        </div>
+        
+    </div>
+</nav>
+-->
+
+<div class="container">
+
+    <div id="content-container">
+
+	<style type="text/css">
+		
+		.isa fieldset {
+			border: none
+		}
+	</style>
+
+<!-- Modaler Dialog fuer Metadaten -->
+<div class="modal fade" id="metadataModal" tabindex="-1" aria-labelledby="metadataModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="metadataModalLabel">metadata</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <dl class="dl-horizontal">
+	       <dt class="meta"><p id="metadataTitelLabel" value="TitelLabel"></p></dt>
+	       <dd class="clearfix meta"><p id="metadataTitelValue" value="TitelValue"></p></dd>
+	       <dt class="meta"><p id="metadataRegionlLabel" value="RegionLabel"></p></dt>
+	       <dd class="clearfix meta"><p id="metadataRegionValue" value="RegionLabel"></p></dd>
+	       <dt class="meta"><p id="metadataEinheitLabel" value="EinheitLabel"></p></dt>
+	       <dd class="clearfix meta"><p id="metadataEinheitValue" value="EinheitValue"></p></dd>
+	       <dt class="meta"><p id="metadataUnitMultLabel" value="UnitMultLabel"></p></dt>
+	       <dd class="clearfix meta"><p id="metadataUnitMultValue" value="UnitMultValue"></p></dd>
+	       <dt class="meta"><p id="metadataKommentarLabel" value="KommentarLabel"></p></dt>
+	       <dd class="clearfix meta"><p id="metadataKommentarValue" value="KommentarValue"></p></dd>
+	       <dt class="meta"><p id="metadataKlassifikationLabel" value="KlassifikationLabel"></p></dt>
+	       <dd class="clearfix meta"><p id="metadataKlassifikationValue" value="KlassifikationValue"></p></dd>
+	       <dt class="meta"><p id="metadataBreakLabel" value="BreakLabel"></p></dt>
+	       <dd class="clearfix meta"><p id="metadataBreakValue" value="BreakValue"></p></dd>
+	       <dt class="meta"><p id="metadataFreqLabel" value="FreqLabel"></p></dt>
+	       <dd class="clearfix meta"><p id="metadataFreqValue" value="FreqValue"></p></dd>
+
+	       <dt class="meta"><p id="metadataDatenverfuegbarkeitLabel" value="DatenverfuegbarkeitLabel"></p></dt>
+	       <dd class="clearfix meta"><p id="metadataDatenverfuegbarkeitValue" value="DatenverfuegbarkeitValue"></p></dd>
+	       <dt class="meta"><p id="metadataLetzteAktualisierungLabel" value="LetzteAktualisierungLabel"></p></dt>
+	       <dd class="clearfix meta"><p id="metadataLetzteAktualisierungValue" value="LetzteAktualisierungValue"></p></dd>
+	       
+	       <dt class="meta"><p id="metadataQuelleLabel" value="QuelleLabel"></p></dt>
+	       <dd class="clearfix meta"><p id="metadataQuelleValue" value="QuelleValue"></p></dd>
+	       <dt class="meta"><p id="metadataLagLabel" value="LagLabel"></p></dt>
+	       <dd class="clearfix meta"><p id="metadataLagValue" value="LagValue"></p></dd>
+	       
+	       <dt class="meta"><p id="metadataVeroeffentlichungsKalenderLabel" value="VeroeffentlichungsKalenderLabel"></p></dt>
+	       <dd class="clearfix meta"><p id="metadataVeroeffentlichungsKalenderValue" value="VeroeffentlichungsKalenderValue"></p></dd>
+	       
+       </dl>
+         
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+	<form name="resultForm" action="/isawebstat/stabfrage/" method="POST">
+	
+	<ul class="navbar-nav direct-row">
+		
+		<!-- <th:li th:if=${staResultModel.defaultChartNummer} class="nav-item">
+			<a class="nav-link" th:href="@{/createChart(lang=${lang},chart=${staResultModel.defaultChartNummer})}" th:title="#{text.stabfrage.button.chart.tooltip}"><i class="bi bi-graph-up"></i></a>
+		</th:li> -->
+
+		<li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="downloadDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-download" ></i>    
+          </a>
+		  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+	            <li><button class="dropdown-item" formaction="/isawebstat/stabfrage/downloadResult?lang=EN&amp;exportTyp=Excel&amp;report=2.8" onclick="document.resultForm.submit()" formtarget="_blank">Excel</button></li>
+	            <li><button class="dropdown-item" formaction="/isawebstat/stabfrage/downloadResult?lang=EN&amp;exportTyp=CSV&amp;report=2.8" onclick="document.resultForm.submit()" formtarget="_blank">CSV</button></li>
+		  </ul>
+		</li> 
+
+	</ul>
+	
+
+
+
+	
+	
+	<!-- Report content -->
+	<div><div style="overflow-y:auto; padding-right: 1 rem;">
+	<input type="hidden" id="metaDataUrl" data-url="/isawebstat/showMetadatenStAbfrage?lang=EN&amp;report=2.8">
+
+			<table class="popup resultTable oenb-table" border="0" cellpadding="0" cellspacing="0" id="dataTable">
+			<caption>
+			<!-- Überschrift -->
+				<span class="title">Deposit and lending rates<sup>1</sup> - outstanding amounts</span>
+				
+			</caption>
+			<!-- Tableheader -->
+			<thead>
+			
+				
+					<tr>
+						 
+									
+												
+								<th rowspan="1" colspan="1" scope="col"  
+									class="left-align colHeader1" id="tab1ColHeaderZ1S1">
+									<span>&#160;</span>
+									
+								</th>	
+									
+						 
+									
+												
+								<th rowspan="1" colspan="1" scope="col"  
+									class="colHeader2 nobr" id="tab1ColHeaderZ1S2">
+									<span>2023</span>
+									
+								</th>	
+									
+						 
+									
+												
+								<th rowspan="1" colspan="1" scope="col"  
+									class="colHeader2 nobr" id="tab1ColHeaderZ1S3">
+									<span>2024</span>
+									
+								</th>	
+									
+						 
+									
+												
+								<th rowspan="1" colspan="1" scope="col"  
+									class="colHeader2 nobr" id="tab1ColHeaderZ1S4">
+									<span>2025</span>
+									
+								</th>	
+									
+						 
+									
+												
+								<th rowspan="1" colspan="1" scope="col"  
+									class="colHeader2 nobr" id="tab1ColHeaderZ1S5">
+									<span>Apr. 26</span>
+									
+								</th>	
+									
+						 
+									
+												
+								<th rowspan="1" colspan="1" scope="col"  
+									class="colHeader2 nobr" id="tab1ColHeaderZ1S6">
+									<span>May 26</span>
+									
+								</th>	
+									
+						 
+									
+												
+								<th rowspan="1" colspan="1" scope="col"  
+									class="colHeader2 nobr" id="tab1ColHeaderZ1S7">
+									<span>June 26</span>
+									
+								</th>	
+									
+						 
+									
+												
+								<th rowspan="1" colspan="1" scope="col"  
+									class="colHeader2 nobr" id="tab1ColHeaderZ1S8">
+									<span>July 26</span>
+									
+								</th>	
+									
+						 
+									
+												
+								<th rowspan="1" colspan="1" scope="col"  
+									class="colHeader2 nobr" id="tab1ColHeaderZ1S9">
+									<span>Aug. 26</span>
+									
+								</th>	
+									
+						 
+									
+												
+								<th rowspan="1" colspan="1" scope="col"  
+									class="colHeader1 nobr" id="tab1ColHeaderZ1S10">
+									<span>Sep. 26</span>
+									
+								</th>	
+									
+						
+					</tr>
+				
+			
+				
+					<tr class="unit-info">
+						 
+									
+												
+								<th rowspan="1" colspan="1" scope="col">
+									<span>% per annum</span>
+									
+								</th>	
+									
+						 
+									
+												
+								<th rowspan="1" colspan="9" scope="col">
+									<span></span>
+									
+								</th>	
+									
+						
+					</tr>
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+			</thead>
+			<!-- Tablebody -->
+			<tbody>
+			
+				
+			
+				
+			
+				
+					<tr>
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="bold nobr rowHeaderBlue4">
+									<span>Deposits<sup>2</sup></span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					
+				
+			
+				
+					<tr>
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="bold nobr rowHeader4">
+									<span>of households<sup>3</sup></span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ4S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSME41BSZN11010" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">overnight</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ4S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>0.62</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ4S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>1.02</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ4S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>0.57</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ4S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>0.40</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ4S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>0.41</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ4S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>0.40</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ4S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>0.43</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ4S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>0.45</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ4S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>0.46</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ5S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSME41BSZN1C010" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">of which savings deposits</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ5S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>1.07</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ5S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>1.73</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ5S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>0.92</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ5S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>0.64</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ5S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>0.64</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ5S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>0.63</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ5S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>0.69</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ5S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>0.70</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ5S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>0.72</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="nobr rowHeader4">
+									<span>with agreed maturity</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ7S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSME41BSZO12310" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">&#160;&#160;&#160;&#160;up to 2 years</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ7S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>1.58</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ7S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.52</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ7S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>1.74</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ7S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>1.32</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ7S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>1.32</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ7S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>1.34</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ7S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>1.41</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ7S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>1.44</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ7S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>1.48</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ8S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSME41BSZO12410" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">&#160;&#160;&#160;&#160;over 2 years</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ8S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>1.51</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ8S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.38</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ8S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>1.92</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ8S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>1.75</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ8S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>1.73</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ8S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>1.73</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ8S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>1.75</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ8S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>1.75</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ8S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>1.75</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					
+				
+			
+				
+					<tr>
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="bold nobr rowHeader4">
+									<span>of nonfinancial corporations<sup>3</sup></span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ11S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSME41BSZN21010" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">overnight</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ11S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>0.55</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ11S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>0.96</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ11S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>0.56</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ11S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>0.50</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ11S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>0.51</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ11S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>0.53</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ11S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>0.56</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ11S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>0.55</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ11S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>0.58</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="nobr rowHeader4">
+									<span>with agreed maturity</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ13S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSME41BSZO22310" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">&#160;&#160;&#160;&#160;up to 2 years</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ13S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.86</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ13S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.42</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ13S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.17</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ13S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>1.88</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ13S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>1.90</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ13S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>1.99</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ13S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.08</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ13S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.11</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ13S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>2.23</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ14S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSME41BSZO22410" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">&#160;&#160;&#160;&#160;over 2 years</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ14S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>1.99</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ14S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.12</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ14S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.22</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ14S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.12</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ14S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.16</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ14S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.22</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ14S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.30</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ14S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.36</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ14S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>2.43</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					
+				
+			
+				
+					<tr>
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="bold nobr rowHeaderBlue4">
+									<span>Loans<sup>2</sup>&#160;<sup>3</sup></span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					
+				
+			
+				
+					<tr>
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="bold nobr rowHeader4">
+									<span>to households<sup>4</sup></span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ19S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSME41BSZN18010" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">revolving and overdraft loans</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ19S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.94</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ19S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>6.58</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ19S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.73</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ19S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.58</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ19S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.69</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ19S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.70</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ19S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.72</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ19S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.92</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ19S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>5.94</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ20S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSBSZN58010" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">&#160;&#160;&#160;&#160;sole proprietors</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ20S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.77</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ20S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>6.28</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ20S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.06</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ20S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.87</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ20S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.88</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ20S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.91</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ20S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.05</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ20S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.05</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ20S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>5.05</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="nobr rowHeader4">
+									<span>for house purchases</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ22S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSBSZO10010" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">total</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ22S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.95</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ22S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.19</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ22S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.79</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ22S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.78</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ22S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.79</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ22S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.80</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ22S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.86</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ22S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.87</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ22S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>2.88</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="nobr rowHeader4">
+									<span>with agreed maturity</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ24S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSME41BSZO10110" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">&#160;&#160;&#160;&#160;up to 1 year</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ24S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.55</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ24S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.06</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ24S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.00</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ24S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.79</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ24S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.82</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ24S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.81</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ24S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.93</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ24S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.95</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ24S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>3.89</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ25S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSME41BSZO10510" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">&#160;&#160;&#160;&#160;over 1 year and up to 5 years</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ25S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.25</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ25S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.41</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ25S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.79</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ25S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.59</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ25S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.59</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ25S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.61</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ25S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.74</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ25S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.75</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ25S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>3.77</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ26S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSME41BSZO10610" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">&#160;&#160;&#160;&#160;over 5 years</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ26S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.93</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ26S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.16</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ26S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.77</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ26S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.77</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ26S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.78</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ26S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.79</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ26S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.85</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ26S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>2.86</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ26S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>2.87</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="nobr rowHeader4">
+									<span>consumer credit and other lending </span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ28S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSBSZO1B010" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">total</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ28S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.25</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ28S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.66</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ28S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.90</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ28S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.84</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ28S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.87</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ28S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.89</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ28S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.98</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ28S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.03</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ28S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>5.06</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ29S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSBSZO5B010" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">&#160;&#160;&#160;&#160;sole proprietors</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ29S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.53</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ29S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.87</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ29S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.94</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ29S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.82</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ29S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.83</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ29S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.84</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ29S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.96</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ29S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.97</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ29S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>3.98</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="nobr rowHeader4">
+									<span>with agreed maturity</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ31S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSME41BSZO1B110" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">&#160;&#160;&#160;&#160;up to 1 year</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ31S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.56</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ31S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.75</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ31S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.03</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ31S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.86</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ31S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.03</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ31S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.99</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ31S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.86</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ31S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.15</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ31S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>5.21</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ32S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSME41BSZO1B510" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">&#160;&#160;&#160;&#160;over 1 year and up to 5 years</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ32S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.56</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ32S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>6.19</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ32S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.43</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ32S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.36</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ32S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.37</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ32S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.40</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ32S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.53</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ32S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.54</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ32S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>5.56</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ33S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSME41BSZO1B610" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">&#160;&#160;&#160;&#160;over 5 years</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ33S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.15</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ33S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.57</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ33S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.80</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ33S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.77</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ33S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.78</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ33S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.80</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ33S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.92</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ33S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.94</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ33S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>4.96</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					
+				
+			
+				
+					<tr>
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="bold nobr rowHeader4">
+									<span>to nonfinancial corporations<sup>4</sup></span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ36S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSME41BSZN28010" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">revolving and overdraft loans</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ36S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.45</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ36S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.90</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ36S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.60</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ36S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.39</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ36S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.39</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ36S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.42</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ36S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.54</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ36S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.57</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ36S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>3.59</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="nobr rowHeader4">
+									<span>with agreed maturity</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" colspan="1" scope="row" 
+									class="num1">
+									<span>&#160;</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ38S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSBSZO22010" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">total</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ38S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.95</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ38S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.38</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ38S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.45</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ38S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.36</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ38S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.37</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ38S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.42</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ38S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.52</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ38S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.54</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ38S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>3.58</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ39S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSME41BSZO22110" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">&#160;&#160;&#160;&#160;up to 1 year</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ39S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.13</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ39S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.42</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ39S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.22</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ39S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.01</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ39S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.01</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ39S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.06</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ39S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.14</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ39S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.19</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ39S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>3.22</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ40S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSME41BSZO22510" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">&#160;&#160;&#160;&#160;over 1 year and up to 5 years</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ40S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.53</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ40S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>5.06</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ40S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.91</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ40S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.75</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ40S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.76</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ40S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.83</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ40S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.93</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ40S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.93</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ40S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>4.00</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+			
+				
+					<tr>
+						
+							
+								
+								<th rowspan="1" colspan="1" scope="row" 
+									class="rowHeader4 nobr" id="tab1RowHeaderZ41S1">
+									<a class="metalink" href="javascript:;" data-metakey="VDBZSME41BSZO22610" 
+										onclick="showMetadatenInfoStAbfrage(this.getAttribute(&#39;data-metakey&#39;))">&#160;&#160;&#160;&#160;over 5 years</a>
+									
+								</th>
+									
+								
+							
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ41S1 tab1ColHeaderZ1S2 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.71</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ41S1 tab1ColHeaderZ1S3 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>4.16</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ41S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.36</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ41S1 tab1ColHeaderZ1S4 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.31</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ41S1 tab1ColHeaderZ1S5 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.33</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ41S1 tab1ColHeaderZ1S6 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.38</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ41S1 tab1ColHeaderZ1S7 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.48</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ41S1 tab1ColHeaderZ1S8 unitID" colspan="1" scope="row" 
+									class="num1 alignRight">
+									<span>3.49</span>
+									
+								</td>
+							
+						
+							
+							
+								<td rowspan="1" headers="tab1RowHeaderZ41S1 tab1ColHeaderZ1S9 unitID" colspan="1" scope="row" 
+									class="num3 alignRight">
+									<span>3.53</span>
+									
+								</td>
+							
+						
+					</tr>
+				
+				
+			</tbody>
+			</table>
+
+			<!-- Footer -->
+			<table class="popup resultTable oenb-table" border="0" cellpadding="0" cellspacing="0" id="footerTable">
+			<tfoot>
+				<tr class="leer7"><td colspan="10">&nbsp;</td></tr>
+				<!-- Referenzliste -->
+				<tr>
+					<td class="footer quelle" colspan="10">
+						<span>Source: 
+						 
+							
+							<a class="footer" href="https://www.oenb.at" target="_blank">OeNB</a>. 
+							
+						
+						</span>
+					</td>
+				</tr>
+				<tr class="leer7"><td colspan="10">&nbsp;</td></tr>
+				<!-- Fusszeilen -->
+				
+					
+					<tr>
+					 <td class="footer" colspan="10">
+						The data prior to the reporting date 31 January 2003 is based on estimates of the OeNB/ECB.
+					</td>		
+					</tr>	
+					
+					<tr>
+					 <td class="footer" colspan="10">
+						More information to interest rates<BR/>https://www.oenb.at/isawebstat/stabfrage/createReport?lang=EN&amp;report=1.5.20
+					</td>		
+					</tr>	
+					
+					<tr>
+					 <td class="footer" colspan="10">
+						Changes in the reporting methodology may cause breaks in the time series after january 2017.
+					</td>		
+					</tr>	
+					
+				
+ 				<!-- Fussnoten -->
+				
+					
+					<tr>
+					 <td class="footer footnote" colspan="10">
+					 	<sup>1</sup>&#160;Interest rates are defined as the annualized agreed rates in percent per annum. The annualized agreed rate covers all intrayear payments on deposits and loans, but no other charges that may apply.
+					</td>		
+					</tr>	
+					
+					<tr>
+					 <td class="footer footnote" colspan="10">
+					 	<sup>2</sup>&#160;Deposits and loans in EUR.
+					</td>		
+					</tr>	
+					
+					<tr>
+					 <td class="footer footnote" colspan="10">
+					 	<sup>3</sup>&#160;More information to interest rates broken down by interest rate fixationhttps://www.oenb.at/isawebstat/stabfrage/createReport?lang=EN&report=1.5.20
+					</td>		
+					</tr>	
+					
+					<tr>
+					 <td class="footer footnote" colspan="10">
+					 	<sup>4</sup>&#160;Free-lance professionals and self-employed persons were reclassified from the sector nonfinancial corporations to the sector households (applicable from June, 2004).
+					</td>		
+					</tr>	
+					
+				
+			</tfoot>
+		</table>
+</div></div>
+	
+	
+		
+
+<!-- Optionen -->
+<label>Edit table:</label>
+
+<input type="hidden" value="true" id="fixedHeaderFlag">
+<input type="hidden" value="false" id="dataTableSortFlag">
+<input type="hidden" value="false" id="dataTableFilterFlag">
+<div>
+
+	<div class="zeit-container" >
+
+    	
+       		<div class="input-container" id="container_J">
+       			<span class="input-1">
+	 				<input id="periodizitaet_J" value="true" class='options' type='checkbox' name="zeitElementeList[0].checked" checked="checked"><input type="hidden" name="_zeitElementeList[0].checked" value="on"/>
+	 				<label id="labelPeriodizitaet_J" for="periodizitaet_J">Years</label>
+	  					
+	 				
+	  					
+	 				
+	  					
+	 				
+	  					
+	 				
+	  					
+	 				
+				 
+				 </span> 
+     			<input value="J" type='hidden' id="zeitElementeList0.periodizitaet" name="zeitElementeList[0].periodizitaet">
+      			<input value="true" type='hidden'>
+		
+				<span class="input-2u1">
+		      				<label id="label_jahrVon_J" for="jahrVon_J">from</label>
+					<select id="jahrVon_J" aria-labelledby="labelPeriodizitaet_J label_jahrVon_J" name="zeitElementeList[0].vonJahrSelected">
+						<option value="1996" >1996</option>
+						<option value="1997" >1997</option>
+						<option value="1998" >1998</option>
+						<option value="1999" >1999</option>
+						<option value="2000" >2000</option>
+						<option value="2001" >2001</option>
+						<option value="2002" >2002</option>
+						<option value="2003" >2003</option>
+						<option value="2004" >2004</option>
+						<option value="2005" >2005</option>
+						<option value="2006" >2006</option>
+						<option value="2007" >2007</option>
+						<option value="2008" >2008</option>
+						<option value="2009" >2009</option>
+						<option value="2010" >2010</option>
+						<option value="2011" >2011</option>
+						<option value="2012" >2012</option>
+						<option value="2013" >2013</option>
+						<option value="2014" >2014</option>
+						<option value="2015" >2015</option>
+						<option value="2016" >2016</option>
+						<option value="2017" >2017</option>
+						<option value="2018" >2018</option>
+						<option value="2019" >2019</option>
+						<option value="2020" >2020</option>
+						<option value="2021" >2021</option>
+						<option value="2022" >2022</option>
+						<option value="2023" selected="selected" >2023</option>
+						<option value="2024" >2024</option>
+						<option value="2025" >2025</option>
+					</select>
+					
+					
+					
+					
+				</span>
+				
+				<span class="input-2u1">
+					<label for="jahrBis_J">to</label>
+					<select name="zeitElementeList[0].bisJahrSelected" id="jahrBis_J" aria-labelledby="labelPeriodizitaet_J label_jahrBis_J">
+						<option value="1996" >1996</option>
+						<option value="1997" >1997</option>
+						<option value="1998" >1998</option>
+						<option value="1999" >1999</option>
+						<option value="2000" >2000</option>
+						<option value="2001" >2001</option>
+						<option value="2002" >2002</option>
+						<option value="2003" >2003</option>
+						<option value="2004" >2004</option>
+						<option value="2005" >2005</option>
+						<option value="2006" >2006</option>
+						<option value="2007" >2007</option>
+						<option value="2008" >2008</option>
+						<option value="2009" >2009</option>
+						<option value="2010" >2010</option>
+						<option value="2011" >2011</option>
+						<option value="2012" >2012</option>
+						<option value="2013" >2013</option>
+						<option value="2014" >2014</option>
+						<option value="2015" >2015</option>
+						<option value="2016" >2016</option>
+						<option value="2017" >2017</option>
+						<option value="2018" >2018</option>
+						<option value="2019" >2019</option>
+						<option value="2020" >2020</option>
+						<option value="2021" >2021</option>
+						<option value="2022" >2022</option>
+						<option value="2023" >2023</option>
+						<option value="2024" >2024</option>
+						<option value="2025" selected="selected" >2025</option>
+					</select>
+					
+					
+				</span>
+				
+			</div>
+       		<div class="input-container" id="container_M">
+       			<span class="input-1">
+	 				
+	 				
+	  					
+	 				
+	  					
+	 				
+	  					<input id="periodizitaet_M" value="true" class='options' type='checkbox' name="zeitElementeList[1].checked" checked="checked"><input type="hidden" name="_zeitElementeList[1].checked" value="on"/>
+	 				<label id="labelPeriodizitaet_M" for="periodizitaet_M">Months</label>
+	  					
+	 				
+	  					
+	 				
+				 
+				 </span> 
+     			<input value="M" type='hidden' id="zeitElementeList1.periodizitaet" name="zeitElementeList[1].periodizitaet">
+      			<input value="true" type='hidden'>
+		
+				<span class="input-2u1">
+		      				<label id="label_jahrVon_M" for="jahrVon_M">from</label>
+					<select id="jahrVon_M" aria-labelledby="labelPeriodizitaet_M label_jahrVon_M" name="zeitElementeList[1].vonJahrSelected">
+						<option value="1995" >1995</option>
+						<option value="1996" >1996</option>
+						<option value="1997" >1997</option>
+						<option value="1998" >1998</option>
+						<option value="1999" >1999</option>
+						<option value="2000" >2000</option>
+						<option value="2001" >2001</option>
+						<option value="2002" >2002</option>
+						<option value="2003" >2003</option>
+						<option value="2004" >2004</option>
+						<option value="2005" >2005</option>
+						<option value="2006" >2006</option>
+						<option value="2007" >2007</option>
+						<option value="2008" >2008</option>
+						<option value="2009" >2009</option>
+						<option value="2010" >2010</option>
+						<option value="2011" >2011</option>
+						<option value="2012" >2012</option>
+						<option value="2013" >2013</option>
+						<option value="2014" >2014</option>
+						<option value="2015" >2015</option>
+						<option value="2016" >2016</option>
+						<option value="2017" >2017</option>
+						<option value="2018" >2018</option>
+						<option value="2019" >2019</option>
+						<option value="2020" >2020</option>
+						<option value="2021" >2021</option>
+						<option value="2022" >2022</option>
+						<option value="2023" >2023</option>
+						<option value="2024" >2024</option>
+						<option value="2025" >2025</option>
+						<option value="2026" selected="selected" >2026</option>
+					</select>
+					
+					
+					<!-- Halbjahr, Quartal, Monat, Tage -->
+					<select id="monatVon_M" aria-labelledby="labelPeriodizitaet_M label_jahrVon_M" name="zeitElementeList[1].vonMonatSelected">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4" selected="selected">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+					</select>
+					
+					
+					
+				</span>
+				
+				<span class="input-2u1">
+					<label for="jahrBis_M">to</label>
+					<select name="zeitElementeList[1].bisJahrSelected" id="jahrBis_M" aria-labelledby="labelPeriodizitaet_M label_jahrBis_M">
+						<option value="1995" >1995</option>
+						<option value="1996" >1996</option>
+						<option value="1997" >1997</option>
+						<option value="1998" >1998</option>
+						<option value="1999" >1999</option>
+						<option value="2000" >2000</option>
+						<option value="2001" >2001</option>
+						<option value="2002" >2002</option>
+						<option value="2003" >2003</option>
+						<option value="2004" >2004</option>
+						<option value="2005" >2005</option>
+						<option value="2006" >2006</option>
+						<option value="2007" >2007</option>
+						<option value="2008" >2008</option>
+						<option value="2009" >2009</option>
+						<option value="2010" >2010</option>
+						<option value="2011" >2011</option>
+						<option value="2012" >2012</option>
+						<option value="2013" >2013</option>
+						<option value="2014" >2014</option>
+						<option value="2015" >2015</option>
+						<option value="2016" >2016</option>
+						<option value="2017" >2017</option>
+						<option value="2018" >2018</option>
+						<option value="2019" >2019</option>
+						<option value="2020" >2020</option>
+						<option value="2021" >2021</option>
+						<option value="2022" >2022</option>
+						<option value="2023" >2023</option>
+						<option value="2024" >2024</option>
+						<option value="2025" >2025</option>
+						<option value="2026" selected="selected" >2026</option>
+					</select>
+					
+						<!-- Halbjahr, Quartal, Monat, Tage -->
+						<select name="zeitElementeList[1].bisMonatSelected" id="monatBis_M" aria-labelledby="labelPeriodizitaet_M label_jahrBis_M">
+							<option value="1" >1</option>
+							<option value="2" >2</option>
+							<option value="3" >3</option>
+							<option value="4" >4</option>
+							<option value="5" >5</option>
+							<option value="6" >6</option>
+							<option value="7" >7</option>
+							<option value="8" >8</option>
+							<option value="9" selected="selected" >9</option>
+							<option value="10" >10</option>
+							<option value="11" >11</option>
+							<option value="12" >12</option>
+						</select>
+					
+					
+				</span>
+				
+			</div>
+		
+		
+		
+		<!-- fixer Header -->  <!-- temp. rausgenommen da datatable drinnen ist -->
+	<!--	<th:block th:if="${staOptionenModel.tabellenkopfFixierenOptEnabled}">
+		<div class="input-container">
+			<span class="input-1" th:text="#{text.stabfrage.optionen.fixHeader}"></span>
+			<span class="input-2">	
+				<input th:field="${staOptionenModel.tabellenkopfFixieren}" id="fixHeader" th:value="${staOptionenModel.tabellenkopfFixieren}" class='options' type='checkbox'>
+			</span>
+		</div>
+		</th:block>
+	-->
+			
+		<!-- dyn Dimension -->
+		
+	</div>	
+		
+</div>
+		
+	<div class="btn-group" role="group" aria-label="Buttonbar">
+		<button id="refreshTable" type="submit" class="btn btn-primary rounded-0 btn-text" formaction="/isawebstat/stabfrage/createReport?lang=EN&amp;original=false&amp;report=2.8" title="refresh result table" style="margin-right:15px"><i class="bi bi-table"></i><span style="margin-left:10px">Refresh table</span></button>
+		<button id="showOriginal" type="submit" class="btn btn-primary rounded-0 btn-text" formaction="/isawebstat/stabfrage/createReport?lang=EN&amp;original=true&amp;report=2.8" title="show original table"><i class="bi bi-bootstrap-reboot"></i><span style="margin-left:10px">Original table</span></button>
+	</div>
+
+</form>
+
+<span class="lastChange">Last update on 02.11.2026 17:25</span>	
+
+</div>
+    
+</div>
+
+ 
+<script id="jquery" src="/isawebstat/webjars/jquery/4.0.0/jquery.js"></script>
+<script id="jquery-ui" src="/isawebstat/webjars/jquery-ui/1.14.2/jquery-ui.js"></script>
+<!--<script id="jquery-dataTables" th:attr="nonce=${nonce}" th:src="@{/webjars/datatables/js/jquery.dataTables.js}"></script> -->
+<!--<script id="dataTables-bootstrap" th:attr="nonce=${nonce}" th:src="@{/webjars/datatables/js/dataTables.bootstrap.js}"></script> -->
+<script id="bootstrap-notify" src="/isawebstat/webjars/bootstrap-notify/3.1.3-1/bootstrap-notify.min.js"></script>
+<script id="bootstrap-bundle" src="/isawebstat/webjars/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
+
+<!--<script id="test1" src="https://cdn.datatables.net/2.3.8/js/dataTables.js"></script> -->
+<script id="jquery-dataTables" src="/isawebstat/webjars/datatables/2.3.7/js/dataTables.js"></script>
+<!--    <script id="test2" src="https://cdn.datatables.net/fixedheader/4.0.6/js/dataTables.fixedHeader.js"></script> -->
+<script id="dataTables-fixedheader" src="/isawebstat/webjars/datatables-fixedheader/3.2.4/js/fixedHeader.dataTables.js"></script>
+<!--<script id="test3" src="https://cdn.datatables.net/fixedheader/4.0.6/js/fixedHeader.dataTables.js"></script> -->
+
+<script id="oenbJS" src="/isawebstat/js/oenb.js"></script>
+<script id="datatableJS" src="/isawebstat/js/datatables-script.js"></script>
+<script id="datatableFixHeader" src="/isawebstat/webjars/datatables-fixedheader/3.2.4/dataTables.fixedHeader.min.js"></script>
+
+
+<div id="javascripts">
+	<script id="isaJs" src="/isawebstat/js/isa.js"></script>
+<!--	<script id="fxheaderJs" th:attr="nonce=${nonce}" th:src="@{/js/fxheader.js}"></script>
+	<th:block th:if="${staOptionenModel.tabellenkopfFixieren}">
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		fxheaderInitDyn('dataTable',0.6, 0, /*2*/);
+		
+		//fxheaderInitDyn('dataTable',0.6, 0, 4);
+		/*]]>*/
+	</script>
+	</th:block>
+	-->
+</div>
+
+<!-- Footer content -->
+<!-- Footer raus
+<div  th:insert="~{fragmente.html :: oenbFooter}"> </div>
+-->
+
+</body>
+</html>
