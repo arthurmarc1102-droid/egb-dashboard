@@ -38,6 +38,30 @@
    "note": "Source: National Bank of Belgium, NBB.Stat. Average yield on OLOs with the given residual term, two decimals. Downloaded each weekday from the NBB SDMX service (tested from GitHub on 26 Nov 2026). The NBB allows distribution of its information when it is accurately presented and the NBB is cited."
   },
   {
+   "id": "bdp_yields",
+   "name": "Yield on fixed-rate Treasury bonds by residual maturity",
+   "short": "Banco de Portugal (data from LSEG)",
+   "publisher": "Banco de Portugal (data from LSEG)",
+   "covers": "Portugal, 2, 3, 4, 5, 7 and 10 years, daily since 1993",
+   "frequency": "Daily values, file updated once a week",
+   "status": "verified",
+   "used": true,
+   "url": "https://bpstat.bportugal.pt/",
+   "note": "Source: Banco de Portugal, BPstat; the bank names LSEG as the originator. Downloaded each weekday from the BPstat API (tested from GitHub on 26 Nov 2026). The bank refreshes the file on the first business day of the week, so the last values can be several days old. ESCB reuse rules do not cover third-party data without the originator's permission: this is shown on that basis and would be removed on request."
+  },
+  {
+   "id": "riksbank_nl",
+   "name": "International government bond yields (NLGVB5Y, NLGVB10Y)",
+   "short": "Sveriges Riksbank (data from Refinitiv)",
+   "publisher": "Sveriges Riksbank (data from Refinitiv)",
+   "covers": "Netherlands, 5 and 10 years, daily since 1987",
+   "frequency": "Daily",
+   "status": "verified",
+   "used": true,
+   "url": "https://www.riksbank.se/en-gb/statistics/interest-rates-and-exchange-rates/retrieving-interest-rates-and-exchange-rates-via-api/",
+   "note": "Source: Sveriges Riksbank, SWEA API; the bank names Refinitiv as the originator. Benchmark yields, not a fitted curve. Their spread to the Bundesbank curve mixes two methods: on 24 Nov 2026 the Riksbank 10-year spread Netherlands minus Germany was 13.4 bp, against about 9 bp when the Bundesbank curve is used for Germany. Downloaded each weekday (tested from GitHub on 26 Nov 2026). The Dutch State Treasury Agency publishes bond-by-bond yields once a month; they are not loaded yet."
+  },
+  {
    "id": "eurostat_mcby",
    "name": "Long-term government bond yields, Maastricht definition",
    "short": "Eurostat",

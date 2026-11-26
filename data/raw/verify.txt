@@ -1,5 +1,5 @@
-Checks of 2026-11-26 09:12 UTC
-OK    market: 34 daily series and 8 monthly series present, sorted, in range and fresh
+Checks of 2026-11-26 09:19 UTC
+OK    market: 39 daily series and 8 monthly series present, sorted, in range and fresh
 OK    market against the double-read snapshot of 19 Nov 2026: 6723 values, 0 differences
 OK    futures: 47 basket bonds checked against the Eurex file, gross basis and CTD recomputed
 OK    auctions: 201 results, cover = bids / allotted checked on 192; 11 upcoming
@@ -50,11 +50,11 @@ PAGE  ok   builder: preview level −23.0bp
 PAGE  ok   RV screen: custom structure in category Custom
 PAGE  ok   backtest opened on the custom structure (Test fly)
 PAGE  ok   backtest reruns when a rule changes (+72.5bp -> +86.0bp)
-PAGE  ok   backtest scan lists 124 structures
+PAGE  ok   backtest scan lists 150 structures
 PAGE  ok   backtest: carry switched on (carry shown in the results)
 PAGE  ok   walk-forward: 10 figures, 11 blocks, 1 chart
 PAGE  ok   CSV download of trades (128 rows)
-PAGE  ok   custom range 2022: 257 rows, 03 Jan 2022 to 30 Dec 2022
+PAGE  ok   custom range 2022: 260 rows, 03 Jan 2022 to 30 Dec 2022
 PAGE  ok   workbench: yields and bp structures on two charts (2)
 PAGE  ok   workbench: change since start on one chart
 PAGE  ok   phone: filters folded (0 groups shown), then open (3)
