@@ -1,5 +1,5 @@
 {
-"asof": "2026-11-25",
+"asof": "2026-11-26",
 "note_results": "Medium and long-term lines. Germany: Finanzagentur workbook, allotted amount excludes the retention, history since 2015 in data/raw/auctions_de.csv. Spain: Tesoro Publico result pages, archived each day. Italy: MEF result PDFs, single-price auction, so the yield is the yield at the auction price. France: the AFT site refuses automated access, so French results are those read on 19 Nov 2026 and are not refreshed.",
 "note_upcoming": "Germany and Spain: issuers' calendars, read each day. France: date from the AFT calendar rule, not from a dated calendar. Italy: no machine-readable calendar found.",
 "results": [
@@ -2413,30 +2413,6 @@
 "avg_yield": 2.33,
 "stop_yield": null,
 "bid_cover": 1.2,
-"url": "https://www.deutsche-finanzagentur.de/en/federal-securities/issuances/issuance-results"
-},
-{
-"country": "DE",
-"date": "2025-10-21",
-"security": "Green 2.50% 15 Feb 2035",
-"isin": "DE000BU3Z047",
-"bids_bn": 1.577,
-"amount_bn": 0.718,
-"avg_yield": 2.52,
-"stop_yield": null,
-"bid_cover": 2.2,
-"url": "https://www.deutsche-finanzagentur.de/en/federal-securities/issuances/issuance-results"
-},
-{
-"country": "DE",
-"date": "2025-10-21",
-"security": "Green 1.30% 15 Oct 2027",
-"isin": "DE0001030740",
-"bids_bn": 2.914,
-"amount_bn": 0.733,
-"avg_yield": 1.86,
-"stop_yield": null,
-"bid_cover": 4,
 "url": "https://www.deutsche-finanzagentur.de/en/federal-securities/issuances/issuance-results"
 }
 ],
