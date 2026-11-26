@@ -109,6 +109,38 @@ def fetch_be():
     return out
 
 
+PT_URL = "https://bpstat.bportugal.pt/data/v1/domains/26/datasets/690b7b36fd36c0dbe249c48cbbc39524/?lang=EN"
+def fetch_pt():
+    """Banco de Portugal, BPstat: yield on fixed-rate Treasury bonds by residual maturity, daily (JSON-stat). Data originate from LSEG."""
+    js = json.loads(get(PT_URL)); ids, size = js["id"], js["size"]
+    pos = {k: i for i, k in enumerate(ids)}; dims = js["dimension"]
+    stride = [1] * len(size)
+    for i in range(len(size) - 2, -1, -1): stride[i] = stride[i + 1] * size[i + 1]
+    per = dims["40"]["category"]; mat = dims["45"]["category"]; dates = dims["reference_date"]["category"]["index"]
+    daily = per["index"].index(next(k for k, v in per["label"].items() if v == "Daily"))
+    out = defaultdict(dict)
+    for mi, code in enumerate(mat["index"]):
+        t = int(re.match(r"(\d+) years?", mat["label"][code]).group(1))
+        base = daily * stride[pos["40"]] + mi * stride[pos["45"]]
+        for di, d in enumerate(dates):
+            v = js["value"].get(str(base + di))
+            if v is not None and d >= START: out[t][d] = float(v)
+    if not out: raise RuntimeError("no Portuguese yield in the answer")
+    return out
+
+
+RB = "https://api.riksbank.se/swea/v1/Observations/{}/" + START + "/{}"
+def fetch_nl():
+    """Sveriges Riksbank, SWEA API: Netherlands government bond yields at 5 and 10 years, daily. Data originate from LSEG (Refinitiv)."""
+    out = {}
+    for t in (5, 10):
+        rows = json.loads(get(RB.format(f"NLGVB{t}Y", dt.date.today().isoformat())))
+        out[t] = {r["date"]: float(r["value"]) for r in rows if r.get("value") is not None}
+        time.sleep(1)
+    if not all(out.values()): raise RuntimeError("no Dutch yield in the answer")
+    return out
+
+
 def fetch_monthly():
     q = "&".join(f"geo={g}" for g in EZ)
     js = json.loads(get(f"https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/irt_lt_mcby_m?format=JSON&{q}&sinceTimePeriod=2015-01"))
@@ -227,6 +259,8 @@ def main():
     fr = run("France (Banque de France TEC)", fetch_fr)
     es = run("Spain (Banco de Espana)", fetch_es)
     be = run("Belgium (National Bank of Belgium)", fetch_be)
+    pt = run("Portugal (Banco de Portugal)", fetch_pt)
+    nl = run("Netherlands (Riksbank)", fetch_nl)
     estr = run("ESTR (Bundesbank)", fetch_estr)
     mo = run("Monthly 10Y (Eurostat)", fetch_monthly)
 
@@ -247,6 +281,12 @@ def main():
     for t in BE_TENORS:
         if be and be.get(t): be[t] = drop_spikes(f"BE {t}Y", be[t]); checks(f"BE {t}Y", be[t], 30)
         add(f"BE_{t}Y", series(f"BE_{t}Y", "yield", "BE", t, f"Belgium {t}Y", be[t], 2, "nbb_olo", kind="average yield on OLOs at a fixed residual term") if be and be.get(t) else None)
+    for t in (2, 3, 4, 5, 7, 10):
+        if pt and pt.get(t): pt[t] = drop_spikes(f"PT {t}Y", pt[t]); checks(f"PT {t}Y", pt[t], 30)
+        add(f"PT_{t}Y", series(f"PT_{t}Y", "yield", "PT", t, f"Portugal {t}Y", pt[t], 2, "bdp_yields", kind="fixed-rate Treasury bonds at a residual maturity") if pt and pt.get(t) else None)
+    for t in (5, 10):
+        if nl and nl.get(t): nl[t] = drop_spikes(f"NL {t}Y", nl[t]); checks(f"NL {t}Y", nl[t], 30)
+        add(f"NL_{t}Y", series(f"NL_{t}Y", "yield", "NL", t, f"Netherlands {t}Y", nl[t], 3, "riksbank_nl", kind="benchmark government bond yield") if nl and nl.get(t) else None)
     for t in FR_TENORS:
         if fr and fr.get(t): fr[t] = drop_spikes(f"FR {t}Y", fr[t]); checks(f"FR {t}Y", fr[t], 25)
         add(f"FR_{t}Y", series(f"FR_{t}Y", "yield", "FR", t, f"France {t}Y", fr[t], 3, "bdf_tec", kind="TEC constant-maturity index") if fr and fr.get(t) else None)

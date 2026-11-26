@@ -11,7 +11,7 @@ def bdays(a, b):
 # ---------------- market data
 M = json.load(open(D / "market.json")); S = {s["id"]: s for s in M["series"]}
 need = {**{f"DE_{t}Y": 6 for t in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 20, 25, 30)}, **{f"FR_{t}Y": 6 for t in (1, 2, 3, 5, 7, 10, 15, 20, 25, 30)},
-        **{f"ES_{t}Y": 8 for t in (3, 5, 10)}, **{f"BE_{t}Y": 6 for t in (1, 2, 5, 10, 30)}, "ESTR": 6}
+        **{f"ES_{t}Y": 8 for t in (3, 5, 10)}, **{f"BE_{t}Y": 6 for t in (1, 2, 5, 10, 30)}, **{f"PT_{t}Y": 12 for t in (2, 5, 10)}, **{f"NL_{t}Y": 6 for t in (5, 10)}, "ESTR": 6}
 for k, lag in need.items():
     s = S.get(k)
     if not s: FAIL.append(f"{k}: series missing"); continue
