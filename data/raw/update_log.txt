@@ -1,4 +1,4 @@
-Run 2026-11-26 17:04 UTC
+Run 2026-11-27 02:11 UTC
 Checks:
   DE 1Y: 3022 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2022-09-09', 26.0), ('2023-03-13', -26.0), ('2023-03-20', -26.0), ('2024-08-05', -27.0)]
   DE 2Y: 3022 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2022-10-04', -29.0), ('2022-12-16', 33.0), ('2023-03-13', -36.0), ('2023-03-20', -33.0), ('2023-03-24', -29.0)]
@@ -63,16 +63,52 @@ Auctions:
   Germany emissionsergebnisse_aktuell_en.xlsx: 113 coupon-bond auctions since 2015
   Spain bonos-del-estado: 3 auctions on the page
   Spain obligaciones-del-estado: 4 auctions on the page
-  Italy: 1 new result PDFs read, archive 61 auctions
+  retry 1 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  retry 2 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  retry 3 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  Italy risultati_aste_btp_short_term/index.html: page failed (download failed: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/risultati_aste_btp_short_term/index.html)
+  retry 1 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  retry 2 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  retry 3 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  Italy risultati_aste_btp_3_anni/index.html: page failed (download failed: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/risultati_aste_btp_3_anni/index.html)
+  retry 1 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  retry 2 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  retry 3 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  Italy risultati_aste_btp_5_anni/index.html: page failed (download failed: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/risultati_aste_btp_5_anni/index.html)
+  retry 1 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  retry 2 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  retry 3 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  Italy risultati_aste_btp_7_anni/index.html: page failed (download failed: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/risultati_aste_btp_7_anni/index.html)
+  retry 1 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  retry 2 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  retry 3 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  Italy risultati_aste_btp_10_anni/index.html: page failed (download failed: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/risultati_aste_btp_10_anni/index.html)
+  retry 1 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  retry 2 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  retry 3 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  Italy risultati_aste_btp_15_anni/index.html: page failed (download failed: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/risultati_aste_btp_15_anni/index.html)
+  retry 1 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  retry 2 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  retry 3 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  Italy risultati_aste_btp_20_anni/index.html: page failed (download failed: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/risultati_aste_btp_20_anni/index.html)
+  retry 1 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  retry 2 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  retry 3 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  Italy risultati_aste_btp_30_anni/index.html: page failed (download failed: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/risultati_aste_btp_30_anni/index.html)
+  retry 1 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  retry 2 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  retry 3 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
+  Italy risultati_aste_btp_green/: page failed (download failed: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/risultati_aste_btp_green/)
+  Italy: 0 new result PDFs read, archive 61 auctions
   Germany calendar: 2 upcoming coupon-bond auctions
   Spain calendar: 4 upcoming bond auctions
   Auctions against the readings of 19 Nov 2026: 61 figures compared, 0 differences, []
-  auctions.json: 201 results in the last 400 days, 11 upcoming; failed: []
+  auctions.json: 200 results in the last 400 days, 11 upcoming; failed: []
 Calendar:
   ECB key rates: 12 changes read, latest {'date': '2026-09-16', 'dfr': 2.5, 'mro': 2.65, 'mlf': 2.9}; against previous file: 0 differences []
   ECB meetings: 17, Eurostat euro-indicator releases: 53
-Eurex: 41 trading days offered (2026-09-30 to 2026-11-25), 18 rows fetched, archive 738 rows
-Eurex basket file: /resource/blob/2845860/219ef105c736224b3fa65372728c3527/data/deliverable-bonds-and-conversion-factors.csv | first lines: #Contract;ISIN;Coupon;Maturity;ConvFac || CONF SI 20261208 PS;CH0557778310;0.250000;23.06.2035;0.939172 || CONF SI 20261208 PS;CH0024524966;2.500000;08.03.2036;1.130746 || CONF SI 20261208 PS;CH0440081401;0.000000;24.07.2039;0.882313
+Eurex: 42 trading days offered (2026-09-30 to 2026-11-26), 18 rows fetched, archive 756 rows
+Eurex basket file: /resource/blob/2845860/33839ab6311e6808ead5b689449e3f1c/data/deliverable-bonds-and-conversion-factors.csv | first lines: #Contract;ISIN;Coupon;Maturity;ConvFac || CONF SI 20261208 PS;CH0440081401;0.000000;24.07.2039;0.882313 || CONF SI 20261208 PS;CH0440081567;1.500000;26.10.2038;1.055529 || CONF SI 20261208 PS;CH0127181193;1.250000;27.06.2037;1.024786
 Eurex baskets parsed: 35 contracts, 153 bonds
-Bundesbank bond prices on 2026-11-25: 16 of 16 German deliverable bonds
-futures.json: FGBS Dec 26 105.135, Mar 27 105.12; FGBM Dec 26 113.82, Mar 27 113.06; FGBL Dec 26 123.44, Mar 27 123.51; FGBX Dec 26 107.16, Mar 27 106.72; FOAT Dec 26 110.47, Mar 27 109.6; FBTP Dec 26 113.17, Mar 27 112.5
+Bundesbank bond prices on 2026-11-26: 16 of 16 German deliverable bonds
+futures.json: FGBS Dec 26 105.03, Mar 27 105.005; FGBM Dec 26 113.55, Mar 27 112.79; FGBL Dec 26 123.08, Mar 27 123.14; FGBX Dec 26 106.66, Mar 27 106.2; FOAT Dec 26 110.44, Mar 27 109.58; FBTP Dec 26 113.28, Mar 27 112.61

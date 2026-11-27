@@ -1,5 +1,5 @@
 {
-"asof": "2026-11-26",
+"asof": "2026-11-27",
 "note_results": "Medium and long-term lines. Germany: Finanzagentur workbook, allotted amount excludes the retention, history since 2015 in data/raw/auctions_de.csv. Spain: Tesoro Publico result pages, archived each day. Italy: MEF result PDFs, single-price auction, so the yield is the yield at the auction price. France: the AFT site refuses automated access, so French results are those read on 19 Nov 2026 and are not refreshed.",
 "note_upcoming": "Germany and Spain: issuers' calendars, read each day. France: date from the AFT calendar rule, not from a dated calendar. Italy: no machine-readable calendar found.",
 "results": [
@@ -2399,18 +2399,6 @@
 "bids_bn": 3.752,
 "amount_bn": 3.02,
 "avg_yield": 2.21,
-"stop_yield": null,
-"bid_cover": 1.2,
-"url": "https://www.deutsche-finanzagentur.de/en/federal-securities/issuances/issuance-results"
-},
-{
-"country": "DE",
-"date": "2025-10-22",
-"security": "Bund 2.50% 15 Nov 2032",
-"isin": "DE000BU27014",
-"bids_bn": 2.789,
-"amount_bn": 2.284,
-"avg_yield": 2.33,
 "stop_yield": null,
 "bid_cover": 1.2,
 "url": "https://www.deutsche-finanzagentur.de/en/federal-securities/issuances/issuance-results"
