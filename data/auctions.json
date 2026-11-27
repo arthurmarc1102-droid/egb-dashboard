@@ -5,6 +5,30 @@
 "results": [
 {
 "country": "IT",
+"date": "2026-11-27",
+"security": "BTP 3.95% 01 Feb 2032",
+"isin": "IT0005733636",
+"bids_bn": 4.721,
+"amount_bn": 3.0,
+"avg_yield": 3.84,
+"stop_yield": null,
+"bid_cover": 1.57,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-27.11.2026.pdf"
+},
+{
+"country": "IT",
+"date": "2026-11-27",
+"security": "BTP 4.00% 01 Oct 2036",
+"isin": "IT0005729931",
+"bids_bn": 5.318,
+"amount_bn": 3.5,
+"avg_yield": 4.33,
+"stop_yield": null,
+"bid_cover": 1.52,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-27.11.2026.pdf"
+},
+{
+"country": "IT",
 "date": "2026-11-25",
 "security": "BTP Short Term 3.00% 30 Oct 2028",
 "isin": "IT0005729733",

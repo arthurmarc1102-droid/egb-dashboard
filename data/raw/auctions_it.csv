@@ -1,4 +1,6 @@
 country,date,security,isin,bids_bn,amount_bn,avg_yield,stop_yield,bid_cover,url
+IT,2026-11-27,BTP 4.00% 01 Oct 2036,IT0005729931,5.318,3.5,4.33,,1.52,https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-27.11.2026.pdf
+IT,2026-11-27,BTP 3.95% 01 Feb 2032,IT0005733636,4.721,3.0,3.84,,1.57,https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-27.11.2026.pdf
 IT,2026-11-25,BTP Short Term 3.00% 30 Oct 2028,IT0005729733,3.193,2.0,3.4,,1.6,https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_short_term/BTP-Short-Term-Auction-Results-25-26.11.2026.pdf
 IT,2026-11-12,BTP Green 30 Apr 2046,IT0005631608,2.536,1.5,4.73,,1.69,https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_green/BTP-Green-20-years-residual_maturity-Auction-Results-12-13.11.2026.pdf
 IT,2026-11-12,BTP 3.35% 15 Sep 2033,IT0005722845,5.007,3.25,4.04,,1.54,https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_7_anni/BTP-7-Years-Auction-Results-12-13.11.2026.pdf

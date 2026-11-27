@@ -1,59 +1,59 @@
-Run 2026-11-27 02:11 UTC
+Run 2026-11-27 16:49 UTC
 Checks:
-  DE 1Y: 3022 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2022-09-09', 26.0), ('2023-03-13', -26.0), ('2023-03-20', -26.0), ('2024-08-05', -27.0)]
-  DE 2Y: 3022 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2022-10-04', -29.0), ('2022-12-16', 33.0), ('2023-03-13', -36.0), ('2023-03-20', -33.0), ('2023-03-24', -29.0)]
-  DE 3Y: 3022 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2022-06-23', -26.0), ('2022-10-04', -32.0), ('2022-12-16', 36.0), ('2023-03-13', -38.0), ('2023-03-20', -32.0), ('2023-03-24', -32.0)]
-  DE 4Y: 3022 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2022-06-23', -27.0), ('2022-10-04', -34.0), ('2022-12-16', 37.0), ('2023-03-13', -36.0), ('2023-03-20', -30.0), ('2023-03-24', -33.0)]
-  DE 5Y: 3022 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2022-06-23', -27.0), ('2022-10-04', -34.0), ('2022-12-16', 35.0), ('2023-03-13', -34.0), ('2023-03-20', -29.0), ('2023-03-24', -32.0)]
-  DE 6Y: 3022 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2022-06-23', -26.0), ('2022-10-04', -34.0), ('2022-12-16', 35.0), ('2023-03-13', -32.0), ('2023-03-20', -27.0), ('2023-03-24', -31.0)]
-  DE 7Y: 3022 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2022-10-04', -32.0), ('2022-12-16', 33.0), ('2023-03-13', -31.0), ('2023-03-20', -26.0), ('2023-03-24', -28.0)]
-  DE 8Y: 3022 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2022-10-04', -32.0), ('2022-12-16', 31.0), ('2023-03-13', -29.0), ('2023-03-20', -26.0), ('2023-03-24', -26.0)]
-  DE 9Y: 3022 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2022-10-04', -31.0), ('2022-12-16', 29.0), ('2023-03-13', -28.0)]
-  DE 10Y: 3022 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2022-10-04', -30.0), ('2022-12-16', 28.0), ('2023-03-13', -28.0)]
-  DE 12Y: 3022 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2015-05-07', 29.0), ('2015-06-04', 27.0), ('2022-10-04', -29.0), ('2022-12-16', 25.0), ('2023-03-13', -27.0)]
-  DE 15Y: 3022 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2015-05-07', 32.0), ('2015-06-04', 26.0), ('2022-10-04', -27.0), ('2023-03-13', -26.0)]
-  DE 20Y: 3022 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2015-05-07', 34.0), ('2015-06-04', 26.0), ('2022-10-04', -25.0)]
-  DE 25Y: 3022 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2015-05-07', 31.0), ('2022-09-28', 25.0)]
-  DE 30Y: 3022 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2015-05-07', 28.0)]
-  ES 3Y: 3020 days 2015-01-05 to 2026-11-24, day moves above 30 bp: [('2022-12-19', 49.0), ('2023-03-13', -32.0), ('2023-04-03', 51.0), ('2023-04-04', -46.0), ('2023-05-31', -44.0), ('2023-10-30', -31.0)]
+  DE 1Y: 3023 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2022-09-09', 26.0), ('2023-03-13', -26.0), ('2023-03-20', -26.0), ('2024-08-05', -27.0)]
+  DE 2Y: 3023 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2022-10-04', -29.0), ('2022-12-16', 33.0), ('2023-03-13', -36.0), ('2023-03-20', -33.0), ('2023-03-24', -29.0)]
+  DE 3Y: 3023 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2022-06-23', -26.0), ('2022-10-04', -32.0), ('2022-12-16', 36.0), ('2023-03-13', -38.0), ('2023-03-20', -32.0), ('2023-03-24', -32.0)]
+  DE 4Y: 3023 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2022-06-23', -27.0), ('2022-10-04', -34.0), ('2022-12-16', 37.0), ('2023-03-13', -36.0), ('2023-03-20', -30.0), ('2023-03-24', -33.0)]
+  DE 5Y: 3023 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2022-06-23', -27.0), ('2022-10-04', -34.0), ('2022-12-16', 35.0), ('2023-03-13', -34.0), ('2023-03-20', -29.0), ('2023-03-24', -32.0)]
+  DE 6Y: 3023 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2022-06-23', -26.0), ('2022-10-04', -34.0), ('2022-12-16', 35.0), ('2023-03-13', -32.0), ('2023-03-20', -27.0), ('2023-03-24', -31.0)]
+  DE 7Y: 3023 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2022-10-04', -32.0), ('2022-12-16', 33.0), ('2023-03-13', -31.0), ('2023-03-20', -26.0), ('2023-03-24', -28.0)]
+  DE 8Y: 3023 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2022-10-04', -32.0), ('2022-12-16', 31.0), ('2023-03-13', -29.0), ('2023-03-20', -26.0), ('2023-03-24', -26.0)]
+  DE 9Y: 3023 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2022-10-04', -31.0), ('2022-12-16', 29.0), ('2023-03-13', -28.0)]
+  DE 10Y: 3023 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2022-10-04', -30.0), ('2022-12-16', 28.0), ('2023-03-13', -28.0)]
+  DE 12Y: 3023 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2015-05-07', 29.0), ('2015-06-04', 27.0), ('2022-10-04', -29.0), ('2022-12-16', 25.0), ('2023-03-13', -27.0)]
+  DE 15Y: 3023 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2015-05-07', 32.0), ('2015-06-04', 26.0), ('2022-10-04', -27.0), ('2023-03-13', -26.0)]
+  DE 20Y: 3023 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2015-05-07', 34.0), ('2015-06-04', 26.0), ('2022-10-04', -25.0)]
+  DE 25Y: 3023 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2015-05-07', 31.0), ('2022-09-28', 25.0)]
+  DE 30Y: 3023 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2015-05-07', 28.0)]
+  ES 3Y: 3021 days 2015-01-05 to 2026-11-25, day moves above 30 bp: [('2022-12-19', 49.0), ('2023-03-13', -32.0), ('2023-04-03', 51.0), ('2023-04-04', -46.0), ('2023-05-31', -44.0), ('2023-10-30', -31.0)]
   ES 5Y: 2016-07-08 value 1.75 dropped, isolated spike of 75 bp or more against both neighbours
-  ES 5Y: 3027 days 2015-01-02 to 2026-11-24, day moves above 30 bp: [('2015-09-21', 56.0), ('2015-09-22', -51.0), ('2020-03-18', 40.0)]
-  ES 10Y: 3045 days 2015-01-02 to 2026-11-24, day moves above 30 bp: [('2015-09-01', 43.0), ('2017-08-17', -36.0)]
-  ES 15Y: 2454 days 2015-01-02 to 2026-11-24, day moves above 30 bp: [('2015-01-26', -32.0), ('2015-08-27', -55.0), ('2015-08-31', 61.0), ('2015-09-30', -51.0), ('2015-10-05', 30.0), ('2017-04-05', 41.0)]
-  BE 1Y: 2966 days 2015-01-02 to 2026-11-26, day moves above 30 bp: [('2016-10-07', -35.0), ('2016-10-10', 41.0), ('2022-09-14', 34.0), ('2023-03-13', -36.0), ('2024-01-10', -35.0)]
-  BE 2Y: 2966 days 2015-01-02 to 2026-11-26, day moves above 30 bp: [('2023-03-13', -51.0)]
-  BE 3Y: 2966 days 2015-01-02 to 2026-11-26, day moves above 30 bp: [('2022-06-13', 30.0), ('2022-10-07', 31.0), ('2023-03-13', -52.0)]
-  BE 4Y: 2966 days 2015-01-02 to 2026-11-26, day moves above 30 bp: [('2022-06-13', 32.0), ('2023-03-13', -43.0)]
-  BE 5Y: 2966 days 2015-01-02 to 2026-11-26, day moves above 30 bp: [('2018-01-12', 37.0), ('2022-06-13', 31.0), ('2023-03-13', -37.0)]
-  BE 6Y: 2966 days 2015-01-02 to 2026-11-26, day moves above 30 bp: [('2023-03-13', -34.0)]
-  BE 7Y: 2966 days 2015-01-02 to 2026-11-26, day moves above 30 bp: [('2023-03-13', -32.0)]
-  BE 8Y: 2966 days 2015-01-02 to 2026-11-26
-  BE 9Y: 2966 days 2015-01-02 to 2026-11-26
-  BE 10Y: 2966 days 2015-01-02 to 2026-11-26
-  BE 12Y: 2966 days 2015-01-02 to 2026-11-26
-  BE 15Y: 2966 days 2015-01-02 to 2026-11-26
-  BE 20Y: 2966 days 2015-01-02 to 2026-11-26
-  BE 25Y: 2966 days 2015-01-02 to 2026-11-26
-  BE 30Y: 2966 days 2015-01-02 to 2026-11-26
+  ES 5Y: 3028 days 2015-01-02 to 2026-11-25, day moves above 30 bp: [('2015-09-21', 56.0), ('2015-09-22', -51.0), ('2020-03-18', 40.0)]
+  ES 10Y: 3046 days 2015-01-02 to 2026-11-25, day moves above 30 bp: [('2015-09-01', 43.0), ('2017-08-17', -36.0)]
+  ES 15Y: 2455 days 2015-01-02 to 2026-11-25, day moves above 30 bp: [('2015-01-26', -32.0), ('2015-08-27', -55.0), ('2015-08-31', 61.0), ('2015-09-30', -51.0), ('2015-10-05', 30.0), ('2017-04-05', 41.0)]
+  BE 1Y: 2967 days 2015-01-02 to 2026-11-27, day moves above 30 bp: [('2016-10-07', -35.0), ('2016-10-10', 41.0), ('2022-09-14', 34.0), ('2023-03-13', -36.0), ('2024-01-10', -35.0)]
+  BE 2Y: 2967 days 2015-01-02 to 2026-11-27, day moves above 30 bp: [('2023-03-13', -51.0)]
+  BE 3Y: 2967 days 2015-01-02 to 2026-11-27, day moves above 30 bp: [('2022-06-13', 30.0), ('2022-10-07', 31.0), ('2023-03-13', -52.0)]
+  BE 4Y: 2967 days 2015-01-02 to 2026-11-27, day moves above 30 bp: [('2022-06-13', 32.0), ('2023-03-13', -43.0)]
+  BE 5Y: 2967 days 2015-01-02 to 2026-11-27, day moves above 30 bp: [('2018-01-12', 37.0), ('2022-06-13', 31.0), ('2023-03-13', -37.0)]
+  BE 6Y: 2967 days 2015-01-02 to 2026-11-27, day moves above 30 bp: [('2023-03-13', -34.0)]
+  BE 7Y: 2967 days 2015-01-02 to 2026-11-27, day moves above 30 bp: [('2023-03-13', -32.0)]
+  BE 8Y: 2967 days 2015-01-02 to 2026-11-27
+  BE 9Y: 2967 days 2015-01-02 to 2026-11-27
+  BE 10Y: 2967 days 2015-01-02 to 2026-11-27
+  BE 12Y: 2967 days 2015-01-02 to 2026-11-27
+  BE 15Y: 2967 days 2015-01-02 to 2026-11-27
+  BE 20Y: 2967 days 2015-01-02 to 2026-11-27
+  BE 25Y: 2967 days 2015-01-02 to 2026-11-27
+  BE 30Y: 2967 days 2015-01-02 to 2026-11-27
   PT 2Y: 3079 days 2015-01-02 to 2026-11-20, day moves above 30 bp: [('2015-05-14', 32.0), ('2015-06-25', -41.0), ('2015-07-02', 60.0), ('2016-02-11', 48.0), ('2016-02-24', -39.0), ('2016-03-01', -30.0)]
   PT 3Y: 3079 days 2015-01-02 to 2026-11-20, day moves above 30 bp: [('2016-02-11', 46.0), ('2016-04-19', 54.0), ('2017-03-23', 54.0), ('2019-01-29', 31.0), ('2022-04-13', 33.0)]
   PT 4Y: 3079 days 2015-01-02 to 2026-11-20, day moves above 30 bp: [('2016-02-11', 53.0), ('2016-02-24', -30.0), ('2016-04-19', 38.0), ('2017-03-23', 52.0), ('2018-01-25', 32.0), ('2023-03-15', -33.0)]
   PT 5Y: 3079 days 2015-01-02 to 2026-11-20, day moves above 30 bp: [('2016-02-11', 50.0), ('2016-04-19', 33.0), ('2017-03-23', 81.0), ('2018-01-25', 37.0), ('2020-03-19', -33.0), ('2020-03-26', -30.0)]
   PT 7Y: 2773 days 2015-01-02 to 2026-11-20, day moves above 30 bp: [('2016-04-19', 89.0), ('2018-01-25', 44.0), ('2020-03-12', 30.0), ('2020-03-19', -35.0), ('2020-03-26', -34.0), ('2023-02-02', -31.0)]
   PT 10Y: 3079 days 2015-01-02 to 2026-11-20, day moves above 30 bp: [('2015-06-29', 33.0), ('2016-02-09', 31.0), ('2016-02-11', 36.0), ('2016-02-12', -33.0), ('2017-03-23', 35.0), ('2017-09-18', -36.0)]
-  NL 5Y: 2992 days 2015-01-02 to 2026-11-25, day moves above 30 bp: [('2024-01-17', -44.7), ('2024-01-19', 43.4), ('2024-02-16', -38.1), ('2024-02-19', 44.4)]
-  NL 10Y: 2992 days 2015-01-02 to 2026-11-25
-  FR 1Y: 3046 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2023-03-14', -33.0), ('2023-03-16', -29.0)]
-  FR 2Y: 3046 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2022-01-03', 39.0), ('2022-01-04', -30.0), ('2022-06-13', 28.0), ('2022-06-15', 44.0), ('2022-06-16', -37.0), ('2022-06-28', -30.0)]
-  FR 3Y: 3046 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2022-01-03', 26.0), ('2022-06-13', 27.0), ('2022-06-28', -32.0), ('2022-06-29', 45.0), ('2022-10-04', -29.0), ('2022-12-16', 37.0)]
-  FR 5Y: 3046 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2022-06-13', 28.0), ('2022-06-23', -28.0), ('2022-06-29', 38.0), ('2022-10-04', -35.0), ('2022-12-16', 36.0), ('2023-03-13', -31.0)]
-  FR 7Y: 3046 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2022-06-23', -27.0), ('2022-06-29', 33.0), ('2022-10-04', -33.0), ('2022-12-16', 35.0), ('2023-03-13', -27.0)]
-  FR 10Y: 3046 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2020-03-13', 27.5), ('2022-06-23', -26.0), ('2022-06-29', 31.0), ('2022-10-04', -32.0), ('2022-12-16', 33.0)]
-  FR 15Y: 3046 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2015-06-04', 26.2), ('2020-03-13', 29.3), ('2022-10-04', -30.0), ('2022-12-16', 27.0)]
-  FR 20Y: 3046 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2015-06-04', 26.0), ('2020-03-13', 31.5), ('2022-10-04', -28.0)]
-  FR 25Y: 3046 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2015-06-04', 26.6), ('2020-03-13', 33.0), ('2022-10-04', -26.0)]
-  FR 30Y: 3046 days 2015-01-02 to 2026-11-26, day moves above 25 bp: [('2015-06-04', 26.2), ('2020-03-13', 32.8)]
-market.json: 61 series, last daily date 2026-11-26
+  NL 5Y: 2993 days 2015-01-02 to 2026-11-26, day moves above 30 bp: [('2024-01-17', -44.7), ('2024-01-19', 43.4), ('2024-02-16', -38.1), ('2024-02-19', 44.4)]
+  NL 10Y: 2993 days 2015-01-02 to 2026-11-26
+  FR 1Y: 3047 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2023-03-14', -33.0), ('2023-03-16', -29.0)]
+  FR 2Y: 3047 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2022-01-03', 39.0), ('2022-01-04', -30.0), ('2022-06-13', 28.0), ('2022-06-15', 44.0), ('2022-06-16', -37.0), ('2022-06-28', -30.0)]
+  FR 3Y: 3047 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2022-01-03', 26.0), ('2022-06-13', 27.0), ('2022-06-28', -32.0), ('2022-06-29', 45.0), ('2022-10-04', -29.0), ('2022-12-16', 37.0)]
+  FR 5Y: 3047 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2022-06-13', 28.0), ('2022-06-23', -28.0), ('2022-06-29', 38.0), ('2022-10-04', -35.0), ('2022-12-16', 36.0), ('2023-03-13', -31.0)]
+  FR 7Y: 3047 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2022-06-23', -27.0), ('2022-06-29', 33.0), ('2022-10-04', -33.0), ('2022-12-16', 35.0), ('2023-03-13', -27.0)]
+  FR 10Y: 3047 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2020-03-13', 27.5), ('2022-06-23', -26.0), ('2022-06-29', 31.0), ('2022-10-04', -32.0), ('2022-12-16', 33.0)]
+  FR 15Y: 3047 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2015-06-04', 26.2), ('2020-03-13', 29.3), ('2022-10-04', -30.0), ('2022-12-16', 27.0)]
+  FR 20Y: 3047 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2015-06-04', 26.0), ('2020-03-13', 31.5), ('2022-10-04', -28.0)]
+  FR 25Y: 3047 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2015-06-04', 26.6), ('2020-03-13', 33.0), ('2022-10-04', -26.0)]
+  FR 30Y: 3047 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2015-06-04', 26.2), ('2020-03-13', 32.8)]
+market.json: 61 series, last daily date 2026-11-27
 Against the double-read snapshot of 19 Nov 2026: 6723 common values, 0 differences []
 news ECB: 15 items in feed
 news Bundesbank: 10 items in feed
@@ -63,47 +63,11 @@ Auctions:
   Germany emissionsergebnisse_aktuell_en.xlsx: 113 coupon-bond auctions since 2015
   Spain bonos-del-estado: 3 auctions on the page
   Spain obligaciones-del-estado: 4 auctions on the page
-  retry 1 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  retry 2 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  retry 3 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  Italy risultati_aste_btp_short_term/index.html: page failed (download failed: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/risultati_aste_btp_short_term/index.html)
-  retry 1 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  retry 2 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  retry 3 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  Italy risultati_aste_btp_3_anni/index.html: page failed (download failed: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/risultati_aste_btp_3_anni/index.html)
-  retry 1 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  retry 2 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  retry 3 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  Italy risultati_aste_btp_5_anni/index.html: page failed (download failed: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/risultati_aste_btp_5_anni/index.html)
-  retry 1 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  retry 2 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  retry 3 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  Italy risultati_aste_btp_7_anni/index.html: page failed (download failed: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/risultati_aste_btp_7_anni/index.html)
-  retry 1 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  retry 2 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  retry 3 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  Italy risultati_aste_btp_10_anni/index.html: page failed (download failed: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/risultati_aste_btp_10_anni/index.html)
-  retry 1 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  retry 2 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  retry 3 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  Italy risultati_aste_btp_15_anni/index.html: page failed (download failed: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/risultati_aste_btp_15_anni/index.html)
-  retry 1 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  retry 2 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  retry 3 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  Italy risultati_aste_btp_20_anni/index.html: page failed (download failed: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/risultati_aste_btp_20_anni/index.html)
-  retry 1 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  retry 2 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  retry 3 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  Italy risultati_aste_btp_30_anni/index.html: page failed (download failed: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/risultati_aste_btp_30_anni/index.html)
-  retry 1 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  retry 2 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  retry 3 https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_a: HTTP Error 403: Forbidden
-  Italy risultati_aste_btp_green/: page failed (download failed: https://www.dt.mef.gov.it/en/debito_pubblico/emissioni_titoli_di_stato_interni/risultati_aste/risultati_aste_btp_green/)
-  Italy: 0 new result PDFs read, archive 61 auctions
+  Italy: 2 new result PDFs read, archive 63 auctions
   Germany calendar: 2 upcoming coupon-bond auctions
   Spain calendar: 4 upcoming bond auctions
   Auctions against the readings of 19 Nov 2026: 61 figures compared, 0 differences, []
-  auctions.json: 200 results in the last 400 days, 11 upcoming; failed: []
+  auctions.json: 202 results in the last 400 days, 11 upcoming; failed: []
 Calendar:
   ECB key rates: 12 changes read, latest {'date': '2026-09-16', 'dfr': 2.5, 'mro': 2.65, 'mlf': 2.9}; against previous file: 0 differences []
   ECB meetings: 17, Eurostat euro-indicator releases: 53

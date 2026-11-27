@@ -2,6 +2,66 @@
 "note": "Titles and links from the ECB, Bundesbank and Banco de Espana feeds, read each day and archived (400 most recent). Press feeds are not included: their terms of use have not been read.",
 "items": [
 {
+"date": "2026-11-27",
+"source": "ECB",
+"title": "Decisions taken by the Governing Council of the ECB (in addition to decisions setting interest rates)",
+"url": "https://www.ecb.europa.eu//press/govcdec/otherdec/2026/html/ecb.gc261127~13ecadc0f2.en.html"
+},
+{
+"date": "2026-11-27",
+"source": "ECB",
+"title": "ECB Consumer Expectations Survey results – October 2026",
+"url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261127~2e53af695e.en.html"
+},
+{
+"date": "2026-11-27",
+"source": "Bundesbank",
+"title": "Announcement of auction – 3-months Bills of the European Stability Mechanism (ESM)",
+"url": "https://www.bundesbank.de/en/press/press-releases/esm/announcement-of-auction-3-months-bills-of-the-european-stability-mechanism-esm--1017172"
+},
+{
+"date": "2026-11-27",
+"source": "Bundesbank",
+"title": "Invitation to bid – Federal Treasury discount paper (Bubills)",
+"url": "https://www.bundesbank.de/en/press/press-releases/federal-securities/invitation-to-bid-federal-treasury-discount-paper-bubills--1017160"
+},
+{
+"date": "2026-11-27",
+"source": "Banco de Espana",
+"title": "Comunicado de la Comisión Ejecutiva del Banco de España",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-banco-espana/notas-banco-espana/comunicado-de-la-comision-ejecutiva-del-banco-de-espana.html"
+},
+{
+"date": "2026-11-27",
+"source": "Banco de Espana",
+"title": "Decisions taken by the Governing Council of the ECB (in addition to decisions setting interest rates)",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-bce/otras-decisiones-consejo-gobierno/otras-decisiones-noviembre-2026.html"
+},
+{
+"date": "2026-11-27",
+"source": "Banco de Espana",
+"title": "El Banco de España, el FMI y el BID debaten en Sevilla sobre política fiscal, inflación y sostenibilidad de la deuda pública",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-banco-espana/notas-banco-espana/el-banco-de-espana-el-fmi-y-el-bid-debaten-en-sevilla-sobre-politica-fiscal-inflacion-y-sostenibilidad-de-la-deuda-publica.html"
+},
+{
+"date": "2026-11-27",
+"source": "Banco de Espana",
+"title": "Nota informativa sobre autorizaciones tras la publicación del Real Decreto-ley 44/2026",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-banco-espana/notas-banco-espana/nota-informativa-sobre-las-solicitudes-de-autorizacion-de-administradores-de-creditos-establecimientos-financieros-de-credito-establecimientos-financieros-de-credito-de-actividad-limitada-y-prestamistas-de-alto-coste-tras-la-aprobacion-del-real-decreto-ley-442026.html"
+},
+{
+"date": "2026-11-27",
+"source": "Banco de Espana",
+"title": "ECB Consumer Expectations Survey results – October 2026",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-bce/notas-prensa-bce/ecb-consumer-expectations-survey-results--october-2026.html"
+},
+{
+"date": "2026-11-27",
+"source": "Banco de Espana",
+"title": "Preliminary estimate of the Balance of Payments (October 2026)",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/eventos/agenda/avance-de-la-balanza-de-pagos-octubre-de-2026.html"
+},
+{
 "date": "2026-11-26",
 "source": "Banco de Espana",
 "title": "Climate change indicators: November 2026",
@@ -66,6 +126,60 @@
 "source": "ECB",
 "title": "ECB and Sveriges Riksbank conclude agreement for Sweden to join T2",
 "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261125_1~6333a90f3a.en.html"
+},
+{
+"date": "2026-11-25",
+"source": "Banco de Espana",
+"title": "ECB and Sveriges Riksbank conclude agreement for Sweden to join T2",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/actualidad-bce/notas-prensa-bce/el-bce-y-el-sveriges-riksbank-suscriben-un-acuerdo-para-la-incorporacion-de-suecia-a-t2.html"
+},
+{
+"date": "2026-11-25",
+"source": "Banco de Espana",
+"title": "Financial Stability Report (Autumn 2026)",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/eventos/agenda/informe-de-estabilidad-financiera-otono-2026.html"
+},
+{
+"date": "2026-11-25",
+"source": "Banco de Espana",
+"title": "Quarterly Report on the Spanish Economy and Macroeconomic Projections (2026 Q4)",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/eventos/agenda/informe-trimestral-de-la-economia-espanola-y-proyecciones-macroeconomicas-cuarto-trimestre-de-2026.html"
+},
+{
+"date": "2026-11-25",
+"source": "Banco de Espana",
+"title": "General government debt according to the Excessive Deficit Procedure. Monthly advance (October 2026)",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/eventos/agenda/deuda-de-las-administraciones-publicas-segun-el-protocolo-de-deficit-excesivo-avance-mensual-octubre-de-2026.html"
+},
+{
+"date": "2026-11-25",
+"source": "Banco de Espana",
+"title": "Individual primary public financial statements of credit institutions (2026 Q3)",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/eventos/agenda/estados-financieros-publicos-primarios-individuales-de-las-entidades-de-credito-tercer-trimestre-de-2026.html"
+},
+{
+"date": "2026-11-25",
+"source": "Banco de Espana",
+"title": "Consolidated primary public financial statements of credit institutions (2026 Q3)",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/eventos/agenda/estados-financieros-publicos-primarios-consolidados-de-las-entidades-de-credito-tercer-trimestre-de-2026.html"
+},
+{
+"date": "2026-11-25",
+"source": "Banco de Espana",
+"title": "Quarterly data on the balance of payments and the international investment position (2026 Q3)",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/eventos/agenda/datos-trimestrales-de-la-balanza-de-pagos-y-la-posicion-de-inversion-internacional-tercer-trimestre-de-2026.html"
+},
+{
+"date": "2026-11-25",
+"source": "Banco de Espana",
+"title": "General government debt (2026 Q3)",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/eventos/agenda/deuda-de-las-administraciones-publicas-tercer-trimestre-de-2026.html"
+},
+{
+"date": "2026-11-25",
+"source": "Banco de Espana",
+"title": "Data on lending and deposits. Breakdown by province and regional (autonomous) government (2026 Q3)",
+"url": "https://www.bde.es/wbe/en/noticias-eventos/eventos/agenda/datos-de-creditos-y-depositos-por-provincias-y--ccaa-tercer-trimestre-de-2026.html"
 },
 {
 "date": "2026-11-24",
@@ -458,5 +572,5 @@
 "url": "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260611~4d41bd5e83.en.html"
 }
 ],
-"updated": "2026-11-27T02:11:23+00:00"
+"updated": "2026-11-27T16:49:16+00:00"
 }
