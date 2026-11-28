@@ -2,6 +2,12 @@
 "note": "Titles and links from the ECB, Bundesbank and Banco de Espana feeds, read each day and archived (400 most recent). Press feeds are not included: their terms of use have not been read.",
 "items": [
 {
+"date": "2026-11-28",
+"source": "ECB",
+"title": "Boris Vujčić: Interview with Kurier",
+"url": "https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in261128~10e11f78f1.en.html"
+},
+{
 "date": "2026-11-27",
 "source": "ECB",
 "title": "Decisions taken by the Governing Council of the ECB (in addition to decisions setting interest rates)",
@@ -572,5 +578,5 @@
 "url": "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260611~4d41bd5e83.en.html"
 }
 ],
-"updated": "2026-11-28T02:00:41+00:00"
+"updated": "2026-11-28T15:41:13+00:00"
 }
