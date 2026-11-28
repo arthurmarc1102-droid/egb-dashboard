@@ -1,4 +1,4 @@
-Run 2026-11-27 16:49 UTC
+Run 2026-11-28 02:00 UTC
 Checks:
   DE 1Y: 3023 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2022-09-09', 26.0), ('2023-03-13', -26.0), ('2023-03-20', -26.0), ('2024-08-05', -27.0)]
   DE 2Y: 3023 days 2015-01-02 to 2026-11-27, day moves above 25 bp: [('2022-10-04', -29.0), ('2022-12-16', 33.0), ('2023-03-13', -36.0), ('2023-03-20', -33.0), ('2023-03-24', -29.0)]
@@ -63,16 +63,16 @@ Auctions:
   Germany emissionsergebnisse_aktuell_en.xlsx: 113 coupon-bond auctions since 2015
   Spain bonos-del-estado: 3 auctions on the page
   Spain obligaciones-del-estado: 4 auctions on the page
-  Italy: 2 new result PDFs read, archive 63 auctions
+  Italy: 0 new result PDFs read, archive 63 auctions
   Germany calendar: 2 upcoming coupon-bond auctions
   Spain calendar: 4 upcoming bond auctions
   Auctions against the readings of 19 Nov 2026: 61 figures compared, 0 differences, []
   auctions.json: 202 results in the last 400 days, 11 upcoming; failed: []
 Calendar:
   ECB key rates: 12 changes read, latest {'date': '2026-09-16', 'dfr': 2.5, 'mro': 2.65, 'mlf': 2.9}; against previous file: 0 differences []
-  ECB meetings: 17, Eurostat euro-indicator releases: 53
-Eurex: 42 trading days offered (2026-09-30 to 2026-11-26), 18 rows fetched, archive 756 rows
-Eurex basket file: /resource/blob/2845860/33839ab6311e6808ead5b689449e3f1c/data/deliverable-bonds-and-conversion-factors.csv | first lines: #Contract;ISIN;Coupon;Maturity;ConvFac || CONF SI 20261208 PS;CH0440081401;0.000000;24.07.2039;0.882313 || CONF SI 20261208 PS;CH0440081567;1.500000;26.10.2038;1.055529 || CONF SI 20261208 PS;CH0127181193;1.250000;27.06.2037;1.024786
+  ECB meetings: 17, Eurostat euro-indicator releases: 52
+Eurex: 43 trading days offered (2026-09-30 to 2026-11-27), 18 rows fetched, archive 774 rows
+Eurex basket file: /resource/blob/2845860/eb6910859e30c37d98749bf1d75c2128/data/deliverable-bonds-and-conversion-factors.csv | first lines: #Contract;ISIN;Coupon;Maturity;ConvFac || CONF SI 20261208 PS;CH0024524966;2.500000;08.03.2036;1.130746 || CONF SI 20261208 PS;CH0557778310;0.250000;23.06.2035;0.939172 || CONF SI 20261208 PS;CH0127181193;1.250000;27.06.2037;1.024786
 Eurex baskets parsed: 35 contracts, 153 bonds
-Bundesbank bond prices on 2026-11-26: 16 of 16 German deliverable bonds
-futures.json: FGBS Dec 26 105.03, Mar 27 105.005; FGBM Dec 26 113.55, Mar 27 112.79; FGBL Dec 26 123.08, Mar 27 123.14; FGBX Dec 26 106.66, Mar 27 106.2; FOAT Dec 26 110.44, Mar 27 109.58; FBTP Dec 26 113.28, Mar 27 112.61
+Bundesbank bond prices on 2026-11-27: 16 of 16 German deliverable bonds
+futures.json: FGBS Dec 26 105.055, Mar 27 105.035; FGBM Dec 26 113.57, Mar 27 112.81; FGBL Dec 26 123.07, Mar 27 123.13; FGBX Dec 26 106.32, Mar 27 105.82; FOAT Dec 26 110.84, Mar 27 109.98; FBTP Dec 26 113.57, Mar 27 112.91

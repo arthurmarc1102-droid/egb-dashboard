@@ -77,12 +77,6 @@
 "key_rates_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html",
 "events": [
 {
-"date": "2026-11-27",
-"kind": "Data",
-"title": "Economic Sentiment Indicator & Business and Consumer Survey results (November 2026), Eurostat",
-"url": "https://ec.europa.eu/eurostat/news/release-calendar"
-},
-{
 "date": "2026-12-01",
 "kind": "Data",
 "title": "Flash estimate inflation euro area (November 2026), Eurostat",

@@ -1,9 +1,9 @@
-Checks of 2026-11-27 16:50 UTC
+Checks of 2026-11-28 02:01 UTC
 OK    market: 39 daily series and 8 monthly series present, sorted, in range and fresh
 OK    market against the double-read snapshot of 19 Nov 2026: 6723 values, 0 differences
 OK    futures: 47 basket bonds checked against the Eurex file, gross basis and CTD recomputed
 OK    auctions: 202 results, cover = bids / allotted checked on 193; 11 upcoming
-OK    calendar: 70 events, ECB rates {'date': '2026-09-16', 'dfr': 2.5, 'mro': 2.65, 'mlf': 2.9}; news: 95 items
+OK    calendar: 69 events, ECB rates {'date': '2026-09-16', 'dfr': 2.5, 'mro': 2.65, 'mlf': 2.9}; news: 95 items
 PAGE  ok   1440px: the page opens on the brief
 PAGE  ok   1440px: 5 spaces, 13 sections (1+3+5+2+2)
 PAGE  1440px home: 8 panels
@@ -59,5 +59,5 @@ PAGE  ok   workbench: yields and bp structures on two charts (2)
 PAGE  ok   workbench: change since start on one chart
 PAGE  ok   phone: filters folded (0 groups shown), then open (3)
 PAGE  ok   phone: a country can be switched off from the open filters
-PAGE  share picture redrawn for "Fixings of Fri 27 Nov 2026", 128 kB
+PAGE  share picture kept: already drawn for "Fixings of Fri 27 Nov 2026"
 OK    brief and lab: 649 figures compared, 0 differences

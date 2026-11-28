@@ -1,20 +1,8 @@
 {
-"asof": "2026-11-27",
+"asof": "2026-11-28",
 "note_results": "Medium and long-term lines. Germany: Finanzagentur workbook, allotted amount excludes the retention, history since 2015 in data/raw/auctions_de.csv. Spain: Tesoro Publico result pages, archived each day. Italy: MEF result PDFs, single-price auction, so the yield is the yield at the auction price. France: the AFT site refuses automated access, so French results are those read on 19 Nov 2026 and are not refreshed.",
 "note_upcoming": "Germany and Spain: issuers' calendars, read each day. France: date from the AFT calendar rule, not from a dated calendar. Italy: no machine-readable calendar found.",
 "results": [
-{
-"country": "IT",
-"date": "2026-11-27",
-"security": "BTP 3.95% 01 Feb 2032",
-"isin": "IT0005733636",
-"bids_bn": 4.721,
-"amount_bn": 3.0,
-"avg_yield": 3.84,
-"stop_yield": null,
-"bid_cover": 1.57,
-"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-27.11.2026.pdf"
-},
 {
 "country": "IT",
 "date": "2026-11-27",
@@ -26,6 +14,18 @@
 "stop_yield": null,
 "bid_cover": 1.52,
 "url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_10_anni/BTP-10-Years-Auction-Results-27.11.2026.pdf"
+},
+{
+"country": "IT",
+"date": "2026-11-27",
+"security": "BTP 3.95% 01 Feb 2032",
+"isin": "IT0005733636",
+"bids_bn": 4.721,
+"amount_bn": 3.0,
+"avg_yield": 3.84,
+"stop_yield": null,
+"bid_cover": 1.57,
+"url": "https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_en/debito_pubblico/risultati_aste/risultati_aste_btp_5_anni/BTP-5-Years-Auction-Results-27.11.2026.pdf"
 },
 {
 "country": "IT",
